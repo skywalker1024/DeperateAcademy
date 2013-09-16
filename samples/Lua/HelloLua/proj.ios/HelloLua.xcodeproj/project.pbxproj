@@ -12,7 +12,6 @@
 		15A3DBA11682FB86002FB0C5 /* CocosDenshion.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A3DB3F1682FB86002FB0C5 /* CocosDenshion.m */; };
 		15A3DBA21682FB86002FB0C5 /* SimpleAudioEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 15A3DB401682FB86002FB0C5 /* SimpleAudioEngine.mm */; };
 		15A3DBA31682FB86002FB0C5 /* SimpleAudioEngine_objc.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A3DB421682FB86002FB0C5 /* SimpleAudioEngine_objc.m */; };
-		15A3DBC61682FBA8002FB0C5 /* libcocos2dx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A3DB1E1682FB66002FB0C5 /* libcocos2dx.a */; };
 		15A3DC4D1682FC3C002FB0C5 /* tolua_event.c in Sources */ = {isa = PBXBuildFile; fileRef = 15A3DC1A1682FC3C002FB0C5 /* tolua_event.c */; };
 		15A3DC4E1682FC3C002FB0C5 /* tolua_is.c in Sources */ = {isa = PBXBuildFile; fileRef = 15A3DC1C1682FC3C002FB0C5 /* tolua_is.c */; };
 		15A3DC4F1682FC3C002FB0C5 /* tolua_map.c in Sources */ = {isa = PBXBuildFile; fileRef = 15A3DC1D1682FC3C002FB0C5 /* tolua_map.c */; };
@@ -144,24 +143,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		15A3DB1D1682FB66002FB0C5 /* PBXContainerItemProxy */ = {
+		813B91BA17D2D4380004E57A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 15A3DB161682FB66002FB0C5 /* cocos2dx.xcodeproj */;
+			containerPortal = 813B91B017D2D2B10004E57A /* cocos2dx.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 1551A33F158F2AB200E66CFE;
-			remoteInfo = cocos2dx;
-		};
-		15A3DBC41682FBA2002FB0C5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 15A3DB161682FB66002FB0C5 /* cocos2dx.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 1551A33E158F2AB200E66CFE;
 			remoteInfo = cocos2dx;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		15A3DB161682FB66002FB0C5 /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = ../../../../cocos2dx/proj.ios/cocos2dx.xcodeproj; sourceTree = "<group>"; };
 		15A3DB361682FB86002FB0C5 /* Export.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Export.h; sourceTree = "<group>"; };
 		15A3DB371682FB86002FB0C5 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleAudioEngine.h; sourceTree = "<group>"; };
 		15A3DB391682FB86002FB0C5 /* CDAudioManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDAudioManager.h; sourceTree = "<group>"; };
@@ -384,6 +375,7 @@
 		78947C6A14EBB9B000DBD5A6 /* menu1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu1.png; sourceTree = "<group>"; };
 		78947C6B14EBB9B000DBD5A6 /* menu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu2.png; sourceTree = "<group>"; };
 		78DC4C9815490B9500317402 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		813B91B017D2D2B10004E57A /* cocos2dx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2dx.xcodeproj; path = proj.ios/cocos2dx.xcodeproj; sourceTree = "<group>"; };
 		BF82F41513A864D700616D55 /* AppDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = ../Classes/AppDelegate.cpp; sourceTree = SOURCE_ROOT; };
 		BF82F41613A864D700616D55 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../Classes/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		BF82F41E13A8652A00616D55 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
@@ -414,7 +406,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				464EA544175DCA28004C192B /* libcurl.a in Frameworks */,
-				15A3DBC61682FBA8002FB0C5 /* libcocos2dx.a in Frameworks */,
 				DCCBF1B70F6022AE0040855A /* CoreGraphics.framework in Frameworks */,
 				DCCBF1B90F6022AE0040855A /* Foundation.framework in Frameworks */,
 				DCCBF1BB0F6022AE0040855A /* OpenGLES.framework in Frameworks */,
@@ -432,14 +423,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		15A3DB171682FB66002FB0C5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				15A3DB1E1682FB66002FB0C5 /* libcocos2dx.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		15A3DB1F1682FB86002FB0C5 /* CocosDenshion */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,9 +545,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				813B91B017D2D2B10004E57A /* cocos2dx.xcodeproj */,
 				464EA543175DCA28004C192B /* libcurl.a */,
 				464EA3FA175DC6D5004C192B /* chipmunk */,
-				15A3DB161682FB66002FB0C5 /* cocos2dx.xcodeproj */,
 				BF82F41413A864B000616D55 /* Classes */,
 				15A3DB1F1682FB86002FB0C5 /* CocosDenshion */,
 				464EA2E0175DC601004C192B /* extensions */,
@@ -928,6 +911,14 @@
 			path = ../Resources;
 			sourceTree = "<group>";
 		};
+		813B91B717D2D4380004E57A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				813B91BB17D2D4380004E57A /* libcocos2dx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BF82F41413A864B000616D55 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -951,7 +942,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				15A3DBC51682FBA2002FB0C5 /* PBXTargetDependency */,
 			);
 			name = HelloLua;
 			productName = HelloLua;
@@ -980,8 +970,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 15A3DB171682FB66002FB0C5 /* Products */;
-					ProjectRef = 15A3DB161682FB66002FB0C5 /* cocos2dx.xcodeproj */;
+					ProductGroup = 813B91B717D2D4380004E57A /* Products */;
+					ProjectRef = 813B91B017D2D2B10004E57A /* cocos2dx.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -992,11 +982,11 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		15A3DB1E1682FB66002FB0C5 /* libcocos2dx.a */ = {
+		813B91BB17D2D4380004E57A /* libcocos2dx.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libcocos2dx.a;
-			remoteRef = 15A3DB1D1682FB66002FB0C5 /* PBXContainerItemProxy */;
+			remoteRef = 813B91BA17D2D4380004E57A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1142,14 +1132,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		15A3DBC51682FBA2002FB0C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = cocos2dx;
-			targetProxy = 15A3DBC41682FBA2002FB0C5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1194,6 +1176,29 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../../../../scripting/lua/luajit/ios\"",
 					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/ios/libraries\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libcurl/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libcurl/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libcurl/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libjpeg/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libjpeg/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libjpeg/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libpng/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libpng/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libpng/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libtiff/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libtiff/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libtiff/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libwebp/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libwebp/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libwebp/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/blackberry/libraries/armle-v7\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/blackberry/libraries/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/emscripten/libraries\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/linux/libraries/lib64\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/linux/libraries\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/mac/libraries\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/tizen/prebuilt/libwebp/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/win32/libraries\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -1250,6 +1255,29 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../../../../scripting/lua/luajit/ios\"",
 					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/ios/libraries\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libcurl/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libcurl/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libcurl/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libjpeg/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libjpeg/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libjpeg/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libpng/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libpng/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libpng/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libtiff/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libtiff/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libtiff/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libwebp/libs/armeabi\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libwebp/libs/armeabi-v7a\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/android/prebuilt/libwebp/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/blackberry/libraries/armle-v7\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/blackberry/libraries/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/emscripten/libraries\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/linux/libraries/lib64\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/linux/libraries\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/mac/libraries\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/tizen/prebuilt/libwebp/libs/x86\"",
+					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/win32/libraries\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (

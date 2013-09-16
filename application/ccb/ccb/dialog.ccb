@@ -32,7 +32,7 @@
 				<key>displayName</key>
 				<string>CCSprite</string>
 				<key>memberVarAssignmentName</key>
-				<string>m_bg</string>
+				<string>m_leftNPC</string>
 				<key>memberVarAssignmentType</key>
 				<integer>2</integer>
 				<key>properties</key>
@@ -44,9 +44,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>76</real>
-							<real>100</real>
-							<integer>0</integer>
+							<real>0.0</real>
+							<real>0.0</real>
+							<integer>4</integer>
 						</array>
 					</dict>
 					<dict>
@@ -56,8 +56,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>1</real>
+							<real>0.0</real>
 						</array>
 					</dict>
 					<dict>
@@ -93,6 +93,89 @@
 						</array>
 					</dict>
 				</array>
+			</dict>
+			<dict>
+				<key>baseClass</key>
+				<string>CCSprite</string>
+				<key>children</key>
+				<array/>
+				<key>customClass</key>
+				<string></string>
+				<key>displayName</key>
+				<string>CCSprite</string>
+				<key>memberVarAssignmentName</key>
+				<string>m_rightNPC</string>
+				<key>memberVarAssignmentType</key>
+				<integer>2</integer>
+				<key>properties</key>
+				<array>
+					<dict>
+						<key>name</key>
+						<string>position</string>
+						<key>type</key>
+						<string>Position</string>
+						<key>value</key>
+						<array>
+							<real>100</real>
+							<real>0.0</real>
+							<integer>4</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>anchorPoint</string>
+						<key>type</key>
+						<string>Point</string>
+						<key>value</key>
+						<array>
+							<real>0.0</real>
+							<real>0.0</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>scale</string>
+						<key>type</key>
+						<string>ScaleLock</string>
+						<key>value</key>
+						<array>
+							<real>1</real>
+							<real>1</real>
+							<false/>
+							<integer>0</integer>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>ignoreAnchorPointForPosition</string>
+						<key>type</key>
+						<string>Check</string>
+						<key>value</key>
+						<false/>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>displayFrame</string>
+						<key>type</key>
+						<string>SpriteFrame</string>
+						<key>value</key>
+						<array>
+							<string></string>
+							<string>img/npc_tutorial.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>flip</string>
+						<key>type</key>
+						<string>Flip</string>
+						<key>value</key>
+						<array>
+							<true/>
+							<false/>
+						</array>
+					</dict>
+				</array>
 				<key>selected</key>
 				<true/>
 			</dict>
@@ -106,7 +189,7 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string>m_number</string>
+				<string>m_dialog</string>
 				<key>memberVarAssignmentType</key>
 				<integer>2</integer>
 				<key>properties</key>
@@ -118,8 +201,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>69</real>
-							<real>179</real>
+							<real>140</real>
+							<real>100</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -130,8 +213,8 @@
 						<string>Point</string>
 						<key>value</key>
 						<array>
-							<real>0.5</real>
-							<real>0.5</real>
+							<real>0.0</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
@@ -170,7 +253,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>20</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -181,8 +264,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
-							<real>0.0</real>
+							<real>340</real>
+							<real>100</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -230,9 +313,9 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>150</real>
-					<real>200</real>
-					<integer>5</integer>
+					<real>100</real>
+					<real>100</real>
+					<integer>1</integer>
 				</array>
 			</dict>
 			<dict>
@@ -299,20 +382,20 @@
 			<key>ext</key>
 			<string>iphone</string>
 			<key>height</key>
-			<integer>200</integer>
+			<integer>320</integer>
 			<key>name</key>
 			<string>iPhone Landscape</string>
 			<key>scale</key>
 			<real>1</real>
 			<key>width</key>
-			<integer>150</integer>
+			<integer>480</integer>
 		</dict>
 	</array>
 	<key>sequences</key>
 	<array>
 		<dict>
 			<key>autoPlay</key>
-			<false/>
+			<true/>
 			<key>callbackChannel</key>
 			<dict>
 				<key>keyframes</key>

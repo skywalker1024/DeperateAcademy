@@ -21,8 +21,12 @@ public:
     virtual void onEnter();
     virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
     CREATE_FUNC(Poker);
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void registerWithTouchDispatcher();
 private:
     CCLabelTTF *m_number;
+    CCSprite *m_bg;
 };
 
 #endif /* defined(__CrossKaiser__Poker__) */

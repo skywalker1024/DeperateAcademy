@@ -5,7 +5,7 @@
 #include "SimpleAudioEngine.h"
 #include "cocos-ext.h"
 #include "CCArmature/utils/CCArmatureDataManager.h"
-
+#include "DialogScene.h"
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -47,7 +47,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionNoBorder);
 
-    CCScene * pScene = BattleScene::scene();
+    CCScene * pScene = DialogScene::scene();
     
     pDirector->runWithScene(pScene);
 

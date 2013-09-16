@@ -199,6 +199,7 @@
 		37EEEC21175DE303003C1193 /* CCComController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC1B175DE303003C1193 /* CCComController.cpp */; };
 		37EEEC22175DE303003C1193 /* CCInputDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC1D175DE303003C1193 /* CCInputDelegate.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
+		8150574617E6FFB60093FB09 /* DialogScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8150574417E6FFB60093FB09 /* DialogScene.cpp */; };
 		815FB9B617CF874F00EB1CD9 /* img in Resources */ = {isa = PBXBuildFile; fileRef = 815FB9B417CF874F00EB1CD9 /* img */; };
 		815FB9B717CF874F00EB1CD9 /* ccbi in Resources */ = {isa = PBXBuildFile; fileRef = 815FB9B517CF874F00EB1CD9 /* ccbi */; };
 		81DF399717CF89270081B1EA /* Poker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81DF399317CF89270081B1EA /* Poker.cpp */; };
@@ -632,6 +633,9 @@
 		37EEEC1D175DE303003C1193 /* CCInputDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCInputDelegate.cpp; sourceTree = "<group>"; };
 		37EEEC1E175DE303003C1193 /* CCInputDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCInputDelegate.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		8150574417E6FFB60093FB09 /* DialogScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DialogScene.cpp; path = ../Classes/DialogScene.cpp; sourceTree = "<group>"; };
+		8150574517E6FFB60093FB09 /* DialogScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DialogScene.h; path = ../Classes/DialogScene.h; sourceTree = "<group>"; };
+		8150574917E704160093FB09 /* AppMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppMacros.h; path = ../Classes/AppMacros.h; sourceTree = "<group>"; };
 		815FB9B417CF874F00EB1CD9 /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
 		815FB9B517CF874F00EB1CD9 /* ccbi */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccbi; sourceTree = "<group>"; };
 		81DF399317CF89270081B1EA /* Poker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Poker.cpp; path = ../Classes/Poker.cpp; sourceTree = "<group>"; };
@@ -1172,12 +1176,15 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				81DF399317CF89270081B1EA /* Poker.cpp */,
-				81DF399417CF89270081B1EA /* Poker.h */,
-				81DF399517CF89270081B1EA /* BattleScene.cpp */,
-				81DF399617CF89270081B1EA /* BattleScene.h */,
 				15AA9F3A15B7EF960033D6C2 /* AppDelegate.cpp */,
 				15AA9F3B15B7EF960033D6C2 /* AppDelegate.h */,
+				8150574917E704160093FB09 /* AppMacros.h */,
+				81DF399517CF89270081B1EA /* BattleScene.cpp */,
+				81DF399617CF89270081B1EA /* BattleScene.h */,
+				8150574417E6FFB60093FB09 /* DialogScene.cpp */,
+				8150574517E6FFB60093FB09 /* DialogScene.h */,
+				81DF399317CF89270081B1EA /* Poker.cpp */,
+				81DF399417CF89270081B1EA /* Poker.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1756,6 +1763,7 @@
 				1A70B215176318E80003A116 /* CCUtilMath.cpp in Sources */,
 				81DF399717CF89270081B1EA /* Poker.cpp in Sources */,
 				81DF399817CF89270081B1EA /* BattleScene.cpp in Sources */,
+				8150574617E6FFB60093FB09 /* DialogScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
