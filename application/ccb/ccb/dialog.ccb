@@ -39,18 +39,6 @@
 				<array>
 					<dict>
 						<key>name</key>
-						<string>position</string>
-						<key>type</key>
-						<string>Position</string>
-						<key>value</key>
-						<array>
-							<real>0.0</real>
-							<real>0.0</real>
-							<integer>4</integer>
-						</array>
-					</dict>
-					<dict>
-						<key>name</key>
 						<string>anchorPoint</string>
 						<key>type</key>
 						<string>Point</string>
@@ -116,9 +104,9 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>100</real>
+							<real>960</real>
 							<real>0.0</real>
-							<integer>4</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -176,8 +164,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -253,7 +239,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>24</real>
+							<real>32</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -264,7 +250,7 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>340</real>
+							<real>680</real>
 							<real>100</real>
 							<integer>0</integer>
 						</array>
@@ -313,9 +299,9 @@
 				<string>Size</string>
 				<key>value</key>
 				<array>
-					<real>100</real>
-					<real>100</real>
-					<integer>1</integer>
+					<real>960</real>
+					<real>640</real>
+					<integer>5</integer>
 				</array>
 			</dict>
 			<dict>
@@ -371,6 +357,8 @@
 				<true/>
 			</dict>
 		</array>
+		<key>selected</key>
+		<true/>
 	</dict>
 	<key>notes</key>
 	<array/>
@@ -382,13 +370,13 @@
 			<key>ext</key>
 			<string>iphone</string>
 			<key>height</key>
-			<integer>320</integer>
+			<integer>640</integer>
 			<key>name</key>
 			<string>iPhone Landscape</string>
 			<key>scale</key>
 			<real>1</real>
 			<key>width</key>
-			<integer>480</integer>
+			<integer>960</integer>
 		</dict>
 	</array>
 	<key>sequences</key>

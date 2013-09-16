@@ -48,7 +48,7 @@ static cocos2d::CCSize designResolutionSize = cocos2d::CCSizeMake(768, 1024);
 #elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_2048X1536)
 static cocos2d::CCSize designResolutionSize = cocos2d::CCSizeMake(1536, 2048);
 #elif (TARGET_DESIGN_RESOLUTION_SIZE == DESIGN_RESOLUTION_960X640)
-static cocos2d::CCSize designResolutionSize = cocos2d::CCSizeMake(640, 960);
+static cocos2d::CCSize designResolutionSize = cocos2d::CCSizeMake(960, 640);
 #else
 #error unknown target design resolution!
 #endif

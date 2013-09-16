@@ -6,6 +6,7 @@
 #include "cocos-ext.h"
 #include "CCArmature/utils/CCArmatureDataManager.h"
 #include "DialogScene.h"
+#include "AppMacros.h"
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -27,26 +28,20 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCConfiguration::sharedConfiguration()->loadConfigFile("configs/config-example.plist");
 
     // initialize director
-    CCDirector *pDirector = CCDirector::sharedDirector();
-    pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
-
-    CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
-
-    CCSize designSize = CCSizeMake(480, 320);
-
-    CCFileUtils* pFileUtils = CCFileUtils::sharedFileUtils();
+    CCDirector* pDirector = CCDirector::sharedDirector();
+    CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
     
-    if (screenSize.height > 320)
-    {
-        CCSize resourceSize = CCSizeMake(960, 640);
-        std::vector<std::string> searchPaths;
-        searchPaths.push_back("hd");
-        pFileUtils->setSearchPaths(searchPaths);
-        pDirector->setContentScaleFactor(resourceSize.height/designSize.height);
-    }
-
-    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionNoBorder);
-
+    pDirector->setOpenGLView(pEGLView);
+    CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
+    ResolutionPolicy resolution = screenSize.width / designResolutionSize.width > screenSize.height / designResolutionSize.height ? kResolutionFixedHeight : kResolutionFixedWidth;
+    // Set the design resolution
+    pEGLView->setDesignResolutionSize(designResolutionSize.width,
+                                      designResolutionSize.height,
+                                      resolution);
+    
+	CCSize frameSize = pEGLView->getFrameSize();
+    pDirector->setContentScaleFactor(1);
+    
     CCScene * pScene = DialogScene::scene();
     
     pDirector->runWithScene(pScene);
