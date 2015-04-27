@@ -10,5 +10,21 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "cocos2d::CCTouchDispatcher::touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int):CCTouchDispatcher.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_blockList[1][4]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Battle::init():Battle.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "rect-&gt;getTexture()-&gt;getContentSize().width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

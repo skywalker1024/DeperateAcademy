@@ -5,7 +5,7 @@
 #include "SimpleAudioEngine.h"
 #include "cocos-ext.h"
 #include "CCArmature/utils/CCArmatureDataManager.h"
-#include "DialogScene.h"
+#include "Battle.h"
 #include "AppMacros.h"
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -25,7 +25,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// As an example, load config file
 	// XXX: This should be loaded before the Director is initialized,
 	// XXX: but at this point, the director is already initialized
-	CCConfiguration::sharedConfiguration()->loadConfigFile("configs/config-example.plist");
+	//CCConfiguration::sharedConfiguration()->loadConfigFile("configs/config-example.plist");
 
     // initialize director
     CCDirector* pDirector = CCDirector::sharedDirector();
@@ -42,7 +42,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCSize frameSize = pEGLView->getFrameSize();
     pDirector->setContentScaleFactor(1);
     
-    CCScene * pScene = DialogScene::scene();
+    CCScene * pScene = Battle::scene();
     
     pDirector->runWithScene(pScene);
 
