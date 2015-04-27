@@ -24,6 +24,7 @@ private:
     CC_SYNTHESIZE(int, m_i, I);
     CC_SYNTHESIZE(int, m_j, J);
     CC_SYNTHESIZE_RETAIN(CCSprite*, m_sprite, Sprite);
+    CC_SYNTHESIZE(int, m_type, Type);
 };
 
 #endif /* defined(__CrossKaiser__Block__) */

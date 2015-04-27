@@ -12,10 +12,11 @@
 #include "cocos2d.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
+#include "BaseScene.h"
 #include "Block.h"
 const int NUM = 8;
 
-class Battle : public CCLayer, public CCBMemberVariableAssigner{
+class Battle : public BaseScene{
 public:
     static CCScene * scene();
     Battle();
@@ -26,7 +27,6 @@ public:
     virtual void onEnter();
     virtual void onExit();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void registerWithTouchDispatcher();
 private:
     CCSprite *m_player1;
     CCSprite *m_player2;

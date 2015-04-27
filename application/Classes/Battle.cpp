@@ -11,7 +11,7 @@ const int START_Y = 100;
 const int WIDTH = 100;
 
 #include "Battle.h"
-
+#include "CommonUtils.h"
 Battle::Battle()
 :m_player1(NULL)
 ,m_player2(NULL)
@@ -30,29 +30,32 @@ CCScene * Battle::scene(){
 }
 
 bool Battle::init(){
-    if (!CCLayer::init()) {
+    if (!BaseScene::init()) {
         return false;
     }
-    setTouchEnabled(true);
 //    CCNodeLoaderLibrary * ccNodeLoaderLibrary = CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary();
 //    CCBReader reader = CCBReader(ccNodeLoaderLibrary);
 //    CCLayer *layer = (CCLayer*)reader.readNodeGraphFromFile("ccbi/battle.ccbi",this);
 //    this->addChild(layer);
-    
-    CCSpriteBatchNode * nodeRect = NULL;
-    nodeRect = CCSpriteBatchNode::create( "img/npc_tutorial.png", kDefaultSpriteBatchCapacity);
-    this->addChild(nodeRect);
     //i为行 j为列
     for (int i=0; i<NUM; i++) {
         for (int j=0; j<NUM; j++) {
+            int rand = arc4random() % 7;
+            string key = string("block").append(CommonUtils::IntToString(rand));
+            CCSpriteBatchNode *batchNode = getCacheBatchNode(key, "block");
+            if ( !batchNode ) {
+                string spriteName = string("img/unit_ills_thum_").append(CommonUtils::IntToString(rand)).append(".png");
+                batchNode = CCSpriteBatchNode::create( spriteName.c_str(), kDefaultSpriteBatchCapacity);
+                this->addChild(batchNode);
+                this->setCacheBatchNode(key, "block", batchNode);
+            }
             Block *block = Block::create();
             block->setI(i);
             block->setJ(j);
             m_matrix[i][j] = m_blockList->count();
             m_blockList->addObject(block);
             
-            
-            CCSprite * rect = CCSprite::createWithTexture(nodeRect->getTexture());
+            CCSprite * rect = CCSprite::createWithTexture(batchNode->getTexture());
             rect->setAnchorPoint(ccp(0,0));
             rect->setPosition(ccpAdd(ccp(START_X, START_Y), ccp(WIDTH * j, WIDTH * i)));
             CCLog( "%f", rect->getTexture()->getContentSize().width);
@@ -76,15 +79,16 @@ bool Battle::onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberV
 }
 
 void Battle::onEnter(){
-    CCLayer::onEnter();
+    BaseScene::onEnter();
     //m_player1->runAction(CCSequence::create(CCMoveBy::create(.1f, ccp(20,0)), CCMoveBy::create(.1f, ccp(-35, 0)), CCMoveBy::create(.1f, ccp(25, 0)), CCMoveBy::create(.1f, ccp(-10, 0)), NULL));
 }
 
 void Battle::onExit(){
-    CCLayer::onExit();
+    BaseScene::onExit();
 }
 
 bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
+    BaseScene::ccTouchBegan(pTouch, pEvent);
     //判断落在哪个坑
     CCLog("x=%f y=%f",pTouch->getLocation().x, pTouch->getLocation().y);
     int j = (pTouch->getLocation().x - START_X) / WIDTH;
@@ -96,8 +100,4 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     CCSprite *sprite = block->getSprite();
     sprite->runAction(CCSequence::create(CCMoveBy::create(.1f, ccp(20,0)), CCMoveBy::create(.1f, ccp(-35, 0)), CCMoveBy::create(.1f, ccp(25, 0)), CCMoveBy::create(.1f, ccp(-10, 0)), NULL));
     return true;
-}
-
-void Battle::registerWithTouchDispatcher(){
-    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -122, true);
 }

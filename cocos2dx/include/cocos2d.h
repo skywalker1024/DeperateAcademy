@@ -282,4 +282,7 @@ CC_DLL const char* cocos2dVersion();
 
 NS_CC_END
 
+using namespace std;
+#include "include/CCMutableArray.h"
+#include "include/CCMutableDictionary.h"
 #endif // __COCOS2D_H__

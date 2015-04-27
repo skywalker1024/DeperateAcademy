@@ -1126,4 +1126,16 @@ void CCLayerMultiplex::switchToAndReleaseMe(unsigned int n)
     this->addChild((CCNode*)m_pLayers->objectAtIndex(n));
 }
 
+
+/*
+ * 再登録。
+ */
+void CCLayer::reEntry( int zorder, CCNode* node )
+{
+    node->retain();
+    removeChild( node );
+    
+    addChild( node, zorder );
+    node->release();
+}
 NS_CC_END
