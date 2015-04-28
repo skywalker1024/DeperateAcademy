@@ -19,8 +19,11 @@ NS_CC_EXT_BEGIN
 #define CCB_SELECTORRESOLVER_CALLFUNC_GLUE(TARGET, SELECTORNAME, METHOD) if(pTarget == TARGET && strcmp(pSelectorName, SELECTORNAME) == 0) { \
     return callfuncN_selector(METHOD); \
 }
-
-class CCBSelectorResolver {
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCBSelectorResolver {
     public:
         virtual ~CCBSelectorResolver() {};
     virtual SEL_MenuHandler onResolveCCBCCMenuItemSelector(CCObject * pTarget, const char* pSelectorName) = 0;
@@ -28,8 +31,11 @@ class CCBSelectorResolver {
     virtual SEL_CCControlHandler onResolveCCBCCControlSelector(CCObject * pTarget, const char* pSelectorName) = 0;
 };
 
-
-class CCBScriptOwnerProtocol {
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCBScriptOwnerProtocol {
 public:
     virtual ~CCBScriptOwnerProtocol() {};
     virtual CCBSelectorResolver * createNew() = 0;

@@ -40,9 +40,11 @@ NS_CC_EXT_BEGIN
  - Objective-Chipmunk
  
  @since v2.1
+ @js NA
+ @lua NA
  */
 
-class CCPhysicsDebugNode : public CCDrawNode
+class CC_EX_DLL CCPhysicsDebugNode : public CCDrawNode
 {
 protected:
     cpSpace *m_pSpacePtr;

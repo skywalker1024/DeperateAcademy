@@ -13,6 +13,9 @@
     <Filter Include="luajit\include">
       <UniqueIdentifier>{b7025611-420a-4414-b567-f7496eec5f57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="xxtea">
+      <UniqueIdentifier>{7ef5a711-27f8-41a0-989f-538b7b1f4482}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\tolua\tolua_event.c">
@@ -59,6 +62,21 @@
     </ClCompile>
     <ClCompile Include="..\cocos2dx_support\Lua_web_socket.cpp">
       <Filter>cocos2dx_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2dx_support\lua_cocos2dx_extensions_manual.cpp">
+      <Filter>cocos2dx_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2dx_support\lua_cocos2dx_cocostudio_manual.cpp">
+      <Filter>cocos2dx_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2dx_support\LuaCocoStudio.cpp">
+      <Filter>cocos2dx_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cocos2dx_support\lua_cocos2dx_manual.cpp">
+      <Filter>cocos2dx_support</Filter>
+    </ClCompile>
+    <ClCompile Include="..\xxtea\xxtea.cpp">
+      <Filter>xxtea</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +127,21 @@
     </ClInclude>
     <ClInclude Include="..\cocos2dx_support\Lua_web_socket.h">
       <Filter>cocos2dx_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2dx_support\lua_cocos2dx_extensions_manual.h">
+      <Filter>cocos2dx_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2dx_support\lua_cocos2dx_cocostudio_manual.h">
+      <Filter>cocos2dx_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2dx_support\LuaCocoStudio.h">
+      <Filter>cocos2dx_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cocos2dx_support\lua_cocos2dx_manual.h">
+      <Filter>cocos2dx_support</Filter>
+    </ClInclude>
+    <ClInclude Include="..\xxtea\xxtea.h">
+      <Filter>xxtea</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,111 +4,6 @@
 var cc = cc || {};
 
 /**
- * @class CCBReader
- */
-cc._Reader = {
-
-/**
- * @method addOwnerOutletName
- * @param {std::string}
- */
-addOwnerOutletName : function () {},
-
-/**
- * @method getOwnerCallbackNames
- * @return A value converted from C/C++ "cocos2d::CCArray*"
- */
-getOwnerCallbackNames : function () {},
-
-/**
- * @method setCCBRootPath
- * @param {const char*}
- */
-setCCBRootPath : function () {},
-
-/**
- * @method addOwnerOutletNode
- * @param {cocos2d::CCNode*}
- */
-addOwnerOutletNode : function () {},
-
-/**
- * @method getOwnerCallbackNodes
- * @return A value converted from C/C++ "cocos2d::CCArray*"
- */
-getOwnerCallbackNodes : function () {},
-
-/**
- * @method readSoundKeyframesForSeq
- * @return A value converted from C/C++ "bool"
- * @param {cocos2d::extension::CCBSequence*}
- */
-readSoundKeyframesForSeq : function () {},
-
-/**
- * @method getCCBRootPath
- * @return A value converted from C/C++ "std::string"
- */
-getCCBRootPath : function () {},
-
-/**
- * @method getOwnerOutletNodes
- * @return A value converted from C/C++ "cocos2d::CCArray*"
- */
-getOwnerOutletNodes : function () {},
-
-/**
- * @method readUTF8
- * @return A value converted from C/C++ "std::string"
- */
-readUTF8 : function () {},
-
-/**
- * @method getOwnerOutletNames
- * @return A value converted from C/C++ "cocos2d::CCArray*"
- */
-getOwnerOutletNames : function () {},
-
-/**
- * @method setAnimationManager
- * @param {cocos2d::extension::CCBAnimationManager*}
- */
-setAnimationManager : function () {},
-
-/**
- * @method readCallbackKeyframesForSeq
- * @return A value converted from C/C++ "bool"
- * @param {cocos2d::extension::CCBSequence*}
- */
-readCallbackKeyframesForSeq : function () {},
-
-/**
- * @method getAnimationManagersForNodes
- * @return A value converted from C/C++ "cocos2d::CCArray*"
- */
-getAnimationManagersForNodes : function () {},
-
-/**
- * @method getNodesWithAnimationManagers
- * @return A value converted from C/C++ "cocos2d::CCArray*"
- */
-getNodesWithAnimationManagers : function () {},
-
-/**
- * @method getAnimationManager
- * @return A value converted from C/C++ "cocos2d::extension::CCBAnimationManager*"
- */
-getAnimationManager : function () {},
-
-/**
- * @method setResolutionScale
- * @param {float}
- */
-setResolutionScale : function () {},
-
-};
-
-/**
  * @class CCControl
  */
 cc.Control = {
@@ -218,6 +113,129 @@ CCControl : function () {},
 };
 
 /**
+ * @class CCBReader
+ */
+cc._Reader = {
+
+/**
+ * @method getAnimationManager
+ * @return A value converted from C/C++ "cocos2d::extension::CCBAnimationManager*"
+ */
+getAnimationManager : function () {},
+
+/**
+ * @method setAnimationManager
+ * @param {cocos2d::extension::CCBAnimationManager*}
+ */
+setAnimationManager : function () {},
+
+/**
+ * @method addOwnerOutletName
+ * @param {std::string}
+ */
+addOwnerOutletName : function () {},
+
+/**
+ * @method getOwnerCallbackNames
+ * @return A value converted from C/C++ "cocos2d::CCArray*"
+ */
+getOwnerCallbackNames : function () {},
+
+/**
+ * @method addDocumentCallbackControlEvents
+ * @param {unsigned int}
+ */
+addDocumentCallbackControlEvents : function () {},
+
+/**
+ * @method setCCBRootPath
+ * @param {const char*}
+ */
+setCCBRootPath : function () {},
+
+/**
+ * @method addOwnerOutletNode
+ * @param {cocos2d::CCNode*}
+ */
+addOwnerOutletNode : function () {},
+
+/**
+ * @method getOwnerCallbackNodes
+ * @return A value converted from C/C++ "cocos2d::CCArray*"
+ */
+getOwnerCallbackNodes : function () {},
+
+/**
+ * @method readSoundKeyframesForSeq
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::extension::CCBSequence*}
+ */
+readSoundKeyframesForSeq : function () {},
+
+/**
+ * @method getCCBRootPath
+ * @return A value converted from C/C++ "std::string"
+ */
+getCCBRootPath : function () {},
+
+/**
+ * @method getOwnerCallbackControlEvents
+ * @return A value converted from C/C++ "cocos2d::CCArray*"
+ */
+getOwnerCallbackControlEvents : function () {},
+
+/**
+ * @method getOwnerOutletNodes
+ * @return A value converted from C/C++ "cocos2d::CCArray*"
+ */
+getOwnerOutletNodes : function () {},
+
+/**
+ * @method readUTF8
+ * @return A value converted from C/C++ "std::string"
+ */
+readUTF8 : function () {},
+
+/**
+ * @method addOwnerCallbackControlEvents
+ * @param {unsigned int}
+ */
+addOwnerCallbackControlEvents : function () {},
+
+/**
+ * @method getOwnerOutletNames
+ * @return A value converted from C/C++ "cocos2d::CCArray*"
+ */
+getOwnerOutletNames : function () {},
+
+/**
+ * @method readCallbackKeyframesForSeq
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::extension::CCBSequence*}
+ */
+readCallbackKeyframesForSeq : function () {},
+
+/**
+ * @method getAnimationManagersForNodes
+ * @return A value converted from C/C++ "cocos2d::CCArray*"
+ */
+getAnimationManagersForNodes : function () {},
+
+/**
+ * @method getNodesWithAnimationManagers
+ * @return A value converted from C/C++ "cocos2d::CCArray*"
+ */
+getNodesWithAnimationManagers : function () {},
+
+/**
+ * @method setResolutionScale
+ * @param {float}
+ */
+setResolutionScale : function () {},
+
+};
+
+/**
  * @class CCScale9Sprite
  */
 cc.Scale9Sprite = {
@@ -261,6 +279,12 @@ isOpacityModifyRGB : function () {},
  * @param {float}
  */
 setInsetTop : function () {},
+
+/**
+ * @method updateDisplayedOpacity
+ * @param {unsigned char}
+ */
+updateDisplayedOpacity : function () {},
 
 /**
  * @method init
@@ -312,12 +336,6 @@ resizableSpriteWithCapInsets : function () {},
 setOpacity : function () {},
 
 /**
- * @method setContentSize
- * @param {cocos2d::CCSize}
- */
-setContentSize : function () {},
-
-/**
  * @method getInsetRight
  * @return A value converted from C/C++ "float"
  */
@@ -366,6 +384,12 @@ setCapInsets : function () {},
 getInsetLeft : function () {},
 
 /**
+ * @method updateDisplayedColor
+ * @param {cocos2d::ccColor3B}
+ */
+updateDisplayedColor : function () {},
+
+/**
  * @method setInsetRight
  * @param {float}
  */
@@ -409,14 +433,6 @@ setSelected : function () {},
 setTitleLabel : function () {},
 
 /**
- * @method ccTouchBegan
- * @return A value converted from C/C++ "bool"
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchBegan : function () {},
-
-/**
  * @method setTitleTTFSizeForState
  * @param {float}
  * @param {unsigned int}
@@ -428,13 +444,6 @@ setTitleTTFSizeForState : function () {},
  * @param {bool}
  */
 setAdjustBackgroundImage : function () {},
-
-/**
- * @method ccTouchEnded
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchEnded : function () {},
 
 /**
  * @method setHighlighted
@@ -473,13 +482,6 @@ getTitleDispatchTable : function () {},
  * @param {cocos2d::CCPoint}
  */
 setLabelAnchorPoint : function () {},
-
-/**
- * @method ccTouchCancelled
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchCancelled : function () {},
 
 /**
  * @method getLabelAnchorPoint
@@ -543,13 +545,6 @@ setPreferredSize : function () {},
  * @return A value converted from C/C++ "int"
  */
 getHorizontalOrigin : function () {},
-
-/**
- * @method ccTouchMoved
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchMoved : function () {},
 
 /**
  * @method getOpacity
@@ -792,25 +787,10 @@ setContentOffsetInDuration : function () {},
 setZoomScaleInDuration : function () {},
 
 /**
- * @method ccTouchBegan
- * @return A value converted from C/C++ "bool"
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchBegan : function () {},
-
-/**
  * @method getContainer
  * @return A value converted from C/C++ "cocos2d::CCNode*"
  */
 getContainer : function () {},
-
-/**
- * @method ccTouchEnded
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchEnded : function () {},
 
 /**
  * @method getDirection
@@ -887,13 +867,6 @@ isBounceable : function () {},
 getContentSize : function () {},
 
 /**
- * @method ccTouchMoved
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchMoved : function () {},
-
-/**
  * @method setTouchEnabled
  * @param {bool}
  */
@@ -936,12 +909,6 @@ getViewSize : function () {},
 maxContainerOffset : function () {},
 
 /**
- * @method setContentSize
- * @param {cocos2d::CCSize}
- */
-setContentSize : function () {},
-
-/**
  * @method isTouchMoved
  * @return A value converted from C/C++ "bool"
  */
@@ -953,13 +920,6 @@ isTouchMoved : function () {},
  * @param {cocos2d::CCNode*}
  */
 isNodeVisible : function () {},
-
-/**
- * @method ccTouchCancelled
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchCancelled : function () {},
 
 /**
  * @method minContainerOffset
@@ -983,7 +943,7 @@ CCScrollView : function () {},
 /**
  * @class CCBAnimationManager
  */
-cc.AnimationManager = {
+cc.BuilderAnimationManager = {
 
 /**
  * @method moveAnimationsFromNode
@@ -1045,6 +1005,13 @@ getLastCompletedSequenceName : function () {},
 setRootNode : function () {},
 
 /**
+ * @method runAnimationsForSequenceNamedTweenDuration
+ * @param {const char*}
+ * @param {float}
+ */
+runAnimationsForSequenceNamedTweenDuration : function () {},
+
+/**
  * @method addDocumentOutletName
  * @param {std::string}
  */
@@ -1089,6 +1056,12 @@ actionForCallbackChannel : function () {},
 getDocumentOutletNames : function () {},
 
 /**
+ * @method addDocumentCallbackControlEvents
+ * @param {unsigned int}
+ */
+addDocumentCallbackControlEvents : function () {},
+
+/**
  * @method init
  * @return A value converted from C/C++ "bool"
  */
@@ -1101,11 +1074,10 @@ init : function () {},
 getKeyframeCallbacks : function () {},
 
 /**
- * @method runAnimationsForSequenceNamedTweenDuration
- * @param {const char*}
- * @param {float}
+ * @method getDocumentCallbackControlEvents
+ * @return A value converted from C/C++ "cocos2d::CCArray*"
  */
-runAnimationsForSequenceNamedTweenDuration : function () {},
+getDocumentCallbackControlEvents : function () {},
 
 /**
  * @method setRootContainerSize
@@ -1163,13 +1135,6 @@ setDelegate : function () {},
 addDocumentCallbackNode : function () {},
 
 /**
- * @method setCallFunc
- * @param {cocos2d::CCCallFunc*}
- * @param {std::string}
- */
-setCallFunc : function () {},
-
-/**
  * @method getDelegate
  * @return A value converted from C/C++ "cocos2d::extension::CCBAnimationManagerDelegate*"
  */
@@ -1180,6 +1145,13 @@ getDelegate : function () {},
  * @param {const char*}
  */
 runAnimationsForSequenceNamed : function () {},
+
+/**
+ * @method setCallFunc
+ * @param {cocos2d::CCCallFunc*}
+ * @param {std::string}
+ */
+setCallFunc : function () {},
 
 /**
  * @method getDocumentCallbackNodes
@@ -1209,6 +1181,740 @@ getDocumentControllerName : function () {},
  * @constructor
  */
 CCBAnimationManager : function () {},
+
+};
+
+/**
+ * @class CCControlHuePicker
+ */
+cc.ControlHuePicker = {
+
+/**
+ * @method setEnabled
+ * @param {bool}
+ */
+setEnabled : function () {},
+
+/**
+ * @method initWithTargetAndPos
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::CCNode*}
+ * @param {cocos2d::CCPoint}
+ */
+initWithTargetAndPos : function () {},
+
+/**
+ * @method setHue
+ * @param {float}
+ */
+setHue : function () {},
+
+/**
+ * @method getStartPos
+ * @return A value converted from C/C++ "cocos2d::CCPoint"
+ */
+getStartPos : function () {},
+
+/**
+ * @method getHue
+ * @return A value converted from C/C++ "float"
+ */
+getHue : function () {},
+
+/**
+ * @method getSlider
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getSlider : function () {},
+
+/**
+ * @method setBackground
+ * @param {cocos2d::CCSprite*}
+ */
+setBackground : function () {},
+
+/**
+ * @method setHuePercentage
+ * @param {float}
+ */
+setHuePercentage : function () {},
+
+/**
+ * @method getBackground
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getBackground : function () {},
+
+/**
+ * @method getHuePercentage
+ * @return A value converted from C/C++ "float"
+ */
+getHuePercentage : function () {},
+
+/**
+ * @method setSlider
+ * @param {cocos2d::CCSprite*}
+ */
+setSlider : function () {},
+
+/**
+ * @method create
+ * @return A value converted from C/C++ "cocos2d::extension::CCControlHuePicker*"
+ * @param {cocos2d::CCNode*}
+ * @param {cocos2d::CCPoint}
+ */
+create : function () {},
+
+/**
+ * @method CCControlHuePicker
+ * @constructor
+ */
+CCControlHuePicker : function () {},
+
+};
+
+/**
+ * @class CCControlSaturationBrightnessPicker
+ */
+cc.ControlSaturationBrightnessPicker = {
+
+/**
+ * @method getShadow
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getShadow : function () {},
+
+/**
+ * @method initWithTargetAndPos
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::CCNode*}
+ * @param {cocos2d::CCPoint}
+ */
+initWithTargetAndPos : function () {},
+
+/**
+ * @method getStartPos
+ * @return A value converted from C/C++ "cocos2d::CCPoint"
+ */
+getStartPos : function () {},
+
+/**
+ * @method getOverlay
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getOverlay : function () {},
+
+/**
+ * @method setEnabled
+ * @param {bool}
+ */
+setEnabled : function () {},
+
+/**
+ * @method getSlider
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getSlider : function () {},
+
+/**
+ * @method getBackground
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getBackground : function () {},
+
+/**
+ * @method getSaturation
+ * @return A value converted from C/C++ "float"
+ */
+getSaturation : function () {},
+
+/**
+ * @method getBrightness
+ * @return A value converted from C/C++ "float"
+ */
+getBrightness : function () {},
+
+/**
+ * @method create
+ * @return A value converted from C/C++ "cocos2d::extension::CCControlSaturationBrightnessPicker*"
+ * @param {cocos2d::CCNode*}
+ * @param {cocos2d::CCPoint}
+ */
+create : function () {},
+
+/**
+ * @method CCControlSaturationBrightnessPicker
+ * @constructor
+ */
+CCControlSaturationBrightnessPicker : function () {},
+
+};
+
+/**
+ * @class CCControlColourPicker
+ */
+cc.ControlColourPicker = {
+
+/**
+ * @method setEnabled
+ * @param {bool}
+ */
+setEnabled : function () {},
+
+/**
+ * @method getHuePicker
+ * @return A value converted from C/C++ "cocos2d::extension::CCControlHuePicker*"
+ */
+getHuePicker : function () {},
+
+/**
+ * @method setColor
+ * @param {cocos2d::ccColor3B}
+ */
+setColor : function () {},
+
+/**
+ * @method hueSliderValueChanged
+ * @param {cocos2d::CCObject*}
+ * @param {unsigned int}
+ */
+hueSliderValueChanged : function () {},
+
+/**
+ * @method getcolourPicker
+ * @return A value converted from C/C++ "cocos2d::extension::CCControlSaturationBrightnessPicker*"
+ */
+getcolourPicker : function () {},
+
+/**
+ * @method setBackground
+ * @param {cocos2d::CCSprite*}
+ */
+setBackground : function () {},
+
+/**
+ * @method init
+ * @return A value converted from C/C++ "bool"
+ */
+init : function () {},
+
+/**
+ * @method setcolourPicker
+ * @param {cocos2d::extension::CCControlSaturationBrightnessPicker*}
+ */
+setcolourPicker : function () {},
+
+/**
+ * @method colourSliderValueChanged
+ * @param {cocos2d::CCObject*}
+ * @param {unsigned int}
+ */
+colourSliderValueChanged : function () {},
+
+/**
+ * @method setHuePicker
+ * @param {cocos2d::extension::CCControlHuePicker*}
+ */
+setHuePicker : function () {},
+
+/**
+ * @method getBackground
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getBackground : function () {},
+
+/**
+ * @method create
+ * @return A value converted from C/C++ "cocos2d::extension::CCControlColourPicker*"
+ */
+create : function () {},
+
+/**
+ * @method CCControlColourPicker
+ * @constructor
+ */
+CCControlColourPicker : function () {},
+
+};
+
+/**
+ * @class CCControlPotentiometer
+ */
+cc.ControlPotentiometer = {
+
+/**
+ * @method setPreviousLocation
+ * @param {cocos2d::CCPoint}
+ */
+setPreviousLocation : function () {},
+
+/**
+ * @method setProgressTimer
+ * @param {cocos2d::CCProgressTimer*}
+ */
+setProgressTimer : function () {},
+
+/**
+ * @method potentiometerMoved
+ * @param {cocos2d::CCPoint}
+ */
+potentiometerMoved : function () {},
+
+/**
+ * @method getMinimumValue
+ * @return A value converted from C/C++ "float"
+ */
+getMinimumValue : function () {},
+
+/**
+ * @method setThumbSprite
+ * @param {cocos2d::CCSprite*}
+ */
+setThumbSprite : function () {},
+
+/**
+ * @method getPreviousLocation
+ * @return A value converted from C/C++ "cocos2d::CCPoint"
+ */
+getPreviousLocation : function () {},
+
+/**
+ * @method setEnabled
+ * @param {bool}
+ */
+setEnabled : function () {},
+
+/**
+ * @method setValue
+ * @param {float}
+ */
+setValue : function () {},
+
+/**
+ * @method setMaximumValue
+ * @param {float}
+ */
+setMaximumValue : function () {},
+
+/**
+ * @method setMinimumValue
+ * @param {float}
+ */
+setMinimumValue : function () {},
+
+/**
+ * @method potentiometerEnded
+ * @param {cocos2d::CCPoint}
+ */
+potentiometerEnded : function () {},
+
+/**
+ * @method distanceBetweenPointAndPoint
+ * @return A value converted from C/C++ "float"
+ * @param {cocos2d::CCPoint}
+ * @param {cocos2d::CCPoint}
+ */
+distanceBetweenPointAndPoint : function () {},
+
+/**
+ * @method getProgressTimer
+ * @return A value converted from C/C++ "cocos2d::CCProgressTimer*"
+ */
+getProgressTimer : function () {},
+
+/**
+ * @method getMaximumValue
+ * @return A value converted from C/C++ "float"
+ */
+getMaximumValue : function () {},
+
+/**
+ * @method angleInDegreesBetweenLineFromPoint_toPoint_toLineFromPoint_toPoint
+ * @return A value converted from C/C++ "float"
+ * @param {cocos2d::CCPoint}
+ * @param {cocos2d::CCPoint}
+ * @param {cocos2d::CCPoint}
+ * @param {cocos2d::CCPoint}
+ */
+angleInDegreesBetweenLineFromPoint_toPoint_toLineFromPoint_toPoint : function () {},
+
+/**
+ * @method isTouchInside
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::CCTouch*}
+ */
+isTouchInside : function () {},
+
+/**
+ * @method getValue
+ * @return A value converted from C/C++ "float"
+ */
+getValue : function () {},
+
+/**
+ * @method potentiometerBegan
+ * @param {cocos2d::CCPoint}
+ */
+potentiometerBegan : function () {},
+
+/**
+ * @method getThumbSprite
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getThumbSprite : function () {},
+
+/**
+ * @method initWithTrackSprite_ProgressTimer_ThumbSprite
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::CCSprite*}
+ * @param {cocos2d::CCProgressTimer*}
+ * @param {cocos2d::CCSprite*}
+ */
+initWithTrackSprite_ProgressTimer_ThumbSprite : function () {},
+
+/**
+ * @method create
+ * @return A value converted from C/C++ "cocos2d::extension::CCControlPotentiometer*"
+ * @param {const char*}
+ * @param {const char*}
+ * @param {const char*}
+ */
+create : function () {},
+
+/**
+ * @method CCControlPotentiometer
+ * @constructor
+ */
+CCControlPotentiometer : function () {},
+
+};
+
+/**
+ * @class CCControlSlider
+ */
+cc.ControlSlider = {
+
+/**
+ * @method locationFromTouch
+ * @return A value converted from C/C++ "cocos2d::CCPoint"
+ * @param {cocos2d::CCTouch*}
+ */
+locationFromTouch : function () {},
+
+/**
+ * @method setProgressSprite
+ * @param {cocos2d::CCSprite*}
+ */
+setProgressSprite : function () {},
+
+/**
+ * @method getMaximumAllowedValue
+ * @return A value converted from C/C++ "float"
+ */
+getMaximumAllowedValue : function () {},
+
+/**
+ * @method getMinimumAllowedValue
+ * @return A value converted from C/C++ "float"
+ */
+getMinimumAllowedValue : function () {},
+
+/**
+ * @method getMinimumValue
+ * @return A value converted from C/C++ "float"
+ */
+getMinimumValue : function () {},
+
+/**
+ * @method setThumbSprite
+ * @param {cocos2d::CCSprite*}
+ */
+setThumbSprite : function () {},
+
+/**
+ * @method setMinimumValue
+ * @param {float}
+ */
+setMinimumValue : function () {},
+
+/**
+ * @method setMinimumAllowedValue
+ * @param {float}
+ */
+setMinimumAllowedValue : function () {},
+
+/**
+ * @method setEnabled
+ * @param {bool}
+ */
+setEnabled : function () {},
+
+/**
+ * @method setValue
+ * @param {float}
+ */
+setValue : function () {},
+
+/**
+ * @method setMaximumValue
+ * @param {float}
+ */
+setMaximumValue : function () {},
+
+/**
+ * @method needsLayout
+ */
+needsLayout : function () {},
+
+/**
+ * @method getBackgroundSprite
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getBackgroundSprite : function () {},
+
+/**
+ * @method initWithSprites
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::CCSprite*}
+ * @param {cocos2d::CCSprite*}
+ * @param {cocos2d::CCSprite*}
+ */
+initWithSprites : function () {},
+
+/**
+ * @method getMaximumValue
+ * @return A value converted from C/C++ "float"
+ */
+getMaximumValue : function () {},
+
+/**
+ * @method isTouchInside
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::CCTouch*}
+ */
+isTouchInside : function () {},
+
+/**
+ * @method getValue
+ * @return A value converted from C/C++ "float"
+ */
+getValue : function () {},
+
+/**
+ * @method getThumbSprite
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getThumbSprite : function () {},
+
+/**
+ * @method getProgressSprite
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getProgressSprite : function () {},
+
+/**
+ * @method setBackgroundSprite
+ * @param {cocos2d::CCSprite*}
+ */
+setBackgroundSprite : function () {},
+
+/**
+ * @method setMaximumAllowedValue
+ * @param {float}
+ */
+setMaximumAllowedValue : function () {},
+
+/**
+ * @method CCControlSlider
+ * @constructor
+ */
+CCControlSlider : function () {},
+
+};
+
+/**
+ * @class CCControlStepper
+ */
+cc.ControlStepper = {
+
+/**
+ * @method setMinusSprite
+ * @param {cocos2d::CCSprite*}
+ */
+setMinusSprite : function () {},
+
+/**
+ * @method getMinusLabel
+ * @return A value converted from C/C++ "cocos2d::CCLabelTTF*"
+ */
+getMinusLabel : function () {},
+
+/**
+ * @method setWraps
+ * @param {bool}
+ */
+setWraps : function () {},
+
+/**
+ * @method isContinuous
+ * @return A value converted from C/C++ "bool"
+ */
+isContinuous : function () {},
+
+/**
+ * @method getMinusSprite
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getMinusSprite : function () {},
+
+/**
+ * @method updateLayoutUsingTouchLocation
+ * @param {cocos2d::CCPoint}
+ */
+updateLayoutUsingTouchLocation : function () {},
+
+/**
+ * @method setValueWithSendingEvent
+ * @param {double}
+ * @param {bool}
+ */
+setValueWithSendingEvent : function () {},
+
+/**
+ * @method getPlusLabel
+ * @return A value converted from C/C++ "cocos2d::CCLabelTTF*"
+ */
+getPlusLabel : function () {},
+
+/**
+ * @method stopAutorepeat
+ */
+stopAutorepeat : function () {},
+
+/**
+ * @method setMaximumValue
+ * @param {double}
+ */
+setMaximumValue : function () {},
+
+/**
+ * @method setPlusSprite
+ * @param {cocos2d::CCSprite*}
+ */
+setPlusSprite : function () {},
+
+/**
+ * @method setMinusLabel
+ * @param {cocos2d::CCLabelTTF*}
+ */
+setMinusLabel : function () {},
+
+/**
+ * @method setValue
+ * @param {double}
+ */
+setValue : function () {},
+
+/**
+ * @method setStepValue
+ * @param {double}
+ */
+setStepValue : function () {},
+
+/**
+ * @method getPlusSprite
+ * @return A value converted from C/C++ "cocos2d::CCSprite*"
+ */
+getPlusSprite : function () {},
+
+/**
+ * @method update
+ * @param {float}
+ */
+update : function () {},
+
+/**
+ * @method setMinimumValue
+ * @param {double}
+ */
+setMinimumValue : function () {},
+
+/**
+ * @method startAutorepeat
+ */
+startAutorepeat : function () {},
+
+/**
+ * @method initWithMinusSpriteAndPlusSprite
+ * @return A value converted from C/C++ "bool"
+ * @param {cocos2d::CCSprite*}
+ * @param {cocos2d::CCSprite*}
+ */
+initWithMinusSpriteAndPlusSprite : function () {},
+
+/**
+ * @method getValue
+ * @return A value converted from C/C++ "double"
+ */
+getValue : function () {},
+
+/**
+ * @method setPlusLabel
+ * @param {cocos2d::CCLabelTTF*}
+ */
+setPlusLabel : function () {},
+
+/**
+ * @method create
+ * @return A value converted from C/C++ "cocos2d::extension::CCControlStepper*"
+ * @param {cocos2d::CCSprite*}
+ * @param {cocos2d::CCSprite*}
+ */
+create : function () {},
+
+/**
+ * @method CCControlStepper
+ * @constructor
+ */
+CCControlStepper : function () {},
+
+};
+
+/**
+ * @class CCControlSwitch
+ */
+cc.ControlSwitch = {
+
+/**
+ * @method setEnabled
+ * @param {bool}
+ */
+setEnabled : function () {},
+
+/**
+ * @method isOn
+ * @return A value converted from C/C++ "bool"
+ */
+isOn : function () {},
+
+/**
+ * @method hasMoved
+ * @return A value converted from C/C++ "bool"
+ */
+hasMoved : function () {},
+
+/**
+ * @method locationFromTouch
+ * @return A value converted from C/C++ "cocos2d::CCPoint"
+ * @param {cocos2d::CCTouch*}
+ */
+locationFromTouch : function () {},
+
+/**
+ * @method CCControlSwitch
+ * @constructor
+ */
+CCControlSwitch : function () {},
 
 };
 
@@ -1260,42 +1966,22 @@ CCTableViewCell : function () {},
 cc.TableView = {
 
 /**
- * @method updateCellAtIndex
- * @param {unsigned int}
- */
-updateCellAtIndex : function () {},
-
-/**
  * @method setVerticalFillOrder
  * @param {cocos2d::extension::CCTableViewVerticalFillOrder}
  */
 setVerticalFillOrder : function () {},
 
 /**
- * @method scrollViewDidZoom
+ * @method scrollViewDidScroll
  * @param {cocos2d::extension::CCScrollView*}
  */
-scrollViewDidZoom : function () {},
+scrollViewDidScroll : function () {},
 
 /**
- * @method ccTouchBegan
- * @return A value converted from C/C++ "bool"
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
- */
-ccTouchBegan : function () {},
-
-/**
- * @method getVerticalFillOrder
- * @return A value converted from C/C++ "cocos2d::extension::CCTableViewVerticalFillOrder"
- */
-getVerticalFillOrder : function () {},
-
-/**
- * @method removeCellAtIndex
+ * @method updateCellAtIndex
  * @param {unsigned int}
  */
-removeCellAtIndex : function () {},
+updateCellAtIndex : function () {},
 
 /**
  * @method initWithViewSize
@@ -1306,10 +1992,10 @@ removeCellAtIndex : function () {},
 initWithViewSize : function () {},
 
 /**
- * @method scrollViewDidScroll
- * @param {cocos2d::extension::CCScrollView*}
+ * @method removeCellAtIndex
+ * @param {unsigned int}
  */
-scrollViewDidScroll : function () {},
+removeCellAtIndex : function () {},
 
 /**
  * @method reloadData
@@ -1317,30 +2003,22 @@ scrollViewDidScroll : function () {},
 reloadData : function () {},
 
 /**
- * @method ccTouchCancelled
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
+ * @method dequeueCell
+ * @return A value converted from C/C++ "cocos2d::extension::CCTableViewCell*"
  */
-ccTouchCancelled : function () {},
+dequeueCell : function () {},
 
 /**
- * @method ccTouchEnded
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
+ * @method getVerticalFillOrder
+ * @return A value converted from C/C++ "cocos2d::extension::CCTableViewVerticalFillOrder"
  */
-ccTouchEnded : function () {},
+getVerticalFillOrder : function () {},
 
 /**
- * @method ccTouchMoved
- * @param {cocos2d::CCTouch*}
- * @param {cocos2d::CCEvent*}
+ * @method scrollViewDidZoom
+ * @param {cocos2d::extension::CCScrollView*}
  */
-ccTouchMoved : function () {},
-
-/**
- * @method _updateContentSize
- */
-_updateContentSize : function () {},
+scrollViewDidZoom : function () {},
 
 /**
  * @method insertCellAtIndex
@@ -1356,10 +2034,9 @@ insertCellAtIndex : function () {},
 cellAtIndex : function () {},
 
 /**
- * @method dequeueCell
- * @return A value converted from C/C++ "cocos2d::extension::CCTableViewCell*"
+ * @method _updateContentSize
  */
-dequeueCell : function () {},
+_updateContentSize : function () {},
 
 /**
  * @method CCTableView
@@ -1456,12 +2133,6 @@ initWithSizeAndBackgroundSprite : function () {},
 setPlaceHolder : function () {},
 
 /**
- * @method setPosition
- * @param {cocos2d::CCPoint}
- */
-setPosition : function () {},
-
-/**
  * @method setReturnType
  * @param {cocos2d::extension::KeyboardReturnType}
  */
@@ -1490,12 +2161,6 @@ setText : function () {},
  * @param {int}
  */
 setMaxLength : function () {},
-
-/**
- * @method setContentSize
- * @param {cocos2d::CCSize}
- */
-setContentSize : function () {},
 
 /**
  * @method setFont

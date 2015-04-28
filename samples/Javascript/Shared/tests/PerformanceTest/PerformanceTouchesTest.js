@@ -60,12 +60,12 @@ var TouchesMainScene = PerformBasicLayer.extend({
         // add title
         var label = cc.LabelTTF.create(this.title(), "Arial", 32);
         this.addChild(label, 1);
-        label.setPosition(cc.p(s.width / 2, s.height - 50));
+        label.setPosition(s.width / 2, s.height - 50);
 
         this.scheduleUpdate();
 
         this._plabel = cc.LabelTTF.create("00.0", "Arial", 16);
-        this._plabel.setPosition(cc.p(s.width / 2, s.height / 2));
+        this._plabel.setPosition(s.width / 2, s.height / 2);
         this.addChild(this._plabel);
 
         this._elapsedTime = 0;
@@ -100,12 +100,10 @@ var TouchesPerformTest1 = TouchesMainScene.extend({
     onEnter:function () {
         this._super();
         this.setTouchEnabled(true);
+        this.setTouchMode(cc.TOUCH_ONE_BY_ONE);
     },
     title:function () {
         return "Targeted touches";
-    },
-    registerWithTouchDispatcher:function () {
-        cc.Director.getInstance().getTouchDispatcher().addTargetedDelegate(this, 0, true);
     },
     onTouchBegan:function (touch, event) {
         this._numberOfTouchesB++;
@@ -131,14 +129,11 @@ var TouchesPerformTest2 = TouchesMainScene.extend({
     onEnter:function () {
         this._super();
         this.setTouchEnabled(true);
+        this.setTouchMode(cc.TOUCH_ALL_AT_ONCE);
     },
     title:function () {
         return "Standard touches";
     },
-    registerWithTouchDispatcher:function () {
-        cc.Director.getInstance().getTouchDispatcher().addStandardDelegate(this, 0);
-    },
-
     onTouchesBegan:function (touches, event) {
         this._numberOfTouchesB += touches.length;
     },

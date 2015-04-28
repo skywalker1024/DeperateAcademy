@@ -31,20 +31,22 @@ var cocos2dApp = cc.Application.extend({
         this._super();
         this.startScene = scene;
         cc.COCOS2D_DEBUG = this.config.COCOS2D_DEBUG;
-        cc.setup(this.config.tag);
+        cc.setup(this.config['tag']);
         cc.AppController.shareAppController().didFinishLaunchingWithOptions();
     },
     applicationDidFinishLaunching:function () {
         // initialize director
         var director = cc.Director.getInstance();
 
+        cc.EGLView.getInstance().adjustViewPort(true);
         cc.EGLView.getInstance().setDesignResolutionSize(320,480,cc.RESOLUTION_POLICY.SHOW_ALL);
+        cc.EGLView.getInstance().resizeWithBrowserSize(true);
 
         // turn on display FPS
-        director.setDisplayStats(this.config.showFPS);
+        director.setDisplayStats(this.config['showFPS']);
 
         // set FPS. the default value is 1.0/60 if you don't call this
-        director.setAnimationInterval(1.0 / this.config.frameRate);
+        director.setAnimationInterval(1.0 / this.config['frameRate']);
 
         //load resources
         cc.LoaderScene.preload(g_mainmenu, function () {
@@ -76,12 +78,13 @@ var s_ptBottomRight = cc.PointZero();
 var s_ptBottom = cc.PointZero();
 var s_ptLeft = cc.PointZero();
 var s_ptTopLeft = cc.PointZero();
+var s_ptBottomLeft = cc.PointZero();
 
 var VisibleRect = {
     rect:function () {
         if (s_rcVisible.width == 0) {
             var s = cc.Director.getInstance().getWinSize();
-            s_rcVisible = cc.RectMake(0, 0, s.width, s.height);
+            s_rcVisible = cc.rect(0, 0, s.width, s.height);
         }
         return s_rcVisible;
     },
@@ -134,7 +137,7 @@ var VisibleRect = {
         return s_ptBottom;
     },
     bottomLeft:function () {
-        return this.rect().origin;
+        return s_ptBottomLeft;
     },
     left:function () {
         if (s_ptLeft.x == 0) {

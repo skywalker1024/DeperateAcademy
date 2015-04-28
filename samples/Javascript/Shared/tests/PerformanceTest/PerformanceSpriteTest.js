@@ -26,6 +26,13 @@
 var MAX_SPRITES = 10000;
 var SPRITES_INCREASE = 500;
 
+if ( sys.platform == 'browser') {
+   if(cc.Browser.isMobile){
+       MAX_SPRITES = 3000;
+       SPRITES_INCREASE = 50;
+   }
+}
+
 var TAG_INFO_LAYER = 1;
 var TAG_MAIN_LAYER = 2;
 var TAG_SPRITE_MENU_LAYER = (MAX_SPRITES + 1000);
@@ -159,9 +166,10 @@ var SubTest = cc.Class.extend({
          */
 
         // purge textures
-        //var mgr = cc.TextureCache.getInstance();
+        //
         //		[mgr removeAllTextures];
         if ( sys.platform != 'browser') {
+            var mgr = cc.TextureCache.getInstance();
             mgr.removeTexture(mgr.addImage("res/Images/grossinis_sister1.png"));
             mgr.removeTexture(mgr.addImage("res/Images/grossini_dance_atlas.png"));
             mgr.removeTexture(mgr.addImage("res/Images/spritesheet1.png"));
@@ -301,7 +309,7 @@ var SpriteMainScene = cc.Scene.extend({
         // add title label
         var label = cc.LabelTTF.create(this.title(), "Arial", 40);
         this.addChild(label, 1);
-        label.setPosition(cc.p(s.width / 2, s.height - 32));
+        label.setPosition(s.width / 2, s.height - 32);
         label.setColor(cc.c3b(255, 255, 40));
 
         cc.MenuItemFont.setFontSize(65);
@@ -313,12 +321,12 @@ var SpriteMainScene = cc.Scene.extend({
         var menu = cc.Menu.create(decrease, increase);
         menu.alignItemsHorizontally();
 
-        menu.setPosition(cc.p(s.width / 2, s.height - 65));
+        menu.setPosition(s.width / 2, s.height - 65);
         this.addChild(menu, 1);
 
         var infoLabel = cc.LabelTTF.create("0 nodes", "Marker Felt", 30);
         infoLabel.setColor(cc.c3b(0, 200, 20));
-        infoLabel.setPosition(cc.p(s.width / 2, s.height - 90));
+        infoLabel.setPosition(s.width / 2, s.height - 90);
         this.addChild(infoLabel, 1, TAG_INFO_LAYER);
 
         // add menu
@@ -343,7 +351,7 @@ var SpriteMainScene = cc.Scene.extend({
         }
 
         subMenu.alignItemsHorizontally();
-        subMenu.setPosition(cc.p(s.width / 2, 80));
+        subMenu.setPosition(s.width / 2, 80);
         this.addChild(subMenu, 2);
 
         while (this._quantityNodes < nodes) {
@@ -372,15 +380,9 @@ var SpriteMainScene = cc.Scene.extend({
             var sprite = this._subTest.createSpriteWithTag(this._quantityNodes);
             this.doTest(sprite);
             this._quantityNodes++;
-            if(i == 150)
-                window.selSprite1 = sprite;
-            if(i == 300)
-                window.selSprite2 = sprite;
         }
 
         this.updateNodes();
-        if(window.selSprite1._texture != window.selSprite2._texture)
-            throw "set texture error";
     },
     onDecrease:function (sender) {
         if (this._quantityNodes <= 0)
@@ -414,7 +416,7 @@ var SpriteMainScene = cc.Scene.extend({
 ////////////////////////////////////////////////////////
 function performanceActions(sprite) {
     var size = cc.Director.getInstance().getWinSize();
-    sprite.setPosition(cc.p(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height)));
+    sprite.setPosition(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height));
 
     var period = 0.5 + (Math.random() * 1000) / 500.0;
     var rot = cc.RotateBy.create(period, 360.0 * Math.random());
@@ -431,9 +433,9 @@ function performanceActions(sprite) {
 function performanceActions20(sprite) {
     var size = cc.Director.getInstance().getWinSize();
     if (Math.random() < 0.2)
-        sprite.setPosition(cc.p(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height)));
+        sprite.setPosition(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height));
     else
-        sprite.setPosition(cc.p(-1000, -1000));
+        sprite.setPosition(-1000, -1000);
 
     var period = 0.5 + (Math.random() * 1000) / 500.0;
     var rot = cc.RotateBy.create(period, 360.0 * Math.random());
@@ -449,32 +451,32 @@ function performanceActions20(sprite) {
 
 function performanceRotationScale(sprite) {
     var size = cc.Director.getInstance().getWinSize();
-    sprite.setPosition(cc.p(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height)));
+    sprite.setPosition(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height));
     sprite.setRotation(Math.random() * 360);
     sprite.setScale(Math.random() * 2);
 }
 
 function performancePosition(sprite) {
     var size = cc.Director.getInstance().getWinSize();
-    sprite.setPosition(cc.p(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height)));
+    sprite.setPosition(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height));
 }
 
 function performanceout20(sprite) {
     var size = cc.Director.getInstance().getWinSize();
 
     if (Math.random() < 0.2)
-        sprite.setPosition(cc.p(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height)));
+        sprite.setPosition(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height));
     else
-        sprite.setPosition(cc.p(-1000, -1000));
+        sprite.setPosition(-1000, -1000);
 }
 
 function performanceOut100(sprite) {
-    sprite.setPosition(cc.p(-1000, -1000));
+    sprite.setPosition(-1000, -1000);
 }
 
 function performanceScale(sprite) {
     var size = cc.Director.getInstance().getWinSize();
-    sprite.setPosition(cc.p(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height)));
+    sprite.setPosition(parseInt(Math.random() * size.width), parseInt(Math.random() * size.height));
     sprite.setScale(Math.random() * 100 / 50);
 }
 

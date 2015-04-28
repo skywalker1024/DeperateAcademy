@@ -6,8 +6,11 @@
 #include "CCBKeyframe.h"
 
 NS_CC_EXT_BEGIN
-
-class CCBSequenceProperty : public CCObject
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCBSequenceProperty : public CCObject
 {
 private:
     std::string mName;

@@ -7,8 +7,11 @@ NS_CC_EXT_BEGIN
 
 /* Forward declaration. */
 class CCBReader;
-
-class CCLayerGradientLoader : public CCLayerLoader {
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCLayerGradientLoader : public CCLayerLoader {
     public:
         virtual ~CCLayerGradientLoader() {};
         CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(CCLayerGradientLoader, loader);

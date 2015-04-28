@@ -9,8 +9,11 @@
  */
 
 NS_CC_EXT_BEGIN
-
-class ccColor3BWapper : public CCObject
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL ccColor3BWapper : public CCObject
 {
 private:
     ccColor3B color;
@@ -30,8 +33,11 @@ enum
     kStringValue,
     kArrayValue
 };
-
-class CCBValue : public CCObject
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCBValue : public CCObject
 {
 private:
     union 

@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "CCBReader.h"
+#include "ExtensionMacros.h"
 
 NS_CC_EXT_BEGIN
 
@@ -10,8 +11,11 @@ class CCNodeLoader;
 
 typedef std::map<std::string, CCNodeLoader *> CCNodeLoaderMap;
 typedef std::pair<std::string, CCNodeLoader *> CCNodeLoaderMapEntry;
-
-class CCNodeLoaderLibrary : public CCObject {
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCNodeLoaderLibrary : public CCObject {
     private:
         CCNodeLoaderMap mCCNodeLoaders;
 

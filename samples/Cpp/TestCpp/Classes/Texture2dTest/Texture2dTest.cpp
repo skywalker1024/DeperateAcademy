@@ -318,12 +318,16 @@ std::string TextureJPEG::title()
 void TextureWEBP::onEnter()
 {
     TextureDemo::onEnter();
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT) && (CC_TARGET_PLATFORM != CC_PLATFORM_WP8)
     CCSize s = CCDirector::sharedDirector()->getWinSize();
     
     CCSprite *img = CCSprite::create("Images/test_image.webp");
     img->setPosition(ccp( s.width/2.0f, s.height/2.0f));
     addChild(img);
     CCTextureCache::sharedTextureCache()->dumpCachedTextureInfo();
+#else
+	CCMessageBox("TextureWEBP not yet implemented for WinRT/WP8.","Alert");
+#endif
 }
 
 std::string TextureWEBP::title()
@@ -1992,7 +1996,7 @@ void TextureMemoryAlloc::updateImage(cocos2d::CCObject *sender)
     m_pBackground->setVisible(false);
     
     CCSize s = CCDirector::sharedDirector()->getWinSize();
-    m_pBackground->setPosition(ccp(s.width/2, s.height/2));
+    m_pBackground->setPosition(ccp(s.width/2 + 50, s.height/2 + 40));
 }
 
 string TextureMemoryAlloc::title()

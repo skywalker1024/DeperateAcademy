@@ -43,7 +43,7 @@ var IDC_NEXT = 100;
 var IDC_BACK = 101;
 var IDC_RESTART = 102;
 
-var spriteTestIdx  = -1;
+var spriteTestIdx = -1;
 
 var spriteFrameCache = cc.SpriteFrameCache.getInstance();
 
@@ -56,11 +56,11 @@ var SpriteTestDemo = BaseTestLayer.extend({
     _title:"",
     _subtitle:"",
 
-    ctor:function() {
-        if( arguments.length === 0 ) {
-            this._super( cc.c4b(0,0,0,255), cc.c4b(98,99,117,255) );
+    ctor:function () {
+        if (arguments.length === 0) {
+            this._super(cc.c4b(0, 0, 0, 255), cc.c4b(98, 99, 117, 255));
         } else {
-            this._super.apply(this, arguments );
+            this._super.apply(this, arguments);
         }
     },
 
@@ -83,11 +83,11 @@ var SpriteTestDemo = BaseTestLayer.extend({
     },
 
     // automation
-    numberOfPendingTests:function() {
-        return ( (arrayOfSpriteTest.length-1) - spriteTestIdx );
+    numberOfPendingTests:function () {
+        return ( (arrayOfSpriteTest.length - 1) - spriteTestIdx );
     },
 
-    getTestNumber:function() {
+    getTestNumber:function () {
         return spriteTestIdx;
     }
 });
@@ -118,7 +118,7 @@ var Sprite1 = SpriteTestDemo.extend({
         var y = (0 | (idx / 5)) * 121;
         var sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(x, y, 85, 121));
         this.addChild(sprite);
-        sprite.setPosition(cc.p(p.x, p.y));
+        sprite.setPosition(p.x, p.y);
 
         var action;
         var random = Math.random();
@@ -138,6 +138,7 @@ var Sprite1 = SpriteTestDemo.extend({
         var seq = cc.Sequence.create(action, action_back);
 
         sprite.runAction(cc.RepeatForever.create(seq));
+        this.testSprite = sprite;
     },
     onTouchesEnded:function (touches, event) {
         for (var it = 0; it < touches.length; it++) {
@@ -156,6 +157,29 @@ var Sprite1 = SpriteTestDemo.extend({
         var location = event.getLocation();
         this.addNewSpriteWithCoords(location);
         return true;
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel:{"0":51, "1":0, "2":51, "3":255},
+    testSprite:null,
+    setupAutomation:function () {
+        var fun = function () {
+            var sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(0, 0, 85, 121));
+            this.addChild(sprite, 999);
+            sprite.setPosition(winSize.width / 2, winSize.height / 2);
+        }
+        this.scheduleOnce(fun, 0.5);
+    },
+    getExpectedResult:function () {
+        var ret = {"useBatch":false, "pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        var ret = {"useBatch":this.testSprite.getBatchNode() != null, "pixel":this.containsPixel(ret1, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -191,7 +215,7 @@ var SpriteBatchNode1 = SpriteTestDemo.extend({
         var sprite = cc.Sprite.createWithTexture(batchNode.getTexture(), cc.rect(x, y, 85, 121));
         batchNode.addChild(sprite);
 
-        sprite.setPosition(cc.p(p.x, p.y));
+        sprite.setPosition(p.x, p.y);
 
         var action;
         var random = Math.random();
@@ -211,6 +235,7 @@ var SpriteBatchNode1 = SpriteTestDemo.extend({
         var seq = cc.Sequence.create(action, action_back);
 
         sprite.runAction(cc.RepeatForever.create(seq));
+        this.testSprite = sprite;
     },
     onTouchesEnded:function (touches, event) {
         for (var it = 0; it < touches.length; it++) {
@@ -228,6 +253,29 @@ var SpriteBatchNode1 = SpriteTestDemo.extend({
         var location = event.getLocation();
         this.addNewSpriteWithCoords(location);
         return true;
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel:{"0":51, "1":0, "2":51, "3":255},
+    testSprite:null,
+    setupAutomation:function () {
+        var fun = function () {
+            var sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(0, 0, 85, 121));
+            this.addChild(sprite, 999);
+            sprite.setPosition(winSize.width / 2, winSize.height / 2);
+        }
+        this.scheduleOnce(fun, 0.5);
+    },
+    getExpectedResult:function () {
+        var ret = {"useBatch":true, "pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        var ret = {"useBatch":this.testSprite.getBatchNode() != null, "pixel":this.containsPixel(ret1, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -252,30 +300,31 @@ var SpriteColorOpacity = SpriteTestDemo.extend({
         var sprite7 = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85 * 2, 121, 85, 121));
         var sprite8 = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85 * 3, 121, 85, 121));
 
-        sprite1.setPosition(cc.p((winSize.width / 5), (winSize.height / 3)));
-        sprite2.setPosition(cc.p((winSize.width / 5) * 2, (winSize.height / 3)));
-        sprite3.setPosition(cc.p((winSize.width / 5) * 3, (winSize.height / 3)));
-        sprite4.setPosition(cc.p((winSize.width / 5) * 4, (winSize.height / 3)));
-        sprite5.setPosition(cc.p((winSize.width / 5), (winSize.height / 3) * 2));
-        sprite6.setPosition(cc.p((winSize.width / 5) * 2, (winSize.height / 3) * 2));
-        sprite7.setPosition(cc.p((winSize.width / 5) * 3, (winSize.height / 3) * 2));
-        sprite8.setPosition(cc.p((winSize.width / 5) * 4, (winSize.height / 3) * 2));
+        sprite1.setPosition((winSize.width / 5), (winSize.height / 3));
+        sprite2.setPosition((winSize.width / 5) * 2, (winSize.height / 3));
+        sprite3.setPosition((winSize.width / 5) * 3, (winSize.height / 3));
+        sprite4.setPosition((winSize.width / 5) * 4, (winSize.height / 3));
+        sprite5.setPosition((winSize.width / 5), (winSize.height / 3) * 2);
+        sprite6.setPosition((winSize.width / 5) * 2, (winSize.height / 3) * 2);
+        sprite7.setPosition((winSize.width / 5) * 3, (winSize.height / 3) * 2);
+        sprite8.setPosition((winSize.width / 5) * 4, (winSize.height / 3) * 2);
 
+        var delay = cc.DelayTime.create(0.25);
         var action = cc.FadeIn.create(2);
         var action_back = action.reverse();
-        var fade = cc.RepeatForever.create(cc.Sequence.create(action, action_back));
+        var fade = cc.RepeatForever.create(cc.Sequence.create(action, delay.clone(), action_back));
 
         var tintRed = cc.TintBy.create(2, 0, -255, -255);
         var tintRedBack = tintRed.reverse();
-        var red = cc.RepeatForever.create(cc.Sequence.create(tintRed, tintRedBack));
+        var red = cc.RepeatForever.create(cc.Sequence.create(tintRed, delay.clone(), tintRedBack));
 
         var tintGreen = cc.TintBy.create(2, -255, 0, -255);
         var tintGreenBack = tintGreen.reverse();
-        var green = cc.RepeatForever.create(cc.Sequence.create(tintGreen, tintGreenBack));
+        var green = cc.RepeatForever.create(cc.Sequence.create(tintGreen, delay.clone(), tintGreenBack));
 
         var tintBlue = cc.TintBy.create(2, -255, -255, 0);
         var tintBlueBack = tintBlue.reverse();
-        var blue = cc.RepeatForever.create(cc.Sequence.create(tintBlue, tintBlueBack));
+        var blue = cc.RepeatForever.create(cc.Sequence.create(tintBlue, delay.clone(), tintBlueBack));
 
         sprite5.runAction(red);
         sprite6.runAction(green);
@@ -301,6 +350,29 @@ var SpriteColorOpacity = SpriteTestDemo.extend({
 
         this.removeChild(sprite, false);
         this.addChild(sprite, 0, TAG_SPRITE5);
+    },
+    //
+    // Automation
+    //
+    testDuration:2.1,
+    pixel1:{"0":255, "1":0, "2":0, "3":255},
+    pixel2:{"0":0, "1":204, "2":0, "3":255},
+    pixel3:{"0":0, "1":0, "2":153, "3":255},
+    pixel4:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes", "pixel4":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels((winSize.width / 5) * 1, (winSize.height / 3) * 2 + 40, 5, 5);
+        var ret2 = this.readPixels((winSize.width / 5) * 2, (winSize.height / 3) * 2 + 40, 5, 5);
+        var ret3 = this.readPixels((winSize.width / 5) * 3, (winSize.height / 3) * 2 + 40, 5, 5);
+        var ret4 = this.readPixels((winSize.width / 5) * 4, (winSize.height / 3) * 2 + 40, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel3) ? "yes" : "no",
+            "pixel4":this.containsPixel(ret4, this.pixel4) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -331,29 +403,30 @@ var SpriteBatchNodeColorOpacity = SpriteTestDemo.extend({
         var sprite8 = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85 * 3, 121, 85, 121));
 
 
-        sprite1.setPosition(cc.p((winSize.width / 5) * 1, (winSize.height / 3) * 1));
-        sprite2.setPosition(cc.p((winSize.width / 5) * 2, (winSize.height / 3) * 1));
-        sprite3.setPosition(cc.p((winSize.width / 5) * 3, (winSize.height / 3) * 1));
-        sprite4.setPosition(cc.p((winSize.width / 5) * 4, (winSize.height / 3) * 1));
-        sprite5.setPosition(cc.p((winSize.width / 5) * 1, (winSize.height / 3) * 2));
-        sprite6.setPosition(cc.p((winSize.width / 5) * 2, (winSize.height / 3) * 2));
-        sprite7.setPosition(cc.p((winSize.width / 5) * 3, (winSize.height / 3) * 2));
-        sprite8.setPosition(cc.p((winSize.width / 5) * 4, (winSize.height / 3) * 2));
+        sprite1.setPosition((winSize.width / 5) * 1, (winSize.height / 3) * 1);
+        sprite2.setPosition((winSize.width / 5) * 2, (winSize.height / 3) * 1);
+        sprite3.setPosition((winSize.width / 5) * 3, (winSize.height / 3) * 1);
+        sprite4.setPosition((winSize.width / 5) * 4, (winSize.height / 3) * 1);
+        sprite5.setPosition((winSize.width / 5) * 1, (winSize.height / 3) * 2);
+        sprite6.setPosition((winSize.width / 5) * 2, (winSize.height / 3) * 2);
+        sprite7.setPosition((winSize.width / 5) * 3, (winSize.height / 3) * 2);
+        sprite8.setPosition((winSize.width / 5) * 4, (winSize.height / 3) * 2);
 
+        var delay = cc.DelayTime.create(0.25);
         var action = cc.FadeIn.create(2);
         var action_back = action.reverse();
-        var fade = cc.RepeatForever.create(cc.Sequence.create(action, action_back));
+        var fade = cc.RepeatForever.create(cc.Sequence.create(action, delay.clone(), action_back));
 
         var tintRed = cc.TintBy.create(2, 0, -255, -255);
-        var red = cc.RepeatForever.create(cc.Sequence.create(tintRed, tintRed.reverse()));
+        var red = cc.RepeatForever.create(cc.Sequence.create(tintRed, delay.clone(), tintRed.reverse()));
 
         var tintGreen = cc.TintBy.create(2, -255, 0, -255);
         var tintGreenBack = tintGreen.reverse();
-        var green = cc.RepeatForever.create(cc.Sequence.create(tintGreen, tintGreenBack));
+        var green = cc.RepeatForever.create(cc.Sequence.create(tintGreen, delay.clone(), tintGreenBack));
 
         var tintBlue = cc.TintBy.create(2, -255, -255, 0);
         var tintBlueBack = tintBlue.reverse();
-        var blue = cc.RepeatForever.create(cc.Sequence.create(tintBlue, tintBlueBack));
+        var blue = cc.RepeatForever.create(cc.Sequence.create(tintBlue, delay.clone(), tintBlueBack));
 
         sprite5.runAction(red);
         sprite6.runAction(green);
@@ -380,7 +453,31 @@ var SpriteBatchNodeColorOpacity = SpriteTestDemo.extend({
 
         batch.removeChild(sprite, false);
         batch.addChild(sprite, 0, TAG_SPRITE5);
+    },
+    //
+    // Automation
+    //
+    testDuration:2.1,
+    pixel1:{"0":255, "1":0, "2":0, "3":255},
+    pixel2:{"0":0, "1":204, "2":0, "3":255},
+    pixel3:{"0":0, "1":0, "2":153, "3":255},
+    pixel4:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes", "pixel4":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels((winSize.width / 5) * 1, (winSize.height / 3) * 2 + 40, 5, 5);
+        var ret2 = this.readPixels((winSize.width / 5) * 2, (winSize.height / 3) * 2 + 40, 5, 5);
+        var ret3 = this.readPixels((winSize.width / 5) * 3, (winSize.height / 3) * 2 + 40, 5, 5);
+        var ret4 = this.readPixels((winSize.width / 5) * 4, (winSize.height / 3) * 2 + 40, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel3) ? "yes" : "no",
+            "pixel4":this.containsPixel(ret4, this.pixel4) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
+
 });
 
 //------------------------------------------------------------------
@@ -399,21 +496,21 @@ var SpriteZOrder = SpriteTestDemo.extend({
         var step = winSize.width / 11;
         for (var i = 0; i < 5; i++) {
             sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85 * 0, 121 * 1, 85, 121));
-            sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
+            sprite.setPosition((i + 1) * step, winSize.height / 2);
             this.addChild(sprite, i);
         }
 
         for (i = 5; i < 10; i++) {
             sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85 * 1, 121 * 0, 85, 121));
-            sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
+            sprite.setPosition((i + 1) * step, winSize.height / 2);
             this.addChild(sprite, 14 - i);
         }
 
         sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85 * 3, 121 * 0, 85, 121));
         this.addChild(sprite, -1, TAG_SPRITE1);
-        sprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - 20));
+        sprite.setPosition(winSize.width / 2, winSize.height / 2 - 20);
         sprite.setScaleX(10);
-        sprite.setColor(cc.RED);
+        sprite.setColor(cc.red());
 
         this.schedule(this.reorderSprite, 1);
     },
@@ -426,6 +523,21 @@ var SpriteZOrder = SpriteTestDemo.extend({
             this._dir = -1;
         z += this._dir * 3;
         this.reorderChild(sprite, z);
+    },
+    //
+    // Automation
+    //
+    testDuration:4.2,
+    pixel:{"0":255, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var step = winSize.width / 11;
+        var ret1 = this.readPixels((6 + 1) * step, winSize.height / 2 + 10, 5, 5);
+        var ret = {"pixel":this.containsPixel(ret1, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -450,21 +562,21 @@ var SpriteBatchNodeZOrder = SpriteTestDemo.extend({
         var step = winSize.width / 11;
         for (var i = 0; i < 5; i++) {
             sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85 * 0, 121 * 1, 85, 121));
-            sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
+            sprite.setPosition((i + 1) * step, winSize.height / 2);
             batch.addChild(sprite, i);
         }
 
         for (i = 5; i < 10; i++) {
             sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85 * 1, 121 * 0, 85, 121));
-            sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
+            sprite.setPosition((i + 1) * step, winSize.height / 2);
             batch.addChild(sprite, 14 - i);
         }
 
         sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85 * 3, 121 * 0, 85, 121));
         batch.addChild(sprite, -1, TAG_SPRITE1);
-        sprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2 - 20));
+        sprite.setPosition(winSize.width / 2, winSize.height / 2 - 20);
         sprite.setScaleX(10);
-        sprite.setColor(cc.RED);
+        sprite.setColor(cc.red());
         this.schedule(this.reorderSprite, 1);
     },
     reorderSprite:function (dt) {
@@ -477,6 +589,21 @@ var SpriteBatchNodeZOrder = SpriteTestDemo.extend({
             this._dir = -1;
         z += this._dir * 3;
         batch.reorderChild(sprite, z);
+    },
+    //
+    // Automation
+    //
+    testDuration:4.2,
+    pixel:{"0":255, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var step = winSize.width / 11;
+        var ret1 = this.readPixels((6 + 1) * step, winSize.height / 2 + 10, 5, 5);
+        var ret = {"pixel":this.containsPixel(ret1, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -533,6 +660,16 @@ var SpriteBatchNodeReorder = SpriteTestDemo.extend({
             ////----UXLog("descendant %x - atlasIndex:%d", child, currentIndex);
             prev = currentIndex;
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:1.2,
+    getExpectedResult:function () {
+        return JSON.stringify(true);
+    },
+    getCurrentResult:function () {
+        return JSON.stringify(true);
     }
 });
 
@@ -554,9 +691,23 @@ var SpriteBatchNodeReorderIssue744 = SpriteTestDemo.extend({
         this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
 
         var sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(0, 0, 85, 121));
-        sprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        sprite.setPosition(winSize.width / 2, winSize.height / 2);
         batch.addChild(sprite, 3);
         batch.reorderChild(sprite, 1);
+    },
+    //
+    // Automation
+    //
+    testDuration:1.2,
+    pixel:{"0":51, "1":0, "2":51, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        var ret = {"pixel":this.containsPixel(ret1, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -580,13 +731,13 @@ var SpriteBatchNodeReorderIssue766 = SpriteTestDemo.extend({
         this.addChild(this._batchNode, 1, 0);
 
         this._sprite1 = this.makeSpriteZ(2);
-        this._sprite1.setPosition(cc.p(200, 160));
+        this._sprite1.setPosition(200, 160);
 
         this._sprite2 = this.makeSpriteZ(3);
-        this._sprite2.setPosition(cc.p(264, 160));
+        this._sprite2.setPosition(264, 160);
 
         this._sprite3 = this.makeSpriteZ(4);
-        this._sprite3.setPosition(cc.p(328, 160));
+        this._sprite3.setPosition(328, 160);
 
         this.schedule(this.reorderSprite, 2);
     },
@@ -608,6 +759,23 @@ var SpriteBatchNodeReorderIssue766 = SpriteTestDemo.extend({
         sprite.addChild(spriteTop, aZ + 2, 3);
 
         return sprite;
+    },
+    //
+    // Automation
+    //
+    testDuration:2.2,
+    pixel1:{"0":0, "1":0, "2":0, "3":255},
+    pixel2:{"0":255, "1":255, "2":255, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(213, 159, 5, 5);
+        var ret2 = this.readPixels(211, 108, 5, 5);
+        var ret = {"pixel1":!this.containsPixel(ret1, this.pixel1) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -632,20 +800,20 @@ var SpriteBatchNodeReorderIssue767 = SpriteTestDemo.extend({
 
         // parent
         var l1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("father.gif"));
-        l1.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        l1.setPosition(winSize.width / 2, winSize.height / 2);
         aParent.addChild(l1, 0, TAG_SPRITE2);
         var l1Size = l1.getContentSize();
 
         // child left
         var l2a = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("sister1.gif"));
-        l2a.setPosition(cc.p(-25 + l1Size.width / 2, 0 + l1Size.height / 2));
+        l2a.setPosition(-25 + l1Size.width / 2, 0 + l1Size.height / 2);
         l1.addChild(l2a, -1, TAG_SPRITE_LEFT);
         var l2aSize = l2a.getContentSize();
 
 
         // child right
         var l2b = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("sister2.gif"));
-        l2b.setPosition(cc.p(25 + l1Size.width / 2, 0 + l1Size.height / 2));
+        l2b.setPosition(25 + l1Size.width / 2, 0 + l1Size.height / 2);
         l1.addChild(l2b, 1, TAG_SPRITE_RIGHT);
         var l2bSize = l2a.getContentSize();
 
@@ -653,25 +821,25 @@ var SpriteBatchNodeReorderIssue767 = SpriteTestDemo.extend({
         // child left bottom
         var l3a1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3a1.setScale(0.65);
-        l3a1.setPosition(cc.p(0 + l2aSize.width / 2, -50 + l2aSize.height / 2));
+        l3a1.setPosition(0 + l2aSize.width / 2, -50 + l2aSize.height / 2);
         l2a.addChild(l3a1, -1);
 
         // child left top
         var l3a2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3a2.setScale(0.65);
-        l3a2.setPosition(cc.p(0 + l2aSize.width / 2, +50 + l2aSize.height / 2));
+        l3a2.setPosition(0 + l2aSize.width / 2, +50 + l2aSize.height / 2);
         l2a.addChild(l3a2, 1);
 
         // child right bottom
         var l3b1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3b1.setScale(0.65);
-        l3b1.setPosition(cc.p(0 + l2bSize.width / 2, -50 + l2bSize.height / 2));
+        l3b1.setPosition(0 + l2bSize.width / 2, -50 + l2bSize.height / 2);
         l2b.addChild(l3b1, -1);
 
         // child right top
         var l3b2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3b2.setScale(0.65);
-        l3b2.setPosition(cc.p(0 + l2bSize.width / 2, +50 + l2bSize.height / 2));
+        l3b2.setPosition(0 + l2bSize.width / 2, +50 + l2bSize.height / 2);
         l2b.addChild(l3b2, 1);
 
         this.schedule(this.reorderSprites, 1);
@@ -689,6 +857,30 @@ var SpriteBatchNodeReorderIssue767 = SpriteTestDemo.extend({
 
         father.reorderChild(left, newZLeft);
         father.reorderChild(right, -newZLeft);
+    },
+    //
+    // Automation
+    //
+    testDuration:1.5,
+    pixel1:{"0":255, "1":204, "2":153, "3":255},
+    pixel2:{"0":255, "1":255, "2":255, "3":255},
+    curPixel1:null,
+    curPixel2:null,
+    setupAutomation:function () {
+        var fun = function(){
+            this.curPixel1 = this.readPixels(winSize.width / 2 + 11, winSize.height / 2 - 11, 2, 2);
+        }
+        this.scheduleOnce(fun, 0.5);
+    },
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        this.curPixel2 = this.readPixels(winSize.width / 2 + 11, winSize.height / 2 - 11, 2, 2);
+        var ret = {"pixel1":this.containsPixel(this.curPixel1, this.pixel1) ? "yes" : "no",
+            "pixel2":this.containsPixel(this.curPixel2, this.pixel2) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -704,12 +896,12 @@ var SpriteZVertex = SpriteTestDemo.extend({
     _subtitle:"Scene should rotate",
 
     ctor:function () {
-        this._super( cc.c4b(255,0,0,80), cc.c4b(255,98,117,20) );
+        this._super(cc.c4b(255, 0, 0, 80), cc.c4b(255, 98, 117, 20));
 
 
-        if( "opengl" in sys.capabilities ) {
+        if ("opengl" in sys.capabilities) {
 
-            gl.enable( gl.DEPTH_TEST );
+            gl.enable(gl.DEPTH_TEST);
             //
             // This test tests z-order
             // If you are going to use it is better to use a 3D projection
@@ -728,7 +920,7 @@ var SpriteZVertex = SpriteTestDemo.extend({
 
             // set alpha test value
             // NOTE: alpha test shader is hard-coded to use the equivalent of a glAlphaFunc(GL_GREATER) comparison
-            gl.useProgram( glprogram );
+            gl.useProgram(glprogram);
             alphaTestShader.setUniformLocationF32(alphaValueLocation, 0.5);
 
             this._dir = 1;
@@ -738,15 +930,15 @@ var SpriteZVertex = SpriteTestDemo.extend({
 
             var node = cc.Node.create();
             // camera uses the center of the image as the pivoting point
-            node.setContentSize(cc.size(winSize.width, winSize.height));
-            node.setAnchorPoint(cc.p(0.5, 0.5));
-            node.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+            node.setContentSize(winSize.width, winSize.height);
+            node.setAnchorPoint(0.5, 0.5);
+            node.setPosition(winSize.width / 2, winSize.height / 2);
 
             this.addChild(node, 0);
             var sprite;
             for (var i = 0; i < 5; i++) {
                 sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(0, 121, 85, 121));
-                sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
+                sprite.setPosition((i + 1) * step, winSize.height / 2);
                 sprite.setVertexZ(10 + i * 40);
                 sprite.setShaderProgram(alphaTestShader);
                 node.addChild(sprite, 0);
@@ -754,7 +946,7 @@ var SpriteZVertex = SpriteTestDemo.extend({
 
             for (i = 5; i < 11; i++) {
                 sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85, 0, 85, 121));
-                sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
+                sprite.setPosition((i + 1) * step, winSize.height / 2);
                 sprite.setVertexZ(10 + (10 - i) * 40);
                 sprite.setShaderProgram(alphaTestShader);
                 node.addChild(sprite, 0);
@@ -762,30 +954,49 @@ var SpriteZVertex = SpriteTestDemo.extend({
 
             this.runAction(cc.OrbitCamera.create(10, 1, 0, 0, 360, 0, 0));
         } else {
-            cc.log("Only runs when OpenGL is enabled");
+            var label = cc.LabelTTF.create("Not supported on HTML5-canvas", "Times New Roman", 30);
+            this.addChild(label);
+            label.setPosition(winSize.width / 2, winSize.height / 2);
         }
     },
     onEnter:function () {
         this._super();
-        if( "opengl" in sys.capabilities ) {
+        if ("opengl" in sys.capabilities) {
             director.setProjection(cc.DIRECTOR_PROJECTION_3D);
-            gl.enable( gl.DEPTH_TEST );
+            gl.enable(gl.DEPTH_TEST);
 
             // Avoid Z-fighting with menu and title
-            var menu = this.getChildByTag( BASE_TEST_MENU_TAG );
+            var menu = this.getChildByTag(BASE_TEST_MENU_TAG);
             menu.setVertexZ(1);
-            var title = this.getChildByTag( BASE_TEST_TITLE_TAG );
+            var title = this.getChildByTag(BASE_TEST_TITLE_TAG);
             title.setVertexZ(1);
-            var subtitle = this.getChildByTag( BASE_TEST_SUBTITLE_TAG );
+            var subtitle = this.getChildByTag(BASE_TEST_SUBTITLE_TAG);
             subtitle.setVertexZ(1);
         }
     },
     onExit:function () {
-        if( "opengl" in sys.capabilities ) {
+        if ("opengl" in sys.capabilities) {
             director.setProjection(cc.DIRECTOR_PROJECTION_2D);
-            gl.disable( gl.DEPTH_TEST );
+            gl.disable(gl.DEPTH_TEST);
         }
         this._super();
+    },
+    // Automation
+    testDuration:2.2,
+    pixel1:{"0":51, "1":0, "2":51, "3":255},
+    pixel2:{"0":0, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 - 171, winSize.height / 2, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2 - 189, winSize.height / 2, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 2 - 146, winSize.height / 2, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1, false) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2, false) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel2, false) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -801,9 +1012,9 @@ var SpriteBatchNodeZVertex = SpriteTestDemo.extend({
     _subtitle:"Scene should rotate",
 
     ctor:function () {
-        this._super( cc.c4b(255,0,0,80), cc.c4b(255,98,117,20) );
+        this._super(cc.c4b(255, 0, 0, 80), cc.c4b(255, 98, 117, 20));
 
-        if( "opengl" in sys.capabilities ) {
+        if ("opengl" in sys.capabilities) {
 
             //
             // This test tests z-order
@@ -823,7 +1034,7 @@ var SpriteBatchNodeZVertex = SpriteTestDemo.extend({
 
             // set alpha test value
             // NOTE: alpha test shader is hard-coded to use the equivalent of a glAlphaFunc(GL_GREATER) comparison
-            gl.useProgram( glprogram );
+            gl.useProgram(glprogram);
             alphaTestShader.setUniformLocationF32(alphaValueLocation, 0.5);
 
             var step = winSize.width / 12;
@@ -832,17 +1043,17 @@ var SpriteBatchNodeZVertex = SpriteTestDemo.extend({
             // Don't use capacity=1 in your real game. It is expensive to resize the capacity
             var batch = cc.SpriteBatchNode.create(s_grossini_dance_atlas, 1);
             // camera uses the center of the image as the pivoting point
-            batch.setContentSize(cc.size(winSize.width, winSize.height));
-            batch.setAnchorPoint(cc.p(0.5, 0.5));
-            batch.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
-            batch.setShaderProgram( alphaTestShader );
+            batch.setContentSize(winSize.width, winSize.height);
+            batch.setAnchorPoint(0.5, 0.5);
+            batch.setPosition(winSize.width / 2, winSize.height / 2);
+            batch.setShaderProgram(alphaTestShader);
 
             this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
             var sprite;
 
             for (var i = 0; i < 5; i++) {
                 sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(0, 121, 85, 121));
-                sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
+                sprite.setPosition((i + 1) * step, winSize.height / 2);
                 sprite.setVertexZ(10 + i * 40);
                 batch.addChild(sprite, 0);
 
@@ -850,39 +1061,58 @@ var SpriteBatchNodeZVertex = SpriteTestDemo.extend({
 
             for (i = 5; i < 11; i++) {
                 sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85, 0, 85, 121));
-                sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
+                sprite.setPosition((i + 1) * step, winSize.height / 2);
                 sprite.setVertexZ(10 + (10 - i) * 40);
                 batch.addChild(sprite, 0);
             }
 
             this.runAction(cc.OrbitCamera.create(10, 1, 0, 0, 360, 0, 0));
         } else {
-            cc.log("Only runs when OpenGL is enabled");
+            var label = cc.LabelTTF.create("Not supported on HTML5-canvas", "Times New Roman", 30);
+            this.addChild(label);
+            label.setPosition(winSize.width / 2, winSize.height / 2);
         }
     },
     onEnter:function () {
         this._super();
 
-        if( "opengl" in sys.capabilities ) {
+        if ("opengl" in sys.capabilities) {
             director.setProjection(cc.DIRECTOR_PROJECTION_3D);
-            gl.enable( gl.DEPTH_TEST );
+            gl.enable(gl.DEPTH_TEST);
 
             // Avoid Z-fighting with menu and title
-            var menu = this.getChildByTag( BASE_TEST_MENU_TAG );
+            var menu = this.getChildByTag(BASE_TEST_MENU_TAG);
             menu.setVertexZ(1);
-            var title = this.getChildByTag( BASE_TEST_TITLE_TAG );
+            var title = this.getChildByTag(BASE_TEST_TITLE_TAG);
             title.setVertexZ(1);
-            var subtitle = this.getChildByTag( BASE_TEST_SUBTITLE_TAG );
+            var subtitle = this.getChildByTag(BASE_TEST_SUBTITLE_TAG);
             subtitle.setVertexZ(1);
 
         }
     },
     onExit:function () {
-        if( "opengl" in sys.capabilities ) {
+        if ("opengl" in sys.capabilities) {
             director.setProjection(cc.DIRECTOR_PROJECTION_2D);
-            gl.disable( gl.DEPTH_TEST );
+            gl.disable(gl.DEPTH_TEST);
         }
         this._super();
+    },
+    // Automation
+    testDuration:2.2,
+    pixel1:{"0":51, "1":0, "2":51, "3":255},
+    pixel2:{"0":0, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 - 171, winSize.height / 2, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2 - 189, winSize.height / 2, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 2 - 146, winSize.height / 2, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1, false) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2, false) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel2, false) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -901,7 +1131,7 @@ var SpriteAnchorPoint = SpriteTestDemo.extend({
             var rotate = cc.RotateBy.create(10, 360);
             var action = cc.RepeatForever.create(rotate);
             var sprite = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85 * i, 121, 85, 121));
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -910,22 +1140,38 @@ var SpriteAnchorPoint = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
             point.setPosition(sprite.getPosition());
 
-            //var copy = action.copy();
+            //var copy = action.clone();
             sprite.runAction(action);
             this.addChild(sprite, i);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:0.15,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 45, winSize.height / 2 + 104, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2 - 3, winSize.height / 2 + 44, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 * 3 - 44, winSize.height / 2 - 16, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -948,7 +1194,7 @@ var SpriteBatchNodeAnchorPoint = SpriteTestDemo.extend({
             var rotate = cc.RotateBy.create(10, 360);
             var action = cc.RepeatForever.create(rotate);
             var sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85 * i, 121, 85, 121));
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -957,13 +1203,13 @@ var SpriteBatchNodeAnchorPoint = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -971,6 +1217,22 @@ var SpriteBatchNodeAnchorPoint = SpriteTestDemo.extend({
             sprite.runAction(action);
             batch.addChild(sprite, i);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:0.15,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 45, winSize.height / 2 + 104, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2 - 3, winSize.height / 2 + 44, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 * 3 - 44, winSize.height / 2 - 16, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -990,8 +1252,8 @@ var Sprite6 = SpriteTestDemo.extend({
         this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
         batch.ignoreAnchorPointForPosition(true);
 
-        batch.setAnchorPoint(cc.p(0.5, 0.5));
-        batch.setContentSize(cc.size(winSize.width, winSize.height));
+        batch.setAnchorPoint(0.5, 0.5);
+        batch.setContentSize(winSize.width, winSize.height);
 
         // SpriteBatchNode actions
         var rotate1 = cc.RotateBy.create(5, 360);
@@ -1004,20 +1266,41 @@ var Sprite6 = SpriteTestDemo.extend({
         var scale_seq = cc.Sequence.create(scale, scale_back);
         var scale_forever = cc.RepeatForever.create(scale_seq);
 
-        var step = winSize.width / 4;
-
         for (var i = 0; i < 3; i++) {
             var sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85 * i, 121, 85, 121));
-            sprite.setPosition(cc.p((i + 1) * step, winSize.height / 2));
-
+            switch (i) {
+                case 0:
+                    sprite.setPosition(winSize.width / 2 - 100, winSize.height / 2);
+                    break;
+                case 1:
+                    sprite.setPosition(winSize.width / 2, winSize.height / 2);
+                    break;
+                case 2:
+                    sprite.setPosition(winSize.width / 2 + 100, winSize.height / 2);
+                    break;
+            }
             var rotate = cc.RotateBy.create(5, 360);
             var action = cc.RepeatForever.create(rotate);
-            sprite.runAction(action.copy());
+            sprite.runAction(action.clone());
             batch.addChild(sprite, i);
         }
 
         batch.runAction(scale_forever);
         batch.runAction(rotate_forever);
+    },
+    // Automation
+    testDuration:2,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 + 111, winSize.height / 2 + 82, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2 - 148, winSize.height / 2 - 58, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel, false) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel, false) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1032,11 +1315,11 @@ var SpriteFlip = SpriteTestDemo.extend({
     ctor:function () {
         this._super();
         var sprite1 = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85, 121, 85, 121));
-        sprite1.setPosition(cc.p(winSize.width / 2 - 100, winSize.height / 2));
+        sprite1.setPosition(winSize.width / 2 - 100, winSize.height / 2);
         this.addChild(sprite1, 0, TAG_SPRITE1);
 
         var sprite2 = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85, 121, 85, 121));
-        sprite2.setPosition(cc.p(winSize.width / 2 + 100, winSize.height / 2));
+        sprite2.setPosition(winSize.width / 2 + 100, winSize.height / 2);
         this.addChild(sprite2, 0, TAG_SPRITE2);
 
         this.schedule(this.onFlipSprites, 1);
@@ -1045,8 +1328,37 @@ var SpriteFlip = SpriteTestDemo.extend({
         var sprite1 = this.getChildByTag(TAG_SPRITE1);
         var sprite2 = this.getChildByTag(TAG_SPRITE2);
 
-        sprite1.setFlipX(!sprite1.isFlippedX());
-        sprite2.setFlipY(!sprite2.isFlippedY());
+        sprite1.setFlippedX(!sprite1.isFlippedX());
+        sprite2.setFlippedY(!sprite2.isFlippedY());
+    },
+    //
+    // Automation
+    //
+    testDuration:1.5,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    pixel1:null,
+    pixel2:null,
+    pixel3:null,
+    pixel4:null,
+    setupAutomation:function () {
+        this.scheduleOnce(this.getBeforePixel, 0.5);
+    },
+    getBeforePixel:function () {
+        this.pixel1 = this.readPixels(winSize.width / 2 - 131, winSize.height / 2 - 11, 5, 5);
+        this.pixel2 = this.readPixels(winSize.width / 2 + 100, winSize.height / 2 + 44, 5, 5);
+    },
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes", "pixel4":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        this.pixel3 = this.readPixels(winSize.width / 2 - 69, winSize.height / 2 - 11, 5, 5);
+        this.pixel4 = this.readPixels(winSize.width / 2 + 100, winSize.height / 2 - 44, 5, 5);
+        var ret = {"pixel1":this.containsPixel(this.pixel1, this.pixel) ? "yes" : "no",
+            "pixel2":this.containsPixel(this.pixel2, this.pixel) ? "yes" : "no",
+            "pixel3":this.containsPixel(this.pixel3, this.pixel) ? "yes" : "no",
+            "pixel4":this.containsPixel(this.pixel4, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1064,11 +1376,11 @@ var SpriteBatchNodeFlip = SpriteTestDemo.extend({
         this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
 
         var sprite1 = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85, 121, 85, 121));
-        sprite1.setPosition(cc.p(winSize.width / 2 - 100, winSize.height / 2));
+        sprite1.setPosition(winSize.width / 2 - 100, winSize.height / 2);
         batch.addChild(sprite1, 0, TAG_SPRITE1);
 
         var sprite2 = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85, 121, 85, 121));
-        sprite2.setPosition(cc.p(winSize.width / 2 + 100, winSize.height / 2));
+        sprite2.setPosition(winSize.width / 2 + 100, winSize.height / 2);
         batch.addChild(sprite2, 0, TAG_SPRITE2);
 
         this.schedule(this.onFlipSprites, 1);
@@ -1078,8 +1390,37 @@ var SpriteBatchNodeFlip = SpriteTestDemo.extend({
         var sprite1 = batch.getChildByTag(TAG_SPRITE1);
         var sprite2 = batch.getChildByTag(TAG_SPRITE2);
 
-        sprite1.setFlipX(!sprite1.isFlippedX());
-        sprite2.setFlipY(!sprite2.isFlippedY());
+        sprite1.setFlippedX(!sprite1.isFlippedX());
+        sprite2.setFlippedY(!sprite2.isFlippedY());
+    },
+    //
+    // Automation
+    //
+    testDuration:1.5,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    pixel1:null,
+    pixel2:null,
+    pixel3:null,
+    pixel4:null,
+    setupAutomation:function () {
+        this.scheduleOnce(this.getBeforePixel, 0.5);
+    },
+    getBeforePixel:function () {
+        this.pixel1 = this.readPixels(winSize.width / 2 - 131, winSize.height / 2 - 11, 5, 5);
+        this.pixel2 = this.readPixels(winSize.width / 2 + 100, winSize.height / 2 + 44, 5, 5);
+    },
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes", "pixel4":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        this.pixel3 = this.readPixels(winSize.width / 2 - 69, winSize.height / 2 - 11, 5, 5);
+        this.pixel4 = this.readPixels(winSize.width / 2 + 100, winSize.height / 2 - 44, 5, 5);
+        var ret = {"pixel1":this.containsPixel(this.pixel1, this.pixel) ? "yes" : "no",
+            "pixel2":this.containsPixel(this.pixel2, this.pixel) ? "yes" : "no",
+            "pixel3":this.containsPixel(this.pixel3, this.pixel) ? "yes" : "no",
+            "pixel4":this.containsPixel(this.pixel4, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1095,11 +1436,11 @@ var SpriteAliased = SpriteTestDemo.extend({
     ctor:function () {
         this._super();
         var sprite1 = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85, 121, 85, 121));
-        sprite1.setPosition(cc.p(winSize.width / 2 - 100, winSize.height / 2));
+        sprite1.setPosition(winSize.width / 2 - 100, winSize.height / 2);
         this.addChild(sprite1, 0, TAG_SPRITE1);
 
         var sprite2 = cc.Sprite.create(s_grossini_dance_atlas, cc.rect(85, 121, 85, 121));
-        sprite2.setPosition(cc.p(winSize.width / 2 + 100, winSize.height / 2));
+        sprite2.setPosition(winSize.width / 2 + 100, winSize.height / 2);
         this.addChild(sprite2, 0, TAG_SPRITE2);
 
         var scale = cc.ScaleBy.create(2, 5);
@@ -1125,7 +1466,7 @@ var SpriteAliased = SpriteTestDemo.extend({
         if (sys.platform === 'browser' && !("opengl" in sys.capabilities)) {
             var label = cc.LabelTTF.create("Not supported on HTML5-canvas", "Times New Roman", 30);
             this.addChild(label);
-            label.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+            label.setPosition(winSize.width / 2, winSize.height / 2);
         } else {
             var sprite = this.getChildByTag(TAG_SPRITE1);
             sprite.getTexture().setAliasTexParameters();
@@ -1156,11 +1497,11 @@ var SpriteBatchNodeAliased = SpriteTestDemo.extend({
         this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
 
         var sprite1 = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85, 121, 85, 121));
-        sprite1.setPosition(cc.p(winSize.width / 2 - 100, winSize.height / 2));
+        sprite1.setPosition(winSize.width / 2 - 100, winSize.height / 2);
         batch.addChild(sprite1, 0, TAG_SPRITE1);
 
         var sprite2 = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(85, 121, 85, 121));
-        sprite2.setPosition(cc.p(winSize.width / 2 + 100, winSize.height / 2));
+        sprite2.setPosition(winSize.width / 2 + 100, winSize.height / 2);
         batch.addChild(sprite2, 0, TAG_SPRITE2);
 
         var scale = cc.ScaleBy.create(2, 5);
@@ -1186,7 +1527,7 @@ var SpriteBatchNodeAliased = SpriteTestDemo.extend({
         if (sys.platform == 'browser' && !("opengl" in sys.capabilities)) {
             var label = cc.LabelTTF.create("Not supported on HTML5-canvas", "Times New Roman", 30);
             this.addChild(label);
-            label.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+            label.setPosition(winSize.width / 2, winSize.height / 2);
         } else {
             var sprite = this.getChildByTag(TAG_SPRITE_BATCH_NODE);
             sprite.getTexture().setAliasTexParameters();
@@ -1232,7 +1573,6 @@ var SpriteNewTexture = SpriteTestDemo.extend({
         for (var i = 0; i < 30; i++) {
             this.addNewSprite();
         }
-
     },
     addNewSprite:function () {
         var p = cc.p(Math.random() * winSize.width, Math.random() * winSize.height);
@@ -1246,7 +1586,7 @@ var SpriteNewTexture = SpriteTestDemo.extend({
         var sprite = cc.Sprite.createWithTexture(this._texture1, cc.rect(x, y, 85, 121));
         node.addChild(sprite);
 
-        sprite.setPosition(cc.p(p.x, p.y));
+        sprite.setPosition(p.x, p.y);
 
         var action;
         var random = Math.random();
@@ -1299,6 +1639,29 @@ var SpriteNewTexture = SpriteTestDemo.extend({
     onMouseDown:function (event) {
         this.onChangeTexture();
         return true;
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel:{"0":51, "1":0, "2":51, "3":255},
+    setupAutomation:function () {
+        this.scheduleOnce(this.addTestSprite, 0.5);
+    },
+    addTestSprite:function () {
+        var node = this.getChildByTag(TAG_SPRITE_BATCH_NODE);
+        var sprite = cc.Sprite.createWithTexture(this._texture1, cc.rect(0, 0, 85, 121));
+        sprite.setPosition(winSize.width / 2, winSize.height / 2);
+        node.addChild(sprite);
+    },
+    getExpectedResult:function () {
+        var ret = {"pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        var ret = {"pixel":this.containsPixel(ret1, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1343,7 +1706,7 @@ var SpriteBatchNodeNewTexture = SpriteTestDemo.extend({
         var sprite = cc.Sprite.createWithTexture(batch.getTexture(), cc.rect(x, y, 85, 121));
         batch.addChild(sprite);
 
-        sprite.setPosition(cc.p(p.x, p.y));
+        sprite.setPosition(p.x, p.y);
 
         var action;
         var random = Math.random();
@@ -1377,6 +1740,29 @@ var SpriteBatchNodeNewTexture = SpriteTestDemo.extend({
     onMouseDown:function (event) {
         this.onChangeTexture();
         return true;
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel:{"0":51, "1":0, "2":51, "3":255},
+    setupAutomation:function () {
+        this.scheduleOnce(this.addTestSprite, 0.5);
+    },
+    addTestSprite:function () {
+        var node = this.getChildByTag(TAG_SPRITE_BATCH_NODE);
+        var sprite = cc.Sprite.createWithTexture(this._texture1, cc.rect(0, 0, 85, 121));
+        sprite.setPosition(winSize.width / 2, winSize.height / 2);
+        node.addChild(sprite);
+    },
+    getExpectedResult:function () {
+        var ret = {"pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        var ret = {"pixel":this.containsPixel(ret1, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 
 });
@@ -1406,7 +1792,7 @@ var SpriteFrameTest = SpriteTestDemo.extend({
         // Animation using Sprite BatchNode
         //
         this._sprite1 = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-        this._sprite1.setPosition(cc.p(winSize.width / 2 - 80, winSize.height / 2));
+        this._sprite1.setPosition(winSize.width / 2 - 80, winSize.height / 2);
 
         var spritebatch = cc.SpriteBatchNode.create(s_grossini);
         spritebatch.addChild(this._sprite1);
@@ -1425,14 +1811,14 @@ var SpriteFrameTest = SpriteTestDemo.extend({
         this._sprite1.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
 
         // to test issue #732, uncomment the following line
-        this._sprite1.setFlipX(false);
-        this._sprite1.setFlipY(false);
+        this._sprite1.setFlippedX(false);
+        this._sprite1.setFlippedY(false);
 
         //
         // Animation using standard Sprite
         //
         this._sprite2 = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-        this._sprite2.setPosition(cc.p(winSize.width / 2 + 80, winSize.height / 2));
+        this._sprite2.setPosition(winSize.width / 2 + 80, winSize.height / 2);
         this.addChild(this._sprite2);
 
         var moreFrames = [];
@@ -1455,8 +1841,8 @@ var SpriteFrameTest = SpriteTestDemo.extend({
         this._sprite2.runAction(cc.RepeatForever.create(cc.Animate.create(animMixed)));
 
         // to test issue #732, uncomment the following line
-        this._sprite2.setFlipX(false);
-        this._sprite2.setFlipY(false);
+        this._sprite2.setFlippedX(false);
+        this._sprite2.setFlippedY(false);
 
         this.schedule(this.onStartIn05Secs, 0.5);
         this._counter = 0;
@@ -1497,10 +1883,27 @@ var SpriteFrameTest = SpriteTestDemo.extend({
                 break;
         }
 
-        this._sprite1.setFlipX(fx);
-        this._sprite1.setFlipY(fy);
-        this._sprite2.setFlipX(fx);
-        this._sprite2.setFlipY(fy);
+        this._sprite1.setFlippedX(fx);
+        this._sprite1.setFlippedY(fy);
+        this._sprite2.setFlippedX(fx);
+        this._sprite2.setFlippedY(fy);
+    },
+    //
+    // Automation
+    //
+    testDuration:3.1,
+    pixel1:{"0":255, "1":204, "2":153, "3":255},
+    pixel2:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 - 50, winSize.height / 2 + 8, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2 - 80, winSize.height / 2 - 42, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1535,7 +1938,7 @@ var SpriteFrameAliasNameTest = SpriteTestDemo.extend({
         // and therefore all the animation sprites are also drawn as part of the cc.SpriteBatchNode
         //
         var sprite = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-        sprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        sprite.setPosition(winSize.width / 2, winSize.height / 2);
 
         var spriteBatch = cc.SpriteBatchNode.create(s_grossini_aliases);
         spriteBatch.addChild(sprite);
@@ -1553,10 +1956,25 @@ var SpriteFrameAliasNameTest = SpriteTestDemo.extend({
         var animation = cc.Animation.create(animFrames, 0.3);
         // 14 frames * 1sec = 14 seconds
         sprite.runAction(cc.RepeatForever.create(cc.Animate.create(animation)));
+        this.testSprite = sprite;
     },
     onExit:function () {
         this._super();
         spriteFrameCache.removeSpriteFramesFromFile(s_grossini_aliasesPlist);
+    },
+    //
+    // Automation
+    //
+    testDuration:0.5,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 - 32, winSize.height / 2 - 10, 5, 5);
+        var ret = {"pixel":this.containsPixel(ret1, this.pixel, false) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1578,7 +1996,7 @@ var SpriteOffsetAnchorRotation = SpriteTestDemo.extend({
             // Animation using Sprite BatchNode
             //
             var sprite = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -1587,13 +2005,13 @@ var SpriteOffsetAnchorRotation = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -1618,6 +2036,22 @@ var SpriteOffsetAnchorRotation = SpriteTestDemo.extend({
         this._super();
         spriteFrameCache.removeSpriteFramesFromFile(s_grossiniPlist);
         spriteFrameCache.removeSpriteFramesFromFile(s_grossini_grayPlist);
+    },
+    //
+    // Automation
+    //
+    testDuration:5,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 - 13, winSize.height / 2 - 50, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2 + 29, winSize.height / 2 + 11, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 * 3 + 71, winSize.height / 2 + 71, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1643,7 +2077,7 @@ var SpriteBatchNodeOffsetAnchorRotation = SpriteTestDemo.extend({
             // Animation using Sprite BatchNode
             //
             var sprite = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -1652,13 +2086,13 @@ var SpriteBatchNodeOffsetAnchorRotation = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
             point.setPosition(sprite.getPosition());
@@ -1682,6 +2116,22 @@ var SpriteBatchNodeOffsetAnchorRotation = SpriteTestDemo.extend({
         this._super();
         spriteFrameCache.removeSpriteFramesFromFile(s_grossiniPlist);
         spriteFrameCache.removeSpriteFramesFromFile(s_grossini_grayPlist);
+    },
+    //
+    // Automation
+    //
+    testDuration:5,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 - 13, winSize.height / 2 - 50, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2 + 29, winSize.height / 2 + 11, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 * 3 + 71, winSize.height / 2 + 71, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1704,7 +2154,7 @@ var SpriteOffsetAnchorScale = SpriteTestDemo.extend({
             // Animation using Sprite BatchNode
             //
             var sprite = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -1713,13 +2163,13 @@ var SpriteOffsetAnchorScale = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -1738,7 +2188,8 @@ var SpriteOffsetAnchorScale = SpriteTestDemo.extend({
 
             var scale = cc.ScaleBy.create(2, 2);
             var scale_back = scale.reverse();
-            var seq_scale = cc.Sequence.create(scale, scale_back);
+            var delay = cc.DelayTime.create(0.25);
+            var seq_scale = cc.Sequence.create(scale, delay, scale_back);
             sprite.runAction(cc.RepeatForever.create(seq_scale));
 
             this.addChild(sprite, 0);
@@ -1748,6 +2199,22 @@ var SpriteOffsetAnchorScale = SpriteTestDemo.extend({
         this._super();
         spriteFrameCache.removeSpriteFramesFromFile(s_grossiniPlist);
         spriteFrameCache.removeSpriteFramesFromFile(s_grossini_grayPlist);
+    },
+    //
+    // Automation
+    //
+    testDuration:2.1,
+    pixel:{"0":153, "1":0, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 * 3 - 85, winSize.height / 2 - 106, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2, winSize.height / 2 + 13, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 + 82, winSize.height / 2 + 133, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1774,7 +2241,7 @@ var SpriteBatchNodeOffsetAnchorScale = SpriteTestDemo.extend({
             // Animation using Sprite BatchNode
             //
             var sprite = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -1783,13 +2250,13 @@ var SpriteBatchNodeOffsetAnchorScale = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -1818,6 +2285,22 @@ var SpriteBatchNodeOffsetAnchorScale = SpriteTestDemo.extend({
         this._super();
         spriteFrameCache.removeSpriteFramesFromFile(s_grossiniPlist);
         spriteFrameCache.removeSpriteFramesFromFile(s_grossini_grayPlist);
+    },
+    //
+    // Automation
+    //
+    testDuration:2.1,
+    pixel:{"0":153, "1":0, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 * 3 - 85, winSize.height / 2 - 106, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2, winSize.height / 2 + 13, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 + 82, winSize.height / 2 + 133, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1838,7 +2321,7 @@ var SpriteOffsetAnchorSkew = SpriteTestDemo.extend({
             // Animation using Sprite batch
             //
             var sprite = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -1847,13 +2330,13 @@ var SpriteOffsetAnchorSkew = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -1880,6 +2363,22 @@ var SpriteOffsetAnchorSkew = SpriteTestDemo.extend({
 
             this.addChild(sprite, 0);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:2,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 142, winSize.height / 2 + 98, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2 + 50, winSize.height / 2 + 43, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1903,7 +2402,7 @@ var SpriteBatchNodeOffsetAnchorSkew = SpriteTestDemo.extend({
             // Animation using Sprite batch
             //
             var sprite = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -1912,13 +2411,13 @@ var SpriteBatchNodeOffsetAnchorSkew = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -1947,6 +2446,22 @@ var SpriteBatchNodeOffsetAnchorSkew = SpriteTestDemo.extend({
 
             spritebatch.addChild(sprite, i);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:2,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 142, winSize.height / 2 + 98, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2 + 50, winSize.height / 2 + 43, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -1966,7 +2481,7 @@ var SpriteOffsetAnchorSkewScale = SpriteTestDemo.extend({
             // Animation using Sprite batch
             //
             var sprite = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -1975,13 +2490,13 @@ var SpriteOffsetAnchorSkewScale = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -2017,6 +2532,24 @@ var SpriteOffsetAnchorSkewScale = SpriteTestDemo.extend({
 
             this.addChild(sprite, 0);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:2,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 121, winSize.height / 2 + 99, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2 - 83, winSize.height / 2 - 21, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 * 3 - 286, winSize.height / 2 - 140, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2041,7 +2574,7 @@ var SpriteBatchNodeOffsetAnchorSkewScale = SpriteTestDemo.extend({
             // Animation using Sprite batch
             //
             var sprite = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -2050,13 +2583,13 @@ var SpriteBatchNodeOffsetAnchorSkewScale = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -2092,6 +2625,24 @@ var SpriteBatchNodeOffsetAnchorSkewScale = SpriteTestDemo.extend({
 
             spritebatch.addChild(sprite, i);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:2,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 121, winSize.height / 2 + 99, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2 - 83, winSize.height / 2 - 21, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 * 3 - 286, winSize.height / 2 - 140, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2113,7 +2664,7 @@ var SpriteOffsetAnchorFlip = SpriteTestDemo.extend({
             // Animation using Sprite batch
             //
             var sprite = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -2122,13 +2673,13 @@ var SpriteOffsetAnchorFlip = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -2156,6 +2707,22 @@ var SpriteOffsetAnchorFlip = SpriteTestDemo.extend({
 
             this.addChild(sprite, 0);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:1.5,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 40, winSize.height / 2 + 18, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2, winSize.height / 2 - 44, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 * 3 - 45, winSize.height / 2 - 105, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2180,7 +2747,7 @@ var SpriteBatchNodeOffsetAnchorFlip = SpriteTestDemo.extend({
             // Animation using Sprite batch
             //
             var sprite = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             var point = cc.Sprite.create(s_pathR1);
             point.setScale(0.25);
@@ -2189,13 +2756,13 @@ var SpriteBatchNodeOffsetAnchorFlip = SpriteTestDemo.extend({
 
             switch (i) {
                 case 0:
-                    sprite.setAnchorPoint(cc.p(0, 0));
+                    sprite.setAnchorPoint(0, 0);
                     break;
                 case 1:
-                    sprite.setAnchorPoint(cc.p(0.5, 0.5));
+                    sprite.setAnchorPoint(0.5, 0.5);
                     break;
                 case 2:
-                    sprite.setAnchorPoint(cc.p(1, 1));
+                    sprite.setAnchorPoint(1, 1);
                     break;
             }
 
@@ -2217,11 +2784,27 @@ var SpriteBatchNodeOffsetAnchorFlip = SpriteTestDemo.extend({
             var flip = cc.FlipY.create(true);
             var flip_back = cc.FlipY.create(false);
             var delay = cc.DelayTime.create(1);
-            var seq = cc.Sequence.create(delay, flip, delay.copy(), flip_back);
+            var seq = cc.Sequence.create(delay, flip, delay.clone(), flip_back);
             sprite.runAction(cc.RepeatForever.create(seq));
 
             spritebatch.addChild(sprite, i);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:1.5,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 40, winSize.height / 2 + 18, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 2, winSize.height / 2 - 44, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 * 3 - 45, winSize.height / 2 - 105, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2249,7 +2832,7 @@ var SpriteAnimationSplit = SpriteTestDemo.extend({
         // Animation using Sprite BatchNode
         //
         var sprite = cc.Sprite.createWithSpriteFrame(frame0);
-        sprite.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        sprite.setPosition(winSize.width / 2, winSize.height / 2);
         this.addChild(sprite);
 
         var animFrames = [];
@@ -2262,15 +2845,34 @@ var SpriteAnimationSplit = SpriteTestDemo.extend({
 
         var animation = cc.Animation.create(animFrames, 0.2);
         var animate = cc.Animate.create(animation);
+        var delay = cc.DelayTime.create(0.5);
         var seq = cc.Sequence.create(animate,
             cc.FlipX.create(true),
-            animate.copy(),
+            animate.clone(),
+            delay,
             cc.FlipX.create(false));
 
         sprite.runAction(cc.RepeatForever.create(seq));
     },
     onExit:function () {
         this._super();
+    },
+    //
+    // Automation
+    //
+    testDuration:2.8,
+    pixel1:{"0":208, "1":208, "2":208, "3":255},
+    pixel2:{"0":0, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 + 52, winSize.height / 2 - 29, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2, winSize.height / 2 - 22, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1, true, 3) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2, false) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2314,7 +2916,7 @@ var SpriteHybrid = SpriteTestDemo.extend({
                 x = Math.random() * winSize.width;
                 y = Math.random() * winSize.height;
             }
-            sprite.setPosition(cc.p(x, y));
+            sprite.setPosition(x, y);
 
             var action = cc.RotateBy.create(4, 360);
             sprite.runAction(cc.RepeatForever.create(action));
@@ -2361,6 +2963,47 @@ var SpriteHybrid = SpriteTestDemo.extend({
         }
 
         this._usingSpriteBatchNode = !this._usingSpriteBatchNode;
+    },
+    //
+    // Automation
+    //
+    testDuration:2.5,
+    pixel:{"0":51, "1":0, "2":51, "3":255},
+    firstPixel1:false,
+    firstPixel2:false,
+    setupAutomation:function () {
+        this.scheduleOnce(this.addTestSprite, 1);
+        this.scheduleOnce(this.checkFirstPixel, 1.5);
+    },
+    addTestSprite:function () {
+        var p = this.getChildByTag(TAG_NODE);
+        var frame = spriteFrameCache.getSpriteFrame("grossini_dance_01.png");
+        var sprite1 = cc.Sprite.createWithSpriteFrame(frame);
+        sprite1.retain();
+        p.addChild(sprite1, 1000);
+        sprite1.setPosition(winSize.width / 4, winSize.height / 2);
+        var sprite2 = cc.Sprite.createWithSpriteFrame(frame);
+        sprite2.retain();
+        p.addChild(sprite2, 1000);
+        sprite2.setPosition(winSize.width / 2, winSize.height / 2);
+    },
+    checkFirstPixel:function () {
+        var ret1 = this.readPixels(winSize.width / 4, winSize.height / 2, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        this.firstPixel1 = this.containsPixel(ret1, this.pixel);
+        this.firstPixel2 = this.containsPixel(ret2, this.pixel);
+    },
+    getExpectedResult:function () {
+        var ret = {"firstPixel1":true, "firstPixel2":true, "secondPixel1":true, "pixel2":true};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var pixel1 = this.readPixels(winSize.width / 4, winSize.height / 2, 5, 5);
+        var pixel2 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        var secondPixel1 = this.containsPixel(pixel1, this.pixel);
+        var secondPixel2 = this.containsPixel(pixel2, this.pixel);
+        var ret = {"firstPixel1":this.firstPixel1, "firstPixel2":this.firstPixel2, "secondPixel1":secondPixel1, "pixel2":secondPixel2};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2382,13 +3025,13 @@ var SpriteBatchNodeChildren = SpriteTestDemo.extend({
         spriteFrameCache.addSpriteFrames(s_grossiniPlist);
 
         var sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(winSize.width / 3, winSize.height / 2));
+        sprite1.setPosition(winSize.width / 3, winSize.height / 2);
 
         var sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(50, 50));
+        sprite2.setPosition(50, 50);
 
         var sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-50, -50));
+        sprite3.setPosition(-50, -50);
 
         batch.addChild(sprite1);
         sprite1.addChild(sprite2);
@@ -2419,6 +3062,21 @@ var SpriteBatchNodeChildren = SpriteTestDemo.extend({
         sprite1.runAction(cc.RepeatForever.create(action_rot));
         sprite1.runAction(cc.RepeatForever.create(cc.Sequence.create(action, action_back)));
         sprite1.runAction(cc.RepeatForever.create(cc.Sequence.create(action_s, action_s_back)));
+    },
+    //
+    // Automation
+    //
+    testDuration:0.5,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 3 - 47, winSize.height / 2 + 107, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 3 + 95, winSize.height / 2 - 5, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2443,13 +3101,13 @@ var SpriteBatchNodeChildrenZ = SpriteTestDemo.extend({
         this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
 
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(winSize.width / 3, winSize.height / 2));
+        sprite1.setPosition(winSize.width / 3, winSize.height / 2);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         batch.addChild(sprite1);
         sprite1.addChild(sprite2, 2);
@@ -2460,13 +3118,13 @@ var SpriteBatchNodeChildrenZ = SpriteTestDemo.extend({
         this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
 
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(2 * winSize.width / 3, winSize.height / 2));
+        sprite1.setPosition(2 * winSize.width / 3, winSize.height / 2);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         batch.addChild(sprite1);
         sprite1.addChild(sprite2, -2);
@@ -2477,13 +3135,13 @@ var SpriteBatchNodeChildrenZ = SpriteTestDemo.extend({
         this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
 
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(winSize.width / 2 - 90, winSize.height / 4));
+        sprite1.setPosition(winSize.width / 2 - 90, winSize.height / 4);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(winSize.width / 2 - 60, winSize.height / 4));
+        sprite2.setPosition(winSize.width / 2 - 60, winSize.height / 4);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(winSize.width / 2 - 30, winSize.height / 4));
+        sprite3.setPosition(winSize.width / 2 - 30, winSize.height / 4);
 
         batch.addChild(sprite1, 10);
         batch.addChild(sprite2, -10);
@@ -2494,17 +3152,37 @@ var SpriteBatchNodeChildrenZ = SpriteTestDemo.extend({
         this.addChild(batch, 0, TAG_SPRITE_BATCH_NODE);
 
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(winSize.width / 2 + 30, winSize.height / 4));
+        sprite1.setPosition(winSize.width / 2 + 30, winSize.height / 4);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(winSize.width / 2 + 60, winSize.height / 4));
+        sprite2.setPosition(winSize.width / 2 + 60, winSize.height / 4);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(winSize.width / 2 + 90, winSize.height / 4));
+        sprite3.setPosition(winSize.width / 2 + 90, winSize.height / 4);
 
         batch.addChild(sprite1, -10);
         batch.addChild(sprite2, -5);
         batch.addChild(sprite3, -2);
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel1:{"0":51, "1":0, "2":51, "3":255},
+    pixel2:{"0":51, "1":0, "2":51, "3":255},
+    pixel3:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(2 * winSize.width / 3 - 20, winSize.height / 2, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 3 - 20, winSize.height / 2 + 115, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 2 + 30, winSize.height / 4 - 10, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1) ? "yes" : "no",
+            "pixel2":!this.containsPixel(ret2, this.pixel2) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel3) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2525,17 +3203,17 @@ var SpriteChildrenVisibility = SpriteTestDemo.extend({
         //
         // parents
         var aParent = cc.SpriteBatchNode.create(s_grossini, 50);
-        aParent.setPosition(cc.p(winSize.width / 3, winSize.height / 2));
+        aParent.setPosition(winSize.width / 3, winSize.height / 2);
         this.addChild(aParent, 0);
 
         var sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(0, 0));
+        sprite1.setPosition(0, 0);
 
         var sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         var sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         aParent.addChild(sprite1);
         sprite1.addChild(sprite2, -2);
@@ -2547,23 +3225,52 @@ var SpriteChildrenVisibility = SpriteTestDemo.extend({
         // Sprite
         //
         aParent = cc.Node.create();
-        aParent.setPosition(cc.p(2 * winSize.width / 3, winSize.height / 2));
+        aParent.setPosition(2 * winSize.width / 3, winSize.height / 2);
         this.addChild(aParent, 0);
 
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(0, 0));
+        sprite1.setPosition(0, 0);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         aParent.addChild(sprite1);
         sprite1.addChild(sprite2, -2);
         sprite1.addChild(sprite3, 2);
 
         sprite1.runAction(cc.Blink.create(5, 10));
+    },
+    //
+    // Automation
+    //
+    testDuration:1.7,
+    pixel1:{"0":0, "1":0, "2":0, "3":255},
+    pixel2:{"0":255, "1":204, "2":153, "3":255},
+    visible1:null,
+    visible2:null,
+    setupAutomation:function () {
+        this.scheduleOnce(this.getSpriteVisible, 1.2);
+    },
+    getSpriteVisible:function () {
+        var ret1 = this.readPixels(winSize.width / 3, winSize.height / 2 + 38, 5, 5);
+        var ret2 = this.readPixels(2 * winSize.width / 3, winSize.height / 2 + 38, 5, 5);
+        this.visible1 = this.containsPixel(ret1, this.pixel1) ? "true" : "false";
+        this.visible2 = this.containsPixel(ret2, this.pixel1) ? "true" : "false";
+    },
+    getExpectedResult:function () {
+        var ret = {"visible1":"true", "visible2":"true", "visible3":"false", "visible4":"false"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 3, winSize.height / 2 + 38, 5, 5);
+        var ret2 = this.readPixels(2 * winSize.width / 3, winSize.height / 2 + 38, 5, 5);
+        this.visible3 = this.containsPixel(ret1, this.pixel2) ? "true" : "false";
+        this.visible4 = this.containsPixel(ret2, this.pixel2) ? "true" : "false";
+        var ret = {"visible1":this.visible1, "visible2":this.visible2, "visible3":this.visible3, "visible4":this.visible4};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2585,17 +3292,17 @@ var SpriteChildrenVisibilityIssue665 = SpriteTestDemo.extend({
         //
         // parents
         var aParent = cc.SpriteBatchNode.create(s_grossini, 50);
-        aParent.setPosition(cc.p(winSize.width / 3, winSize.height / 2));
+        aParent.setPosition(winSize.width / 3, winSize.height / 2);
         this.addChild(aParent, 0);
 
         var sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(0, 0));
+        sprite1.setPosition(0, 0);
 
         var sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         var sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         // test issue #665
         sprite1.setVisible(false);
@@ -2608,17 +3315,17 @@ var SpriteChildrenVisibilityIssue665 = SpriteTestDemo.extend({
         // Sprite
         //
         aParent = cc.Node.create();
-        aParent.setPosition(cc.p(2 * winSize.width / 3, winSize.height / 2));
+        aParent.setPosition(2 * winSize.width / 3, winSize.height / 2);
         this.addChild(aParent, 0);
 
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_01.png"));
-        sprite1.setPosition(cc.p(0, 0));
+        sprite1.setPosition(0, 0);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         // test issue #665
         sprite1.setVisible(false);
@@ -2626,6 +3333,21 @@ var SpriteChildrenVisibilityIssue665 = SpriteTestDemo.extend({
         aParent.addChild(sprite1);
         sprite1.addChild(sprite2, -2);
         sprite1.addChild(sprite3, 2);
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel:{"0":0, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"visible1":"false", "visible2":"false"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 3, winSize.height / 2 + 38, 5, 5);
+        var ret2 = this.readPixels(2 * winSize.width / 3, winSize.height / 2 + 38, 5, 5);
+        var ret = {"visible1":this.containsPixel(ret1, this.pixel) ? "false" : "true", "visible2":this.containsPixel(ret2, this.pixel) ? "false" : "true"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2647,17 +3369,17 @@ var SpriteChildrenAnchorPoint = SpriteTestDemo.extend({
 
         // anchor (0,0)
         var sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_08.png"));
-        sprite1.setPosition(cc.p(winSize.width / 4, winSize.height / 2));
-        sprite1.setAnchorPoint(cc.p(0, 0));
+        sprite1.setPosition(winSize.width / 4, winSize.height / 2);
+        sprite1.setAnchorPoint(0, 0);
 
         var sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         var sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         var sprite4 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_04.png"));
-        sprite4.setPosition(cc.p(0, 0));
+        sprite4.setPosition(0, 0);
         sprite4.setScale(0.5);
 
         aParent.addChild(sprite1);
@@ -2672,17 +3394,17 @@ var SpriteChildrenAnchorPoint = SpriteTestDemo.extend({
 
         // anchor (0.5, 0.5)
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_08.png"));
-        sprite1.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
-        sprite1.setAnchorPoint(cc.p(0.5, 0.5));
+        sprite1.setPosition(winSize.width / 2, winSize.height / 2);
+        sprite1.setAnchorPoint(0.5, 0.5);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         sprite4 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_04.png"));
-        sprite4.setPosition(cc.p(0, 0));
+        sprite4.setPosition(0, 0);
         sprite4.setScale(0.5);
 
         aParent.addChild(sprite1);
@@ -2697,17 +3419,17 @@ var SpriteChildrenAnchorPoint = SpriteTestDemo.extend({
 
         // anchor (1,1)
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_08.png"));
-        sprite1.setPosition(cc.p(winSize.width / 2 + winSize.width / 4, winSize.height / 2));
-        sprite1.setAnchorPoint(cc.p(1, 1));
+        sprite1.setPosition(winSize.width / 2 + winSize.width / 4, winSize.height / 2);
+        sprite1.setAnchorPoint(1, 1);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         sprite4 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_04.png"));
-        sprite4.setPosition(cc.p(0, 0));
+        sprite4.setPosition(0, 0);
         sprite4.setScale(0.5);
 
         aParent.addChild(sprite1);
@@ -2719,6 +3441,22 @@ var SpriteChildrenAnchorPoint = SpriteTestDemo.extend({
         point.setScale(0.25);
         point.setPosition(sprite1.getPosition());
         this.addChild(point, 10);
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(3 * winSize.width / 4 - 87, winSize.height / 2 - 99, 5, 5);
+        var ret2 = this.readPixels(2 * winSize.width / 4 - 59, winSize.height / 2 - 66, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 - 15, winSize.height / 2 - 6, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2744,17 +3482,17 @@ var SpriteBatchNodeChildrenAnchorPoint = SpriteTestDemo.extend({
 
         // anchor (0,0)
         var sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_08.png"));
-        sprite1.setPosition(cc.p(winSize.width / 4, winSize.height / 2));
-        sprite1.setAnchorPoint(cc.p(0, 0));
+        sprite1.setPosition(winSize.width / 4, winSize.height / 2);
+        sprite1.setAnchorPoint(0, 0);
 
         var sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         var sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         var sprite4 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_04.png"));
-        sprite4.setPosition(cc.p(0, 0));
+        sprite4.setPosition(0, 0);
         sprite4.setScale(0.5);
 
         aParent.addChild(sprite1);
@@ -2769,17 +3507,17 @@ var SpriteBatchNodeChildrenAnchorPoint = SpriteTestDemo.extend({
 
         // anchor (0.5, 0.5)
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_08.png"));
-        sprite1.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
-        sprite1.setAnchorPoint(cc.p(0.5, 0.5));
+        sprite1.setPosition(winSize.width / 2, winSize.height / 2);
+        sprite1.setAnchorPoint(0.5, 0.5);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         sprite4 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_04.png"));
-        sprite4.setPosition(cc.p(0, 0));
+        sprite4.setPosition(0, 0);
         sprite4.setScale(0.5);
 
         aParent.addChild(sprite1);
@@ -2795,17 +3533,17 @@ var SpriteBatchNodeChildrenAnchorPoint = SpriteTestDemo.extend({
 
         // anchor (1,1)
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_08.png"));
-        sprite1.setPosition(cc.p(winSize.width / 2 + winSize.width / 4, winSize.height / 2));
-        sprite1.setAnchorPoint(cc.p(1, 1));
+        sprite1.setPosition(winSize.width / 2 + winSize.width / 4, winSize.height / 2);
+        sprite1.setAnchorPoint(1, 1);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_02.png"));
-        sprite2.setPosition(cc.p(20, 30));
+        sprite2.setPosition(20, 30);
 
         sprite3 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_03.png"));
-        sprite3.setPosition(cc.p(-20, 30));
+        sprite3.setPosition(-20, 30);
 
         sprite4 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossini_dance_04.png"));
-        sprite4.setPosition(cc.p(0, 0));
+        sprite4.setPosition(0, 0);
         sprite4.setScale(0.5);
 
         aParent.addChild(sprite1);
@@ -2817,6 +3555,22 @@ var SpriteBatchNodeChildrenAnchorPoint = SpriteTestDemo.extend({
         point.setScale(0.25);
         point.setPosition(sprite1.getPosition());
         this.addChild(point, 10);
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(3 * winSize.width / 4 - 87, winSize.height / 2 - 99, 5, 5);
+        var ret2 = this.readPixels(2 * winSize.width / 4 - 59, winSize.height / 2 - 66, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 4 - 15, winSize.height / 2 - 6, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no", "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2842,14 +3596,14 @@ var SpriteBatchNodeChildrenScale = SpriteTestDemo.extend({
         //
         var aParent = cc.Node.create();
         var sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossinis_sister1.png"));
-        sprite1.setPosition(cc.p(winSize.width / 4, winSize.height / 4));
+        sprite1.setPosition(winSize.width / 4, winSize.height / 4);
         sprite1.setScaleX(0.5);
         sprite1.setScaleY(2.0);
         sprite1.runAction(seq);
 
 
         var sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossinis_sister2.png"));
-        sprite2.setPosition(cc.p(50, 0));
+        sprite2.setPosition(50, 0);
 
         this.addChild(aParent);
         aParent.addChild(sprite1);
@@ -2863,13 +3617,13 @@ var SpriteBatchNodeChildrenScale = SpriteTestDemo.extend({
         //
         aParent = cc.SpriteBatchNode.create(s_grossini_family);
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossinis_sister1.png"));
-        sprite1.setPosition(cc.p(3 * winSize.width / 4, winSize.height / 4));
+        sprite1.setPosition(3 * winSize.width / 4, winSize.height / 4);
         sprite1.setScaleX(0.5);
         sprite1.setScaleY(2.0);
         sprite1.runAction(seq);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossinis_sister2.png"));
-        sprite2.setPosition(cc.p(50, 0));
+        sprite2.setPosition(50, 0);
 
         this.addChild(aParent);
         aParent.addChild(sprite1);
@@ -2883,13 +3637,13 @@ var SpriteBatchNodeChildrenScale = SpriteTestDemo.extend({
         //
         aParent = cc.Node.create();
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossinis_sister1.png"));
-        sprite1.setPosition(cc.p(winSize.width / 4, 2 * winSize.height / 3));
+        sprite1.setPosition(winSize.width / 4, 2 * winSize.height / 3);
         sprite1.setScaleX(1.5);
         sprite1.setScaleY(0.5);
         sprite1.runAction(seq);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossinis_sister2.png"));
-        sprite2.setPosition(cc.p(50, 0));
+        sprite2.setPosition(50, 0);
 
         this.addChild(aParent);
         aParent.addChild(sprite1);
@@ -2903,17 +3657,38 @@ var SpriteBatchNodeChildrenScale = SpriteTestDemo.extend({
         //
         aParent = cc.SpriteBatchNode.create(s_grossini_family);
         sprite1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossinis_sister1.png"));
-        sprite1.setPosition(cc.p(3 * winSize.width / 4, 2 * winSize.height / 3));
+        sprite1.setPosition(3 * winSize.width / 4, 2 * winSize.height / 3);
         sprite1.setScaleX(1.5);
         sprite1.setScaleY(0.5);
         sprite1.runAction(seq);
 
         sprite2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("grossinis_sister2.png"));
-        sprite2.setPosition(cc.p(50, 0));
+        sprite2.setPosition(50, 0);
 
         this.addChild(aParent);
         aParent.addChild(sprite1);
         sprite1.addChild(sprite2);
+    },
+    //
+    // Automation
+    //
+    testDuration:2.5,
+    pixel1:{"0":56, "1":116, "2":142, "3":255},
+    pixel2:{"0":0, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes", "pixel4":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 - 31, 2 * winSize.height / 3 + 16, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 - 38, 2 * winSize.height / 3 + 16, 3, 3);
+        var ret3 = this.readPixels(3 * winSize.width / 4 - 31, 2 * winSize.height / 3 + 16, 5, 5);
+        var ret4 = this.readPixels(3 * winSize.width / 4 - 38, 2 * winSize.height / 3 + 16, 3, 3);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel1) ? "yes" : "no",
+            "pixel4":this.containsPixel(ret4, this.pixel2) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -2944,23 +3719,23 @@ var SpriteChildrenChildren = SpriteTestDemo.extend({
 
         // parent
         var l1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("father.gif"));
-        l1.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
-        l1.runAction(seq.copy());
+        l1.setPosition(winSize.width / 2, winSize.height / 2);
+        l1.runAction(seq.clone());
         aParent.addChild(l1);
         var l1Size = l1.getContentSize();
 
         // child left
         var l2a = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("sister1.gif"));
-        l2a.setPosition(cc.p(-50 + l1Size.width / 2, 0 + l1Size.height / 2));
-        l2a.runAction(rot_back_fe.copy());
+        l2a.setPosition(-50 + l1Size.width / 2, 0 + l1Size.height / 2);
+        l2a.runAction(rot_back_fe.clone());
         l1.addChild(l2a);
         var l2aSize = l2a.getContentSize();
 
 
         // child right
         var l2b = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("sister2.gif"));
-        l2b.setPosition(cc.p(+50 + l1Size.width / 2, 0 + l1Size.height / 2));
-        l2b.runAction(rot_back_fe.copy());
+        l2b.setPosition(+50 + l1Size.width / 2, 0 + l1Size.height / 2);
+        l2b.runAction(rot_back_fe.clone());
         l1.addChild(l2b);
         var l2bSize = l2a.getContentSize();
 
@@ -2968,28 +3743,48 @@ var SpriteChildrenChildren = SpriteTestDemo.extend({
         // child left bottom
         var l3a1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3a1.setScale(0.45);
-        l3a1.setPosition(cc.p(0 + l2aSize.width / 2, -100 + l2aSize.height / 2));
+        l3a1.setPosition(0 + l2aSize.width / 2, -100 + l2aSize.height / 2);
         l2a.addChild(l3a1);
 
         // child left top
         var l3a2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3a2.setScale(0.45);
-        l3a2.setPosition(cc.p(0 + l2aSize.width / 2, +100 + l2aSize.height / 2));
+        l3a2.setPosition(0 + l2aSize.width / 2, +100 + l2aSize.height / 2);
         l2a.addChild(l3a2);
 
         // child right bottom
         var l3b1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3b1.setScale(0.45);
-        l3b1.setFlipY(true);
-        l3b1.setPosition(cc.p(0 + l2bSize.width / 2, -100 + l2bSize.height / 2));
+        l3b1.setFlippedY(true);
+        l3b1.setPosition(0 + l2bSize.width / 2, -100 + l2bSize.height / 2);
         l2b.addChild(l3b1);
 
         // child right top
         var l3b2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3b2.setScale(0.45);
-        l3b2.setFlipY(true);
-        l3b2.setPosition(cc.p(0 + l2bSize.width / 2, +100 + l2bSize.height / 2));
+        l3b2.setFlippedY(true);
+        l3b2.setPosition(0 + l2bSize.width / 2, +100 + l2bSize.height / 2);
         l2b.addChild(l3b2);
+    },
+    //
+    // Automation
+    //
+    testDuration:4,
+    pixel:{"0":153, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes", "pixel4":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 + 42, winSize.height / 2 + 145, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2 - 39, winSize.height / 2 + 55, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 2 - 39, winSize.height / 2 - 146, 5, 5);
+        var ret4 = this.readPixels(winSize.width / 2 + 42, winSize.height / 2 - 56, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no",
+            "pixel4":this.containsPixel(ret4, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3017,29 +3812,29 @@ var SpriteBatchNodeChildrenChildren = SpriteTestDemo.extend({
         // SpriteBatchNode: 3 levels of children
         //
         var aParent = cc.SpriteBatchNode.create(s_ghosts);
-        if("opengl" in sys.capabilities)
+        if ("opengl" in sys.capabilities)
             aParent.getTexture().generateMipmap();
         this.addChild(aParent);
 
         // parent
         var l1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("father.gif"));
-        l1.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
-        l1.runAction(seq.copy());
+        l1.setPosition(winSize.width / 2, winSize.height / 2);
+        l1.runAction(seq.clone());
         aParent.addChild(l1);
         var l1Size = l1.getContentSize();
 
         // child left
         var l2a = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("sister1.gif"));
-        l2a.setPosition(cc.p(-50 + l1Size.width / 2, 0 + l1Size.height / 2));
-        l2a.runAction(rot_back_fe.copy());
+        l2a.setPosition(-50 + l1Size.width / 2, 0 + l1Size.height / 2);
+        l2a.runAction(rot_back_fe.clone());
         l1.addChild(l2a);
         var l2aSize = l2a.getContentSize();
 
 
         // child right
         var l2b = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("sister2.gif"));
-        l2b.setPosition(cc.p(50 + l1Size.width / 2, 0 + l1Size.height / 2));
-        l2b.runAction(rot_back_fe.copy());
+        l2b.setPosition(50 + l1Size.width / 2, 0 + l1Size.height / 2);
+        l2b.runAction(rot_back_fe.clone());
         l1.addChild(l2b);
         var l2bSize = l2a.getContentSize();
 
@@ -3047,28 +3842,48 @@ var SpriteBatchNodeChildrenChildren = SpriteTestDemo.extend({
         // child left bottom
         var l3a1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3a1.setScale(0.45);
-        l3a1.setPosition(cc.p(0 + l2aSize.width / 2, -100 + l2aSize.height / 2));
+        l3a1.setPosition(0 + l2aSize.width / 2, -100 + l2aSize.height / 2);
         l2a.addChild(l3a1);
 
         // child left top
         var l3a2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3a2.setScale(0.45);
-        l3a2.setPosition(cc.p(0 + l2aSize.width / 2, +100 + l2aSize.height / 2));
+        l3a2.setPosition(0 + l2aSize.width / 2, +100 + l2aSize.height / 2);
         l2a.addChild(l3a2);
 
         // child right bottom
         var l3b1 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3b1.setScale(0.45);
-        l3b1.setFlipY(true);
-        l3b1.setPosition(cc.p(0 + l2bSize.width / 2, -100 + l2bSize.height / 2));
+        l3b1.setFlippedY(true);
+        l3b1.setPosition(0 + l2bSize.width / 2, -100 + l2bSize.height / 2);
         l2b.addChild(l3b1);
 
         // child right top
         var l3b2 = cc.Sprite.createWithSpriteFrame(spriteFrameCache.getSpriteFrame("child1.gif"));
         l3b2.setScale(0.45);
-        l3b2.setFlipY(true);
-        l3b2.setPosition(cc.p(0 + l2bSize.width / 2, +100 + l2bSize.height / 2));
+        l3b2.setFlippedY(true);
+        l3b2.setPosition(0 + l2bSize.width / 2, +100 + l2bSize.height / 2);
         l2b.addChild(l3b2);
+    },
+    //
+    // Automation
+    //
+    testDuration:4,
+    pixel:{"0":153, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes", "pixel4":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 + 42, winSize.height / 2 + 145, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2 - 39, winSize.height / 2 + 55, 5, 5);
+        var ret3 = this.readPixels(winSize.width / 2 - 39, winSize.height / 2 - 146, 5, 5);
+        var ret4 = this.readPixels(winSize.width / 2 + 42, winSize.height / 2 - 56, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel) ? "yes" : "no",
+            "pixel4":this.containsPixel(ret4, this.pixel) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3088,19 +3903,35 @@ var SpriteNilTexture = SpriteTestDemo.extend({
         // TEST: If no texture is given, then Opacity + Color should work.
         var sprite = cc.Sprite.create();
         sprite.setTextureRect(cc.rect(0, 0, 300, 300));
-        // sprite.setColor(cc.RED);
+        // sprite.setColor(cc.red());
         sprite.setColor(cc.c3b(255, 0, 0));
         sprite.setOpacity(128);
-        sprite.setPosition(cc.p(3 * winSize.width / 4, winSize.height / 2));
+        sprite.setPosition(3 * winSize.width / 4, winSize.height / 2);
         this.addChild(sprite, 100);
 
         sprite = cc.Sprite.create();
         sprite.setTextureRect(cc.rect(0, 0, 300, 300));
-        //sprite.setColor(cc.BLUE);
+        //sprite.setColor(cc.blue());
         sprite.setColor(cc.c3b(0, 0, 255));
         sprite.setOpacity(128);
-        sprite.setPosition(cc.p(winSize.width / 4, winSize.height / 2));
+        sprite.setPosition(winSize.width / 4, winSize.height / 2);
         this.addChild(sprite, 100);
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel1:{"0":0, "1":0, "2":128, "3":255},
+    pixel2:{"0":128, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4, winSize.height / 2, 5, 5);
+        var ret2 = this.readPixels(3 * winSize.width / 4, winSize.height / 2, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel2) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3143,14 +3974,30 @@ var SpriteSubclass = SpriteTestDemo.extend({
 
         // MySprite1
         var sprite = MySprite1.spriteWithSpriteFrameName("father.gif");
-        sprite.setPosition(cc.p(winSize.width / 4, winSize.height / 2));
+        sprite.setPosition(winSize.width / 4, winSize.height / 2);
         aParent.addChild(sprite);
         this.addChild(aParent);
 
         // MySprite2
         var sprite2 = MySprite2.spriteWithFile(s_pathGrossini);
         this.addChild(sprite2);
-        sprite2.setPosition(cc.p(winSize.width / 4 * 3, winSize.height / 2));
+        sprite2.setPosition(winSize.width / 4 * 3, winSize.height / 2);
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    pixel1:{"0":249, "1":30, "2":20, "3":255},
+    pixel2:{"0":255, "1":204, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4, winSize.height / 2 - 15, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 * 3, winSize.height / 2 + 44, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1) ? "yes" : "no", "pixel2":this.containsPixel(ret2, this.pixel2) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3159,7 +4006,7 @@ var SpriteSubclass = SpriteTestDemo.extend({
 // AnimationCache
 //
 //------------------------------------------------------------------
-var AnimationCache = SpriteTestDemo.extend({
+var AnimationCacheTest = SpriteTestDemo.extend({
 
     _title:"AnimationCache",
     _subtitle:"Sprite should be animated",
@@ -3235,11 +4082,45 @@ var AnimationCache = SpriteTestDemo.extend({
         frame = spriteFrameCache.getSpriteFrame("grossini_dance_01.png");
         var grossini = cc.Sprite.createWithSpriteFrame(frame);
 
-        grossini.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        grossini.setPosition(winSize.width / 2, winSize.height / 2);
         this.addChild(grossini);
 
         // run the animation
         grossini.runAction(seq);
+    },
+    //
+    // Automation
+    //
+    testDuration:6.5,
+    ePixel1:{"0":51, "1":0, "2":51, "3":255},
+    ePixel2:{"0":15, "1":15, "2":15, "3":255},
+    ePixel3:{"0":0, "1":38, "2":0, "3":255},
+    cPixel1:null,
+    cPixel2:null,
+    cPixel3:null,
+    setupAutomation:function () {
+        var fun1 = function () {
+            this.cPixel1 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        }
+        this.scheduleOnce(fun1, 0.4);
+
+        var fun2 = function () {
+            this.cPixel2 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        }
+        this.scheduleOnce(fun2, 3.2);
+
+        var fun3 = function () {
+            this.cPixel3 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+        }
+        this.scheduleOnce(fun3, 6);
+    },
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret = {"pixel1":this.containsPixel(this.cPixel1, this.ePixel1) ? "yes" : "no", "pixel2":this.containsPixel(this.cPixel2, this.ePixel2) ? "yes" : "no", "pixel3":this.containsPixel(this.cPixel3, this.ePixel3, true, 5) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3260,23 +4141,23 @@ var NodeSort = SpriteTestDemo.extend({
         this.addChild(this._node, 0, 0);
 
         this._sprite1 = cc.Sprite.create(s_piece, cc.rect(128, 0, 64, 64));
-        this._sprite1.setPosition(cc.p(100, 160));
+        this._sprite1.setPosition(100, 160);
         this._node.addChild(this._sprite1, -6, 1);
 
         this._sprite2 = cc.Sprite.create(s_piece, cc.rect(128, 0, 64, 64));
-        this._sprite2.setPosition(cc.p(164, 160));
+        this._sprite2.setPosition(164, 160);
         this._node.addChild(this._sprite2, -6, 2);
 
         this._sprite4 = cc.Sprite.create(s_piece, cc.rect(128, 0, 64, 64));
-        this._sprite4.setPosition(cc.p(292, 160));
+        this._sprite4.setPosition(292, 160);
         this._node.addChild(this._sprite4, -3, 4);
 
         this._sprite3 = cc.Sprite.create(s_piece, cc.rect(128, 0, 64, 64));
-        this._sprite3.setPosition(cc.p(228, 160));
+        this._sprite3.setPosition(228, 160);
         this._node.addChild(this._sprite3, -4, 3);
 
         this._sprite5 = cc.Sprite.create(s_piece, cc.rect(128, 0, 64, 64));
-        this._sprite5.setPosition(cc.p(356, 160));
+        this._sprite5.setPosition(356, 160);
         this._node.addChild(this._sprite5, -3, 5);
 
         this.schedule(this.reorderSprite);
@@ -3305,7 +4186,19 @@ var NodeSort = SpriteTestDemo.extend({
             child = nodeChildren[i];
             cc.log("tag:" + child.getTag() + "  z: " +
                 child.getZOrder());
+            this.testOrders.push(child.getTag());
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:1,
+    testOrders:[],
+    getExpectedResult:function () {
+        return JSON.stringify([2, 1, 3, 4, 5]);
+    },
+    getCurrentResult:function () {
+        return JSON.stringify(this.testOrders);
     }
 });
 
@@ -3326,23 +4219,23 @@ var SpriteBatchNodeReorderSameIndex = SpriteTestDemo.extend({
         this.addChild(this._batchNode, 1, 0);
 
         this._sprite1 = cc.Sprite.createWithTexture(this._batchNode.getTexture(), cc.rect(128, 0, 64, 64));
-        this._sprite1.setPosition(cc.p(100, 160));
+        this._sprite1.setPosition(100, 160);
         this._batchNode.addChild(this._sprite1, 3, 1);
 
         this._sprite2 = cc.Sprite.createWithTexture(this._batchNode.getTexture(), cc.rect(128, 0, 64, 64));
-        this._sprite2.setPosition(cc.p(164, 160));
+        this._sprite2.setPosition(164, 160);
         this._batchNode.addChild(this._sprite2, 4, 2);
 
         this._sprite3 = cc.Sprite.createWithTexture(this._batchNode.getTexture(), cc.rect(128, 0, 64, 64));
-        this._sprite3.setPosition(cc.p(228, 160));
+        this._sprite3.setPosition(228, 160);
         this._batchNode.addChild(this._sprite3, 4, 3);
 
         this._sprite4 = cc.Sprite.createWithTexture(this._batchNode.getTexture(), cc.rect(128, 0, 64, 64));
-        this._sprite4.setPosition(cc.p(292, 160));
+        this._sprite4.setPosition(292, 160);
         this._batchNode.addChild(this._sprite4, 5, 4);
 
         this._sprite5 = cc.Sprite.createWithTexture(this._batchNode.getTexture(), cc.rect(128, 0, 64, 64));
-        this._sprite5.setPosition(cc.p(356, 160));
+        this._sprite5.setPosition(356, 160);
         this._batchNode.addChild(this._sprite5, 6, 5);
 
         this.scheduleOnce(this.reorderSprite, 2);
@@ -3360,7 +4253,19 @@ var SpriteBatchNodeReorderSameIndex = SpriteTestDemo.extend({
         for (var i = 0; i < descendants.length; i++) {
             var child = descendants[i];
             cc.log("tag:" + child.getTag());
+            this.testDescendants.push(child.getTag());
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:2.2,
+    testDescendants:[],
+    getExpectedResult:function () {
+        return JSON.stringify([2, 3, 4, 5, 1]);
+    },
+    getCurrentResult:function () {
+        return JSON.stringify(this.testDescendants);
     }
 });
 
@@ -3380,27 +4285,27 @@ var SpriteBatchNodeReorderOneChild = SpriteTestDemo.extend({
 
         this._batchNode = aParent;
         //[[aParent texture] generateMipmap];
-        if("opengl" in sys.capabilities)
+        if ("opengl" in sys.capabilities)
             aParent.getTexture().generateMipmap();
         this.addChild(aParent);
 
         // parent
         var l1 = cc.Sprite.createWithSpriteFrameName("father.gif");
-        l1.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        l1.setPosition(winSize.width / 2, winSize.height / 2);
 
         aParent.addChild(l1);
         var l1Size = l1.getContentSize();
 
         // child left
         var l2a = cc.Sprite.createWithSpriteFrameName("sister1.gif");
-        l2a.setPosition(cc.p(-10 + l1Size.width / 2, 0 + l1Size.height / 2));
+        l2a.setPosition(-10 + l1Size.width / 2, 0 + l1Size.height / 2);
 
         l1.addChild(l2a, 1);
         var l2aSize = l2a.getContentSize();
 
         // child right
         var l2b = cc.Sprite.createWithSpriteFrameName("sister2.gif");
-        l2b.setPosition(cc.p(+50 + l1Size.width / 2, 0 + l1Size.height / 2));
+        l2b.setPosition(+50 + l1Size.width / 2, 0 + l1Size.height / 2);
 
         l1.addChild(l2b, 2);
         var l2bSize = l2a.getContentSize();
@@ -3408,13 +4313,13 @@ var SpriteBatchNodeReorderOneChild = SpriteTestDemo.extend({
         // child left bottom
         var l3a1 = cc.Sprite.createWithSpriteFrameName("child1.gif");
         l3a1.setScale(0.45);
-        l3a1.setPosition(cc.p(0 + l2aSize.width / 2, -50 + l2aSize.height / 2));
+        l3a1.setPosition(0 + l2aSize.width / 2, -50 + l2aSize.height / 2);
         l2a.addChild(l3a1, 1);
 
         // child left top
         var l3a2 = cc.Sprite.createWithSpriteFrameName("child1.gif");
         l3a2.setScale(0.45);
-        l3a2.setPosition(cc.p(0 + l2aSize.width / 2, +50 + l2aSize.height / 2));
+        l3a2.setPosition(0 + l2aSize.width / 2, +50 + l2aSize.height / 2);
         l2a.addChild(l3a2, 2);
 
         this._reoderSprite = l2a;
@@ -3422,15 +4327,15 @@ var SpriteBatchNodeReorderOneChild = SpriteTestDemo.extend({
         // child right bottom
         var l3b1 = cc.Sprite.createWithSpriteFrameName("child1.gif");
         l3b1.setScale(0.45);
-        l3b1.setFlipY(true);
-        l3b1.setPosition(cc.p(0 + l2bSize.width / 2, -50 + l2bSize.height / 2));
+        l3b1.setFlippedY(true);
+        l3b1.setPosition(0 + l2bSize.width / 2, -50 + l2bSize.height / 2);
         l2b.addChild(l3b1);
 
         // child right top
         var l3b2 = cc.Sprite.createWithSpriteFrameName("child1.gif");
         l3b2.setScale(0.45);
-        l3b2.setFlipY(true);
-        l3b2.setPosition(cc.p(0 + l2bSize.width / 2, 50 + l2bSize.height / 2));
+        l3b2.setFlippedY(true);
+        l3b2.setPosition(0 + l2bSize.width / 2, 50 + l2bSize.height / 2);
         l2b.addChild(l3b2);
 
         this.scheduleOnce(this.reorderSprite, 2.0);
@@ -3441,6 +4346,20 @@ var SpriteBatchNodeReorderOneChild = SpriteTestDemo.extend({
         this._batchNode.sortAllChildren();
         //cc.Sprite* child;
         //CCARRAY_FOREACH(batchNode.descendants,child) NSLog(@"tag %i",child.tag);
+    },
+    //
+    // Automation
+    //
+    testDuration:2.5,
+    pixel:{"0":0, "1":102, "2":255, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 - 11, winSize.height / 2 + 33, 3, 3);
+        var ret = {"pixel":this.containsPixel(ret1, this.pixel, false) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3460,7 +4379,7 @@ var SpriteBatchNodeSkewNegativeScaleChildren = SpriteTestDemo.extend({
 
         for (var i = 0; i < 2; i++) {
             var sprite = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             // Skew
             var skewX = cc.SkewBy.create(2, 45, 0);
@@ -3475,12 +4394,29 @@ var SpriteBatchNodeSkewNegativeScaleChildren = SpriteTestDemo.extend({
             sprite.runAction(cc.RepeatForever.create(seq_skew));
 
             var child1 = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-            child1.setPosition(cc.p(sprite.getContentSize().width / 2.0, sprite.getContentSize().height / 2.0));
+            child1.setPosition(sprite.getContentSize().width / 2.0, sprite.getContentSize().height / 2.0);
 
             child1.setScale(0.8);
             sprite.addChild(child1);
             spritebatch.addChild(sprite, i);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:6,
+    pixel1:{"0":51, "1":0, "2":51, "3":255},
+    pixel2:{"0":0, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 21, winSize.height / 2 + 22, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 + 11, winSize.height / 2 + 14, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1) ? "yes" : "no",
+            "pixel2":!this.containsPixel(ret2, this.pixel2) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3500,7 +4436,7 @@ var SpriteSkewNegativeScaleChildren = SpriteTestDemo.extend({
 
         for (var i = 0; i < 2; i++) {
             var sprite = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-            sprite.setPosition(cc.p(winSize.width / 4 * (i + 1), winSize.height / 2));
+            sprite.setPosition(winSize.width / 4 * (i + 1), winSize.height / 2);
 
             // Skew
             var skewX = cc.SkewBy.create(2, 45, 0);
@@ -3515,12 +4451,29 @@ var SpriteSkewNegativeScaleChildren = SpriteTestDemo.extend({
             sprite.runAction(cc.RepeatForever.create(seq_skew));
 
             var child1 = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
-            child1.setPosition(cc.p(sprite.getContentSize().width / 2.0, sprite.getContentSize().height / 2.0));
+            child1.setPosition(sprite.getContentSize().width / 2.0, sprite.getContentSize().height / 2.0);
 
             sprite.addChild(child1);
             child1.setScale(0.8);
             parent.addChild(sprite, i);
         }
+    },
+    //
+    // Automation
+    //
+    testDuration:6,
+    pixel1:{"0":51, "1":0, "2":51, "3":255},
+    pixel2:{"0":0, "1":0, "2":0, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 4 + 21, winSize.height / 2 + 22, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 4 + 11, winSize.height / 2 + 14, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1, false) ? "yes" : "no",
+            "pixel2":!this.containsPixel(ret2, this.pixel2, false) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3576,15 +4529,15 @@ var SpriteDoubleResolution = SpriteTestDemo.extend({
         // there is no HD resolution file of grossini_dance_08.
         var spriteSD = DoubleSprite.create(s_grossiniDance08);
         this.addChild(spriteSD);
-        spriteSD.setPosition(cc.p(winSize.width / 4, winSize.height / 2));
+        spriteSD.setPosition(winSize.width / 4, winSize.height / 2);
 
         var child1_left = DoubleSprite.create(s_grossiniDance08);
         spriteSD.addChild(child1_left);
-        child1_left.setPosition(cc.p(-30, 0));
+        child1_left.setPosition(-30, 0);
 
         var child1_right = cc.Sprite.create(s_pathGrossini);
         spriteSD.addChild(child1_right);
-        child1_left.setPosition(cc.p(spriteSD.getContentSize().height, 0));
+        child1_left.setPosition(spriteSD.getContentSize().height, 0);
 
         //
         // RIGHT: HD sprite
@@ -3592,15 +4545,15 @@ var SpriteDoubleResolution = SpriteTestDemo.extend({
         // there is an HD version of grossini.png
         var spriteHD = cc.Sprite.create(s_pathGrossini);
         this.addChild(spriteHD);
-        spriteHD.setPosition(cc.p(winSize.width / 4 * 3, winSize.height / 2));
+        spriteHD.setPosition(winSize.width / 4 * 3, winSize.height / 2);
 
         var child2_left = DoubleSprite.create(s_grossiniDance08);
         spriteHD.addChild(child2_left);
-        child2_left.setPosition(cc.p(-30, 0));
+        child2_left.setPosition(-30, 0);
 
         var child2_right = cc.Sprite.create(s_pathGrossini);
         spriteHD.addChild(child2_right);
-        child2_left.setPosition(cc.p(spriteHD.getContentSize().height, 0));
+        child2_left.setPosition(spriteHD.getContentSize().height, 0);
 
 
         // Actions
@@ -3608,7 +4561,7 @@ var SpriteDoubleResolution = SpriteTestDemo.extend({
         var scale_back = scale.reverse();
         var seq = cc.Sequence.create(scale, scale_back);
 
-        var seq_copy = seq.copy();
+        var seq_copy = seq.clone();
 
         spriteSD.runAction(seq);
         spriteHD.runAction(seq_copy);
@@ -3653,11 +4606,43 @@ var AnimationCacheFile = SpriteTestDemo.extend({
         // texture-less sprites are not supported
         var grossini = cc.Sprite.createWithSpriteFrameName("grossini_dance_01.png");
 
-        grossini.setPosition(cc.p(winSize.width / 2, winSize.height / 2));
+        grossini.setPosition(winSize.width / 2, winSize.height / 2);
         this.addChild(grossini);
 
         // run the animation
         grossini.runAction(seq);
+    },
+    //
+    // Automation
+    //
+    testDuration:6.5,
+    ePixel1:{"0":51, "1":0, "2":51, "3":255},
+    ePixel2:{"0":15, "1":15, "2":15, "3":255},
+    ePixel3:{"0":0, "1":38, "2":0, "3":255},
+    cPixel1:null,
+    cPixel2:null,
+    cPixel3:null,
+    setupAutomation:function () {
+        this.scheduleOnce(this.getPixel1, 0.4);
+        this.scheduleOnce(this.getPixel2, 3.2);
+        this.scheduleOnce(this.getPixel3, 6);
+    },
+    getPixel1:function () {
+        this.cPixel1 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+    },
+    getPixel2:function () {
+        this.cPixel2 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+    },
+    getPixel3:function () {
+        this.cPixel3 = this.readPixels(winSize.width / 2, winSize.height / 2, 5, 5);
+    },
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret = {"pixel1":this.containsPixel(this.cPixel1, this.ePixel1) ? "yes" : "no", "pixel2":this.containsPixel(this.cPixel2, this.ePixel2) ? "yes" : "no", "pixel3":this.containsPixel(this.cPixel3, this.ePixel3, true, 5) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3678,11 +4663,11 @@ var SpriteBatchBug1217 = SpriteTestDemo.extend({
         s2.setColor(cc.c3b(0, 255, 0));
         s3.setColor(cc.c3b(0, 0, 255));
 
-        s1.setPosition(cc.p(20, 200));
-        s2.setPosition(cc.p(100, 0));
-        s3.setPosition(cc.p(100, 0));
+        s1.setPosition(20, 200);
+        s2.setPosition(100, 0);
+        s3.setPosition(100, 0);
 
-        bn.setPosition(cc.p(0, 0));
+        bn.setPosition(0, 0);
 
         //!!!!!
         s1.addChild(s2);
@@ -3690,6 +4675,24 @@ var SpriteBatchBug1217 = SpriteTestDemo.extend({
         bn.addChild(s1);
 
         this.addChild(bn);
+    },
+    // Automation
+    testDuration:2.1,
+    pixel1:{"0":51, "1":0, "2":0, "3":255},
+    pixel2:{"0":0, "1":0, "2":0, "3":255},
+    pixel3:{"0":0, "1":0, "2":51, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes", "pixel3":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(20, 174, 3, 3);
+        var ret2 = this.readPixels(90, 145, 3, 3);
+        var ret3 = this.readPixels(163, 116, 3, 3);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1, false) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2, false) ? "yes" : "no",
+            "pixel3":this.containsPixel(ret3, this.pixel3, false) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3705,10 +4708,10 @@ var TextureColorCacheIssue = SpriteTestDemo.extend({
         spriteFrameCache.addSpriteFrames(s_tcc_issue_1_plist, s_tcc_issue_1);
         spriteFrameCache.addSpriteFrames(s_tcc_issue_2_plist, s_tcc_issue_2);
 
-        var grossini = cc.Sprite.createWithSpriteFrameName('grossini_dance_01.png');
+        var grossini = cc.Sprite.createWithSpriteFrameName('tcc_grossini_dance_01.png');
         grossini.setPosition(winSize.width / 3, winSize.height / 2);
 
-        var sister = cc.Sprite.createWithSpriteFrameName('grossinis_sister1.png');
+        var sister = cc.Sprite.createWithSpriteFrameName('tcc_grossinis_sister1.png');
         sister.setPosition(winSize.width / 3 * 2, winSize.height / 2);
 
         this.addChild(grossini);
@@ -3717,10 +4720,24 @@ var TextureColorCacheIssue = SpriteTestDemo.extend({
         grossini.setColor(cc.c3b(1, 255, 1));
         sister.setColor(cc.c3b(1, 1, 255));
     },
-    onExit:function(){
+    onExit:function () {
         spriteFrameCache.removeSpriteFramesFromFile(s_tcc_issue_1_plist);
         spriteFrameCache.removeSpriteFramesFromFile(s_tcc_issue_2_plist);
         this._super();
+    },
+    // Automation
+    pixel1:{"0":0, "1":204, "2":0, "3":255},
+    pixel2:{"0":0, "1":0, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 3, winSize.height / 2 + 43, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 3 * 2, winSize.height / 2 - 6, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1, true, 3) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2, true, 3) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3736,26 +4753,40 @@ var TextureColorCacheIssue2 = SpriteTestDemo.extend({
         spriteFrameCache.addSpriteFrames(s_tcc_issue_1_plist, s_tcc_issue_1);
         spriteFrameCache.addSpriteFrames(s_tcc_issue_2_plist, s_tcc_issue_2);
 
-        var grossini = cc.Sprite.createWithSpriteFrameName('grossini_dance_01.png');
+        var grossini = cc.Sprite.createWithSpriteFrameName('tcc_grossini_dance_01.png');
         grossini.setPosition(winSize.width / 3, winSize.height / 2);
 
-        var sister = cc.Sprite.createWithSpriteFrameName('grossinis_sister1.png');
+        var sister = cc.Sprite.createWithSpriteFrameName('tcc_grossinis_sister1.png');
         sister.setPosition(winSize.width / 3 * 2, winSize.height / 2);
 
         this.addChild(grossini);
         this.addChild(sister);
 
-        for (var i = 0; i < 10; ++i) {
-            sister.setColor(cc.c3b(128, 128, 128 + i));
-            grossini.setColor(cc.c3b(128, 128, 128 + i));
-        }
+//        for (var i = 0; i < 10; ++i) {
+//            sister.setColor(cc.c3b(128, 128, 128 + i));
+//            grossini.setColor(cc.c3b(128, 128, 128 + i));
+//        }
         grossini.setColor(cc.c3b(255, 255, 0));
         sister.setColor(cc.c3b(255, 0, 255));
     },
-    onExit:function(){
+    onExit:function () {
         spriteFrameCache.removeSpriteFramesFromFile(s_tcc_issue_1_plist);
         spriteFrameCache.removeSpriteFramesFromFile(s_tcc_issue_2_plist);
         this._super();
+    },
+    // Automation
+    pixel1:{"0":255, "1":204, "2":0, "3":255},
+    pixel2:{"0":255, "1":0, "2":153, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 3, winSize.height / 2 + 43, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 3 * 2, winSize.height / 2 - 3, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1, true, 5) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2, true, 5) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
@@ -3764,7 +4795,7 @@ var TextureRotatedSpriteFrame = SpriteTestDemo.extend({
     _title:"Sub Sprite (rotated source)",
     _subtitle:"createWithSpriteFrameName(); sub sprite",
 
-    ctor:function() {
+    ctor:function () {
         this._super();
 
         cc.SpriteFrameCache.getInstance().addSpriteFrames(s_s9s_blocks9_plist);
@@ -3776,14 +4807,28 @@ var TextureRotatedSpriteFrame = SpriteTestDemo.extend({
 
         block.setTextureRect(cc.rect(32, 32, 32, 32), true, cc.rect(32, 32, 32, 32));
 
-        block.setPosition(cc.p(x, y));
+        block.setPosition(x, y);
         this.addChild(block);
+    },
+    // Automation
+    pixel1:{"0":255, "1":204, "2":153, "3":255},
+    pixel2:{"0":51, "1":0, "2":51, "3":255},
+    getExpectedResult:function () {
+        var ret = {"pixel1":"yes", "pixel2":"yes"};
+        return JSON.stringify(ret);
+    },
+    getCurrentResult:function () {
+        var ret1 = this.readPixels(winSize.width / 2 - 14, winSize.height / 2 - 8, 5, 5);
+        var ret2 = this.readPixels(winSize.width / 2 + 12, winSize.height / 2, 5, 5);
+        var ret = {"pixel1":this.containsPixel(ret1, this.pixel1, true, 5) ? "yes" : "no",
+            "pixel2":this.containsPixel(ret2, this.pixel2, true, 5) ? "yes" : "no"};
+        return JSON.stringify(ret);
     }
 });
 
 var SpriteTestScene = TestScene.extend({
     runThisTest:function () {
-        spriteTestIdx  = -1;
+        spriteTestIdx = -1;
         var layer = nextSpriteTest();
         this.addChild(layer);
 
@@ -3835,7 +4880,7 @@ var arrayOfSpriteTest = [
     SpriteBatchNodeChildrenChildren,
     SpriteNilTexture,
     SpriteSubclass,
-    AnimationCache,
+    AnimationCacheTest,
     SpriteOffsetAnchorSkew,
     SpriteBatchNodeOffsetAnchorSkew,
     SpriteOffsetAnchorSkewScale,
@@ -3856,15 +4901,15 @@ var arrayOfSpriteTest = [
 ];
 
 var nextSpriteTest = function () {
-    spriteTestIdx ++;
-    spriteTestIdx  = spriteTestIdx  % arrayOfSpriteTest.length;
+    spriteTestIdx++;
+    spriteTestIdx = spriteTestIdx % arrayOfSpriteTest.length;
 
     return new arrayOfSpriteTest[spriteTestIdx ]();
 };
 var previousSpriteTest = function () {
-    spriteTestIdx --;
-    if (spriteTestIdx  < 0)
-        spriteTestIdx  += arrayOfSpriteTest.length;
+    spriteTestIdx--;
+    if (spriteTestIdx < 0)
+        spriteTestIdx += arrayOfSpriteTest.length;
 
     return new arrayOfSpriteTest[spriteTestIdx ]();
 };

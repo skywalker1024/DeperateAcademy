@@ -26,10 +26,14 @@
 (http://libwebsockets.org)"
 
  ****************************************************************************/
-
 #ifndef __CC_WEBSOCKET_H__
 #define __CC_WEBSOCKET_H__
 
+#include "platform/CCPlatformMacros.h"
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+#include "WebSocketWinRT.h"
+#else
 #include "ExtensionMacros.h"
 #include "cocos2d.h"
 #include "libwebsockets.h"
@@ -40,10 +44,17 @@ NS_CC_EXT_BEGIN
 class WsThreadHelper;
 class WsMessage;
 
-class WebSocket
+class CC_EX_DLL WebSocket
 {
 public:
+    /**
+     * @js ctor
+     */
     WebSocket();
+    /**
+     *  @js NA
+     *  @lua NA
+     */
     virtual ~WebSocket();
     
     /**
@@ -69,6 +80,8 @@ public:
 
     /**
      *  @brief The delegate class to process websocket events.
+     *  @js NA
+     *  @lua NA
      */
     class Delegate
     {
@@ -87,6 +100,7 @@ public:
      *  @param  delegate The delegate which want to receive event from websocket.
      *  @param  url      The URL of websocket server.
      *  @return true: Success, false: Failure
+     *  @js NA
      */
     bool init(const Delegate& delegate,
               const std::string& url,
@@ -152,5 +166,5 @@ private:
 };
 
 NS_CC_EXT_END
-
 #endif /* defined(__CC_JSB_WEBSOCKET_H__) */
+#endif

@@ -67,7 +67,10 @@
 NS_CC_EXT_BEGIN
 
 class CCEditBox;
-
+/**
+ *  @js NA
+ *  @lua NA
+ */
 class CCEditBoxImplIOS : public CCEditBoxImpl
 {
 public:
@@ -114,7 +117,6 @@ private:
     CCPoint         m_obAnchorPoint;
     EditBoxImplIOS* m_systemControl;
     int             m_nMaxTextLength;
-    bool            m_bInRetinaMode;
 };
 
 

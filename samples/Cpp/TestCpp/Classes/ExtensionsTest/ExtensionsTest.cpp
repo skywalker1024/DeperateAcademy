@@ -7,14 +7,17 @@
 #include "NetworkTest/HttpClientTest.h"
 #endif
 #include "TableViewTest/TableViewTestScene.h"
-#include "ArmatureTest/ArmatureScene.h"
-#include "ComponentsTest/ComponentsTestScene.h"
+#include "CocoStudioArmatureTest/ArmatureScene.h"
+#include "CocoStudioComponentsTest/ComponentsTestScene.h"
+#include "CocoStudioSceneTest/SceneEditorTest.h"
+#include "CocoStudioGUITest/CocoStudioGUITest.h"
+#include "CocoStudioActionTimelineTest/ActionTimelineTestScene.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
 #include "NetworkTest/WebSocketTest.h"
 #endif
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+ 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
 #include "EditBoxTest/EditBoxTest.h"
 #endif
 
@@ -30,15 +33,18 @@ enum
     TEST_CCCONTROLBUTTON,
     TEST_COCOSBUILDER,
     TEST_HTTPCLIENT,
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
     TEST_WEBSOCKET,
 #endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     TEST_EDITBOX,
 #endif
 	TEST_TABLEVIEW,
 	TEST_COMPONENTS,
 	TEST_ARMATURE,
+    TEST_SCENEEDITOR,
+    TEST_COCOSGUI,
+    TEST_ACTIONTIMELINE,
     TEST_MAX_COUNT,
 };
 
@@ -50,15 +56,18 @@ static const std::string testsName[TEST_MAX_COUNT] =
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_EMSCRIPTEN)
     "HttpClientTest",
 #endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
     "WebSocketTest",
 #endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)  || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     "EditBoxTest",
 #endif
 	"TableViewTest",
-    "ComponentsTest",
-	"ArmatureTest"
+    "CocoStudioComponentsTest",
+	"CocoStudioArmatureTest",
+    "CocoStudioSceneTest",
+    "CocoStudioGUITest",
+    "CocoStudioActionTimelineTest"
 };
 
 ////////////////////////////////////////////////////////
@@ -121,21 +130,21 @@ void ExtensionsMainLayer::menuCallback(CCObject* pSender)
             }
         }
         break;
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_MARMALADE && CC_TARGET_PLATFORM != CC_PLATFORM_NACL && CC_TARGET_PLATFORM != CC_PLATFORM_EMSCRIPTEN)
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_MARMALADE && CC_TARGET_PLATFORM != CC_PLATFORM_NACL && CC_TARGET_PLATFORM != CC_PLATFORM_EMSCRIPTEN && CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
     case TEST_HTTPCLIENT:
         {
             runHttpClientTest();
         }
         break;
 #endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)  || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
         case TEST_WEBSOCKET:
         {
             runWebSocketTest();
         }
         break;
 #endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_TIZEN)  || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8) || (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     case TEST_EDITBOX:
         {
             runEditBoxTest();
@@ -162,6 +171,29 @@ void ExtensionsMainLayer::menuCallback(CCObject* pSender)
 			}
 		}
 		break;
+    case TEST_SCENEEDITOR:
+       {
+            SceneEditorTestScene *pScene = new SceneEditorTestScene();
+            if (NULL != pScene)
+            {
+                pScene->runThisTest();
+                pScene->release();
+            }
+       }
+            break;
+        case TEST_COCOSGUI:
+        {
+            CocoStudioGUITestScene* pScene = new CocoStudioGUITestScene();
+            pScene->runThisTest();
+            pScene->release();
+		}
+            break;
+        case TEST_ACTIONTIMELINE:
+            {
+                TimelineTestScene* pScene = new TimelineTestScene();
+                pScene->runThisTest();
+                pScene->release();
+            }
     default:
         break;
     }

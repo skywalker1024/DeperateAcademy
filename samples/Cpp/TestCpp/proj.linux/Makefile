@@ -50,13 +50,61 @@ SOURCES = ../Classes/AccelerometerTest/AccelerometerTest.cpp \
 	../Classes/ExtensionsTest/ExtensionsTest.cpp \
 	../Classes/ExtensionsTest/NotificationCenterTest/NotificationCenterTest.cpp \
 	../Classes/ExtensionsTest/NetworkTest/HttpClientTest.cpp \
-    ../Classes/ExtensionsTest/ComponentsTest/ComponentsTestScene.cpp \
-    ../Classes/ExtensionsTest/ComponentsTest/EnemyController.cpp \
-    ../Classes/ExtensionsTest/ComponentsTest/GameOverScene.cpp \
-    ../Classes/ExtensionsTest/ComponentsTest/PlayerController.cpp \
-    ../Classes/ExtensionsTest/ComponentsTest/ProjectileController.cpp \
-    ../Classes/ExtensionsTest/ComponentsTest/SceneController.cpp \
-	../Classes/ExtensionsTest/ArmatureTest/ArmatureScene.cpp \
+    ../Classes/ExtensionsTest/CocoStudioArmatureTest/ArmatureScene.cpp \
+    ../Classes/ExtensionsTest/CocoStudioActionTimelineTest/ActionTimelineTestScene.cpp \
+	../Classes/ExtensionsTest/CocoStudioComponentsTest/ComponentsTestScene.cpp \
+	../Classes/ExtensionsTest/CocoStudioComponentsTest/EnemyController.cpp \
+	../Classes/ExtensionsTest/CocoStudioComponentsTest/GameOverScene.cpp \
+	../Classes/ExtensionsTest/CocoStudioComponentsTest/PlayerController.cpp \
+	../Classes/ExtensionsTest/CocoStudioComponentsTest/ProjectileController.cpp \
+	../Classes/ExtensionsTest/CocoStudioComponentsTest/SceneController.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CocoStudioGUITest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CocosGUIScene.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/GUIEditorTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CustomGUIScene.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIScene.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UISceneManager.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIButtonTest/UIButtonTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UICheckBoxTest/UICheckBoxTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIImageViewTest/UIImageViewTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILabelAtlasTest/UILabelAtlasTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILabelBMFontTest/UILabelBMFontTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILabelTest/UILabelTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIListViewTest/UIListViewTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILoadingBarTest/UILoadingBarTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIPageViewTest/UIPageViewTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILayoutTest/UILayoutTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIScrollViewTest/UIScrollViewTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UISliderTest/UISliderTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UITextFieldTest/UITextFieldTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIWidgetAddNodeTest/UIWidgetAddNodeTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIRichTextTest/UIRichTextTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIScene_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UISceneManager_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIButtonTest/UIButtonTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UICheckBoxTest/UICheckBoxTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIImageViewTest/UIImageViewTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILabelAtlasTest/UILabelAtlasTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILabelBMFontTest/UILabelBMFontTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILabelTest/UILabelTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIListViewTest/UIListViewTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILoadingBarTest/UILoadingBarTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIPageViewTest/UIPageViewTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UILayoutTest/UILayoutTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIScrollViewTest/UIScrollViewTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UISliderTest/UISliderTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UITextFieldTest/UITextFieldTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/UIWidgetAddNodeTest/UIWidgetAddNodeTest_Editor.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CustomWidget/CustomImageView.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CustomWidget/CustomImageViewReader.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CustomWidget/CustomReader.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CustomTest/CustomImageTest/CustomImageTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CustomWidget/CustomParticleWidget.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CustomWidget/CustomParticleWidgetReader.cpp \
+	../Classes/ExtensionsTest/CocoStudioGUITest/CustomTest/CustomParticleWidgetTest/CustomParticleWidgetTest.cpp \
+	../Classes/ExtensionsTest/CocoStudioSceneTest/SceneEditorTest.cpp \
+        ../Classes/ExtensionsTest/CocoStudioSceneTest/TriggerCode/acts.cpp \
+        ../Classes/ExtensionsTest/CocoStudioSceneTest/TriggerCode/cons.cpp \
 	../Classes/FontTest/FontTest.cpp \
 	../Classes/IntervalTest/IntervalTest.cpp \
 	../Classes/KeypadTest/KeypadTest.cpp \
@@ -68,6 +116,7 @@ SOURCES = ../Classes/AccelerometerTest/AccelerometerTest.cpp \
 	../Classes/NodeTest/NodeTest.cpp \
 	../Classes/ParallaxTest/ParallaxTest.cpp \
 	../Classes/ParticleTest/ParticleTest.cpp \
+	../Classes/PerformanceTest/PerformanceAllocTest.cpp \
 	../Classes/PerformanceTest/PerformanceNodeChildrenTest.cpp \
 	../Classes/PerformanceTest/PerformanceParticleTest.cpp \
 	../Classes/PerformanceTest/PerformanceSpriteTest.cpp \
@@ -101,7 +150,7 @@ SOURCES = ../Classes/AccelerometerTest/AccelerometerTest.cpp \
 	../Classes/VisibleRect.cpp \
 	main.cpp
 
-SHAREDLIBS = -lcocos2d -lcocosdenshion -lcurl
+SHAREDLIBS = -lcocos2d -lcocosdenshion -lcurl -lpthread
 COCOS_LIBS = $(LIB_DIR)/libcocos2d.so $(LIB_DIR)/libcocosdenshion.so
 
 include ../../../../cocos2dx/proj.linux/cocos2dx.mk
@@ -116,7 +165,6 @@ INCLUDES +=	 -I../ \
 	-I$(COCOS_ROOT)/external/chipmunk/include/chipmunk
 
 STATICLIBS += \
-	$(STATICLIBS_DIR)/libcurl.a \
 	$(LIB_DIR)/libextension.a \
 	$(LIB_DIR)/libbox2d.a \
 	$(LIB_DIR)/libchipmunk.a
@@ -124,7 +172,7 @@ STATICLIBS += \
 ####### Build rules
 $(TARGET): $(OBJECTS) $(STATICLIBS) $(COCOS_LIBS) $(CORE_MAKEFILE_LIST)
 	@mkdir -p $(@D)
-	$(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(SHAREDLIBS) $(STATICLIBS) $(LIBS)
+	$(LOG_LINK)$(CXX) $(CXXFLAGS) $(OBJECTS) -o $@ $(STATICLIBS) $(SHAREDLIBS) $(LIBS) 
 
 ####### Compile
 $(OBJ_DIR)/%.o: ../%.cpp $(CORE_MAKEFILE_LIST)

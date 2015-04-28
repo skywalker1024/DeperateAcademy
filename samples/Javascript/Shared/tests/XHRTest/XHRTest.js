@@ -40,7 +40,7 @@ var XHRTestScene = TestScene.extend({
 });
 
 var XHRTestLayer = cc.Layer.extend({
-
+    _lineCount: 0,
     init:function () {
         if (!this._super()) {
             return false;
@@ -50,9 +50,9 @@ var XHRTestLayer = cc.Layer.extend({
 
         // Back Menu
         var itemBack = cc.MenuItemFont.create("Back", this.toExtensionsMainLayer, this);
-        itemBack.setPosition(cc.p(winSize.width - 50, 25));
+        itemBack.setPosition(winSize.width - 50, 25);
         var menuBack = cc.Menu.create(itemBack);
-        menuBack.setPosition(cc.p(0,0));
+        menuBack.setPosition(0,0);
         this.addChild(menuBack);
 
         return true;
@@ -62,80 +62,69 @@ var XHRTestLayer = cc.Layer.extend({
         this._super();
         var l = cc.LabelTTF.create("Get infos via XHR", "Thonburi", 16);
         this.addChild(l, 1);
-        l.setPosition(cc.p(winSize.width / 2, winSize.height - 60));
+        l.setPosition(winSize.width / 2, winSize.height - 60);
 
         this.sendGetRequest();
         this.sendPostRequest();
     },
 
     sendGetRequest: function() {
-
         var that = this;
         var xhr = new XMLHttpRequest();
         var statusGetLabel = cc.LabelTTF.create("Status:", "Thonburi", 18);
         this.addChild(statusGetLabel, 1);
-        statusGetLabel.setPosition(cc.p(winSize.width / 2, winSize.height - 100));
-
+        statusGetLabel.setPosition(winSize.width / 2, winSize.height - 100);
         statusGetLabel.setString("Status: Send Get Request to httpbin.org");
-
         xhr.open("GET", "http://httpbin.org/get");
-        sys.garbageCollect();
-        var that = this;
+
         xhr.onreadystatechange = function() {
-            cc.log("TEST GET: xhr.onreadystatechange..., status: " + xhr.status);
             var httpStatus = xhr.statusText;
             var response = xhr.responseText.substring(0,50) + "...";
             var responseLabel = cc.LabelTTF.create("GET Response (50 chars): \n" + response, "Thonburi", 16);
             that.addChild(responseLabel, 1);
+            responseLabel.setAnchorPoint(0,1);
+            responseLabel.setHorizontalAlignment(cc.TEXT_ALIGNMENT_LEFT);
 
-            responseLabel.setPosition(cc.p(100, winSize.height - 220));
+            responseLabel.setPosition(winSize.width/6, winSize.height/2 - that._lineCount * 35);
             statusGetLabel.setString("Status: Got GET response! " + httpStatus);
-        }
-        
+            that._lineCount ++;
+        };
         xhr.send();
-        sys.garbageCollect();
-                                   
-        this.scheduleOnce(function(){
-            cc.log("GET: GC in next frame...");
-            sys.garbageCollect();
-        });
     },
 
     sendPostRequest: function() {
-
         var that = this;
         var xhr = new XMLHttpRequest();
         var statusPostLabel = cc.LabelTTF.create("Status:", "Thonburi", 18);
         this.addChild(statusPostLabel, 1);
 
-        statusPostLabel.setPosition(cc.p(winSize.width / 2, winSize.height - 160));
+        statusPostLabel.setPosition(winSize.width / 2, winSize.height - 140);
         statusPostLabel.setString("Status: Send Post Request to httpbin.org");
 
         xhr.open("POST", "http://httpbin.org/post");
         xhr.onreadystatechange = function() {
-
-            cc.log("TEST POST: xhr.onreadystatechange..., status: " + xhr.status);
             var httpStatus = xhr.statusText;
             var response = xhr.responseText.substring(0,50) + "...";
             var responseLabel = cc.LabelTTF.create("POST Response (50 chars):  \n" + response, "Thonburi", 16);
             that.addChild(responseLabel, 1);
+            responseLabel.setAnchorPoint(0,1);
+            responseLabel.setHorizontalAlignment(cc.TEXT_ALIGNMENT_LEFT);
 
-            responseLabel.setPosition(cc.p(350, winSize.height - 220));
+            responseLabel.setPosition(winSize.width/6, winSize.height/2 - that._lineCount * 35);
             statusPostLabel.setString("Status: Got POST response! " + httpStatus);
-
-        }
-        
+            that._lineCount ++;
+        };
         xhr.send("test=ok");
-        sys.garbageCollect();
-        this.scheduleOnce(function(){
-            cc.log("POST: GC in next frame...");
-            sys.garbageCollect();
-        });
     },
 
     toExtensionsMainLayer:function (sender) {
         var scene = new ExtensionsTestScene();
         scene.runThisTest();
+    },
+
+    scrollViewDidScroll:function (view) {
+    },
+    scrollViewDidZoom:function (view) {
     }
 });
 

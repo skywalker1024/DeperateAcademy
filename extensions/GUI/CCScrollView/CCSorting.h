@@ -30,16 +30,22 @@
 #include "ExtensionMacros.h"
 
 NS_CC_EXT_BEGIN
-
-class CCSortableObject
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCSortableObject
 {
 public:
     virtual ~CCSortableObject() {}
     virtual void setObjectID(unsigned int objectID) = 0;
     virtual unsigned int getObjectID() = 0;
 };
-
-class CCArrayForObjectSorting : public CCArray
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCArrayForObjectSorting : public CCArray
 {
 public:
     CCArrayForObjectSorting() : CCArray() {}

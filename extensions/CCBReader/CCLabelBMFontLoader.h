@@ -7,8 +7,11 @@ NS_CC_EXT_BEGIN
 
 /* Forward declaration. */
 class CCBReader;
-
-class CCLabelBMFontLoader : public CCNodeLoader {
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCLabelBMFontLoader : public CCNodeLoader {
     public:
         virtual ~CCLabelBMFontLoader() {};
         CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(CCLabelBMFontLoader, loader);

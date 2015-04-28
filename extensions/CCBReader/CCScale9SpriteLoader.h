@@ -9,8 +9,11 @@ NS_CC_EXT_BEGIN
 
 /* Forward declaration. */
 class CCBReader;
-
-class CCScale9SpriteLoader : public CCNodeLoader {
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCScale9SpriteLoader : public CCNodeLoader {
     public:
         virtual ~CCScale9SpriteLoader() {};
         CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(CCScale9SpriteLoader, loader);

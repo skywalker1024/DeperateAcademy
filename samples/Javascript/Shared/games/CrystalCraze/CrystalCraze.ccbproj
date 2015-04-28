@@ -76,7 +76,7 @@
 	<key>publishEnabledAndroid</key>
 	<true/>
 	<key>publishEnabledHTML5</key>
-	<false/>
+	<true/>
 	<key>publishEnablediPhone</key>
 	<true/>
 	<key>publishResolutionHTML5_height</key>
@@ -114,5 +114,9 @@
 			<string>Resources</string>
 		</dict>
 	</array>
+	<key>versionStr</key>
+	<string>Version: 3.0-alpha5
+GitHub: 76499877e8
+</string>
 </dict>
 </plist>

@@ -33,7 +33,7 @@
 NS_CC_EXT_BEGIN
 
 
-class CCEditBoxImpl
+class CC_EX_DLL CCEditBoxImpl
 {
 public:
     CCEditBoxImpl(CCEditBox* pEditBox) : m_pDelegate(NULL),m_pEditBox(pEditBox) {}
@@ -63,7 +63,13 @@ public:
     virtual void setVisible(bool visible) = 0;
     virtual void setContentSize(const CCSize& size) = 0;
 	virtual void setAnchorPoint(const CCPoint& anchorPoint) = 0;
+    /**
+     *  @js NA
+     */
     virtual void visit(void) = 0;
+    /**
+     *  @js NA
+     */
     virtual void onEnter(void) = 0;
     
     

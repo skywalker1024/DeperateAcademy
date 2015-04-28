@@ -8,8 +8,11 @@ NS_CC_EXT_BEGIN
 
 /* Forward declaration. */
 class CCBReader;
-
-class CCBFileLoader : public CCNodeLoader {
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCBFileLoader : public CCNodeLoader {
     public:
         virtual ~CCBFileLoader() {};
         CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(CCBFileLoader, loader);

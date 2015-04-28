@@ -36,7 +36,7 @@
         renderMode:0,       //Choose of RenderMode: 0(default), 1(Canvas only), 2(WebGL only)
         tag:'gameCanvas', //the dom element to run cocos2d on
         engineDir:'../../cocos2d/',
-        //SingleEngineFile:'../../lib/Cocos2d-html5-v2.1.2.beta2.min.js',
+        //SingleEngineFile:'../../lib/Cocos2d-html5-v2.2.2.min.js',
         appFiles:[//'src/AppDelegate.js',
 
             // base class
@@ -59,6 +59,7 @@
             'ProgressActionsTest/ProgressActionsTest.js',
             'LayerTest/LayerTest.js',
             'SceneTest/SceneTest.js',
+            'SpineTest/SpineTest.js',
             'SpriteTest/SpriteTest.js',
             'TextureCacheTest/TextureCacheTest.js',
             'CocosDenshionTest/CocosDenshionTest.js',
@@ -76,6 +77,7 @@
             'PerformanceTest/PerformanceNodeChildrenTest.js',
             'PerformanceTest/PerformanceTextureTest.js',
             'PerformanceTest/PerformanceAnimationTest.js',
+            'PerformanceTest/PerformanceVirtualMachineTest.js',
             'PerformanceTest/seedrandom.js',
             'FontTest/FontTest.js',
             'PerformanceTest/PerformanceTouchesTest.js',
@@ -85,7 +87,7 @@
             'EventTest/EventTest.js',
             'UnitTest/UnitTest.js',
             'SysTest/SysTest.js',
-            'FileUtils/FileUtilsTest.js',
+            'FileTest/FileTest.js',
             'EffectsTest/EffectsTest.js',
             'EffectsAdvancedTest/EffectsAdvancedTest.js',
             'MotionStreakTest/MotionStreakTest.js',
@@ -96,6 +98,11 @@
             'ExtensionsTest/ControlExtensionTest/CCControlSceneManager.js',
             'ExtensionsTest/ControlExtensionTest/CCControlScene.js',
             'ExtensionsTest/ControlExtensionTest/CCControlButtonTest/CCControlButtonTest.js',
+            'ExtensionsTest/ControlExtensionTest/CCControlSwitchTest/CCControlSwitchTest.js',
+            'ExtensionsTest/ControlExtensionTest/CCControlSliderTest/CCControlSliderTest.js',
+            'ExtensionsTest/ControlExtensionTest/CCControlStepperTest/CCControlStepperTest.js',
+            'ExtensionsTest/ControlExtensionTest/CCControlPotentiometerTest/CCControlPotentiometerTest.js',
+            'ExtensionsTest/ControlExtensionTest/CCControlColourPickerTest/CCControlColourPickerTest.js',
             'ExtensionsTest/TableViewTest/TableViewTestScene.js',
             'ExtensionsTest/CocosBuilderTest/CocosBuilderTest.js',
             'ExtensionsTest/CocosBuilderTest/TestHeader/TestHeaderLayer.js',
@@ -111,6 +118,35 @@
             'ExtensionsTest/EditBoxTest/EditBoxTest.js',
             'ExtensionsTest/S9SpriteTest/S9SpriteTest.js',
             'ExtensionsTest/NetworkTest/WebSocketTest.js',
+            'CocoStudioTest/ArmatureTest/ArmatureTest.js',
+            'CocoStudioTest/ComponentsTest/ComponentsTestScene.js',
+            'CocoStudioTest/ComponentsTest/EnemyController.js',
+            'CocoStudioTest/ComponentsTest/GameOverScene.js',
+            'CocoStudioTest/ComponentsTest/PlayerController.js',
+            'CocoStudioTest/ComponentsTest/ProjectileController.js',
+            'CocoStudioTest/ComponentsTest/SceneController.js',
+            'CocoStudioTest/GUITest/UIScene.js',
+            'CocoStudioTest/GUITest/UIButtonTest/UIButtonTest.js',
+            'CocoStudioTest/GUITest/UICheckBoxTest/UICheckBoxTest.js',
+            'CocoStudioTest/GUITest/UIImageViewTest/UIImageViewTest.js',
+            'CocoStudioTest/GUITest/UILabelAtlasTest/UILabelAtlasTest.js',
+            'CocoStudioTest/GUITest/UILabelBMFontTest/UILabelBMFontTest.js',
+            'CocoStudioTest/GUITest/UILabelTest/UILabelTest.js',
+            'CocoStudioTest/GUITest/UILayoutTest/UILayoutTest.js',
+            'CocoStudioTest/GUITest/UIListViewTest/UIListViewTest.js',
+            'CocoStudioTest/GUITest/UILoadingBarTest/UILoadingBarTest.js',
+            'CocoStudioTest/GUITest/UINodeContainerTest/UINodeContainerTest.js',
+            'CocoStudioTest/GUITest/UIPageViewTest/UIPageViewTest.js',
+            'CocoStudioTest/GUITest/UISceneManager.js',
+            'CocoStudioTest/GUITest/UIScrollViewTest/UIScrollViewTest.js',
+            'CocoStudioTest/GUITest/UISliderTest/UISliderTest.js',
+            'CocoStudioTest/GUITest/UITextFieldTest/UITextFieldTest.js',
+            'CocoStudioTest/SceneTest/TriggerCode/Acts.js',
+            'CocoStudioTest/SceneTest/TriggerCode/Cons.js',
+            'CocoStudioTest/SceneTest/TriggerCode/EventDef.js',
+            'CocoStudioTest/SceneTest/SceneEditorTest.js',
+            'CocoStudioTest/CocoStudioTest.js',
+            'XHRTest/XHRTest.js',
 
             'Box2dTest/Box2dTest.js',
             'ChipmunkTest/ChipmunkTest.js']
@@ -139,7 +175,7 @@
             s.src = c.SingleEngineFile;
         }
         else if (c.engineDir && !c.SingleEngineFile) {
-            s.src = c.engineDir + 'platform/jsloader.js';
+            s.src = c.engineDir + 'jsloader.js';
         }
         else {
             alert('You must specify either the single engine file OR the engine directory in "cocos2d.js"');

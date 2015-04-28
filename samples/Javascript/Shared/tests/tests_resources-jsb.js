@@ -57,6 +57,22 @@ var s_tcc_issue_1 = "res/animations/tcc_issue_1.png";
 var s_tcc_issue_2 = "res/animations/tcc_issue_2.png";
 var s_tcc_issue_1_plist = "res/animations/tcc_issue_1.plist";
 var s_tcc_issue_2_plist = "res/animations/tcc_issue_2.plist";
+var s_hero_json = "res/armatures/hero.ExportJson";
+var s_hero0_plist = "res/armatures/hero0.plist";
+var s_hero0_png = "res/armatures/hero0.png";
+var s_horse_json = "res/armatures/horse.ExportJson";
+var s_horse0_plist = "res/armatures/horse0.plist";
+var s_horse0_png = "res/armatures/horse0.png";
+var s_bear_json = "res/armatures/bear.ExportJson";
+var s_bear0_plist = "res/armatures/bear0.plist";
+var s_bear0_png = "res/armatures/bear0.png";
+var s_HeroAnimation_json = "res/armatures/HeroAnimation.ExportJson";
+var s_HeroAnimation0_plist = "res/armatures/HeroAnimation0.plist";
+var s_HeroAnimation0_png = "res/armatures/HeroAnimation0.png";
+var s_testEasing_json = "res/armatures/testEasing.ExportJson";
+var s_testEasing0_plist = "res/armatures/testEasing0.plist";
+var s_testEasing0_png = "res/armatures/testEasing0.png";
+
 
 var s_s9s_blocks9 = "res/Images/blocks9ss.png";
 var s_s9s_blocks9_plist = "res/Images/blocks9ss.plist";
@@ -74,6 +90,25 @@ var s_ghostsPlist = "res/animations/ghosts.plist";
 var s_grossini_familyPlist = "res/animations/grossini_family.plist";
 var s_animations2Plist = "res/animations/animations-2.plist";
 var s_animationsPlist = "res/animations/animations.plist";
+
+var s_Cowboy_json = "res/armatures/Cowboy.ExportJson";
+var s_Cowboy_plist = "res/armatures/Cowboy0.plist";
+var s_Cowboy_png = "res/armatures/Cowboy0.png";
+var s_cyborg_plist = "res/armatures/cyborg.plist";
+var s_cyborg_png = "res/armatures/cyborg.png";
+var s_cyborg_xml = "res/armatures/cyborg.xml";
+var s_Dragon_plist = "res/armatures/Dragon.plist";
+var s_Dragon_png = "res/armatures/Dragon.png";
+var s_Dragon_xml = "res/armatures/Dragon.xml";
+var s_knight_plist = "res/armatures/knight.plist";
+var s_knight_png = "res/armatures/knight.png";
+var s_knight_xml = "res/armatures/knight.xml";
+var s_robot_plist = "res/armatures/robot.plist";
+var s_robot_png = "res/armatures/robot.png";
+var s_robot_xml = "res/armatures/robot.xml";
+var s_weapon_plist = "res/armatures/weapon.plist";
+var s_weapon_png = "res/armatures/weapon.png";
+var s_weapon_xml = "res/armatures/weapon.xml";
 
 var s_helloWorld = "res/Images/HelloWorld.png";
 var s_grossiniDance01 = "res/Images/grossini_dance_01.png";
@@ -163,7 +198,12 @@ var s_extensions_buttonHighlighted = "res/extensions/buttonHighlighted.png";
 var s_extensions_ribbon = "res/extensions/ribbon.png";
 var s_image_icon = "res/Images/Icon.png";
 
-var g_ressources = [];
+//cocosDenshion
+var s_cocosDenshion_plist = "res/cocosDenshion/cocosDenshion.plist";
+var s_cocosDenshion_png = "res/cocosDenshion/cocosDenshion.png";
+var s_cocosDenshion_bg = "res/cocosDenshion/background_0.png";
+
+var g_resources = [];
 
 var g_sprites = [];
 
@@ -196,3 +236,5 @@ var g_fonts = [];
 var g_extensions = [];
 
 var g_tilemaps = [];
+
+var g_cocoStudio = [];

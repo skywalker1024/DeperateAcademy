@@ -35,17 +35,30 @@ class CC_DLL CCComponent : public CCObject
 protected:
     CCComponent(void);
 public:
+    /**
+     *  @js NA
+     *  @lua NA
+     */
     virtual ~CCComponent(void);
     virtual bool init();
+    /**
+     *  @js NA
+     *  @lua NA
+     */
     virtual void onEnter();
+    /**
+     *  @js NA
+     *  @lua NA
+     */
     virtual void onExit();
     virtual void update(float delta);
-    virtual void serialize(void* r);
+    virtual bool serialize(void* r);
     virtual bool isEnabled() const;
     virtual void setEnabled(bool b);
     static CCComponent* create(void);
     
     const char* getName() const;
+    void setName(const char *pName);
     
     void setOwner(CCNode *pOwner);
     CCNode* getOwner() const;

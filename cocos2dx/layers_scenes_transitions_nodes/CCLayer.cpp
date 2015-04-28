@@ -1126,7 +1126,6 @@ void CCLayerMultiplex::switchToAndReleaseMe(unsigned int n)
     this->addChild((CCNode*)m_pLayers->objectAtIndex(n));
 }
 
-
 /*
  * 再登録。
  */

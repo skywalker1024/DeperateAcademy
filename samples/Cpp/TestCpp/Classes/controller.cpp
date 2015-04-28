@@ -1,3 +1,27 @@
+/****************************************************************************
+Copyright (c) 2010-2013 cocos2d-x.org
+Copyright (c) Microsoft Open Technologies, Inc.
+
+http://www.cocos2d-x.org
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+****************************************************************************/
 #include "controller.h"
 #include "testResource.h"
 #include "tests.h"
@@ -87,7 +111,7 @@ static TestScene* CreateTestScene(int nIdx)
     case TEST_ZWOPTEX:
         pScene = new ZwoptexTestScene(); break;
 // bada don't support libcurl
-#if (CC_TARGET_PLATFORM != CC_PLATFORM_BADA && CC_TARGET_PLATFORM != CC_PLATFORM_NACL && CC_TARGET_PLATFORM != CC_PLATFORM_MARMALADE && CC_TARGET_PLATFORM != CC_PLATFORM_EMSCRIPTEN)
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_BADA && CC_TARGET_PLATFORM != CC_PLATFORM_NACL && CC_TARGET_PLATFORM != CC_PLATFORM_MARMALADE && CC_TARGET_PLATFORM != CC_PLATFORM_EMSCRIPTEN && CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
     case TEST_CURL:
         pScene = new CurlTestScene(); break;
 #endif
@@ -106,8 +130,9 @@ static TestScene* CreateTestScene(int nIdx)
         pScene = new ExtensionsTestScene();
         break;
     case TEST_SHADER:
-        pScene = new ShaderTestScene();
-        break;
+       pScene = new ShaderTestScene();
+    break;
+
     case TEST_MUTITOUCH:
         pScene = new MutiTouchTestScene();
         break;
@@ -171,6 +196,14 @@ TestController::TestController()
 
     addChild(pMenu, 1);
 
+#if (MSC_VER < 1800) && defined(DEBUG) && (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+//#define CC_PLATFORM_WINRT_SAVE_SHADERS
+#if defined(CC_PLATFORM_WINRT_SAVE_SHADERS)
+    ShaderTestDemo::precompileShaders();
+    CCPrecompiledShaders::sharedPrecompiledShaders()->savePrecompiledShaders();
+#endif
+#endif
+
 }
 
 TestController::~TestController()
@@ -194,9 +227,14 @@ void TestController::menuCallback(CCObject * pSender)
 
 void TestController::closeCallback(CCObject * pSender)
 {
-    CCDirector::sharedDirector()->end();
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    exit(0);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT) || (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
+	CCMessageBox("You pressed the close button. Windows Store Apps do not implement a close button.","Alert");
+
+	#else
+		CCDirector::sharedDirector()->end();
+	#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+		exit(0);
+	#endif
 #endif
 }
 

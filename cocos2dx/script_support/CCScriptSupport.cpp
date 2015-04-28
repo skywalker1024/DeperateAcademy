@@ -37,8 +37,10 @@ bool CC_DLL cc_assert_script_compatible(const char *msg)
 
 NS_CC_BEGIN
 
+ #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 // #pragma mark -
 // #pragma mark CCScriptHandlerEntry
+#endif
 
 CCScriptHandlerEntry* CCScriptHandlerEntry::create(int nHandler)
 {
@@ -49,11 +51,17 @@ CCScriptHandlerEntry* CCScriptHandlerEntry::create(int nHandler)
 
 CCScriptHandlerEntry::~CCScriptHandlerEntry(void)
 {
-    CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nHandler);
+	if (m_nHandler != 0)
+	{
+        CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nHandler);
+        m_nHandler = 0;
+    }
 }
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 // #pragma mark -
 // #pragma mark CCSchedulerScriptHandlerEntry
+#endif
 
 CCSchedulerScriptHandlerEntry* CCSchedulerScriptHandlerEntry::create(int nHandler, float fInterval, bool bPaused)
 {
@@ -80,9 +88,10 @@ CCSchedulerScriptHandlerEntry::~CCSchedulerScriptHandlerEntry(void)
     LUALOG("[LUA] DEL script schedule %d, entryID: %d", m_nHandler, m_nEntryId);
 }
 
-
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 // #pragma mark -
 // #pragma mark CCTouchScriptHandlerEntry
+#endif
 
 CCTouchScriptHandlerEntry* CCTouchScriptHandlerEntry::create(int nHandler,
                                                              bool bIsMultiTouches,
@@ -97,8 +106,12 @@ CCTouchScriptHandlerEntry* CCTouchScriptHandlerEntry::create(int nHandler,
 
 CCTouchScriptHandlerEntry::~CCTouchScriptHandlerEntry(void)
 {
-    CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nHandler);
-    LUALOG("[LUA] Remove touch event handler: %d", m_nHandler);
+    if (m_nHandler != 0)
+    {
+        CCScriptEngineManager::sharedManager()->getScriptEngine()->removeScriptHandler(m_nHandler);
+        LUALOG("[LUA] Remove touch event handler: %d", m_nHandler);
+        m_nHandler = 0;
+    }
 }
 
 bool CCTouchScriptHandlerEntry::init(bool bIsMultiTouches, int nPriority, bool bSwallowsTouches)
@@ -110,8 +123,10 @@ bool CCTouchScriptHandlerEntry::init(bool bIsMultiTouches, int nPriority, bool b
     return true;
 }
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 // #pragma mark -
 // #pragma mark CCScriptEngineManager
+#endif
 
 static CCScriptEngineManager* s_pSharedScriptEngineManager = NULL;
 

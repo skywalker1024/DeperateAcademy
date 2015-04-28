@@ -23,6 +23,7 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "support/component/CCComponent.h"
+#include "CCDirector.h"
 
 
 NS_CC_BEGIN
@@ -54,8 +55,9 @@ void CCComponent::update(float delta)
 {
 }
 
-void CCComponent::serialize(void *ar)
+bool CCComponent::serialize(void *ar)
 {
+    return true;
 }
 
 CCComponent* CCComponent::create(void)
@@ -69,12 +71,17 @@ CCComponent* CCComponent::create(void)
     {
         CC_SAFE_DELETE(pRet);
     }
-	return pRet;
+    return pRet;
 }
 
 const char* CCComponent::getName() const
 {
     return m_strName.c_str();
+}
+
+void  CCComponent::setName(const char *pName)
+{
+    m_strName.assign(pName);
 }
 
 CCNode* CCComponent::getOwner() const
@@ -96,5 +103,6 @@ void CCComponent::setEnabled(bool b)
 {
     m_bEnabled = b;
 }
+
 
 NS_CC_END

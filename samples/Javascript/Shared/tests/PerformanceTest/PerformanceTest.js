@@ -33,8 +33,16 @@ var PerformanceTests = [
     "PerformanceTextureTest",
     "PerformanceTouchesTest",
     "PerformanceAnimationTest",
-    "Automated Sprite Performance Test"
+    "Automated Sprite Performarnce Test"
 ];
+
+// PerformanceVirtualMachineTest is about JS optimizations on cocos2d-html5.
+// It is pretty irrelevant in JSB so we don't include it in JSB.
+// "PerformanceVirtualMachineTest" is inserted before
+// "Automated Sprite Performarnce Test".
+if (sys.platform == 'browser')
+    PerformanceTests.splice(6, 0, "PerformanceVirtualMachineTest");
+
 ////////////////////////////////////////////////////////
 //
 // PerformanceMainLayer
@@ -52,13 +60,13 @@ var PerformanceMainLayer = cc.LayerGradient.extend({
         var s = cc.Director.getInstance().getWinSize();
 
         var menu = cc.Menu.create();
-        menu.setPosition(cc.p(0,0));
+        menu.setPosition(0,0);
         cc.MenuItemFont.setFontName("Arial");
         cc.MenuItemFont.setFontSize(24);
 
         for (var i = 0; i < PerformanceTests.length; i++) {
             var pItem = cc.MenuItemFont.create(PerformanceTests[i], this.menuCallback, this);
-            pItem.setPosition(cc.p(s.width / 2, s.height - (i + 1) * LINE_SPACE));
+            pItem.setPosition(s.width / 2, s.height - (i + 1) * LINE_SPACE);
             menu.addChild(pItem, ITEM_TAG_BASIC + i);
         }
 
@@ -87,6 +95,16 @@ var PerformanceMainLayer = cc.LayerGradient.extend({
                 runAnimationTest();
                 break;
             case 6:
+                if (sys.platform == 'browser') {
+                    runVirtualMachineTest();
+                    break;
+                }
+                // Else, fall through (JSB). 
+                // TODO: For now I think it's ugly to have "Automated Sprite 
+                // Perforance Test" come before "PerformanceVirtualMachineTest",
+                // that's why there's ugly code like this. Let's think about
+                // this later.
+            case 7:
                 runPerformanceSpriteTest2();
                 break;
             default:
@@ -117,17 +135,17 @@ var PerformBasicLayer = cc.Layer.extend({
         cc.MenuItemFont.setFontName("Arial");
         cc.MenuItemFont.setFontSize(24);
         var mainItem = cc.MenuItemFont.create("Back", this.toMainLayer, this);
-        mainItem.setPosition(cc.p(s.width - 50, 25));
+        mainItem.setPosition(s.width - 50, 25);
         var menu = cc.Menu.create(mainItem);
-        menu.setPosition(cc.p(0,0));
+        menu.setPosition(0,0);
 
         if (this._controlMenuVisible) {
             var item1 = cc.MenuItemImage.create(s_pathB1, s_pathB2, this.backCallback, this);
             var item2 = cc.MenuItemImage.create(s_pathR1, s_pathR2, this.restartCallback, this);
             var item3 = cc.MenuItemImage.create(s_pathF1, s_pathF2, this.nextCallback, this);
-            item1.setPosition(cc.p(s.width / 2 - 100, 30));
-            item2.setPosition(cc.p(s.width / 2, 30));
-            item3.setPosition(cc.p(s.width / 2 + 100, 30));
+            item1.setPosition(s.width / 2 - 100, 30);
+            item2.setPosition(s.width / 2, 30);
+            item3.setPosition(s.width / 2 + 100, 30);
 
             menu.addChild(item1, ITEM_TAG_BASIC);
             menu.addChild(item2, ITEM_TAG_BASIC);

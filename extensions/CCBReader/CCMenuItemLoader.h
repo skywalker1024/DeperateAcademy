@@ -7,8 +7,11 @@ NS_CC_EXT_BEGIN
 
 /* Forward declaration. */
 class CCBReader;
-
-class CCMenuItemLoader : public CCNodeLoader {
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCMenuItemLoader : public CCNodeLoader {
     public:
         virtual ~CCMenuItemLoader() {};
 

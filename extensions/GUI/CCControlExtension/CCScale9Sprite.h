@@ -50,7 +50,7 @@ NS_CC_EXT_BEGIN
  *
  * @see http://yannickloriot.com/library/ios/cccontrolextension/Classes/CCScale9Sprite.html
  */
-class CCScale9Sprite : public CCNodeRGBA
+class CC_EX_DLL CCScale9Sprite : public CCNodeRGBA
 {
 public:
     CCScale9Sprite();
@@ -106,6 +106,9 @@ protected:
 public:
     
     virtual void setContentSize(const CCSize & size);
+    /**
+     *  @js NA
+     */
     virtual void visit();
     
     virtual bool init();
@@ -315,6 +318,9 @@ public:
     virtual bool updateWithBatchNode(CCSpriteBatchNode* batchnode, CCRect rect, bool rotated, CCRect capInsets);
 
     virtual void setSpriteFrame(CCSpriteFrame * spriteFrame);
+    
+    virtual void updateDisplayedOpacity(GLubyte parentOpacity);
+    virtual void updateDisplayedColor(const cocos2d::ccColor3B& parentColor);
 };
 
 // end of GUI group

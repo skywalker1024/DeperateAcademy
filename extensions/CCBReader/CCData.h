@@ -6,8 +6,11 @@
 #include "ExtensionMacros.h"
 
 NS_CC_EXT_BEGIN
-
-class CCData : public CCObject
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCData : public CCObject
 {
 public:
     CCData(unsigned char *pBytes, const unsigned long nSize);

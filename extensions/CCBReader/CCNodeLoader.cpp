@@ -28,6 +28,8 @@ CCNode * CCNodeLoader::loadCCNode(CCNode * pParent, CCBReader * pCCBReader) {
     CCNode * ccNode = this->createCCNode(pParent, pCCBReader);
 
     //this->parseProperties(ccNode, pParent, pCCBReader);
+    if(m_pCustomProperties)
+        m_pCustomProperties->removeAllObjects();
 
     return ccNode;
 }
@@ -784,10 +786,13 @@ BlockData * CCNodeLoader::parsePropTypeBlock(CCNode * pNode, CCNode * pParent, C
             if(selectorTarget == kCCBTargetTypeDocumentRoot) {
                 pCCBReader->addDocumentCallbackNode(pNode);
                 pCCBReader->addDocumentCallbackName(selectorName);
-                
+                // Since there isn't a Control::EventType::NONE, add a TOUCH_DOWN type as a placeholder.
+                pCCBReader->addDocumentCallbackControlEvents(CCControlEventTouchDown);
             } else {
                 pCCBReader->addOwnerCallbackNode(pNode);
                 pCCBReader->addOwnerCallbackName(selectorName);
+                // Since there isn't a Control::EventType::NONE, add a TOUCH_DOWN type as a placeholder.
+                pCCBReader->addOwnerCallbackControlEvents(CCControlEventTouchDown);
             }
         }
     }
@@ -847,10 +852,11 @@ BlockCCControlData * CCNodeLoader::parsePropTypeBlockCCControl(CCNode * pNode, C
             if(selectorTarget == kCCBTargetTypeDocumentRoot) {
                 pCCBReader->addDocumentCallbackNode(pNode);
                 pCCBReader->addDocumentCallbackName(selectorName);
-                
+                pCCBReader->addDocumentCallbackControlEvents(controlEvents);
             } else {
                 pCCBReader->addOwnerCallbackNode(pNode);
                 pCCBReader->addOwnerCallbackName(selectorName);
+                pCCBReader->addOwnerCallbackControlEvents(controlEvents);
             }
         }
     }
@@ -885,10 +891,6 @@ CCNode * CCNodeLoader::parsePropTypeCCBFile(CCNode * pNode, CCNode * pParent, CC
     CC_SAFE_RETAIN(pCCBReader->mOwner);
     ccbReader->mOwner = pCCBReader->mOwner;
     
-    if (NULL != ccbReader->mOwner) {
-        CCLOG("DDD");
-    }
-    
     ccbReader->getAnimationManager()->mOwner = ccbReader->mOwner;
 
     // The assignments below are done in the CCBReader constructor.
@@ -909,7 +911,7 @@ CCNode * CCNodeLoader::parsePropTypeCCBFile(CCNode * pNode, CCNode * pParent, CC
         ccbReader->getAnimationManager()->runAnimationsForSequenceIdTweenDuration(ccbReader->getAnimationManager()->getAutoPlaySequenceId(), 0);
     }
     
-    if (ccbReader->isJSControlled() && pCCBReader->isJSControlled() && NULL != ccbReader->mOwner)
+    if (ccbReader->isJSControlled() && pCCBReader->isJSControlled() && NULL == ccbReader->mOwner)
     {
         //set variables and callback to owner
         //set callback
@@ -922,7 +924,7 @@ CCNode * CCNodeLoader::parsePropTypeCCBFile(CCNode * pNode, CCNode * pParent, CC
             int nCount = ownerCallbackNames->count();
             for (int i = 0 ; i < nCount; i++) {
                 pCCBReader->addOwnerCallbackName((dynamic_cast<CCString*>(ownerCallbackNames->objectAtIndex(i)))->getCString());
-                pCCBReader->addOwnerCallbackNode(dynamic_cast<CCNode*>(ownerCallbackNames->objectAtIndex(i)) );
+                pCCBReader->addOwnerCallbackNode(dynamic_cast<CCNode*>(ownerCallbackNodes->objectAtIndex(i)) );
             }
         }
         //set variables
@@ -934,8 +936,8 @@ CCNode * CCNodeLoader::parsePropTypeCCBFile(CCNode * pNode, CCNode * pParent, CC
             assert(ownerOutletNames->count() == ownerOutletNodes->count());
             int nCount = ownerOutletNames->count();
             for (int i = 0 ; i < nCount; i++) {
-                pCCBReader->addOwnerOutletName((dynamic_cast<CCString*>(ownerOutletNames->objectAtIndex(i)))->getCString());
-                pCCBReader->addOwnerOutletNode(dynamic_cast<CCNode*>(ownerOutletNodes->objectAtIndex(i)) );
+                pCCBReader->addOwnerOutletName((static_cast<CCString*>(ownerOutletNames->objectAtIndex(i)))->getCString());
+                pCCBReader->addOwnerOutletNode(static_cast<CCNode*>(ownerOutletNodes->objectAtIndex(i)) );
             }
         }
     }

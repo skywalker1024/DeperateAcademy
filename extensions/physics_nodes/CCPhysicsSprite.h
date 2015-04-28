@@ -45,8 +45,10 @@ NS_CC_EXT_BEGIN
  - Position and rotation are going to updated from the physics body
  - If you update the rotation or position manually, the physics body will be updated
  - You can't enble both Chipmunk support and Box2d support at the same time. Only one can be enabled at compile time
+ * @js NA
+ * @lua NA
  */
-class CCPhysicsSprite : public CCSprite
+class CC_EX_DLL CCPhysicsSprite : public CCSprite
 {
 protected:
     bool    m_bIgnoreBodyRotation;

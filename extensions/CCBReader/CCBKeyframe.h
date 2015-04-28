@@ -5,8 +5,11 @@
 #include "ExtensionMacros.h"
 
 NS_CC_EXT_BEGIN
-
-class CCBKeyframe : public CCObject
+/**
+ *  @js NA
+ *  @lua NA
+ */
+class CC_EX_DLL CCBKeyframe : public CCObject
 {
 private:
     CCObject *mValue;
