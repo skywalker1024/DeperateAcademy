@@ -16,7 +16,7 @@ Battle::Battle()
 :m_player1(NULL)
 ,m_player2(NULL)
 {
-    m_blockList = new CCArray();
+    m_blockList = new CCMutableArray<Block*>();
 }
 
 Battle::~Battle(){
@@ -52,6 +52,7 @@ bool Battle::init(){
             Block *block = Block::create();
             block->setI(i);
             block->setJ(j);
+            block->setType(rand);
             m_matrix[i][j] = m_blockList->count();
             m_blockList->addObject(block);
             
@@ -96,8 +97,71 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     CCLog("i=%d j=%d", i, j);
     int block_index = m_matrix[i][j];
     CCLog("block_index=%d", block_index);
-    Block *block = dynamic_cast<Block*>( m_blockList->objectAtIndex(block_index) );
+    Block *block = m_blockList->getObjectAtIndex(block_index);
     CCSprite *sprite = block->getSprite();
-    sprite->runAction(CCSequence::create(CCMoveBy::create(.1f, ccp(20,0)), CCMoveBy::create(.1f, ccp(-35, 0)), CCMoveBy::create(.1f, ccp(25, 0)), CCMoveBy::create(.1f, ccp(-10, 0)), NULL));
+    int blockType = block->getType();
+    
+    CCMutableArray<Block*> * searchAry = new CCMutableArray<Block*>();
+    CCMutableArray<Block*> * usedAry = new CCMutableArray<Block*>();
+    searchAry->addObject(block);
+    while (searchAry->count() > 0) {
+        CCMutableArray<Block*> * tmpAry = new CCMutableArray<Block*>();
+        CCLog("start usedAry=%d searchAry=%d tmpAry=%d", usedAry->count(), searchAry->count(), tmpAry->count());
+        for (int i=0; i<searchAry->count(); i++) {
+            Block * block = searchAry->getObjectAtIndex(i);
+            //左
+            if (block->getJ() > 0) {
+                Block * tmpBlock = m_blockList->getObjectAtIndex(m_matrix[block->getI()][block->getJ() - 1]);
+                if (tmpBlock->getType() == blockType){
+                    if(!usedAry->containsObject(tmpBlock)){
+                        tmpAry->addObject(tmpBlock);
+                    }
+                }
+            }
+            //右
+            if (block->getJ() < NUM - 1) {
+                Block * tmpBlock = m_blockList->getObjectAtIndex(m_matrix[block->getI()][block->getJ() + 1]);
+                if ( tmpBlock->getType() == blockType){
+                    if(!usedAry->containsObject(tmpBlock)){
+                        tmpAry->addObject(tmpBlock);
+                    }
+                }
+            }
+            
+            //下
+            if (block->getI() > 0) {
+                Block * tmpBlock = m_blockList->getObjectAtIndex(m_matrix[block->getI() - 1][block->getJ()]);
+                if ( tmpBlock->getType() == blockType){
+                    if(!usedAry->containsObject(tmpBlock)){
+                        tmpAry->addObject(tmpBlock);
+                    }
+                }
+            }
+            //右
+            if (block->getI() < NUM - 1) {
+                Block * tmpBlock = m_blockList->getObjectAtIndex(m_matrix[block->getI() + 1][block->getJ()]);
+                if ( tmpBlock->getType() == blockType){
+                    if(!usedAry->containsObject(tmpBlock)){
+                        tmpAry->addObject(tmpBlock);
+                    }
+                }
+            }
+        }
+        usedAry->addObjectsFromArray(searchAry);
+        searchAry->removeAllObjects();
+        CCLog("end usedAry=%d searchAry=%d tmpAry=%d", usedAry->count(), searchAry->count(), tmpAry->count());
+        searchAry->addObjectsFromArray(tmpAry);
+        CCLog("end usedAry=%d searchAry=%d tmpAry=%d", usedAry->count(), searchAry->count(), tmpAry->count());
+    }
+    
+    for (int i=0; i<usedAry->count(); i++) {
+        Block *block = usedAry->getObjectAtIndex(i);
+        CCSprite * sprite = block->getSprite();
+        sprite->runAction(CCSequence::create(CCMoveBy::create(.1f, ccp(20,0)), CCMoveBy::create(.1f, ccp(-35, 0)), CCMoveBy::create(.1f, ccp(25, 0)), CCMoveBy::create(.1f, ccp(-10, 0)), NULL));
+    }
+    
+    //sprite->removeFromParent();
+
+    //sprite->runAction(CCSequence::create(CCMoveBy::create(.1f, ccp(20,0)), CCMoveBy::create(.1f, ccp(-35, 0)), CCMoveBy::create(.1f, ccp(25, 0)), CCMoveBy::create(.1f, ccp(-10, 0)), NULL));
     return true;
 }

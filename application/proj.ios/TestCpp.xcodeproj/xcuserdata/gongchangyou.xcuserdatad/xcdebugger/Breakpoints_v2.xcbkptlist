@@ -25,7 +25,7 @@
                   symbolName = "Battle::~Battle()"
                   moduleName = "TestCpp"
                   urlString = "file:///Users/gongchangyou/git/DeperateAcademy/application/Classes/Battle.cpp"
-                  timestampString = "451822372.273881"
+                  timestampString = "451879357.108026"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
@@ -39,7 +39,7 @@
                   symbolName = "non-virtual thunk to Battle::~Battle()"
                   moduleName = "TestCpp"
                   urlString = "file:///Users/gongchangyou/git/DeperateAcademy/application/Classes/Battle.cpp"
-                  timestampString = "451822372.274106"
+                  timestampString = "451879357.108285"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
@@ -53,7 +53,7 @@
                   symbolName = "non-virtual thunk to Battle::~Battle()"
                   moduleName = "TestCpp"
                   urlString = "file:///Users/gongchangyou/git/DeperateAcademy/application/Classes/Battle.cpp"
-                  timestampString = "451822372.274334"
+                  timestampString = "451879357.108532"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
@@ -67,7 +67,7 @@
                   symbolName = "Battle::~Battle()"
                   moduleName = "TestCpp"
                   urlString = "file:///Users/gongchangyou/git/DeperateAcademy/application/Classes/Battle.cpp"
-                  timestampString = "451822372.274566"
+                  timestampString = "451879357.108828"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
@@ -75,128 +75,6 @@
                   offsetFromSymbolStart = "73">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/BaseScene.cpp"
-            timestampString = "451821881.532954"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "BaseScene::BaseScene()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/BaseScene.cpp"
-            timestampString = "451821909.130724"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "BaseScene::~BaseScene()"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BaseScene::~BaseScene()"
-                  moduleName = "TestCpp"
-                  urlString = "file:///Users/gongchangyou/git/DeperateAcademy/application/Classes/BaseScene.cpp"
-                  timestampString = "451822372.379845"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "73">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BaseScene::~BaseScene()"
-                  moduleName = "TestCpp"
-                  urlString = "file:///Users/gongchangyou/git/DeperateAcademy/application/Classes/BaseScene.cpp"
-                  timestampString = "451822372.380589"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "73">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "non-virtual thunk to BaseScene::~BaseScene()"
-                  moduleName = "TestCpp"
-                  urlString = "file:///Users/gongchangyou/git/DeperateAcademy/application/Classes/BaseScene.cpp"
-                  timestampString = "451822372.381941"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BaseScene::~BaseScene()"
-                  moduleName = "TestCpp"
-                  urlString = "file:///Users/gongchangyou/git/DeperateAcademy/application/Classes/BaseScene.cpp"
-                  timestampString = "451822372.382151"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19"
-                  offsetFromSymbolStart = "73">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/BaseScene.cpp"
-            timestampString = "451822295.471371"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "BaseScene::setCacheBatchNode( string key, string name, CCSpriteBatchNode* batch_node )"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/BaseScene.cpp"
-            timestampString = "451822316.036818"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "BaseScene::getCacheBatchNode( string key, string name )"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

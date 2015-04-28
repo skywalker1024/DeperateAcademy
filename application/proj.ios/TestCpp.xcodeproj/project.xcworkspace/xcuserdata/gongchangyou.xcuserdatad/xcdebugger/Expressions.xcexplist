@@ -28,6 +28,11 @@
       </ContextState>
       <ContextState
          contextName = "Battle::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*):Battle.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "sprite">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Battle::init():Battle.cpp">

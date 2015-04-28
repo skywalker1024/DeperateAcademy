@@ -31,7 +31,7 @@ private:
     CCSprite *m_player1;
     CCSprite *m_player2;
     int m_matrix[NUM][NUM];
-    CCArray * m_blockList;
+    CCMutableArray<Block*> * m_blockList;
     
 };
 
