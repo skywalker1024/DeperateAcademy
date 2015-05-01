@@ -174,6 +174,7 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
                     Block *block = m_blockList->objectForKey(index);
                     //需要往下挪blank_count个格子
                     int index_target = index - blank_count * NUM;
+                    CCLog("index=%d index_target=%d blank_count=%d",index,index_target,blank_count);
                     block->setI(block->getI() - blank_count);
                     m_blockList->removeObjectForKey(index_target);
                     m_blockList->setObject(block, index_target);
@@ -194,7 +195,7 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
             //重置位置并runaction
             CCSprite * blockSprite = m_blockList->objectForKey(m_matrix[ii][tmp_j])->getSprite();
             blockSprite->setPosition(ccp(START_X + tmp_j * WIDTH, START_Y + NUM * WIDTH + (ii - start_ii) * WIDTH));
-            blockSprite->runAction(CCMoveBy::create(0.1f * (ii - start_ii + 1), ccp(0,-WIDTH * (ii - start_ii + 1))));
+            blockSprite->runAction(CCMoveBy::create(0.1f * blank_list[i], ccp(0,-WIDTH * blank_list[i])));
         }
     }
     //补齐matrix
