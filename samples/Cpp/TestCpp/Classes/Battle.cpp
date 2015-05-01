@@ -157,6 +157,9 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
         CCSprite * sprite = block->getSprite();
         sprite->removeFromParent();
         //sprite->runAction(CCSequence::create(CCMoveBy::create(.1f, ccp(20,0)), CCMoveBy::create(.1f, ccp(-35, 0)), CCMoveBy::create(.1f, ccp(25, 0)), CCMoveBy::create(.1f, ccp(-10, 0)), NULL));
+    }
+    //新增小兵的依据，消3个出来一个还是消3个出来3个
+    if (usedAry->count() > 0) {
         //新增小兵
         createSoldier(block->getType());
     }
@@ -215,7 +218,8 @@ void Battle::createSoldier(int kind){
     armature = new cocos2d::extension::CCArmature();
     armature->init("Knight_f/Knight");
     armature->getAnimation()->playWithIndex(1);
-    int positionY = 1000 + 200 * (rand() % 3);
+    //int positionY = 1000 + 200 * (rand() % 3);
+    int positionY = 1200;
     armature->setPosition(ccp(50, positionY));
     
     std::string weapon[] = {"weapon_f-sword.png", "weapon_f-sword2.png", "weapon_f-sword3.png", "weapon_f-sword4.png", "weapon_f-sword5.png", "weapon_f-knife.png", "weapon_f-hammer.png"};
