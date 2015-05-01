@@ -6,19 +6,29 @@
 //
 //
 
-const int START_X = 84;
+
 const int START_Y = 100;
 const int WIDTH = 100;
-
 #include "Battle.h"
 #include "CommonUtils.h"
+
 Battle::Battle()
 {
     m_blockList = new CCMutableDictionary<int, Block*>();
+    m_myArmy = new CCMutableArray<Soldier*>();
+    m_enemyArmy = new CCMutableArray<Soldier*>();
+    MATRIX_START_X = (CommonUtils::getScreenWidth() - NUM * WIDTH) / 2;
+    MY_ARMY_START_X = 50;
+    ENEMY_ARMY_START_X = CommonUtils::getScreenWidth() - MY_ARMY_START_X;
 }
 
 Battle::~Battle(){
+    m_blockList->removeAllObjects();
     m_blockList->release();
+    m_myArmy->removeAllObjects();
+    m_myArmy->release();
+    m_enemyArmy->removeAllObjects();
+    m_enemyArmy->release();
 }
 
 CCScene * Battle::scene(){
@@ -31,6 +41,9 @@ bool Battle::init(){
     if (!BaseScene::init()) {
         return false;
     }
+    
+    CCLog("height=%f width=%f", CCDirector::sharedDirector()->getWinSize().height, CCDirector::sharedDirector()->getWinSize().width );
+   
 //    CCNodeLoaderLibrary * ccNodeLoaderLibrary = CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary();
 //    CCBReader reader = CCBReader(ccNodeLoaderLibrary);
 //    CCLayer *layer = (CCLayer*)reader.readNodeGraphFromFile("ccbi/battle.ccbi",this);
@@ -41,7 +54,6 @@ bool Battle::init(){
             createBlock(i, j);
         }
     }
-    
     
     return true;
 }
@@ -65,13 +77,13 @@ void Battle::onExit(){
 
 bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     BaseScene::ccTouchBegan(pTouch, pEvent);
-    CCRect touchArea =  CCRect(START_X, START_Y, WIDTH * NUM, WIDTH * NUM);
+    CCRect touchArea =  CCRect(MATRIX_START_X, START_Y, WIDTH * NUM, WIDTH * NUM);
     if (!touchArea.containsPoint(pTouch->getLocation())) {
         return false;
     }
     //判断落在哪个坑
     CCLog("x=%f y=%f",pTouch->getLocation().x, pTouch->getLocation().y);
-    int j = (pTouch->getLocation().x - START_X) / WIDTH;
+    int j = (pTouch->getLocation().x - MATRIX_START_X) / WIDTH;
     int i = (pTouch->getLocation().y - START_Y) / WIDTH;
     CCLog("i=%d j=%d", i, j);
     int block_index = m_matrix[i][j];
@@ -161,7 +173,9 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     //新增小兵的依据，消3个出来一个还是消3个出来3个
     if (usedAry->count() > 0) {
         //新增小兵
-        createSoldier(block->getType());
+        createSoldier(block->getType(), m_myArmy, true);
+        
+        createSoldier(1, m_enemyArmy, false);
     }
     
     map<int, int> blank_list;
@@ -197,7 +211,7 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
             createBlock(ii, tmp_j);
             //重置位置并runaction
             CCSprite * blockSprite = m_blockList->objectForKey(m_matrix[ii][tmp_j])->getSprite();
-            blockSprite->setPosition(ccp(START_X + tmp_j * WIDTH, START_Y + NUM * WIDTH + (ii - start_ii) * WIDTH));
+            blockSprite->setPosition(ccp(MATRIX_START_X + tmp_j * WIDTH, START_Y + NUM * WIDTH + (ii - start_ii) * WIDTH));
             blockSprite->runAction(CCMoveBy::create(0.1f * blank_list[i], ccp(0,-WIDTH * blank_list[i])));
         }
     }
@@ -213,14 +227,13 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     return true;
 }
 
-void Battle::createSoldier(int kind){
+void Battle::createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy){
     cocos2d::extension::CCArmature *armature = NULL;
     armature = new cocos2d::extension::CCArmature();
     armature->init("Knight_f/Knight");
     armature->getAnimation()->playWithIndex(1);
     //int positionY = 1000 + 200 * (rand() % 3);
     int positionY = 1200;
-    armature->setPosition(ccp(50, positionY));
     
     std::string weapon[] = {"weapon_f-sword.png", "weapon_f-sword2.png", "weapon_f-sword3.png", "weapon_f-sword4.png", "weapon_f-sword5.png", "weapon_f-knife.png", "weapon_f-hammer.png"};
     
@@ -228,11 +241,21 @@ void Battle::createSoldier(int kind){
     armature->getBone("weapon")->addDisplay(skin, 0);
     
     armature->getBone("weapon")->changeDisplayWithIndex(0, true);
-    armature->setScale(1.2f);
+    
     addChild(armature);
-    CCDelayTime *delay = CCDelayTime::create( rand() % 10 / 10.f);
-    armature->runAction(CCSequence::create(delay, CCMoveTo::create(5, ccp(600,positionY)), NULL));
     armature->release();
+    if (myArmy) {
+        armature->setScale(1.2f);
+        armature->setPosition(ccp(MY_ARMY_START_X, positionY));
+    }else{
+        armature->setScaleX(-1.2f);
+        armature->setPosition(ccp(ENEMY_ARMY_START_X, positionY));
+    }
+    
+    
+    Soldier * soldier = Soldier::create();
+    soldier->setArmature(armature);
+    army->addObject(soldier);
 }
 
 void Battle::createBlock(int i , int j){
@@ -255,9 +278,60 @@ void Battle::createBlock(int i , int j){
     
     CCSprite * rect = CCSprite::createWithTexture(batchNode->getTexture());
     rect->setAnchorPoint(ccp(0,0));
-    rect->setPosition(ccpAdd(ccp(START_X, START_Y), ccp(WIDTH * j, WIDTH * i)));
+    rect->setPosition(ccpAdd(ccp(MATRIX_START_X, START_Y), ccp(WIDTH * j, WIDTH * i)));
     CCLog( "%f", rect->getTexture()->getContentSize().width);
     rect->setScale( WIDTH / rect->getTexture()->getContentSize().width );
     this->addChild(rect);
     block->setSprite(rect);
+}
+
+void Battle::draw(){
+    updateArmy(m_myArmy, m_enemyArmy, true);
+    updateArmy(m_enemyArmy, m_myArmy, false);
+}
+
+void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldier*>* defArmy, bool myArmy){
+    for (int i=0; i<atkArmy->count(); i++) {
+        Soldier * soldier = atkArmy->getObjectAtIndex(i);
+        if (soldier->getHp()<=0) {
+            soldier->setStatus(Soldier::DEAD);
+        }
+        if (soldier->getStatus() == Soldier::DEAD) {
+            CCLog("soldier die");
+            soldier->getArmature()->removeFromParent();
+            atkArmy->removeObject(soldier);
+        }else if (soldier->getStatus() == Soldier::WALKING) {
+            float mvDistance;
+            if (myArmy) {
+                mvDistance = soldier->getMoveSpeed() / 100.f;
+            }else{
+                mvDistance = -soldier->getMoveSpeed() / 100.f;
+            }
+            soldier->getArmature()->setPositionX(soldier->getArmature()->getPositionX() + mvDistance);
+            
+            //判断是否到了敌方面前
+            for(int j=0; j<defArmy->count(); j++){
+                Soldier * enemy = defArmy->getObjectAtIndex(j);
+                if (enemy->getStatus() != Soldier::DEAD && fabs(enemy->getArmature()->getPositionX() - soldier->getArmature()->getPositionX())<soldier->getAtkRange()) {
+                    soldier->setStatus(Soldier::ATKING);
+                    soldier->setTarget(enemy);
+                    soldier->getArmature()->getAnimation()->playWithIndex(0);
+                }
+            }
+        }else if (soldier->getStatus() == Soldier::ATKING){
+            if (soldier->getAtkTimer() > 0) {//攻击倒计时
+                soldier->setAtkTimer(soldier->getAtkTimer() - 1);
+            }else{//攻击
+                Soldier * enemy = soldier->getTarget();
+                enemy->setHp(enemy->getHp() - soldier->getAtk());
+                //重置倒计时
+                soldier->setAtkTimer(ATK_TIMER);
+            }
+            Soldier * enemy = soldier->getTarget();
+            if (enemy->getHp()<=0) {
+                soldier->setStatus(Soldier::WALKING);
+                soldier->getArmature()->getAnimation()->playWithIndex(1);
+            }
+        }
+    }
 }

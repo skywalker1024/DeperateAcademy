@@ -14,6 +14,7 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 #include "BaseScene.h"
 #include "Block.h"
+#include "Soldier.h"
 const int NUM = 8;
 
 class Battle : public BaseScene{
@@ -27,11 +28,19 @@ public:
     virtual void onEnter();
     virtual void onExit();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    void draw();
+    void update();
 private:
     int m_matrix[NUM][NUM];
     CCMutableDictionary<int, Block*> * m_blockList;
-    void createSoldier(int kind);
+    void createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy);
     void createBlock(int i, int j);
+    int MATRIX_START_X;
+    int MY_ARMY_START_X;
+    int ENEMY_ARMY_START_X;
+    CCMutableArray<Soldier*>* m_myArmy;
+    CCMutableArray<Soldier*>* m_enemyArmy;
+    void updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldier*>* defArmy, bool myArmy);
 };
 
 

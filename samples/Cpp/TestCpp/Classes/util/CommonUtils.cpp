@@ -176,3 +176,21 @@ float CommonUtils::getStringWidth( const string &str, int fontsize )
     
     return width;
 }
+
+
+/*
+ * スクリーン幅を取得。
+ */
+int CommonUtils::getScreenWidth()
+{
+    return CCDirector::sharedDirector()->getWinSize().width;
+}
+
+
+/*
+ * スクリーン高さを取得。
+ */
+int CommonUtils::getScreenHeight()
+{
+    return CCDirector::sharedDirector()->getWinSize().height;
+}

@@ -43,6 +43,9 @@ public:
     // 文字列分割
     static vector<string> split( const string &str, const char* delim );
     static float getStringWidth( const string &str, int fontsize );
+    
+    static int getScreenWidth();
+    static int getScreenHeight();
 };
 
 #endif

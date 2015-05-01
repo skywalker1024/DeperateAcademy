@@ -213,6 +213,7 @@
 		81CD7C551AEFB6B100C0EB2D /* GameSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C401AEFB6B100C0EB2D /* GameSprite.cpp */; };
 		81CD7C601AEFB95A00C0EB2D /* img in Resources */ = {isa = PBXBuildFile; fileRef = 81CD7C5E1AEFB95A00C0EB2D /* img */; };
 		81CD7C611AEFB95A00C0EB2D /* font in Resources */ = {isa = PBXBuildFile; fileRef = 81CD7C5F1AEFB95A00C0EB2D /* font */; };
+		81CD7CBA1AF38EA100C0EB2D /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -651,6 +652,8 @@
 		81CD7C431AEFB6B100C0EB2D /* Battle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Battle.h; path = ../Classes/Battle.h; sourceTree = "<group>"; };
 		81CD7C5E1AEFB95A00C0EB2D /* img */ = {isa = PBXFileReference; lastKnownFileType = folder; path = img; sourceTree = "<group>"; };
 		81CD7C5F1AEFB95A00C0EB2D /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
+		81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Soldier.cpp; path = ../Classes/Soldier.cpp; sourceTree = "<group>"; };
+		81CD7CB91AF38EA100C0EB2D /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Soldier.h; path = ../Classes/Soldier.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -917,6 +920,8 @@
 				81CD7C3B1AEFB6B100C0EB2D /* Block.cpp */,
 				81CD7C3C1AEFB6B100C0EB2D /* Block.h */,
 				81CD7C3D1AEFB6B100C0EB2D /* const */,
+				81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */,
+				81CD7CB91AF38EA100C0EB2D /* Soldier.h */,
 				81CD7C3F1AEFB6B100C0EB2D /* sprite */,
 				81CD7C1D1AEFB6B100C0EB2D /* util */,
 			);
@@ -1733,6 +1738,7 @@
 				3729024C1867D36800B59D3A /* TriggerBase.cpp in Sources */,
 				81CD7C481AEFB6B100C0EB2D /* GlDrawRect.cpp in Sources */,
 				81CD7C4E1AEFB6B100C0EB2D /* StringLabelList.cpp in Sources */,
+				81CD7CBA1AF38EA100C0EB2D /* Soldier.cpp in Sources */,
 				81CD7C471AEFB6B100C0EB2D /* CommonUtils.cpp in Sources */,
 				38FA2E92194E92F400FF2BE4 /* CCFrame.cpp in Sources */,
 				38FA2E90194E92F400FF2BE4 /* CCActionTimeline.cpp in Sources */,
