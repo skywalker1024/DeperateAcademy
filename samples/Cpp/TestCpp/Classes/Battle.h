@@ -29,8 +29,9 @@ public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
 private:
     int m_matrix[NUM][NUM];
-    CCMutableArray<Block*> * m_blockList;
+    CCMutableDictionary<int, Block*> * m_blockList;
     void createSoldier(int kind);
+    void createBlock(int i, int j);
 };
 
 
