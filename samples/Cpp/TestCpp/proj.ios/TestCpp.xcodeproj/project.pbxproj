@@ -93,33 +93,6 @@
 		3729024C1867D36800B59D3A /* TriggerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372902451867D36800B59D3A /* TriggerBase.cpp */; };
 		3729024D1867D36800B59D3A /* TriggerMng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372902471867D36800B59D3A /* TriggerMng.cpp */; };
 		3729024E1867D36800B59D3A /* TriggerObj.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 372902491867D36800B59D3A /* TriggerObj.cpp */; };
-		378774A9187A9002002578C7 /* animations in Resources */ = {isa = PBXBuildFile; fileRef = 37877486187A9002002578C7 /* animations */; };
-		378774AD187A9002002578C7 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3787748A187A9002002578C7 /* background.mp3 */; };
-		378774AE187A9002002578C7 /* background.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 3787748B187A9002002578C7 /* background.ogg */; };
-		378774AF187A9002002578C7 /* background.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3787748C187A9002002578C7 /* background.wav */; };
-		378774B0187A9002002578C7 /* ccb in Resources */ = {isa = PBXBuildFile; fileRef = 3787748D187A9002002578C7 /* ccb */; };
-		378774B1187A9002002578C7 /* CocosBuilderExample.ccbproj in Resources */ = {isa = PBXBuildFile; fileRef = 3787748E187A9002002578C7 /* CocosBuilderExample.ccbproj */; };
-		378774B2187A9002002578C7 /* CocosBuilderExample.ccbresourcelog in Resources */ = {isa = PBXBuildFile; fileRef = 3787748F187A9002002578C7 /* CocosBuilderExample.ccbresourcelog */; };
-		378774B4187A9002002578C7 /* components in Resources */ = {isa = PBXBuildFile; fileRef = 37877491187A9002002578C7 /* components */; };
-		378774B5187A9002002578C7 /* configs in Resources */ = {isa = PBXBuildFile; fileRef = 37877492187A9002002578C7 /* configs */; };
-		378774B7187A9002002578C7 /* effect1.raw in Resources */ = {isa = PBXBuildFile; fileRef = 37877494187A9002002578C7 /* effect1.raw */; };
-		378774B8187A9002002578C7 /* effect1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37877495187A9002002578C7 /* effect1.wav */; };
-		378774B9187A9002002578C7 /* effect2.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 37877496187A9002002578C7 /* effect2.ogg */; };
-		378774BA187A9002002578C7 /* extensions in Resources */ = {isa = PBXBuildFile; fileRef = 37877497187A9002002578C7 /* extensions */; };
-		378774BB187A9002002578C7 /* fileLookup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37877498187A9002002578C7 /* fileLookup.plist */; };
-		378774BC187A9002002578C7 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 37877499187A9002002578C7 /* fonts */; };
-		378774BD187A9002002578C7 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 3787749A187A9002002578C7 /* fps_images.png */; };
-		378774BE187A9002002578C7 /* hd in Resources */ = {isa = PBXBuildFile; fileRef = 3787749B187A9002002578C7 /* hd */; };
-		378774BF187A9002002578C7 /* Hello.png in Resources */ = {isa = PBXBuildFile; fileRef = 3787749C187A9002002578C7 /* Hello.png */; };
-		378774C0187A9002002578C7 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 3787749D187A9002002578C7 /* Images */; };
-		378774C3187A9002002578C7 /* Misc in Resources */ = {isa = PBXBuildFile; fileRef = 378774A0187A9002002578C7 /* Misc */; };
-		378774C4187A9002002578C7 /* music.mid in Resources */ = {isa = PBXBuildFile; fileRef = 378774A1187A9002002578C7 /* music.mid */; };
-		378774C5187A9002002578C7 /* Particles in Resources */ = {isa = PBXBuildFile; fileRef = 378774A2187A9002002578C7 /* Particles */; };
-		378774C6187A9002002578C7 /* pew-pew-lei.wav in Resources */ = {isa = PBXBuildFile; fileRef = 378774A3187A9002002578C7 /* pew-pew-lei.wav */; };
-		378774C8187A9002002578C7 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 378774A5187A9002002578C7 /* Shaders */; };
-		378774C9187A9002002578C7 /* spine in Resources */ = {isa = PBXBuildFile; fileRef = 378774A6187A9002002578C7 /* spine */; };
-		378774CA187A9002002578C7 /* TileMaps in Resources */ = {isa = PBXBuildFile; fileRef = 378774A7187A9002002578C7 /* TileMaps */; };
-		378774CB187A9002002578C7 /* zwoptex in Resources */ = {isa = PBXBuildFile; fileRef = 378774A8187A9002002578C7 /* zwoptex */; };
 		37BB5BF417E89E9B002746B4 /* CCActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEA17E89E9B002746B4 /* CCActionFrame.cpp */; };
 		37BB5BF517E89E9B002746B4 /* CCActionFrameEasing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEC17E89E9B002746B4 /* CCActionFrameEasing.cpp */; };
 		37BB5BF617E89E9B002746B4 /* CCActionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37BB5BEE17E89E9B002746B4 /* CCActionManager.cpp */; };
@@ -172,7 +145,6 @@
 		38FA2E92194E92F400FF2BE4 /* CCFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38FA2E89194E92F400FF2BE4 /* CCFrame.cpp */; };
 		38FA2E93194E92F400FF2BE4 /* CCNodeReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38FA2E8B194E92F400FF2BE4 /* CCNodeReader.cpp */; };
 		38FA2E94194E92F400FF2BE4 /* CCTimeLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38FA2E8D194E92F400FF2BE4 /* CCTimeLine.cpp */; };
-		38FA2E9A194E94FC00FF2BE4 /* ActionTimeline in Resources */ = {isa = PBXBuildFile; fileRef = 38FA2E99194E94FC00FF2BE4 /* ActionTimeline */; };
 		43B91ED81949B84200F7F815 /* CocoLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 43B91ED61949B84200F7F815 /* CocoLoader.cpp */; };
 		50181AE1185FEBAE0051CA1C /* CCActionEaseEx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50181ADF185FEBAE0051CA1C /* CCActionEaseEx.cpp */; };
 		50D36120186AED6100828878 /* UITouchGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D3611E186AED6100828878 /* UITouchGroup.cpp */; };
@@ -431,33 +403,6 @@
 		3751F70D18458B7E00AC94F2 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
 		3751F70E18458B7E00AC94F2 /* stringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringbuffer.h; sourceTree = "<group>"; };
 		3751F70F18458B7E00AC94F2 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
-		37877486187A9002002578C7 /* animations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = animations; sourceTree = "<group>"; };
-		3787748A187A9002002578C7 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
-		3787748B187A9002002578C7 /* background.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.ogg; sourceTree = "<group>"; };
-		3787748C187A9002002578C7 /* background.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = background.wav; sourceTree = "<group>"; };
-		3787748D187A9002002578C7 /* ccb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccb; sourceTree = "<group>"; };
-		3787748E187A9002002578C7 /* CocosBuilderExample.ccbproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CocosBuilderExample.ccbproj; sourceTree = "<group>"; };
-		3787748F187A9002002578C7 /* CocosBuilderExample.ccbresourcelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CocosBuilderExample.ccbresourcelog; sourceTree = "<group>"; };
-		37877491187A9002002578C7 /* components */ = {isa = PBXFileReference; lastKnownFileType = folder; path = components; sourceTree = "<group>"; };
-		37877492187A9002002578C7 /* configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = configs; sourceTree = "<group>"; };
-		37877494187A9002002578C7 /* effect1.raw */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect1.raw; sourceTree = "<group>"; };
-		37877495187A9002002578C7 /* effect1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = effect1.wav; sourceTree = "<group>"; };
-		37877496187A9002002578C7 /* effect2.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect2.ogg; sourceTree = "<group>"; };
-		37877497187A9002002578C7 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = extensions; sourceTree = "<group>"; };
-		37877498187A9002002578C7 /* fileLookup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fileLookup.plist; sourceTree = "<group>"; };
-		37877499187A9002002578C7 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
-		3787749A187A9002002578C7 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
-		3787749B187A9002002578C7 /* hd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hd; sourceTree = "<group>"; };
-		3787749C187A9002002578C7 /* Hello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hello.png; sourceTree = "<group>"; };
-		3787749D187A9002002578C7 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
-		378774A0187A9002002578C7 /* Misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Misc; sourceTree = "<group>"; };
-		378774A1187A9002002578C7 /* music.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = music.mid; sourceTree = "<group>"; };
-		378774A2187A9002002578C7 /* Particles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Particles; sourceTree = "<group>"; };
-		378774A3187A9002002578C7 /* pew-pew-lei.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pew-pew-lei.wav"; sourceTree = "<group>"; };
-		378774A5187A9002002578C7 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
-		378774A6187A9002002578C7 /* spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spine; sourceTree = "<group>"; };
-		378774A7187A9002002578C7 /* TileMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TileMaps; sourceTree = "<group>"; };
-		378774A8187A9002002578C7 /* zwoptex */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zwoptex; sourceTree = "<group>"; };
 		37B2DBAE1877E45E009EA425 /* CCComBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComBase.h; sourceTree = "<group>"; };
 		37BB5BEA17E89E9B002746B4 /* CCActionFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionFrame.cpp; sourceTree = "<group>"; };
 		37BB5BEB17E89E9B002746B4 /* CCActionFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCActionFrame.h; sourceTree = "<group>"; };
@@ -569,7 +514,6 @@
 		38FA2E8D194E92F400FF2BE4 /* CCTimeLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTimeLine.cpp; sourceTree = "<group>"; };
 		38FA2E8E194E92F400FF2BE4 /* CCTimeLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTimeLine.h; sourceTree = "<group>"; };
 		38FA2E8F194E92F400FF2BE4 /* CCTimelineMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTimelineMacro.h; sourceTree = "<group>"; };
-		38FA2E99194E94FC00FF2BE4 /* ActionTimeline */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ActionTimeline; sourceTree = "<group>"; };
 		43B91ED61949B84200F7F815 /* CocoLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLoader.cpp; sourceTree = "<group>"; };
 		43B91ED71949B84200F7F815 /* CocoLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLoader.h; sourceTree = "<group>"; };
 		50181ADF185FEBAE0051CA1C /* CCActionEaseEx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCActionEaseEx.cpp; sourceTree = "<group>"; };
@@ -1526,35 +1470,7 @@
 			children = (
 				81CD7C5E1AEFB95A00C0EB2D /* img */,
 				81CD7C5F1AEFB95A00C0EB2D /* font */,
-				38FA2E99194E94FC00FF2BE4 /* ActionTimeline */,
-				37877486187A9002002578C7 /* animations */,
-				3787748D187A9002002578C7 /* ccb */,
 				1A16458A191B5178008C7C7F /* ccs-res */,
-				37877491187A9002002578C7 /* components */,
-				37877492187A9002002578C7 /* configs */,
-				37877497187A9002002578C7 /* extensions */,
-				37877499187A9002002578C7 /* fonts */,
-				3787749B187A9002002578C7 /* hd */,
-				3787749D187A9002002578C7 /* Images */,
-				378774A0187A9002002578C7 /* Misc */,
-				378774A2187A9002002578C7 /* Particles */,
-				378774A5187A9002002578C7 /* Shaders */,
-				378774A6187A9002002578C7 /* spine */,
-				378774A7187A9002002578C7 /* TileMaps */,
-				378774A8187A9002002578C7 /* zwoptex */,
-				3787748E187A9002002578C7 /* CocosBuilderExample.ccbproj */,
-				3787748F187A9002002578C7 /* CocosBuilderExample.ccbresourcelog */,
-				378774A1187A9002002578C7 /* music.mid */,
-				3787748A187A9002002578C7 /* background.mp3 */,
-				3787748B187A9002002578C7 /* background.ogg */,
-				37877496187A9002002578C7 /* effect2.ogg */,
-				37877498187A9002002578C7 /* fileLookup.plist */,
-				3787749A187A9002002578C7 /* fps_images.png */,
-				3787749C187A9002002578C7 /* Hello.png */,
-				37877494187A9002002578C7 /* effect1.raw */,
-				3787748C187A9002002578C7 /* background.wav */,
-				37877495187A9002002578C7 /* effect1.wav */,
-				378774A3187A9002002578C7 /* pew-pew-lei.wav */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -1685,37 +1601,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				378774C8187A9002002578C7 /* Shaders in Resources */,
-				378774C0187A9002002578C7 /* Images in Resources */,
-				378774BF187A9002002578C7 /* Hello.png in Resources */,
-				378774BB187A9002002578C7 /* fileLookup.plist in Resources */,
-				378774C6187A9002002578C7 /* pew-pew-lei.wav in Resources */,
-				378774B1187A9002002578C7 /* CocosBuilderExample.ccbproj in Resources */,
-				378774B7187A9002002578C7 /* effect1.raw in Resources */,
-				378774BE187A9002002578C7 /* hd in Resources */,
-				378774BC187A9002002578C7 /* fonts in Resources */,
-				378774B0187A9002002578C7 /* ccb in Resources */,
-				378774BA187A9002002578C7 /* extensions in Resources */,
 				81CD7C611AEFB95A00C0EB2D /* font in Resources */,
-				378774C5187A9002002578C7 /* Particles in Resources */,
-				378774CA187A9002002578C7 /* TileMaps in Resources */,
-				378774AF187A9002002578C7 /* background.wav in Resources */,
-				378774B2187A9002002578C7 /* CocosBuilderExample.ccbresourcelog in Resources */,
-				378774B8187A9002002578C7 /* effect1.wav in Resources */,
-				378774B4187A9002002578C7 /* components in Resources */,
-				378774BD187A9002002578C7 /* fps_images.png in Resources */,
-				378774B9187A9002002578C7 /* effect2.ogg in Resources */,
-				378774CB187A9002002578C7 /* zwoptex in Resources */,
-				378774AE187A9002002578C7 /* background.ogg in Resources */,
-				378774C9187A9002002578C7 /* spine in Resources */,
-				378774C3187A9002002578C7 /* Misc in Resources */,
-				378774C4187A9002002578C7 /* music.mid in Resources */,
-				378774AD187A9002002578C7 /* background.mp3 in Resources */,
 				81CD7C601AEFB95A00C0EB2D /* img in Resources */,
-				378774B5187A9002002578C7 /* configs in Resources */,
 				1A16458B191B5178008C7C7F /* ccs-res in Resources */,
-				378774A9187A9002002578C7 /* animations in Resources */,
-				38FA2E9A194E94FC00FF2BE4 /* ActionTimeline in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
