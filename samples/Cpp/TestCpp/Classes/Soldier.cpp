@@ -7,13 +7,13 @@
 //
 
 #include "Soldier.h"
-
+#include "SoldierMstList.h"
 Soldier::Soldier()
 :m_name("")
-,m_hp(100)
-,m_atk(30)
-,m_moveSpeed(50)
-,m_atkRange(10)
+,m_hp(0)
+,m_atk(0)
+,m_moveSpeed(0)
+,m_atkRange(0)
 ,m_armature(NULL)
 ,m_status(WALKING)
 ,m_target(NULL)
@@ -27,4 +27,13 @@ Soldier::~Soldier(){
 bool Soldier::init(){
     m_atkTimer = ATK_TIMER;
     return true;
+}
+
+void Soldier::initWithSoldierId(int soldierId){
+    SoldierMst * soldierMst = SoldierMstList::shared()->getObject(soldierId);
+    m_name = soldierMst->getName();
+    m_hp = soldierMst->getHp();
+    m_atk = soldierMst->getAtk();
+    m_moveSpeed = soldierMst->getMoveSpeed();
+    m_atkRange = soldierMst->getAtkRange();
 }

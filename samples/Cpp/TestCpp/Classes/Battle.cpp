@@ -8,7 +8,7 @@
 
 #include "Battle.h"
 #include "CommonUtils.h"
-
+#include "SoldierMstList.h"
 const int START_Y = 100;
 const int WIDTH = 100;
 const int ARMY_POSITION_Y = START_Y + NUM * WIDTH + 200;
@@ -18,8 +18,8 @@ Battle::Battle()
     m_myArmy = new CCMutableArray<Soldier*>();
     m_enemyArmy = new CCMutableArray<Soldier*>();
     MATRIX_START_X = (CommonUtils::getScreenWidth() - NUM * WIDTH) / 2;
-    MY_ARMY_START_X = 50;
-    ENEMY_ARMY_START_X = CommonUtils::getScreenWidth() - MY_ARMY_START_X;
+    MY_ARMY_START_X = MATRIX_START_X;
+    ENEMY_ARMY_START_X = MATRIX_START_X + NUM * WIDTH;
 }
 
 Battle::~Battle(){
@@ -54,6 +54,8 @@ bool Battle::init(){
             createBlock(i, j);
         }
     }
+    
+    SoldierMstList::shared();
     
     return true;
 }
@@ -261,6 +263,7 @@ void Battle::createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy
     
     
     Soldier * soldier = Soldier::create();
+    soldier->initWithSoldierId(101 + kind * 100);
     soldier->setArmature(armature);
     army->addObject(soldier);
 }

@@ -25,6 +25,7 @@ public:
         ATKING = 2,
         DEAD = 3
     };
+    void initWithSoldierId(int soldierId);
 private:
     CC_SYNTHESIZE(string, m_name, Name);
     CC_SYNTHESIZE(int, m_hp, Hp);

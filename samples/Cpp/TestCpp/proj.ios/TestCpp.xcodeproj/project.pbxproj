@@ -186,6 +186,11 @@
 		81CD7C601AEFB95A00C0EB2D /* img in Resources */ = {isa = PBXBuildFile; fileRef = 81CD7C5E1AEFB95A00C0EB2D /* img */; };
 		81CD7C611AEFB95A00C0EB2D /* font in Resources */ = {isa = PBXBuildFile; fileRef = 81CD7C5F1AEFB95A00C0EB2D /* font */; };
 		81CD7CBA1AF38EA100C0EB2D /* Soldier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */; };
+		81ED12DB1AF463140043B59C /* SQLiteManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED12D91AF463140043B59C /* SQLiteManager.cpp */; };
+		81ED12DD1AF469510043B59C /* sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 81ED12DC1AF469510043B59C /* sqlite */; };
+		81ED12DF1AF46C2A0043B59C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81ED12DE1AF46C2A0043B59C /* libsqlite3.0.dylib */; };
+		81ED12E71AF46CF10043B59C /* SoldierMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED12E31AF46CF10043B59C /* SoldierMst.cpp */; };
+		81ED12E81AF46CF10043B59C /* SoldierMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED12E51AF46CF10043B59C /* SoldierMstList.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -598,6 +603,14 @@
 		81CD7C5F1AEFB95A00C0EB2D /* font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = font; sourceTree = "<group>"; };
 		81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Soldier.cpp; path = ../Classes/Soldier.cpp; sourceTree = "<group>"; };
 		81CD7CB91AF38EA100C0EB2D /* Soldier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Soldier.h; path = ../Classes/Soldier.h; sourceTree = "<group>"; };
+		81ED12D91AF463140043B59C /* SQLiteManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SQLiteManager.cpp; sourceTree = "<group>"; };
+		81ED12DA1AF463140043B59C /* SQLiteManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteManager.h; sourceTree = "<group>"; };
+		81ED12DC1AF469510043B59C /* sqlite */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sqlite; sourceTree = "<group>"; };
+		81ED12DE1AF46C2A0043B59C /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		81ED12E31AF46CF10043B59C /* SoldierMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoldierMst.cpp; sourceTree = "<group>"; };
+		81ED12E41AF46CF10043B59C /* SoldierMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoldierMst.h; sourceTree = "<group>"; };
+		81ED12E51AF46CF10043B59C /* SoldierMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoldierMstList.cpp; sourceTree = "<group>"; };
+		81ED12E61AF46CF10043B59C /* SoldierMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoldierMstList.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -615,6 +628,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81ED12DF1AF46C2A0043B59C /* libsqlite3.0.dylib in Frameworks */,
 				15A3DA6A1682F886002FB0C5 /* libcocos2dx.a in Frameworks */,
 				1ACB3244164770DE00914215 /* libcurl.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
@@ -864,6 +878,7 @@
 				81CD7C3B1AEFB6B100C0EB2D /* Block.cpp */,
 				81CD7C3C1AEFB6B100C0EB2D /* Block.h */,
 				81CD7C3D1AEFB6B100C0EB2D /* const */,
+				81ED12E21AF46CF10043B59C /* data */,
 				81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */,
 				81CD7CB91AF38EA100C0EB2D /* Soldier.h */,
 				81CD7C3F1AEFB6B100C0EB2D /* sprite */,
@@ -984,6 +999,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81ED12DE1AF46C2A0043B59C /* libsqlite3.0.dylib */,
 				1ACB3243164770DE00914215 /* libcurl.a */,
 				BF170DB212928DE900B8313A /* libxml2.dylib */,
 				BF170DB412928DE900B8313A /* libz.dylib */,
@@ -1468,6 +1484,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81ED12DC1AF469510043B59C /* sqlite */,
 				81CD7C5E1AEFB95A00C0EB2D /* img */,
 				81CD7C5F1AEFB95A00C0EB2D /* font */,
 				1A16458A191B5178008C7C7F /* ccs-res */,
@@ -1493,6 +1510,8 @@
 				81CD7C291AEFB6B100C0EB2D /* ParticleAnime.h */,
 				81CD7C2A1AEFB6B100C0EB2D /* ParticleAnimeList.cpp */,
 				81CD7C2B1AEFB6B100C0EB2D /* ParticleAnimeList.h */,
+				81ED12D91AF463140043B59C /* SQLiteManager.cpp */,
+				81ED12DA1AF463140043B59C /* SQLiteManager.h */,
 				81CD7C2C1AEFB6B100C0EB2D /* StringComparator.h */,
 				81CD7C2D1AEFB6B100C0EB2D /* StringLabel.cpp */,
 				81CD7C2E1AEFB6B100C0EB2D /* StringLabel.h */,
@@ -1530,6 +1549,18 @@
 			);
 			name = sprite;
 			path = ../Classes/sprite;
+			sourceTree = "<group>";
+		};
+		81ED12E21AF46CF10043B59C /* data */ = {
+			isa = PBXGroup;
+			children = (
+				81ED12E31AF46CF10043B59C /* SoldierMst.cpp */,
+				81ED12E41AF46CF10043B59C /* SoldierMst.h */,
+				81ED12E51AF46CF10043B59C /* SoldierMstList.cpp */,
+				81ED12E61AF46CF10043B59C /* SoldierMstList.h */,
+			);
+			name = data;
+			path = ../Classes/data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1601,6 +1632,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81ED12DD1AF469510043B59C /* sqlite in Resources */,
 				81CD7C611AEFB95A00C0EB2D /* font in Resources */,
 				81CD7C601AEFB95A00C0EB2D /* img in Resources */,
 				1A16458B191B5178008C7C7F /* ccs-res in Resources */,
@@ -1639,6 +1671,7 @@
 				50E9E948182A355B00F6FDF1 /* SceneReader.cpp in Sources */,
 				50F853EE18C57E040019FBFB /* ImageViewReader.cpp in Sources */,
 				50F853F718C57E040019FBFB /* SliderReader.cpp in Sources */,
+				81ED12E81AF46CF10043B59C /* SoldierMstList.cpp in Sources */,
 				50181AE1185FEBAE0051CA1C /* CCActionEaseEx.cpp in Sources */,
 				38FA2E91194E92F400FF2BE4 /* CCActionTimelineCache.cpp in Sources */,
 				81CD7C4C1AEFB6B100C0EB2D /* ParticleAnimeList.cpp in Sources */,
@@ -1697,6 +1730,7 @@
 				15A3DAEB1682F8A6002FB0C5 /* CDAudioManager.m in Sources */,
 				3729024E1867D36800B59D3A /* TriggerObj.cpp in Sources */,
 				15A3DAEC1682F8A6002FB0C5 /* CDOpenALSupport.m in Sources */,
+				81ED12DB1AF463140043B59C /* SQLiteManager.cpp in Sources */,
 				15A3DAED1682F8A6002FB0C5 /* CocosDenshion.m in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
@@ -1708,6 +1742,7 @@
 				1A9FE96F17277E9D00B21905 /* AtlasAttachmentLoader.cpp in Sources */,
 				1A9FE97017277E9D00B21905 /* Attachment.cpp in Sources */,
 				1A9FE97117277E9D00B21905 /* AttachmentLoader.cpp in Sources */,
+				81ED12E71AF46CF10043B59C /* SoldierMst.cpp in Sources */,
 				1A9FE97217277E9D00B21905 /* Bone.cpp in Sources */,
 				1A9FE97317277E9D00B21905 /* BoneData.cpp in Sources */,
 				1A9FE97417277E9D00B21905 /* extension.cpp in Sources */,
