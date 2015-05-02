@@ -6,12 +6,12 @@
 //
 //
 
-
-const int START_Y = 100;
-const int WIDTH = 100;
 #include "Battle.h"
 #include "CommonUtils.h"
 
+const int START_Y = 100;
+const int WIDTH = 100;
+const int ARMY_POSITION_Y = START_Y + NUM * WIDTH + 200;
 Battle::Battle()
 {
     m_blockList = new CCMutableDictionary<int, Block*>();
@@ -145,6 +145,15 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
         CCLog("end usedAry=%d searchAry=%d tmpAry=%d", usedAry->count(), searchAry->count(), tmpAry->count());
     }
     
+    if (usedAry->count() < 3) {
+        for (int i=0; i<usedAry->count(); i++) {
+            Block *block = usedAry->getObjectAtIndex(i);
+            block->getSprite()->runAction(CCSequence::create(CCMoveBy::create(.1f, ccp(20,0)), CCMoveBy::create(.1f, ccp(-35, 0)), CCMoveBy::create(.1f, ccp(25, 0)), CCMoveBy::create(.1f, ccp(-10, 0)), NULL));
+        }
+        createSoldier(1, m_enemyArmy, false);
+        return false;
+    }
+    
     map<int, int> column_list;
     //清空点击的block,并且更新数组 CCMutableArray<Block*> * m_blockList;
     for (int i=0; i<usedAry->count(); i++) {
@@ -232,8 +241,6 @@ void Battle::createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy
     armature = new cocos2d::extension::CCArmature();
     armature->init("Knight_f/Knight");
     armature->getAnimation()->playWithIndex(1);
-    //int positionY = 1000 + 200 * (rand() % 3);
-    int positionY = 1200;
     
     std::string weapon[] = {"weapon_f-sword.png", "weapon_f-sword2.png", "weapon_f-sword3.png", "weapon_f-sword4.png", "weapon_f-sword5.png", "weapon_f-knife.png", "weapon_f-hammer.png"};
     
@@ -246,10 +253,10 @@ void Battle::createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy
     armature->release();
     if (myArmy) {
         armature->setScale(1.2f);
-        armature->setPosition(ccp(MY_ARMY_START_X, positionY));
+        armature->setPosition(ccp(MY_ARMY_START_X, ARMY_POSITION_Y));
     }else{
         armature->setScaleX(-1.2f);
-        armature->setPosition(ccp(ENEMY_ARMY_START_X, positionY));
+        armature->setPosition(ccp(ENEMY_ARMY_START_X, ARMY_POSITION_Y));
     }
     
     
@@ -259,7 +266,7 @@ void Battle::createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy
 }
 
 void Battle::createBlock(int i , int j){
-    int rand = arc4random() % 7;
+    int rand = arc4random() % 4;
     string key = string("block").append(CommonUtils::IntToString(rand));
     CCSpriteBatchNode *batchNode = getCacheBatchNode(key, "block");
     if ( !batchNode ) {
@@ -303,9 +310,9 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
         }else if (soldier->getStatus() == Soldier::WALKING) {
             float mvDistance;
             if (myArmy) {
-                mvDistance = soldier->getMoveSpeed() / 100.f;
+                mvDistance = soldier->getMoveSpeed() * CommonUtils::getScreenWidth() / 960.f / 100;
             }else{
-                mvDistance = -soldier->getMoveSpeed() / 100.f;
+                mvDistance = -soldier->getMoveSpeed() * CommonUtils::getScreenWidth() / 960.f / 100;
             }
             soldier->getArmature()->setPositionX(soldier->getArmature()->getPositionX() + mvDistance);
             

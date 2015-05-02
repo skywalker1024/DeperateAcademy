@@ -13,8 +13,9 @@ Block::Block()
 ,m_sprite(NULL)
 ,m_type(0)
 {}
-Block::~Block(){}
-
+Block::~Block(){
+    CC_SAFE_RELEASE_NULL(m_sprite);
+}
 bool Block::init(){
     return true;
 }

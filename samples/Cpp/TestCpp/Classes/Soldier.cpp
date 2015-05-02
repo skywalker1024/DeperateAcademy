@@ -19,7 +19,10 @@ Soldier::Soldier()
 ,m_target(NULL)
 ,m_atkTimer(0)
 {}
-Soldier::~Soldier(){}
+Soldier::~Soldier(){
+    CC_SAFE_RELEASE_NULL(m_armature);
+    CC_SAFE_RELEASE_NULL(m_target);
+}
 
 bool Soldier::init(){
     m_atkTimer = ATK_TIMER;

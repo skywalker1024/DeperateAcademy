@@ -33,7 +33,7 @@ private:
     CC_SYNTHESIZE(int, m_atkRange, AtkRange);
     CC_SYNTHESIZE_RETAIN(CCArmature*, m_armature, Armature);
     CC_SYNTHESIZE(status, m_status, Status);
-    CC_SYNTHESIZE(Soldier*, m_target, Target);
+    CC_SYNTHESIZE_RETAIN(Soldier*, m_target, Target);
     CC_SYNTHESIZE(int, m_atkTimer, AtkTimer);
 };
 
