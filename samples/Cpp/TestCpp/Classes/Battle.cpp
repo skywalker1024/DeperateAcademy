@@ -313,9 +313,9 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
         }else if (soldier->getStatus() == Soldier::WALKING) {
             float mvDistance;
             if (myArmy) {
-                mvDistance = soldier->getMoveSpeed() * CommonUtils::getScreenWidth() / 960.f / 100;
+                mvDistance = soldier->getMoveSpeed() / 100;
             }else{
-                mvDistance = -soldier->getMoveSpeed() * CommonUtils::getScreenWidth() / 960.f / 100;
+                mvDistance = -soldier->getMoveSpeed() / 100;
             }
             soldier->getArmature()->setPositionX(soldier->getArmature()->getPositionX() + mvDistance);
             
