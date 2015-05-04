@@ -484,4 +484,7 @@ void StringLabel::setOffsetY( float value )
     offsetY = value;
 }
 
+void StringLabel::setLayerId(CCLayer *value){
+    layerid = value;
+}
 

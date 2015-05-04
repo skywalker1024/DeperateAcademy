@@ -143,6 +143,7 @@ StringLabelList* GraphicUtils::initString( CCLayer * layerid, string str, float 
 
     list->setUseTagFlg(useTag);
     
+    StringLabel::setLayerId( layerid );
     if( !str.empty() )
     {
         list->changeString( str );
@@ -208,7 +209,7 @@ StringLabelList* GraphicUtils::drawString( CCLayer * layerid, string str, float 
 {
     float w = CommonUtils::getStringWidth( str, font_size );
     float h = font_size;
-    
+    CCLog("w=%f h=%f", w,h);
     switch ( base_align )
     {
         case TEXT_ALIGN_CENTER_TOP:

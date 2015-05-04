@@ -67,7 +67,7 @@ class StringLabel : public CCLabelTTF
         // オフセットy座標を設定
         void setOffsetY( float value );
     
-    
+    static void setLayerId(CCLayer *value);
     private:
         // cocos側のAlign定数を取得
         static CCTextAlignment getCCAlign( int align );

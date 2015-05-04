@@ -11,6 +11,7 @@
 #include "GameConst.h"
 #include "GraphicUtils.h"
 #include "HomeScene.h"
+#include "CommonUtils.h"
 TitleScene::TitleScene()
 {
 }
@@ -28,8 +29,8 @@ bool TitleScene::init(){
     if (!BaseScene::init()) {
         return false;
     }
-    
-    StringLabelList *test = GraphicUtils::drawString(this, "titleScene", 250, 250, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_CENTER_MIDDLE, 100);
+    CCLog("width =%d height =%d", CommonUtils::getScreenWidth(), CommonUtils::getScreenHeight());
+    StringLabelList *test = GraphicUtils::drawString(this, "titleScene", 250, 250, 710, 10, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_RIGHT_MIDDLE, 100);
     CCLog("test %f %f", test->getPositionX(), test->getPositionY());
     return true;
 }
