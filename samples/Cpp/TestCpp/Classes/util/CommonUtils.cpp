@@ -8,6 +8,8 @@
 
 #include "CommonUtils.h"
 #include "StringComparator.h"
+#include "SaveUtils.h"
+
 /*
  * 数値から文字列への変換。
  */
@@ -193,4 +195,38 @@ int CommonUtils::getScreenWidth()
 int CommonUtils::getScreenHeight()
 {
     return CCDirector::sharedDirector()->getWinSize().height;
+}
+
+std::string CommonUtils::getChannelUserId()
+{
+    std::string identifierForVendor = SaveUtils::getIdentifierForVendorFromKeyChain();
+    if (identifierForVendor == "") {
+        identifierForVendor = CommonUtils::getDeviceID();
+        if (identifierForVendor != "") {
+            SaveUtils::saveIdentifierForVendorIntoKeyChain(identifierForVendor);
+        }
+    }
+    //    printf("identifierForVendor = %s\n", identifierForVendor.c_str());
+    return identifierForVendor;
+}
+
+bool CommonUtils::ReadIntoJson(std::vector<char> *buffer, Json::Value &root, bool debugOutput)
+{
+    //creating a const char holder for the downloaded data
+    std::string stringHolder = "";
+    
+    for (unsigned int i = 0; i < buffer->size(); i++)
+    {
+        stringHolder += (*buffer)[i];
+    }
+    
+    //reader will contain the extracted data in json format
+    Json::Reader reader = Json::Reader();
+    bool readerStatus = reader.parse(stringHolder, root);
+    
+    if (debugOutput) {
+        Json::StyledWriter styledWriter = Json::StyledWriter();
+        CCLOG("*****start of json***** %s", styledWriter.write(root).c_str() );    }
+    
+    return readerStatus;
 }

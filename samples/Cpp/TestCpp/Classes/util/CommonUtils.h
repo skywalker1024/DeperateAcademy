@@ -21,6 +21,7 @@ USING_NS_CC;
 #define stol(s) ( CommonUtils::StrToLong(s) )
 #define stoll(s) ( CommonUtils::StrtoLL(s) )
 
+#include "Json.h"
 class CommonUtils
 {
 public:
@@ -46,6 +47,10 @@ public:
     
     static int getScreenWidth();
     static int getScreenHeight();
+    static string getChannelUserId();
+    static string getDeviceID();
+    
+    static bool ReadIntoJson(std::vector<char> *buffer, Json::Value &root, bool debugOutput = false);
 };
 
 #endif

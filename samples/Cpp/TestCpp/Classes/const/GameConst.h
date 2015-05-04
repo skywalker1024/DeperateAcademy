@@ -28,4 +28,17 @@ static const char* const DEFAULT_FONT_NAME  =  "DFHEI5A.ttf";
 
 static const int GAME_CANVAS_WIDTH  = 320;
 static const int GAME_CANVAS_HEIGHT = 480;
+
+// 色設定
+static const char* const COLOR_KEY_LV    = "LV_LABEL";
+static const char* const COLOR_KEY_HP    = "HP_LABEL";
+static const char* const COLOR_KEY_ATK   = "ATK_LABEL";
+static const char* const COLOR_KEY_DEF   = "DEF_LABEL";
+static const char* const COLOR_KEY_HEAL  = "HEAL_LABEL";
+static const char* const COLOR_KEY_BBLV  = "BBLV_LABEL";
+static const char* const COLOR_KEY_COST  = "COST_LABEL";
+static const char* const COLOR_KEY_GOLD  = "GOLD_LABEL";
+static const char* const COLOR_KEY_WHITE = "WHITE_LABEL";
+static const char* const COLOR_KEY_RED   = "RED_LABEL";
+static const char* const COLOR_KEY_INFO  = "INFO_LABEL";
 #endif

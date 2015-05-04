@@ -3,7 +3,12 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Battle::updateArmy(cocos2d::CCMutableArray&lt;Soldier*&gt;*, cocos2d::CCMutableArray&lt;Soldier*&gt;*, bool):Battle.cpp">
+         contextName = "NetworkManager::sharedInstance():NetworkManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "instance">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "TestPerformance::addArmature(int):ArmatureScene.cpp">
@@ -14,15 +19,36 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Soldier::~Soldier():Soldier.cpp">
-      </ContextState>
-      <ContextState
          contextName = "Battle::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*):Battle.cpp">
          <PersistentStrings>
             <PersistentString
                value = "m_blockList">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BaseScene::BaseScene():BaseScene.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Battle::init():Battle.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Battle::updateArmy(cocos2d::CCMutableArray&lt;Soldier*&gt;*, cocos2d::CCMutableArray&lt;Soldier*&gt;*, bool):Battle.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "SoldierMstList::shared():SoldierMstList.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "BaseScene::~BaseScene():BaseScene.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "StepScene::scene():StepScene.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "StepScene::ResponseParse(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*):StepScene.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Soldier::~Soldier():Soldier.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

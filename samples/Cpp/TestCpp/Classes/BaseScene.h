@@ -25,6 +25,8 @@ public:
     virtual void onExit();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void registerWithTouchDispatcher();
+    void pushStepScene(string url, string postData, CCScene * scene);
+    void changeScene(CCScene * scene);
 private:
     
     // UIキャッシュリスト
@@ -43,6 +45,7 @@ protected:
     ParticleAnime* getCacheParticleAnime( string key, string name );
     // キャッシュ パーティクルアニメを設定
     void setCacheParticleAnime( string key, string name, ParticleAnime* anime );
+    ccColor3B getSystemColor( string key );
 };
 
 

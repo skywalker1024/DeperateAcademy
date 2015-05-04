@@ -1,21 +1,21 @@
 //
-//  TitleScene.h
+//  HomeScene.h
 //  TestCpp
 //
 //  Created by 龚畅优 on 14-2-2.
 //
 //
 
-#ifndef __TestCpp__TitleScene__
-#define __TestCpp__TitleScene__
+#ifndef __TestCpp__HomeScene__
+#define __TestCpp__HomeScene__
 #include "BaseScene.h"
 
-class TitleScene : public BaseScene{
+class HomeScene : public BaseScene{
 public:
     static CCScene * scene();
-    TitleScene();
-    virtual ~TitleScene();
-    CREATE_FUNC(TitleScene);
+    HomeScene();
+    virtual ~HomeScene();
+    CREATE_FUNC(HomeScene);
     virtual bool init();
 
     virtual void onEnter();
@@ -25,4 +25,4 @@ public:
 };
 
 
-#endif /* defined(__TestCpp__TitleScene__) */
+#endif /* defined(__TestCpp__HomeScene__) */

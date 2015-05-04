@@ -17,6 +17,7 @@ UICache::UICache()
     
     stringLabelList = new CCMutableDictionary<string, StringLabel*>();
     stringLabelListEx = new CCMutableDictionary<string, StringLabelList*>();
+    spriteList = new CCMutableDictionary<string, GameSprite*>();
     particleAnimeList = new CCMutableDictionary<string, ParticleAnime*>();
     batchNodeList = new CCMutableDictionary<string, BatchNodeObject*>();
     stringList = new CCMutableDictionary<string,CCString*>();

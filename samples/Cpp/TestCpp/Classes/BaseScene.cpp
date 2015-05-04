@@ -10,6 +10,8 @@
 #include "BaseScene.h"
 #include "GameConst.h"
 #include "GraphicUtils.h"
+#include "ConnectRequestList.h"
+#include "StepScene.h"
 BaseScene::BaseScene()
 {
     uiCacheList = new UICacheList();
@@ -145,4 +147,94 @@ void BaseScene::setCacheParticleAnime( string key, string name, ParticleAnime* a
     uiCacheList->setParticleAnime( key, name, anime );
 }
 
+void BaseScene::pushStepScene(string url, string postData, CCScene * scene){
+    BaseRequest *baseRequest = new BaseRequest();
+    baseRequest->setUrl(url);
+    baseRequest->setData(postData);
+    ConnectRequestList::shared()->addObject(baseRequest);
+    CCDirector::sharedDirector()->replaceScene(scene);
+    CCDirector::sharedDirector()->pushScene(StepScene::scene());
+
+}
+
+
+/*
+ * システムカラーの取得。
+ */
+ccColor3B BaseScene::getSystemColor( string key )
+{
+    ccColor3B color;
+    
+    // LVラベル
+    if( key == COLOR_KEY_LV )
+    {
+        color = ccc3(195,214,155);
+    }
+    
+    // HPラベル
+    if( key == COLOR_KEY_HP )
+    {
+        color = ccc3(242,223,0);
+    }
+    
+    // 攻撃ラベル
+    if( key == COLOR_KEY_ATK )
+    {
+        color = ccc3(255,60,60);
+    }
+    
+    // 防御ラベル
+    if( key == COLOR_KEY_DEF )
+    {
+        color = ccc3(0,125,255);
+    }
+    
+    // 回復ラベル
+    if( key == COLOR_KEY_HEAL )
+    {
+        color = ccc3(176,255,123);
+    }
+    
+    // BBLVラベル
+    if( key == COLOR_KEY_BBLV )
+    {
+        color = ccc3(195,214,155);
+    }
+    
+    // COST
+    if( key == COLOR_KEY_COST )
+    {
+        color = ccc3(255,165,0);
+    }
+    
+    // GOLD
+    if( key == COLOR_KEY_GOLD )
+    {
+        color = ccc3(181,140,57);
+    }
+    
+    // WHITE
+    if( key == COLOR_KEY_WHITE )
+    {
+        color = ccc3(255,255,255);
+    }
+    
+    // RED
+    if( key == COLOR_KEY_RED )
+    {
+        color = ccc3(255,0,0);
+    }
+    
+    // お知らせラベル
+    if( key == COLOR_KEY_INFO )
+    {
+        color = ccc3(255,165,0);
+    }
+    
+    return color;
+}
+
+void BaseScene::changeScene(CCScene * scene){
+    CCDirector::sharedDirector()->replaceScene(scene);
+}
 

@@ -269,7 +269,7 @@ void StringLabelList::draw()
         }
 
         */
-        if( layerID && ! layerID->getChildren()->containsObject(label))
+        if( layerID && (!layerID->getChildren() || !layerID->getChildren()->containsObject(label)))
         {
             layerID->addChild( label, zOrder );
         }
