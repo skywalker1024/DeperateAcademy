@@ -10,7 +10,7 @@
 #define __TestCpp__RegisterScene__
 #include "BaseScene.h"
 
-class RegisterScene : public BaseScene{
+class RegisterScene : public BaseScene, public CCEditBoxDelegate{
 public:
     static CCScene * scene();
     RegisterScene();
@@ -21,7 +21,22 @@ public:
     virtual void onEnter();
     virtual void onExit();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
-
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    
+    virtual void editBoxEditingDidBegin(CCEditBox* editBox);
+    virtual void editBoxEditingDidEnd(CCEditBox* editBox);
+    virtual void editBoxTextChanged(CCEditBox* editBox, const std::string& text);
+    virtual void editBoxReturn(CCEditBox* editBox);
+    
+private:
+    CCEditBox* editBox;
+    GameSprite* editBoxSprite;
+    // 名前保持用
+    StringLabelList* userName;
+    CCControlButton * m_randomButton;
+    CCControlButton * m_confirmButton;
 };
 
 

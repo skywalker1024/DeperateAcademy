@@ -198,16 +198,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/util/StringLabelList.cpp"
-            timestampString = "452416194.262574"
+            filePath = "../Classes/util/StringLabel.cpp"
+            timestampString = "452425080.38953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
-            landmarkName = "StringLabelList::changeString( string str )"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "StringLabel::setPosition( CCLayer * layerid, float x, float y )"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -217,93 +217,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/util/GraphicUtils.cpp"
-            timestampString = "452417851.76631"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "GraphicUtils::drawString( CCLayer * layerid, string str, float x, float y, ccColor3B base_color, int base_align, int font_size, int line_space )"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/util/GraphicUtils.cpp"
-            timestampString = "452417851.76631"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
-            landmarkName = "GraphicUtils::drawString( CCLayer * layerid, string str, float x, float y, ccColor3B base_color, int base_align, int font_size, int line_space )"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/util/GraphicUtils.cpp"
-            timestampString = "452417851.76631"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
-            landmarkName = "GraphicUtils::drawString( CCLayer * layerid, string str, float x, float y, ccColor3B base_color, int base_align, int font_size, int line_space )"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/util/StringLabelList.cpp"
-            timestampString = "452416752.705074"
+            filePath = "../Classes/util/StringLabel.cpp"
+            timestampString = "452425080.38953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "312"
             endingLineNumber = "312"
-            landmarkName = "StringLabelList::setPosition( float x, float y )"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/util/StringLabel.cpp"
-            timestampString = "452417423.611098"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "StringLabel::setPosition( float x, float y )"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/util/StringLabel.cpp"
-            timestampString = "452417510.810055"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "StringLabel::init( CCLayer * layerid, const char* str, float x, float y, float w, float h, ccColor3B color, int align, const char* font_name, int font_size )"
+            landmarkName = "StringLabel::setPosition( CCLayer * layerid, float x, float y )"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

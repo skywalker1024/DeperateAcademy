@@ -301,14 +301,15 @@ void StringLabel::setPosition( CCLayer * layerid, float x, float y )
     this->x = x;
     this->y = y;
     this->layerid = layerid;
-    
+    CCLog("StringLabel x=%f y=%f", x, y);
     CCPoint point =  getAlignPosition( x, y );
     
+    CCSprite::setPosition(point);
+    CCLog("StringLabel point x=%f y=%f", point.x, point.y);
         
     //CCSprite::setPosition( CommonUtils::convertPosition( layerid, point.x, point.y ) );
     
-    CCSprite::setPosition( CCDirector::sharedDirector()->convertToGL( ccp(point.x, point.y) ) );
-
+    //CCSprite::setPosition( CCDirector::sharedDirector()->convertToGL( ccp(point.x, point.y) ) );
 }
 
 
