@@ -14,6 +14,7 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 #include "UICacheList.h"
 #include "ConnectRequestList.h"
+#include "CommonUtils.h"
 class BaseScene : public CCLayer, public CCBMemberVariableAssigner{
 public:
     static CCScene * scene();
@@ -48,6 +49,7 @@ protected:
     // キャッシュ パーティクルアニメを設定
     void setCacheParticleAnime( string key, string name, ParticleAnime* anime );
     ccColor3B getSystemColor( string key );
+    void setHeader();
 };
 
 

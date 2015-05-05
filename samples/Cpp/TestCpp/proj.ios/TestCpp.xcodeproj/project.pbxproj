@@ -145,6 +145,8 @@
 		50F853F918C57E040019FBFB /* WidgetReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50F853E918C57E040019FBFB /* WidgetReader.cpp */; };
 		50FCEB5818C6D695004AD434 /* UIRichText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50FCEB5618C6D695004AD434 /* UIRichText.cpp */; };
 		81885F7E1AF8A8AD00073358 /* csv in Resources */ = {isa = PBXBuildFile; fileRef = 81885F7D1AF8A8AD00073358 /* csv */; };
+		81885F831AF8BE5800073358 /* LevelMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F7F1AF8BE5800073358 /* LevelMstList.cpp */; };
+		81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F801AF8BE5800073358 /* LevelMst.cpp */; };
 		81CD7C441AEFB6B100C0EB2D /* Battle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1B1AEFB6B100C0EB2D /* Battle.cpp */; };
 		81CD7C451AEFB6B100C0EB2D /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */; };
 		81CD7C461AEFB6B100C0EB2D /* ColorString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */; };
@@ -512,6 +514,10 @@
 		50FCEB5618C6D695004AD434 /* UIRichText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIRichText.cpp; sourceTree = "<group>"; };
 		50FCEB5718C6D695004AD434 /* UIRichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRichText.h; sourceTree = "<group>"; };
 		81885F7D1AF8A8AD00073358 /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
+		81885F7F1AF8BE5800073358 /* LevelMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMstList.cpp; sourceTree = "<group>"; };
+		81885F801AF8BE5800073358 /* LevelMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMst.cpp; sourceTree = "<group>"; };
+		81885F811AF8BE5800073358 /* LevelMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelMstList.h; sourceTree = "<group>"; };
+		81885F821AF8BE5800073358 /* LevelMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelMst.h; sourceTree = "<group>"; };
 		81CD7C1B1AEFB6B100C0EB2D /* Battle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Battle.cpp; path = ../Classes/Battle.cpp; sourceTree = "<group>"; };
 		81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseScene.cpp; path = ../Classes/BaseScene.cpp; sourceTree = "<group>"; };
 		81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorString.cpp; sourceTree = "<group>"; };
@@ -1498,6 +1504,10 @@
 		81ED12E21AF46CF10043B59C /* data */ = {
 			isa = PBXGroup;
 			children = (
+				81885F801AF8BE5800073358 /* LevelMst.cpp */,
+				81885F821AF8BE5800073358 /* LevelMst.h */,
+				81885F7F1AF8BE5800073358 /* LevelMstList.cpp */,
+				81885F811AF8BE5800073358 /* LevelMstList.h */,
 				81ED12E31AF46CF10043B59C /* SoldierMst.cpp */,
 				81ED12E41AF46CF10043B59C /* SoldierMst.h */,
 				81ED12E51AF46CF10043B59C /* SoldierMstList.cpp */,
@@ -1730,6 +1740,7 @@
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
 				1A27573F1697CF2B00504026 /* CCEditBoxImplAndroid.cpp in Sources */,
+				81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */,
 				81ED12E71AF46CF10043B59C /* SoldierMst.cpp in Sources */,
 				81CD7C451AEFB6B100C0EB2D /* BaseScene.cpp in Sources */,
 				50F853F418C57E040019FBFB /* LoadingBarReader.cpp in Sources */,
@@ -1783,6 +1794,7 @@
 				37CA1C4B17D87A3300A649D0 /* UILabelBMFont.cpp in Sources */,
 				37CA1C4C17D87A3300A649D0 /* UILoadingBar.cpp in Sources */,
 				37CA1C4E17D87A3300A649D0 /* UISlider.cpp in Sources */,
+				81885F831AF8BE5800073358 /* LevelMstList.cpp in Sources */,
 				37CA1C5117D87A3300A649D0 /* UITextField.cpp in Sources */,
 				37CA1C5317D87A3300A649D0 /* DictionaryHelper.cpp in Sources */,
 				38FA2E94194E92F400FF2BE4 /* CCTimeLine.cpp in Sources */,

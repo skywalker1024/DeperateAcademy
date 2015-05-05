@@ -12,7 +12,7 @@
 #include "cocos2d.h"
 
 USING_NS_CC;
-
+#include "json.h"
 class UserInfo : public CCObject
 {
 public:
@@ -20,6 +20,7 @@ public:
     static UserInfo* shared();
     static void destroy();
     bool existUser();
+    void updateWithJson(Json::Value json);
 private:
     // コンストラクタ
     UserInfo();

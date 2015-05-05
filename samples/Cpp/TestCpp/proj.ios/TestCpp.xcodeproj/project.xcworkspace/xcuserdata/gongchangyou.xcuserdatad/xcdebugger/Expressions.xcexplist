@@ -56,6 +56,22 @@
          contextName = "cocos2d::CCObject::release():CCObject.cpp">
       </ContextState>
       <ContextState
+         contextName = "Json::Value::asInt() const:jsoncpp.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "type_">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BaseScene::setHeader():BaseScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "userInfo-&gt;getLv()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Battle::updateArmy(cocos2d::CCMutableArray&lt;Soldier*&gt;*, cocos2d::CCMutableArray&lt;Soldier*&gt;*, bool):Battle.cpp">
       </ContextState>
       <ContextState
@@ -72,6 +88,14 @@
          <PersistentStrings>
             <PersistentString
                value = "uiCacheList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "UserInfo::updateWithJson(Json::Value):UserInfo.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_channel_user_id">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

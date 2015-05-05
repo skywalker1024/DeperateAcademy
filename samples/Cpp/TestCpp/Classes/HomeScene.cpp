@@ -28,16 +28,13 @@ bool HomeScene::init(){
     if (!BaseScene::init()) {
         return false;
     }
-    setTouchEnabled(true);
     
-     StringLabelList * title = GraphicUtils::drawString(this, "homescene中文事实上", 100, 100, 960, 100, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_MIDDLE, 40);
     return true;
 }
 
 void HomeScene::onEnter(){
     BaseScene::onEnter();
-   
-    
+    setHeader();
 }
 
 void HomeScene::onExit(){

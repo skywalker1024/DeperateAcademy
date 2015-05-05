@@ -309,7 +309,7 @@ void StringLabelList::setPosition( float x, float y )
     {
         StringLabel* label = labelList->getObjectAtIndex( i );
         
-        label->setPosition( x + label->getOffsetX(), y + label->getOffsetY() );
+        label->setPosition( x + label->getOffsetX(), y - label->getOffsetY() );
         
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         //Hack: Heureustic font adjustment to deal with size different between iOS and Android fonts

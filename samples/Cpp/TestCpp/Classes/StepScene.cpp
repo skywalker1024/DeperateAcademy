@@ -99,7 +99,7 @@ SEL_HttpResponse StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* 
             //服务器内部错误 show dialog and exit todo
             
         }else{
-            //retry todo
+            //retry todo replaceScene StepScene
         }
         
         
@@ -123,8 +123,7 @@ SEL_HttpResponse StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* 
     }
     
     if (!responseJson["user_info"].isNull()) {
-        
-        //update user_info todo
+        UserInfo::shared()->updateWithJson(responseJson["user_info"]);
     }
     
     

@@ -12,6 +12,8 @@
 #include "GraphicUtils.h"
 #include "ConnectRequestList.h"
 #include "StepScene.h"
+#include "UserInfo.h"
+#include "LevelMstList.h"
 BaseScene::BaseScene()
 {
     uiCacheList = new UICacheList();
@@ -240,5 +242,59 @@ ccColor3B BaseScene::getSystemColor( string key )
 
 void BaseScene::changeScene(CCScene * scene){
     CCDirector::sharedDirector()->replaceScene(scene);
+}
+
+void BaseScene::setHeader(){
+    int screenWidth = CommonUtils::getScreenWidth();
+    int screenHeight = CommonUtils::getScreenHeight();
+    
+    UserInfo * userInfo = UserInfo::shared();
+    //name
+    int x = 100;
+    int y = screenHeight - 100;
+    int width = 300;
+    int fontSize = 60;
+    GraphicUtils::drawString(this, userInfo->getName(), x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    x += width;
+    
+    //钻石
+    width = 150;
+    GraphicUtils::drawString(this, "钻石", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    x += width;
+    GraphicUtils::drawString(this, CommonUtils::IntToString( userInfo->getDiamond() ), x, y, 500, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    
+    //第二行
+    //lv
+    x = 100;
+    y = screenHeight - 200;
+    width = 150;
+    GraphicUtils::drawString(this, "等级", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    x += width;
+    
+    width = 200;
+    GraphicUtils::drawString(this, CommonUtils::IntToString(userInfo->getLv()), x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    x += width;
+    
+    
+    //第三行 体力值
+    x = 100;
+    y = screenHeight - 300;
+    width = 200;
+    GraphicUtils::drawString(this, "体力值", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    x += width;
+    string actionP = CCString::createWithFormat("%d/%d", userInfo->getActionP(), userInfo->getMaxActionP())->m_sString;
+    GraphicUtils::drawString(this, actionP, x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    x += width;
+    //经验值
+    GraphicUtils::drawString(this, "经验值", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    x += width;
+    LevelMst * levelMst = LevelMstList::shared()->getObject(userInfo->getLv() + 1);
+    if (levelMst) {
+       string expString = CCString::createWithFormat("%d/%d", userInfo->getExp(), levelMst->getExp())->m_sString;
+        GraphicUtils::drawString(this, expString, x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    }else{
+        GraphicUtils::drawString(this, "已顶级", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    }
+
 }
 

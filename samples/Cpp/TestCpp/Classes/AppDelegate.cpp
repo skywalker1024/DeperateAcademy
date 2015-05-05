@@ -3,7 +3,7 @@
 #include "cocos2d.h"
 #include "SimpleAudioEngine.h"
 #include "cocos-ext.h"
-#include "RegisterScene.h"
+#include "TitleScene.h"
 #include "AppMacros.h"
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -40,7 +40,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCSize frameSize = pEGLView->getFrameSize();
     pDirector->setContentScaleFactor(1);
     
-    CCScene * pScene = RegisterScene::scene();
+    CCScene * pScene = TitleScene::scene();
     
     pDirector->runWithScene(pScene);
 

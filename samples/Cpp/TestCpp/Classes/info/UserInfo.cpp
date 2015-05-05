@@ -58,3 +58,14 @@ bool UserInfo::existUser()
     
     return true;
 }
+
+void UserInfo::updateWithJson(Json::Value json){
+    m_channel_user_id = json["channel_user_id"].asString();
+    m_action_p = CommonUtils::StrToInt( json["action_p"].asString());
+    m_max_action_p = CommonUtils::StrToInt( json["max_action_p"].asString() );
+    m_name = json["name"].asString();
+    m_diamond = CommonUtils::StrToInt( json["diamond"].asString());
+    m_exp = CommonUtils::StrToInt( json["exp"].asString());
+    m_lv = CommonUtils::StrToInt( json["lv"].asString());
+    m_user_id = CommonUtils::StrToInt( json["id"].asString());
+}
