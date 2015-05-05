@@ -291,7 +291,7 @@ void BaseScene::setHeader(){
     LevelMst * levelMst = LevelMstList::shared()->getObject(userInfo->getLv() + 1);
     if (levelMst) {
        string expString = CCString::createWithFormat("%d/%d", userInfo->getExp(), levelMst->getExp())->m_sString;
-        GraphicUtils::drawString(this, expString, x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+        GraphicUtils::drawString(this, expString, x, y, 300, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
     }else{
         GraphicUtils::drawString(this, "已顶级", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
     }
