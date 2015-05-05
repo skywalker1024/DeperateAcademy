@@ -13,6 +13,7 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 #include "UICacheList.h"
+#include "ConnectRequestList.h"
 class BaseScene : public CCLayer, public CCBMemberVariableAssigner{
 public:
     static CCScene * scene();
@@ -26,6 +27,7 @@ public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void registerWithTouchDispatcher();
     void pushStepScene(string url, string postData, CCScene * scene);
+    void pushStepScene(CCScene * scene);
     void changeScene(CCScene * scene);
 private:
     

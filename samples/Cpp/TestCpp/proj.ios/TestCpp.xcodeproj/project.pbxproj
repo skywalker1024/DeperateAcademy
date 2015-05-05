@@ -144,6 +144,7 @@
 		50F853F818C57E040019FBFB /* TextFieldReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50F853E718C57E040019FBFB /* TextFieldReader.cpp */; };
 		50F853F918C57E040019FBFB /* WidgetReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50F853E918C57E040019FBFB /* WidgetReader.cpp */; };
 		50FCEB5818C6D695004AD434 /* UIRichText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50FCEB5618C6D695004AD434 /* UIRichText.cpp */; };
+		81885F7E1AF8A8AD00073358 /* csv in Resources */ = {isa = PBXBuildFile; fileRef = 81885F7D1AF8A8AD00073358 /* csv */; };
 		81CD7C441AEFB6B100C0EB2D /* Battle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1B1AEFB6B100C0EB2D /* Battle.cpp */; };
 		81CD7C451AEFB6B100C0EB2D /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */; };
 		81CD7C461AEFB6B100C0EB2D /* ColorString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */; };
@@ -510,6 +511,7 @@
 		50F853EB18C57E040019FBFB /* WidgetReaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetReaderProtocol.h; sourceTree = "<group>"; };
 		50FCEB5618C6D695004AD434 /* UIRichText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIRichText.cpp; sourceTree = "<group>"; };
 		50FCEB5718C6D695004AD434 /* UIRichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRichText.h; sourceTree = "<group>"; };
+		81885F7D1AF8A8AD00073358 /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
 		81CD7C1B1AEFB6B100C0EB2D /* Battle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Battle.cpp; path = ../Classes/Battle.cpp; sourceTree = "<group>"; };
 		81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseScene.cpp; path = ../Classes/BaseScene.cpp; sourceTree = "<group>"; };
 		81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorString.cpp; sourceTree = "<group>"; };
@@ -1420,6 +1422,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				81885F7D1AF8A8AD00073358 /* csv */,
 				81ED12DC1AF469510043B59C /* sqlite */,
 				81CD7C5E1AEFB95A00C0EB2D /* img */,
 				81CD7C5F1AEFB95A00C0EB2D /* font */,
@@ -1618,6 +1621,7 @@
 			files = (
 				81ED12DD1AF469510043B59C /* sqlite in Resources */,
 				81CD7C611AEFB95A00C0EB2D /* font in Resources */,
+				81885F7E1AF8A8AD00073358 /* csv in Resources */,
 				81CD7C601AEFB95A00C0EB2D /* img in Resources */,
 				1A16458B191B5178008C7C7F /* ccs-res in Resources */,
 			);

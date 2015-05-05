@@ -105,7 +105,7 @@ class GameSprite : public CCSprite
         int compParam2;
 
         string compParamStr1;
-
+        CCRect getRect();
     protected:
     
     

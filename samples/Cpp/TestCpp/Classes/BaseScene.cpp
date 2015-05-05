@@ -157,6 +157,10 @@ void BaseScene::pushStepScene(string url, string postData, CCScene * scene){
 
 }
 
+void BaseScene::pushStepScene(CCScene * scene){
+    CCDirector::sharedDirector()->replaceScene(scene);
+    CCDirector::sharedDirector()->pushScene(StepScene::scene());
+}
 
 /*
  * システムカラーの取得。

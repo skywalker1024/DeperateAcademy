@@ -492,5 +492,32 @@ int GameSprite::getDefaultOpacity()
     return deafaultOpacity;
 }
 
+CCRect GameSprite::getRect(){
+    // ノードの短形を取得
+    float left = cocos2d::CCNode::getPositionX();
+    float bottom = cocos2d::CCNode::getPositionY();
+    
+
+    // 幅、高さを取得（拡大率も含める）
+    float width = getContentSize().width;
+    float height = getContentSize().height;
+    
+    width *= getScaleX();
+    height *= getScaleY();
+    
+    CCPoint anc = getAnchorPoint();
+    
+    // 左上基準で判定
+    if( anc.x == 0.5 ) left -= width / 2;
+    if( anc.x == 1.0 ) left -= width;
+    if( anc.y == 0.5 ) bottom  -= height / 2;
+    if( anc.y == 1.0 ) bottom  -= height;
+    
+    
+    // GLの座標系なので高さを変換
+    CCRect rect = CCRectMake( left, bottom , width, height );
+    CCLog("GameSprite::getRect x=%f y=%f width=%f height=%f", left, bottom, width, height);
+    return rect;
+}
 
 

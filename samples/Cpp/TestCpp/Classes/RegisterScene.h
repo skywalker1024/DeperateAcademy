@@ -21,9 +21,6 @@ public:
     virtual void onEnter();
     virtual void onExit();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
     virtual void editBoxEditingDidBegin(CCEditBox* editBox);
     virtual void editBoxEditingDidEnd(CCEditBox* editBox);
@@ -37,6 +34,9 @@ private:
     StringLabelList* userName;
     CCControlButton * m_randomButton;
     CCControlButton * m_confirmButton;
+    
+    void create_user(CCObject *sender, CCControlEvent controlEvent);
+    void getRandomName(CCObject *sender, CCControlEvent controlEvent);
 };
 
 

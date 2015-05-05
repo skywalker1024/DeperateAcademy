@@ -51,6 +51,8 @@ public:
     static string getDeviceID();
     
     static bool ReadIntoJson(std::vector<char> *buffer, Json::Value &root, bool debugOutput = false);
+    static vector<string> * getCsvList( string path );
+    static int getRandom( int min, int max );
 };
 
 #endif

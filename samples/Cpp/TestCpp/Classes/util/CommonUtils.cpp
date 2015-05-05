@@ -230,3 +230,61 @@ bool CommonUtils::ReadIntoJson(std::vector<char> *buffer, Json::Value &root, boo
     
     return readerStatus;
 }
+
+vector<string> * CommonUtils::getCsvList( string path )
+{
+    vector<string> * csvlist = new vector<string>;
+    
+    //CCLog( "###CommonUtils::getCsvList path=%s", path.c_str() );
+    
+    // 読み込んだテキストの文字列データ
+    unsigned long size = 0;
+    unsigned char * pLoadedChar = CCFileUtils::sharedFileUtils()->getFileData(path.c_str(), "r", &size);
+    std::string * pLoadedString = new string((const char *)pLoadedChar, size);
+    int spos = 0;
+    CCLog("pLoadedString=%s pLoadedChar=%s",pLoadedString->c_str(), pLoadedChar);
+    for( ;; )
+    {
+        // 改行コードで分割
+        int kidx = pLoadedString->find_first_of("\n", spos );
+        
+        if( kidx == string::npos )
+            break;
+        
+        string linestr = pLoadedString->substr( spos, kidx - spos );
+        spos += ( kidx - spos );
+        spos++;
+        
+        //将linestr中的\r替换掉
+        int r_pos = 0;
+        int r_index = linestr.find_first_of("\r", r_pos);
+        if( r_index != string::npos ){
+            linestr = linestr.substr(0, r_index);
+        }
+        csvlist->push_back(linestr);
+    }
+    
+    delete pLoadedString;
+    
+    return csvlist;
+}
+
+int CommonUtils::getRandom( int min, int max )
+{
+    if( min > max )
+    {
+        int value = min;
+        
+        min = max;
+        max = value;
+    }
+    
+    int rand = 0;
+    
+    for( int i = 0; i < 10; i++ )
+    {
+        rand = arc4random() % ( ( max - min ) + 1 );
+    }
+    
+    return rand + min;
+}

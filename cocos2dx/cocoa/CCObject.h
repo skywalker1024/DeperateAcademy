@@ -63,9 +63,10 @@ public:
     unsigned int        m_uID;
     // Lua reference id
     int                 m_nLuaID;
-protected:
     // count of references
     unsigned int        m_uReference;
+protected:
+    
     // count of autorelease
     unsigned int        m_uAutoReleaseCount;
 public:
