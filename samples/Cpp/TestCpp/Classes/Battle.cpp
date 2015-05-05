@@ -273,7 +273,7 @@ void Battle::createBlock(int i , int j){
     string key = string("block").append(CommonUtils::IntToString(rand));
     CCSpriteBatchNode *batchNode = getCacheBatchNode(key, "block");
     if ( !batchNode ) {
-        string spriteName = string("img/unit_ills_thum_").append(CommonUtils::IntToString(rand)).append(".png");
+        string spriteName = string("img/bubble_").append(CommonUtils::IntToString(rand)).append(".png");
         batchNode = CCSpriteBatchNode::create( spriteName.c_str(), kDefaultSpriteBatchCapacity);
         this->addChild(batchNode);
         this->setCacheBatchNode(key, "block", batchNode);
@@ -313,9 +313,9 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
         }else if (soldier->getStatus() == Soldier::WALKING) {
             float mvDistance;
             if (myArmy) {
-                mvDistance = soldier->getMoveSpeed() / 100;
+                mvDistance = soldier->getMoveSpeed() / 100.f;
             }else{
-                mvDistance = -soldier->getMoveSpeed() / 100;
+                mvDistance = -soldier->getMoveSpeed() / 100.f;
             }
             soldier->getArmature()->setPositionX(soldier->getArmature()->getPositionX() + mvDistance);
             

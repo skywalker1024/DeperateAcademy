@@ -35,6 +35,13 @@ bool HomeScene::init(){
 void HomeScene::onEnter(){
     BaseScene::onEnter();
     setHeader();
+    
+    //创建button
+    //出征（购买体力写在里面吧）
+    //竞技场（排行榜和挑战）
+    //强化（强化士兵 强化城墙）
+    
+    //钻石商店
 }
 
 void HomeScene::onExit(){

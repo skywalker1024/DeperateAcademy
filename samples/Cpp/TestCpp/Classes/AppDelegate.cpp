@@ -5,6 +5,7 @@
 #include "cocos-ext.h"
 #include "TitleScene.h"
 #include "AppMacros.h"
+#include "Battle.h"
 USING_NS_CC;
 using namespace CocosDenshion;
 
@@ -40,7 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCSize frameSize = pEGLView->getFrameSize();
     pDirector->setContentScaleFactor(1);
     
-    CCScene * pScene = TitleScene::scene();
+    CCScene * pScene = Battle::scene();
     
     pDirector->runWithScene(pScene);
 
