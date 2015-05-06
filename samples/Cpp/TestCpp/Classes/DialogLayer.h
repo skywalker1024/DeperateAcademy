@@ -25,9 +25,8 @@ protected:
     virtual void onCancel();
     
     CC_SYNTHESIZE(CCLabelTTF*, m_content, Content);
-    CC_SYNTHESIZE(CCControlButton*, m_confirmButton, ConfirmButton);
-    CC_SYNTHESIZE(CCControlButton*, m_cancelButton, CancelButton);
-    CC_SYNTHESIZE(CCControlButton*, m_singleConfirmButton, SingleConfirmButton);
+    CC_SYNTHESIZE_RETAIN(CCControlButton*, m_confirmButton, ConfirmButton);
+    CC_SYNTHESIZE_RETAIN(CCControlButton*, m_cancelButton, CancelButton);
  
     CC_SYNTHESIZE_RETAIN(CCObject*, m_caller, Caller);
     CC_SYNTHESIZE(SEL_CallFunc,m_selector, Selector);

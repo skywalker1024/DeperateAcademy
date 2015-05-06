@@ -39,6 +39,10 @@ private:
     int connectIndex;
     SEL_HttpResponse ResponseParse(CCHttpClient* client, CCHttpResponse* response);
     bool m_isFinish;
+    
+    void backToTitle();
+    void retry();
+    void noticeConfirm();
 };
 
 #endif

@@ -34,7 +34,6 @@ bool TitleScene::init(){
     StringLabelList *test = GraphicUtils::drawString(this, "titleScene", 250, 250, 710, 10, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_RIGHT_MIDDLE, 100);
     CCLog("test %f %f", test->getPositionX(), test->getPositionY());
     
-    addChild(DialogBaseLayer::create());
     return true;
 }
 

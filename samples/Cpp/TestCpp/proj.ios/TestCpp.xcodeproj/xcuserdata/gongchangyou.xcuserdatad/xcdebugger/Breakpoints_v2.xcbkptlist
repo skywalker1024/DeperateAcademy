@@ -106,28 +106,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/StepScene.cpp"
-            timestampString = "452510057.822069"
+            timestampString = "452588227.154358"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* response)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/StepScene.cpp"
-            timestampString = "452405615.293847"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "StepScene::draw()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -144,22 +128,6 @@
             startingLineNumber = "72"
             endingLineNumber = "72"
             landmarkName = "Battle::onEnter()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/StepScene.cpp"
-            timestampString = "452405615.293847"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* response)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -358,16 +326,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../Classes/TitleScene.cpp"
-            timestampString = "452513757.582439"
+            filePath = "../Classes/DialogLayer.cpp"
+            timestampString = "452587798.174128"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "TitleScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "DialogLayer::showDialog(const char* content, int buttons, CCObject *caller, SEL_CallFunc onConfirmClick, CCObject *cancelCaller, SEL_CallFunc cancelSelector, const char* confirmString, const char * cancelString)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

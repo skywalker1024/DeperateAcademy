@@ -12,7 +12,6 @@
 #include "GraphicUtils.h"
 DialogLayer::DialogLayer():
 m_cancelButton(NULL),
-m_singleConfirmButton(NULL),
 m_confirmButton(NULL),
 m_content(NULL),
 m_caller(NULL),
@@ -21,7 +20,6 @@ m_selector(NULL)
 {}
 DialogLayer::~DialogLayer(){
     CC_SAFE_RELEASE_NULL(m_cancelButton);
-    CC_SAFE_RELEASE_NULL(m_singleConfirmButton);
     CC_SAFE_RELEASE_NULL(m_confirmButton);
     CC_SAFE_RELEASE_NULL(m_content);
     CC_SAFE_RELEASE_NULL(m_caller);
@@ -34,18 +32,18 @@ DialogLayer* DialogLayer::showDialog(const char* content, int buttons, CCObject 
     int screenWidth = CommonUtils::getScreenWidth();
     int screenHeight = CommonUtils::getScreenHeight();
     
-    GraphicUtils::drawString(pRet, content, screenWidth / 2, screenHeight / 2, screenWidth, 40, ccc3(255,255,255), TEXT_ALIGN_CENTER_TOP, 40);
+    GraphicUtils::drawString(pRet, content, 0, screenHeight / 2 + 200, screenWidth, 60, ccc3(255,255,255), TEXT_ALIGN_CENTER_TOP, 60);
     
     pRet->setCaller(caller);
     pRet->setSelector(onConfirmClick);
     pRet->setCancelCaller(cancelCaller);
     pRet->setCancelSelector(cancelSelector);
     
-    CCLabelTTF * confirmLabel = CCLabelTTF::create("确定", DEFAULT_FONT_NAME, 40);
-    CCLabelTTF * cancelLabel = CCLabelTTF::create("取消", DEFAULT_FONT_NAME, 40);
+    CCLabelTTF * confirmLabel = CCLabelTTF::create("确定", DEFAULT_FONT_NAME, 60);
+    CCLabelTTF * cancelLabel = CCLabelTTF::create("取消", DEFAULT_FONT_NAME, 60);
     
-    pRet->setConfirmButton( CCControlButton::create("确定", DEFAULT_FONT_NAME, 40) );
-    pRet->setCancelButton( CCControlButton::create("取消", DEFAULT_FONT_NAME, 40) );
+    pRet->setConfirmButton( CCControlButton::create(confirmLabel, CCScale9Sprite::create("img/button1.png", CCRect(0,0,256,256))) );
+    pRet->setCancelButton( CCControlButton::create(cancelLabel, CCScale9Sprite::create("img/button2.png")) );
     if (strcmp(confirmString, "") != 0) {
         confirmLabel->setString(confirmString);
     }
@@ -66,7 +64,7 @@ DialogLayer* DialogLayer::showDialog(const char* content, int buttons, CCObject 
             pRet->getConfirmButton()->setPosition(ccp(screenWidth / 2, screenHeight / 2));
         }else if (buttons == 2){
             pRet->getConfirmButton()->setPosition(ccp(screenWidth / 2 - 200, screenHeight / 2));
-            pRet->getConfirmButton()->setPosition(ccp(screenWidth / 2 + 200, screenHeight / 2));
+            pRet->getCancelButton()->setPosition(ccp(screenWidth / 2 + 200, screenHeight / 2));
         }
     }
     CCDirector::sharedDirector()->getRunningScene()->addChild(pRet, 10);
@@ -80,7 +78,6 @@ void DialogLayer::onEnter()
     DialogBaseLayer::onEnter();
     m_confirmButton->setTouchPriority(DIALOG_BUTTON_PRIORITY);
     m_cancelButton->setTouchPriority(DIALOG_BUTTON_PRIORITY);
-    m_singleConfirmButton->setTouchPriority(DIALOG_BUTTON_PRIORITY);
     
 }
 

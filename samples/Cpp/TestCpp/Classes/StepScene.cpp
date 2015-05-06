@@ -12,6 +12,8 @@
 #include "CommonUtils.h"
 #include "RegisterScene.h"
 #include "UserInfo.h"
+#include "DialogLayer.h"
+#include "TitleScene.h"
 /*
  * コンストラクタ。
  */
@@ -92,16 +94,16 @@ void StepScene::draw()
 }
 
 SEL_HttpResponse StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* response){
-    
+
+        
     if (!response->isSucceed()) {
         CCLog("not succeed");
         if (response->getResponseCode() == 500) {
-            //服务器内部错误 show dialog and exit todo
-            
+            //test
+            DialogLayer::showDialog("服务器出错，将回到登录界面。", 1, this, callfunc_selector(StepScene::backToTitle), NULL, NULL, "", "");
         }else{
-            //retry todo replaceScene StepScene
+            DialogLayer::showDialog("通讯不良，请重试", 1, this, callfunc_selector(StepScene::retry), NULL, NULL, "", "");
         }
-        
         
         return NULL;
     }
@@ -113,12 +115,20 @@ SEL_HttpResponse StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* 
         //show dialog and exit todo
         if (responseJson["error"].asString() == "no user") {
             if (UserInfo::shared()->existUser()) {//出错
-                CCLog("show error dialog & exit");//todo
+                //test
+                DialogLayer::showDialog(responseJson["error"].asCString(), 1, this, callfunc_selector(StepScene::backToTitle), NULL, NULL, "", "");
             }else{ //去register
                 CCDirector::sharedDirector()->popScene();
                 changeScene(RegisterScene::scene());
             }
+        }else{
+            DialogLayer::showDialog(responseJson["error"].asCString(), 1, this, callfunc_selector(StepScene::backToTitle), NULL, NULL, "", "");
         }
+        return NULL;
+    }
+    
+    if (!responseJson["notice"].isNull()) {
+        DialogLayer::showDialog(responseJson["notice"].asCString(), 1, this, callfunc_selector(StepScene::noticeConfirm), NULL, NULL, "", "");
         return NULL;
     }
     
@@ -126,10 +136,21 @@ SEL_HttpResponse StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* 
         UserInfo::shared()->updateWithJson(responseJson["user_info"]);
     }
     
-    
-    
     m_isFinish = true;
     return NULL;
     //CCLog("responseData=%s", responseJson);
 }
 
+void StepScene::backToTitle(){
+    CCDirector::sharedDirector()->popScene();
+    changeScene(TitleScene::scene());
+}
+
+void StepScene::retry(){
+    state = STATE_CONNECT_INIT;
+}
+
+void StepScene::noticeConfirm(){
+    //提示一下就继续
+    m_isFinish = true;
+}
