@@ -72,7 +72,7 @@ void RegisterScene::onEnter(){
     m_randomButton->addTargetWithActionForControlEvents(this, cccontrol_selector(RegisterScene::getRandomName), CCControlEventTouchDown);
     
     float nx = CommonUtils::getScreenWidth() / 2 - 143;
-    float ny = 900;
+    float ny = 980;
     
     userName = GraphicUtils::drawString( this, "", nx, ny, 200, 32, ccc3(255,255,255), TEXT_ALIGN_LEFT_TOP, 40 );
     

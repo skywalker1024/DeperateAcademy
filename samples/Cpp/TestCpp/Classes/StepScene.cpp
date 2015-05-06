@@ -113,7 +113,7 @@ SEL_HttpResponse StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* 
     //check error
     if (!responseJson["error"].isNull()) {
         //show dialog and exit todo
-        if (responseJson["error"].asString() == "no user") {
+        if (responseJson["error"].asString().find("no user") != string::npos) {
             if (UserInfo::shared()->existUser()) {//出错
                 //test
                 DialogLayer::showDialog(responseJson["error"].asCString(), 1, this, callfunc_selector(StepScene::backToTitle), NULL, NULL, "", "");
