@@ -145,6 +145,7 @@
 		50F853F918C57E040019FBFB /* WidgetReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50F853E918C57E040019FBFB /* WidgetReader.cpp */; };
 		50FCEB5818C6D695004AD434 /* UIRichText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50FCEB5618C6D695004AD434 /* UIRichText.cpp */; };
 		817F8ECE1AF90E5F00A87076 /* DialogLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ECC1AF90E5F00A87076 /* DialogLayer.cpp */; };
+		817F8ED11AFA628500A87076 /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED01AFA628500A87076 /* Wall.cpp */; };
 		81885F7E1AF8A8AD00073358 /* csv in Resources */ = {isa = PBXBuildFile; fileRef = 81885F7D1AF8A8AD00073358 /* csv */; };
 		81885F831AF8BE5800073358 /* LevelMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F7F1AF8BE5800073358 /* LevelMstList.cpp */; };
 		81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F801AF8BE5800073358 /* LevelMst.cpp */; };
@@ -517,6 +518,8 @@
 		50FCEB5718C6D695004AD434 /* UIRichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRichText.h; sourceTree = "<group>"; };
 		817F8ECC1AF90E5F00A87076 /* DialogLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DialogLayer.cpp; path = ../Classes/DialogLayer.cpp; sourceTree = "<group>"; };
 		817F8ECD1AF90E5F00A87076 /* DialogLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DialogLayer.h; path = ../Classes/DialogLayer.h; sourceTree = "<group>"; };
+		817F8ECF1AFA628500A87076 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wall.h; path = ../Classes/Wall.h; sourceTree = "<group>"; };
+		817F8ED01AFA628500A87076 /* Wall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wall.cpp; path = ../Classes/Wall.cpp; sourceTree = "<group>"; };
 		81885F7D1AF8A8AD00073358 /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
 		81885F7F1AF8BE5800073358 /* LevelMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMstList.cpp; sourceTree = "<group>"; };
 		81885F801AF8BE5800073358 /* LevelMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMst.cpp; sourceTree = "<group>"; };
@@ -857,6 +860,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				817F8ECF1AFA628500A87076 /* Wall.h */,
+				817F8ED01AFA628500A87076 /* Wall.cpp */,
 				15AA9F3A15B7EF960033D6C2 /* AppDelegate.cpp */,
 				15AA9F3B15B7EF960033D6C2 /* AppDelegate.h */,
 				81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */,
@@ -1753,6 +1758,7 @@
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
 				1A27573F1697CF2B00504026 /* CCEditBoxImplAndroid.cpp in Sources */,
 				81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */,
+				817F8ED11AFA628500A87076 /* Wall.cpp in Sources */,
 				81ED12E71AF46CF10043B59C /* SoldierMst.cpp in Sources */,
 				81CD7C451AEFB6B100C0EB2D /* BaseScene.cpp in Sources */,
 				50F853F418C57E040019FBFB /* LoadingBarReader.cpp in Sources */,

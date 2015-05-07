@@ -41,7 +41,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCSize frameSize = pEGLView->getFrameSize();
     pDirector->setContentScaleFactor(1);
     
-    CCScene * pScene = TitleScene::scene();
+    CCScene * pScene = Battle::scene();
     
     pDirector->runWithScene(pScene);
 

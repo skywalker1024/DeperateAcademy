@@ -23,7 +23,8 @@ public:
     {
         WALKING = 1,
         ATKING = 2,
-        DEAD = 3
+        ATKING_WALL = 3,
+        DEAD = 4
     };
     void initWithSoldierId(int soldierId);
 private:

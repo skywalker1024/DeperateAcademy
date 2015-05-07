@@ -15,6 +15,8 @@ USING_NS_CC_EXT;
 #include "UICacheList.h"
 #include "ConnectRequestList.h"
 #include "CommonUtils.h"
+#include "GameConst.h"
+#include "GraphicUtils.h"
 class BaseScene : public CCLayer, public CCBMemberVariableAssigner{
 public:
     static CCScene * scene();

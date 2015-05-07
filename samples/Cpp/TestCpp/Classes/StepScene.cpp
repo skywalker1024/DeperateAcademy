@@ -14,6 +14,8 @@
 #include "UserInfo.h"
 #include "DialogLayer.h"
 #include "TitleScene.h"
+#include "GraphicUtils.h"
+#include "GameConst.h"
 /*
  * コンストラクタ。
  */
@@ -47,6 +49,20 @@ bool StepScene::init(){
 
 void StepScene::onEnter(){
     BaseScene::onEnter();
+    
+    //添加loading小人 和 通讯中字符串
+    /*
+    CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfoAsync("ccs-res/armature/knight.png", "ccs-res/armature/knight.plist", "ccs-res/armature/knight.xml", this, NULL);
+    CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfoAsync("ccs-res/armature/weapon.png", "ccs-res/armature/weapon.plist", "ccs-res/armature/weapon.xml", this, NULL);
+
+    CCArmature * armature = new cocos2d::extension::CCArmature();
+    armature->init("Knight_f/Knight");
+    armature->getAnimation()->playWithIndex(1);
+    armature->setPosition(CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() / 2);
+    addChild(armature);
+    armature->release();
+    */
+    GraphicUtils::drawString(this, "通讯中...", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() / 2 - 100, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_CENTER_MIDDLE, 60);
 }
 
 void StepScene::onExit(){
@@ -94,8 +110,6 @@ void StepScene::draw()
 }
 
 SEL_HttpResponse StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* response){
-
-        
     if (!response->isSucceed()) {
         CCLog("not succeed");
         if (response->getResponseCode() == 500) {

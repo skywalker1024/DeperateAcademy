@@ -15,6 +15,7 @@ USING_NS_CC_EXT;
 #include "BaseScene.h"
 #include "Block.h"
 #include "Soldier.h"
+#include "Wall.h"
 const int NUM = 8;
 
 class Battle : public BaseScene{
@@ -41,6 +42,8 @@ private:
     CCMutableArray<Soldier*>* m_myArmy;
     CCMutableArray<Soldier*>* m_enemyArmy;
     void updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldier*>* defArmy, bool myArmy);
+    CC_SYNTHESIZE_RETAIN(Wall*, m_myWall, MyWall);
+    CC_SYNTHESIZE_RETAIN(Wall*, m_enemyWall, EnemyWall);
 };
 
 

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Battle.cpp"
-            timestampString = "452234467.572552"
+            timestampString = "452618906.481455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Battle.cpp"
-            timestampString = "452183510.003882"
+            timestampString = "452618565.709896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "Battle::init()"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Battle.cpp"
-            timestampString = "452235082.029823"
+            timestampString = "452618906.481455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "Battle::createBlock(int i , int j)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Battle.cpp"
-            timestampString = "452235082.029823"
+            timestampString = "452618906.481455"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "Battle::createBlock(int i , int j)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Battle.cpp"
-            timestampString = "452254659.466734"
+            timestampString = "452618565.709896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "Battle::onEnter()"
             landmarkType = "5">
          </BreakpointContent>
@@ -336,6 +336,22 @@
             startingLineNumber = "31"
             endingLineNumber = "31"
             landmarkName = "DialogLayer::showDialog(const char* content, int buttons, CCObject *caller, SEL_CallFunc onConfirmClick, CCObject *cancelCaller, SEL_CallFunc cancelSelector, const char* confirmString, const char * cancelString)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/Battle.cpp"
+            timestampString = "452618906.481455"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "Battle::updateArmy(CCMutableArray&lt;Soldier*&gt;* atkArmy, CCMutableArray&lt;Soldier*&gt;* defArmy, bool myArmy)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

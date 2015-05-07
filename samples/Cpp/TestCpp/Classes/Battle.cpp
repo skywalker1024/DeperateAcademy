@@ -9,6 +9,7 @@
 #include "Battle.h"
 #include "CommonUtils.h"
 #include "SoldierMstList.h"
+
 const int START_Y = 100;
 const int WIDTH = 100;
 const int ARMY_POSITION_Y = START_Y + NUM * WIDTH + 200;
@@ -20,6 +21,8 @@ Battle::Battle()
     MATRIX_START_X = (CommonUtils::getScreenWidth() - NUM * WIDTH) / 2;
     MY_ARMY_START_X = MATRIX_START_X;
     ENEMY_ARMY_START_X = MATRIX_START_X + NUM * WIDTH;
+    m_myWall = NULL;
+    m_enemyWall = NULL;
 }
 
 Battle::~Battle(){
@@ -29,6 +32,8 @@ Battle::~Battle(){
     m_myArmy->release();
     m_enemyArmy->removeAllObjects();
     m_enemyArmy->release();
+    CC_SAFE_RELEASE_NULL(m_myWall);
+    CC_SAFE_RELEASE_NULL(m_enemyWall);
 }
 
 CCScene * Battle::scene(){
@@ -57,6 +62,21 @@ bool Battle::init(){
     
     SoldierMstList::shared();
     
+    setMyWall(Wall::create());
+    CCSprite * myWallSprite = CCSprite::create("img/wall_red.png");
+    myWallSprite->setPosition(ccp(MY_ARMY_START_X, ARMY_POSITION_Y));
+    addChild(myWallSprite);
+    m_myWall->setHp(1000);
+    StringLabelList *myWallHpString = GraphicUtils::drawString(this, "1000", MY_ARMY_START_X, ARMY_POSITION_Y + 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    m_myWall->setStringLabelList(myWallHpString);
+    
+    setEnemyWall( Wall::create() );
+    CCSprite * enemyWallSprite = CCSprite::create("img/wall_red.png");
+    enemyWallSprite->setPosition(ccp(ENEMY_ARMY_START_X, ARMY_POSITION_Y));
+    addChild(enemyWallSprite);
+    m_enemyWall->setHp(2000);
+    StringLabelList *enemyWallHpString = GraphicUtils::drawString(this, "2000", ENEMY_ARMY_START_X, ARMY_POSITION_Y + 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    m_enemyWall->setStringLabelList(enemyWallHpString);
     return true;
 }
 
@@ -186,7 +206,9 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
         //新增小兵
         createSoldier(block->getType(), m_myArmy, true);
         
-        createSoldier(1, m_enemyArmy, false);
+        if (arc4random() % 2 > 0) {
+            createSoldier(1, m_enemyArmy, false);
+        }
     }
     
     map<int, int> blank_list;
@@ -310,22 +332,46 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
             CCLog("soldier die");
             soldier->getArmature()->removeFromParent();
             atkArmy->removeObject(soldier);
-        }else if (soldier->getStatus() == Soldier::WALKING) {
-            float mvDistance;
-            if (myArmy) {
-                mvDistance = soldier->getMoveSpeed() / 100.f;
-            }else{
-                mvDistance = -soldier->getMoveSpeed() / 100.f;
+        }else if (soldier->getStatus() == Soldier::WALKING || soldier->getStatus() == Soldier::ATKING_WALL) {
+            if (soldier->getStatus() == Soldier::WALKING) {
+                float mvDistance;
+                if (myArmy) {
+                    mvDistance = soldier->getMoveSpeed() / 100.f;
+                }else{
+                    mvDistance = -soldier->getMoveSpeed() / 100.f;
+                }
+                soldier->getArmature()->setPositionX(soldier->getArmature()->getPositionX() + mvDistance);
             }
-            soldier->getArmature()->setPositionX(soldier->getArmature()->getPositionX() + mvDistance);
             
+            if (soldier->getStatus() == Soldier::ATKING_WALL) {
+                if (soldier->getAtkTimer() > 0) {//攻击倒计时
+                    soldier->setAtkTimer(soldier->getAtkTimer() - 1);
+                }else{//攻击
+                    if (myArmy) {
+                        m_enemyWall->updateHp(m_enemyWall->getHp() - soldier->getAtk());
+                        if (m_enemyWall->getHp() <= 0) {
+                            CCLog("you win");
+                        }
+                    }else{
+                        m_myWall->updateHp(m_myWall->getHp() - soldier->getAtk());
+                        if (m_myWall->getHp() <= 0) {
+                            CCLog("you lose");
+                        }
+                    }
+                    //重置倒计时
+                    soldier->setAtkTimer(ATK_TIMER);
+                }
+            }
+
             //判断是否到了敌方面前
             for(int j=0; j<defArmy->count(); j++){
                 Soldier * enemy = defArmy->getObjectAtIndex(j);
                 if (enemy->getStatus() != Soldier::DEAD && fabs(enemy->getArmature()->getPositionX() - soldier->getArmature()->getPositionX())<soldier->getAtkRange()) {
+                    soldier->setAtkTimer(ATK_TIMER);
                     soldier->setStatus(Soldier::ATKING);
                     soldier->setTarget(enemy);
                     soldier->getArmature()->getAnimation()->playWithIndex(0);
+                    break;
                 }
             }
         }else if (soldier->getStatus() == Soldier::ATKING){
@@ -342,6 +388,15 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
                 soldier->setStatus(Soldier::WALKING);
                 soldier->getArmature()->getAnimation()->playWithIndex(1);
             }
+        }
+        
+        //攻打城墙
+        if(myArmy && soldier->getStatus() == Soldier::WALKING && fabs(ENEMY_ARMY_START_X - soldier->getArmature()->getPositionX())<soldier->getAtkRange()){
+            soldier->setStatus(Soldier::ATKING_WALL);
+        }
+        
+        if(!myArmy && soldier->getStatus() == Soldier::WALKING && fabs(MY_ARMY_START_X - soldier->getArmature()->getPositionX())<soldier->getAtkRange()){
+            soldier->setStatus(Soldier::ATKING_WALL);
         }
     }
 }

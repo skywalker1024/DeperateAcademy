@@ -33,7 +33,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RegisterScene::getRandomName(cocos2d::CCObject*, unsigned int):RegisterScene.cpp">
+         contextName = "cocos2d::CCObject::release():CCObject.cpp">
       </ContextState>
       <ContextState
          contextName = "SoldierMstList::shared():SoldierMstList.cpp">
@@ -53,15 +53,15 @@
          contextName = "Soldier::~Soldier():Soldier.cpp">
       </ContextState>
       <ContextState
-         contextName = "cocos2d::CCObject::release():CCObject.cpp">
-      </ContextState>
-      <ContextState
          contextName = "Json::Value::asInt() const:jsoncpp.cpp">
          <PersistentStrings>
             <PersistentString
                value = "type_">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RegisterScene::getRandomName(cocos2d::CCObject*, unsigned int):RegisterScene.cpp">
       </ContextState>
       <ContextState
          contextName = "BaseScene::setHeader():BaseScene.cpp">
@@ -73,6 +73,11 @@
       </ContextState>
       <ContextState
          contextName = "Battle::updateArmy(cocos2d::CCMutableArray&lt;Soldier*&gt;*, cocos2d::CCMutableArray&lt;Soldier*&gt;*, bool):Battle.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_myWall">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "StepScene::scene():StepScene.cpp">
