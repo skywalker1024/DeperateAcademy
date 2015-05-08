@@ -62,7 +62,7 @@ void EvolutionScene::onEnter(){
             SoldierMst * soldierMst = SoldierMstList::shared()->getObject(afterId);
             GraphicUtils::drawString(this, soldierMst->getName(), 300, start_y - 100 * i, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_MIDDLE, fontSize);
      
-            GraphicUtils::drawString(this, CommonUtils::IntToString( evoMst->getCost() ), 500, start_y - 100 * i, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_MIDDLE, fontSize);
+            GraphicUtils::drawString(this, CommonUtils::IntToString( evoMst->getCost() ).append("钻"), 500, start_y - 100 * i, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_MIDDLE, fontSize);
             
             CCLabelTTF * questLabel = CCLabelTTF::create("升级", DEFAULT_FONT_NAME, 60);
             CCControlButton * button = CCControlButton::create(questLabel, CCScale9Sprite::create("img/button.png") );
