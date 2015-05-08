@@ -23,6 +23,7 @@ public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
 private:
     void onQuestClick();
+    void onEvoClick();
 };
 
 

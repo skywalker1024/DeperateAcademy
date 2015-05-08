@@ -87,6 +87,16 @@ LevelMst* LevelMstList::getObject( int lv )
     return NULL;
 }
 
+LevelMst* LevelMstList::getObjectByUnLockSoldierId( int soldier_id ){
+    for( int i = 0; i < mstList->count(); i++ )
+    {
+        LevelMst* mst = mstList->getObjectAtIndex( i );
+        
+        if( mst->getUnlockSoldierId() == soldier_id ) return mst;
+    }
+    
+    return NULL;
+}
 
 
 

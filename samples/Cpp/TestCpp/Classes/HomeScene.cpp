@@ -11,6 +11,7 @@
 #include "GameConst.h"
 #include "GraphicUtils.h"
 #include "Battle.h"
+#include "EvolutionScene.h"
 HomeScene::HomeScene()
 {
 }
@@ -40,14 +41,26 @@ void HomeScene::onEnter(){
     int screenHeight = CommonUtils::getScreenHeight();
     //创建button
     //出征（购买体力写在里面吧）
-    CCLabelTTF * questLabel = CCLabelTTF::create("出征", DEFAULT_FONT_NAME, 60);
-    CCControlButton * questBtn = CCControlButton::create(questLabel, CCScale9Sprite::create("img/button1.png", CCRect(0, 0, 256, 256)));
-    questBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(HomeScene::onQuestClick), CCControlEventTouchDown);
-    questBtn->setPosition(ccp(screenWidth / 2 - 100, screenHeight / 2));
-    this->addChild(questBtn);
+    {
+        CCLabelTTF * questLabel = CCLabelTTF::create("出征", DEFAULT_FONT_NAME, 60);
+        CCControlButton * questBtn = CCControlButton::create(questLabel, CCScale9Sprite::create("img/button1.png", CCRect(0, 0, 256, 256)));
+        questBtn->setBackgroundSpriteForState(CCScale9Sprite::create("img/button2.png"), CCControlStateHighlighted);//按下后的图片
+        
+        questBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(HomeScene::onQuestClick), CCControlEventTouchDown);
+        questBtn->setPosition(ccp(screenWidth / 2 - 100, screenHeight / 2));
+        this->addChild(questBtn);
+    }
     //竞技场（排行榜和挑战）
     //强化（强化士兵 强化城墙）
-    
+    {
+        CCLabelTTF * evoLabel = CCLabelTTF::create("强化士兵", DEFAULT_FONT_NAME, 60);
+        CCControlButton * evoBtn = CCControlButton::create(evoLabel, CCScale9Sprite::create("img/button1.png"));
+        evoBtn->setBackgroundSpriteForState(CCScale9Sprite::create("img/button2.png"), CCControlStateHighlighted);//按下后的图片
+        
+        evoBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(HomeScene::onEvoClick), CCControlEventTouchUpInside);
+        evoBtn->setPosition(ccp(screenWidth / 2 - 100, screenHeight / 2 - 400));
+        this->addChild(evoBtn);
+    }
     //钻石商店
 }
 
@@ -62,5 +75,9 @@ bool HomeScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
 
 void HomeScene::onQuestClick(){
     changeScene(Battle::scene());
+}
+
+void HomeScene::onEvoClick(){
+    changeScene(EvolutionScene::scene());
 }
 

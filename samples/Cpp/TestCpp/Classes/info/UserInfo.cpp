@@ -69,3 +69,13 @@ void UserInfo::updateWithJson(Json::Value json){
     m_lv = CommonUtils::StrToInt( json["lv"].asString());
     m_user_id = CommonUtils::StrToInt( json["id"].asString());
 }
+
+void UserInfo::updateSoldierInfo(Json::Value json){
+    m_soldierMap.clear();
+    for (int i=0; i<json.size(); i++) {
+        Json::Value userSoldier = json[i];
+        int series = CommonUtils::StrToInt(userSoldier["series"].asString());
+        int soldier_id = CommonUtils::StrToInt(userSoldier["soldier_id"].asString());
+        m_soldierMap[series] = soldier_id;
+    }
+}

@@ -21,6 +21,8 @@ public:
     static void destroy();
     bool existUser();
     void updateWithJson(Json::Value json);
+    map<int, int> m_soldierMap; //key是serieid 1~4 value是soldierId
+    void updateSoldierInfo(Json::Value json);
 private:
     // コンストラクタ
     UserInfo();
@@ -34,6 +36,7 @@ private:
     CC_SYNTHESIZE(int, m_diamond, Diamond);
     CC_SYNTHESIZE(int, m_exp, Exp);
     CC_SYNTHESIZE(int, m_lv, Lv);
+    
 };
 
 #endif

@@ -52,6 +52,8 @@ protected:
     void setCacheParticleAnime( string key, string name, ParticleAnime* anime );
     ccColor3B getSystemColor( string key );
     void setHeader();
+    void setBackBtn();
+    virtual void onBackClick();
 };
 
 

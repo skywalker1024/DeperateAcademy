@@ -298,3 +298,22 @@ void BaseScene::setHeader(){
 
 }
 
+//返回按钮
+void BaseScene::setBackBtn()
+{
+    CCLabelTTF * backLabel = CCLabelTTF::create("返回", DEFAULT_FONT_NAME, 60);
+    CCControlButton * backBtn = CCControlButton::create(backLabel, CCScale9Sprite::create("img/button1.png"));
+    backBtn->setBackgroundSpriteForState(CCScale9Sprite::create("img/button2.png"), CCControlStateHighlighted);//按下后的图片
+    
+    int screenWidth = CommonUtils::getScreenWidth();
+    int screenHeight = CommonUtils::getScreenHeight();
+    
+    backBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(BaseScene::onBackClick), CCControlEventTouchUpInside);
+    backBtn->setPosition(ccp(100, screenHeight - 500));
+    backBtn->setAnchorPoint(ccp(0,1));
+    this->addChild(backBtn);
+}
+
+void BaseScene::onBackClick(){
+    CCLog("please over ride me");
+}

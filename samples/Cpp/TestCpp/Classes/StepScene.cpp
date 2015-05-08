@@ -150,6 +150,10 @@ SEL_HttpResponse StepScene::ResponseParse(CCHttpClient* client, CCHttpResponse* 
         UserInfo::shared()->updateWithJson(responseJson["user_info"]);
     }
     
+    if (!responseJson["user_soldier"].isNull()) {
+        UserInfo::shared()->updateSoldierInfo(responseJson["user_soldier"]);
+    }
+    
     m_isFinish = true;
     return NULL;
     //CCLog("responseData=%s", responseJson);

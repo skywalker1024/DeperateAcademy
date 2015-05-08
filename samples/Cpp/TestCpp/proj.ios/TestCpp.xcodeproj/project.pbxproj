@@ -146,6 +146,13 @@
 		50FCEB5818C6D695004AD434 /* UIRichText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50FCEB5618C6D695004AD434 /* UIRichText.cpp */; };
 		817F8ECE1AF90E5F00A87076 /* DialogLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ECC1AF90E5F00A87076 /* DialogLayer.cpp */; };
 		817F8ED11AFA628500A87076 /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED01AFA628500A87076 /* Wall.cpp */; };
+		817F8ED41AFB4A8B00A87076 /* MapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED21AFB4A8B00A87076 /* MapScene.cpp */; };
+		817F8ED71AFB515400A87076 /* MissionInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED51AFB515400A87076 /* MissionInfo.cpp */; };
+		817F8EDC1AFB586700A87076 /* MissionMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED81AFB586700A87076 /* MissionMst.cpp */; };
+		817F8EDD1AFB586700A87076 /* MissionMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EDA1AFB586700A87076 /* MissionMstList.cpp */; };
+		817F8EE21AFC5AA500A87076 /* EvolutionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE01AFC5AA500A87076 /* EvolutionScene.cpp */; };
+		817F8EEA1AFC6B5700A87076 /* EvoMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE61AFC6B5600A87076 /* EvoMst.cpp */; };
+		817F8EEB1AFC6B5700A87076 /* EvoMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE81AFC6B5600A87076 /* EvoMstList.cpp */; };
 		81885F7E1AF8A8AD00073358 /* csv in Resources */ = {isa = PBXBuildFile; fileRef = 81885F7D1AF8A8AD00073358 /* csv */; };
 		81885F831AF8BE5800073358 /* LevelMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F7F1AF8BE5800073358 /* LevelMstList.cpp */; };
 		81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F801AF8BE5800073358 /* LevelMst.cpp */; };
@@ -520,6 +527,20 @@
 		817F8ECD1AF90E5F00A87076 /* DialogLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DialogLayer.h; path = ../Classes/DialogLayer.h; sourceTree = "<group>"; };
 		817F8ECF1AFA628500A87076 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wall.h; path = ../Classes/Wall.h; sourceTree = "<group>"; };
 		817F8ED01AFA628500A87076 /* Wall.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Wall.cpp; path = ../Classes/Wall.cpp; sourceTree = "<group>"; };
+		817F8ED21AFB4A8B00A87076 /* MapScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MapScene.cpp; path = ../Classes/MapScene.cpp; sourceTree = "<group>"; };
+		817F8ED31AFB4A8B00A87076 /* MapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapScene.h; path = ../Classes/MapScene.h; sourceTree = "<group>"; };
+		817F8ED51AFB515400A87076 /* MissionInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionInfo.cpp; sourceTree = "<group>"; };
+		817F8ED61AFB515400A87076 /* MissionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionInfo.h; sourceTree = "<group>"; };
+		817F8ED81AFB586700A87076 /* MissionMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionMst.cpp; sourceTree = "<group>"; };
+		817F8ED91AFB586700A87076 /* MissionMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionMst.h; sourceTree = "<group>"; };
+		817F8EDA1AFB586700A87076 /* MissionMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MissionMstList.cpp; sourceTree = "<group>"; };
+		817F8EDB1AFB586700A87076 /* MissionMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissionMstList.h; sourceTree = "<group>"; };
+		817F8EE01AFC5AA500A87076 /* EvolutionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EvolutionScene.cpp; path = ../Classes/EvolutionScene.cpp; sourceTree = "<group>"; };
+		817F8EE11AFC5AA500A87076 /* EvolutionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EvolutionScene.h; path = ../Classes/EvolutionScene.h; sourceTree = "<group>"; };
+		817F8EE61AFC6B5600A87076 /* EvoMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EvoMst.cpp; sourceTree = "<group>"; };
+		817F8EE71AFC6B5600A87076 /* EvoMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMst.h; sourceTree = "<group>"; };
+		817F8EE81AFC6B5600A87076 /* EvoMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EvoMstList.cpp; sourceTree = "<group>"; };
+		817F8EE91AFC6B5600A87076 /* EvoMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMstList.h; sourceTree = "<group>"; };
 		81885F7D1AF8A8AD00073358 /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
 		81885F7F1AF8BE5800073358 /* LevelMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMstList.cpp; sourceTree = "<group>"; };
 		81885F801AF8BE5800073358 /* LevelMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMst.cpp; sourceTree = "<group>"; };
@@ -860,8 +881,6 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				817F8ECF1AFA628500A87076 /* Wall.h */,
-				817F8ED01AFA628500A87076 /* Wall.cpp */,
 				15AA9F3A15B7EF960033D6C2 /* AppDelegate.cpp */,
 				15AA9F3B15B7EF960033D6C2 /* AppDelegate.h */,
 				81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */,
@@ -877,10 +896,14 @@
 				81885F861AF8CEFC00073358 /* DialogBaseLayer.h */,
 				817F8ECC1AF90E5F00A87076 /* DialogLayer.cpp */,
 				817F8ECD1AF90E5F00A87076 /* DialogLayer.h */,
+				817F8EE01AFC5AA500A87076 /* EvolutionScene.cpp */,
+				817F8EE11AFC5AA500A87076 /* EvolutionScene.h */,
 				81ED13411AF71AA50043B59C /* HomeScene.cpp */,
 				81ED13421AF71AA50043B59C /* HomeScene.h */,
 				81ED13471AF725990043B59C /* info */,
 				81ED13361AF4C00E0043B59C /* lib */,
+				817F8ED21AFB4A8B00A87076 /* MapScene.cpp */,
+				817F8ED31AFB4A8B00A87076 /* MapScene.h */,
 				81ED13431AF71AA50043B59C /* RegisterScene.cpp */,
 				81ED13441AF71AA50043B59C /* RegisterScene.h */,
 				81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */,
@@ -891,6 +914,8 @@
 				81ED13331AF4AF320043B59C /* TitleScene.cpp */,
 				81ED13341AF4AF320043B59C /* TitleScene.h */,
 				81CD7C1D1AEFB6B100C0EB2D /* util */,
+				817F8ED01AFA628500A87076 /* Wall.cpp */,
+				817F8ECF1AFA628500A87076 /* Wall.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -1519,10 +1544,18 @@
 		81ED12E21AF46CF10043B59C /* data */ = {
 			isa = PBXGroup;
 			children = (
+				817F8EE61AFC6B5600A87076 /* EvoMst.cpp */,
+				817F8EE71AFC6B5600A87076 /* EvoMst.h */,
+				817F8EE81AFC6B5600A87076 /* EvoMstList.cpp */,
+				817F8EE91AFC6B5600A87076 /* EvoMstList.h */,
 				81885F801AF8BE5800073358 /* LevelMst.cpp */,
 				81885F821AF8BE5800073358 /* LevelMst.h */,
 				81885F7F1AF8BE5800073358 /* LevelMstList.cpp */,
 				81885F811AF8BE5800073358 /* LevelMstList.h */,
+				817F8ED81AFB586700A87076 /* MissionMst.cpp */,
+				817F8ED91AFB586700A87076 /* MissionMst.h */,
+				817F8EDA1AFB586700A87076 /* MissionMstList.cpp */,
+				817F8EDB1AFB586700A87076 /* MissionMstList.h */,
 				81ED12E31AF46CF10043B59C /* SoldierMst.cpp */,
 				81ED12E41AF46CF10043B59C /* SoldierMst.h */,
 				81ED12E51AF46CF10043B59C /* SoldierMstList.cpp */,
@@ -1568,6 +1601,8 @@
 		81ED13471AF725990043B59C /* info */ = {
 			isa = PBXGroup;
 			children = (
+				817F8ED51AFB515400A87076 /* MissionInfo.cpp */,
+				817F8ED61AFB515400A87076 /* MissionInfo.h */,
 				81ED13481AF725990043B59C /* UserInfo.cpp */,
 				81ED13491AF725990043B59C /* UserInfo.h */,
 			);
@@ -1684,6 +1719,7 @@
 				81CD7C521AEFB6B100C0EB2D /* UserFontSetting.cpp in Sources */,
 				81CD7C501AEFB6B100C0EB2D /* UICache.cpp in Sources */,
 				50E9E948182A355B00F6FDF1 /* SceneReader.cpp in Sources */,
+				817F8EDD1AFB586700A87076 /* MissionMstList.cpp in Sources */,
 				50F853EE18C57E040019FBFB /* ImageViewReader.cpp in Sources */,
 				50F853F718C57E040019FBFB /* SliderReader.cpp in Sources */,
 				81ED12E81AF46CF10043B59C /* SoldierMstList.cpp in Sources */,
@@ -1715,6 +1751,7 @@
 				15A3DA401682F826002FB0C5 /* CCMenuItemImageLoader.cpp in Sources */,
 				15A3DA411682F826002FB0C5 /* CCMenuItemLoader.cpp in Sources */,
 				15A3DA421682F826002FB0C5 /* CCNode+CCBRelativePositioning.cpp in Sources */,
+				817F8EEB1AFC6B5700A87076 /* EvoMstList.cpp in Sources */,
 				15A3DA431682F826002FB0C5 /* CCNodeLoader.cpp in Sources */,
 				81CD7C551AEFB6B100C0EB2D /* GameSprite.cpp in Sources */,
 				15A3DA441682F826002FB0C5 /* CCNodeLoaderLibrary.cpp in Sources */,
@@ -1737,8 +1774,10 @@
 				50F853F118C57E040019FBFB /* LabelReader.cpp in Sources */,
 				15A3DA511682F826002FB0C5 /* CCControlSwitch.cpp in Sources */,
 				81ED13451AF71AA50043B59C /* HomeScene.cpp in Sources */,
+				817F8ED71AFB515400A87076 /* MissionInfo.cpp in Sources */,
 				50F853ED18C57E040019FBFB /* CheckBoxReader.cpp in Sources */,
 				15A3DA521682F826002FB0C5 /* CCControlUtils.cpp in Sources */,
+				817F8ED41AFB4A8B00A87076 /* MapScene.cpp in Sources */,
 				15A3DA531682F826002FB0C5 /* CCInvocation.cpp in Sources */,
 				15A3DA541682F826002FB0C5 /* CCScale9Sprite.cpp in Sources */,
 				15A3DA551682F826002FB0C5 /* CCEditBox.cpp in Sources */,
@@ -1752,6 +1791,7 @@
 				15A3DAEB1682F8A6002FB0C5 /* CDAudioManager.m in Sources */,
 				3729024E1867D36800B59D3A /* TriggerObj.cpp in Sources */,
 				15A3DAEC1682F8A6002FB0C5 /* CDOpenALSupport.m in Sources */,
+				817F8EDC1AFB586700A87076 /* MissionMst.cpp in Sources */,
 				81ED12DB1AF463140043B59C /* SQLiteManager.cpp in Sources */,
 				15A3DAED1682F8A6002FB0C5 /* CocosDenshion.m in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
@@ -1760,6 +1800,7 @@
 				81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */,
 				817F8ED11AFA628500A87076 /* Wall.cpp in Sources */,
 				81ED12E71AF46CF10043B59C /* SoldierMst.cpp in Sources */,
+				817F8EEA1AFC6B5700A87076 /* EvoMst.cpp in Sources */,
 				81CD7C451AEFB6B100C0EB2D /* BaseScene.cpp in Sources */,
 				50F853F418C57E040019FBFB /* LoadingBarReader.cpp in Sources */,
 				81ED133B1AF4C00E0043B59C /* jsoncpp.cpp in Sources */,
@@ -1828,6 +1869,7 @@
 				37BB5BF717E89E9B002746B4 /* CCActionNode.cpp in Sources */,
 				81CD7C4F1AEFB6B100C0EB2D /* TagString.cpp in Sources */,
 				37BB5BF817E89E9B002746B4 /* CCActionObject.cpp in Sources */,
+				817F8EE21AFC5AA500A87076 /* EvolutionScene.cpp in Sources */,
 				50F853EF18C57E040019FBFB /* LabelAtlasReader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

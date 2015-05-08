@@ -1,40 +1,40 @@
 //
-//  LevelMstList.h
+//  MissionMstList.h
 //  BraveFrontier
 
 //  Created by WillArk on 5/24/12.
 //  Copyright (c) 2012 WillArk. All rights reserved.
 //
 
-#ifndef BraveFrontier_LevelMstList_h
-#define BraveFrontier_LevelMstList_h
+#ifndef BraveFrontier_MissionMstList_h
+#define BraveFrontier_MissionMstList_h
 
 #include "cocos2d.h"
-#include "LevelMst.h"
+#include "MissionMst.h"
 
 USING_NS_CC;
 
-class LevelMstList : public CCObject
+class MissionMstList : public CCObject
 {
 public:
     // インスタンスの取得
-    static LevelMstList* shared();
+    static MissionMstList* shared();
     // オブジェクトの追加
-    void addObject( LevelMst* mst);
+    void addObject( MissionMst* mst);
     // オブジェクトの解放
     void removeAllObjects();
     // 件数の取得
     int getCount();
     // オブジェクトの取得
-    LevelMst* getObject( int lv );
-    LevelMst* getObjectByUnLockSoldierId( int soldier_id );
+    MissionMst* getObject( int mission_id );
+
 private:
     // コンストラクタ
-    LevelMstList();
+    MissionMstList();
     // デストラクタ
-    ~LevelMstList();
+    ~MissionMstList();
     // mstリスト
-    CCMutableArray<LevelMst*> *mstList;
+    CCMutableArray<MissionMst*> *mstList;
 
 };
 
