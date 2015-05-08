@@ -28,7 +28,7 @@ DialogLayer::~DialogLayer(){
 
 DialogLayer* DialogLayer::showDialog(const char* content, int buttons, CCObject *caller, SEL_CallFunc onConfirmClick, CCObject *cancelCaller, SEL_CallFunc cancelSelector, const char* confirmString, const char * cancelString){
     
-    DialogLayer* pRet = new DialogLayer();
+    DialogLayer* pRet = DialogLayer::create();
     int screenWidth = CommonUtils::getScreenWidth();
     int screenHeight = CommonUtils::getScreenHeight();
     
@@ -68,7 +68,6 @@ DialogLayer* DialogLayer::showDialog(const char* content, int buttons, CCObject 
         }
     }
     CCDirector::sharedDirector()->getRunningScene()->addChild(pRet, 10);
-    pRet->autorelease();
     return pRet;
 
 }

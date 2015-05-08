@@ -1,33 +1,32 @@
 //
-//  StepScene.h
+//  LoadingLayer.h
 //  BraveFrontier
 
 //  Created by WillArk on 11/13/12.
 //  Copyright (c) 2012 WillArk. All rights reserved.
 //
 
-#ifndef BraveFrontier_StepScene_h
-#define BraveFrontier_StepScene_h
+#ifndef BraveFrontier_LoadingLayer_h
+#define BraveFrontier_LoadingLayer_h
 
 #include "cocos2d.h"
+#include "DialogBaseLayer.h"
 #include "BaseScene.h"
-
 USING_NS_CC;
 
 
-class StepScene : public BaseScene
+class LoadingLayer : public DialogBaseLayer
 {
 public:
     // コンストラクタ
-    StepScene();
+    LoadingLayer();
     // デストラクタ
-    ~StepScene();
-    static CCScene * scene();
-    CREATE_FUNC(StepScene);
+    ~LoadingLayer();
+    static CCScene * sceneWithNextScene(CCScene * nextScene);
+    CREATE_FUNC(LoadingLayer);
     virtual bool init();
     
     virtual void onEnter();
-    virtual void onExit();
 protected:
 
 private:
@@ -43,6 +42,9 @@ private:
     void backToTitle();
     void retry();
     void noticeConfirm();
+    void changeNextScene();
+    CC_SYNTHESIZE_RETAIN(CCScene*, m_nextScene, NextScene);
+    CC_SYNTHESIZE_RETAIN(BaseScene*, m_prevScene, PrevScene);
 };
 
 #endif

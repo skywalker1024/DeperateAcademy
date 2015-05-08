@@ -11,7 +11,7 @@
 #include "GameConst.h"
 #include "GraphicUtils.h"
 #include "ConnectRequestList.h"
-#include "StepScene.h"
+#include "LoadingLayer.h"
 #include "UserInfo.h"
 #include "LevelMstList.h"
 BaseScene::BaseScene()
@@ -154,14 +154,18 @@ void BaseScene::pushStepScene(string url, string postData, CCScene * scene){
     baseRequest->setUrl(url);
     baseRequest->setData(postData);
     ConnectRequestList::shared()->addObject(baseRequest);
-    CCDirector::sharedDirector()->replaceScene(scene);
-    CCDirector::sharedDirector()->pushScene(StepScene::scene());
-
+    
+    LoadingLayer * loadingLayer = LoadingLayer::create();
+    loadingLayer->setNextScene(scene);
+    loadingLayer->setPrevScene(this);
+    this->addChild(loadingLayer);
 }
 
 void BaseScene::pushStepScene(CCScene * scene){
-    CCDirector::sharedDirector()->replaceScene(scene);
-    CCDirector::sharedDirector()->pushScene(StepScene::scene());
+    LoadingLayer * loadingLayer = LoadingLayer::create();
+    loadingLayer->setNextScene(scene);
+    loadingLayer->setPrevScene(this);
+    this->addChild(loadingLayer);
 }
 
 /*

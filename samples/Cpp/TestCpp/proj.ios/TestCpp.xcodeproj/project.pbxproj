@@ -183,7 +183,7 @@
 		81ED12DF1AF46C2A0043B59C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81ED12DE1AF46C2A0043B59C /* libsqlite3.0.dylib */; };
 		81ED12E71AF46CF10043B59C /* SoldierMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED12E31AF46CF10043B59C /* SoldierMst.cpp */; };
 		81ED12E81AF46CF10043B59C /* SoldierMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED12E51AF46CF10043B59C /* SoldierMstList.cpp */; };
-		81ED13221AF4A0340043B59C /* StepScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED131F1AF4A0340043B59C /* StepScene.cpp */; };
+		81ED13221AF4A0340043B59C /* LoadingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED131F1AF4A0340043B59C /* LoadingLayer.cpp */; };
 		81ED132B1AF4A2470043B59C /* BaseRequest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED13251AF4A2470043B59C /* BaseRequest.cpp */; };
 		81ED132C1AF4A2470043B59C /* ConnectRequestList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED13271AF4A2470043B59C /* ConnectRequestList.cpp */; };
 		81ED132D1AF4A2470043B59C /* NetworkManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81ED13291AF4A2470043B59C /* NetworkManager.cpp */; };
@@ -598,8 +598,8 @@
 		81ED12E41AF46CF10043B59C /* SoldierMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoldierMst.h; sourceTree = "<group>"; };
 		81ED12E51AF46CF10043B59C /* SoldierMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoldierMstList.cpp; sourceTree = "<group>"; };
 		81ED12E61AF46CF10043B59C /* SoldierMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoldierMstList.h; sourceTree = "<group>"; };
-		81ED131E1AF4A0340043B59C /* StepScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StepScene.h; path = ../Classes/StepScene.h; sourceTree = "<group>"; };
-		81ED131F1AF4A0340043B59C /* StepScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StepScene.cpp; path = ../Classes/StepScene.cpp; sourceTree = "<group>"; };
+		81ED131E1AF4A0340043B59C /* LoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingLayer.h; path = ../Classes/LoadingLayer.h; sourceTree = "<group>"; };
+		81ED131F1AF4A0340043B59C /* LoadingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LoadingLayer.cpp; path = ../Classes/LoadingLayer.cpp; sourceTree = "<group>"; };
 		81ED13251AF4A2470043B59C /* BaseRequest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseRequest.cpp; sourceTree = "<group>"; };
 		81ED13261AF4A2470043B59C /* BaseRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseRequest.h; sourceTree = "<group>"; };
 		81ED13271AF4A2470043B59C /* ConnectRequestList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConnectRequestList.cpp; sourceTree = "<group>"; };
@@ -909,8 +909,8 @@
 				81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */,
 				81CD7CB91AF38EA100C0EB2D /* Soldier.h */,
 				81CD7C3F1AEFB6B100C0EB2D /* sprite */,
-				81ED131F1AF4A0340043B59C /* StepScene.cpp */,
-				81ED131E1AF4A0340043B59C /* StepScene.h */,
+				81ED131F1AF4A0340043B59C /* LoadingLayer.cpp */,
+				81ED131E1AF4A0340043B59C /* LoadingLayer.h */,
 				81ED13331AF4AF320043B59C /* TitleScene.cpp */,
 				81ED13341AF4AF320043B59C /* TitleScene.h */,
 				81CD7C1D1AEFB6B100C0EB2D /* util */,
@@ -1742,7 +1742,7 @@
 				81ED132C1AF4A2470043B59C /* ConnectRequestList.cpp in Sources */,
 				15A3DA3A1682F826002FB0C5 /* CCData.cpp in Sources */,
 				15A3DA3B1682F826002FB0C5 /* CCLabelBMFontLoader.cpp in Sources */,
-				81ED13221AF4A0340043B59C /* StepScene.cpp in Sources */,
+				81ED13221AF4A0340043B59C /* LoadingLayer.cpp in Sources */,
 				15A3DA3C1682F826002FB0C5 /* CCLabelTTFLoader.cpp in Sources */,
 				15A3DA3D1682F826002FB0C5 /* CCLayerColorLoader.cpp in Sources */,
 				15A3DA3E1682F826002FB0C5 /* CCLayerGradientLoader.cpp in Sources */,

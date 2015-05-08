@@ -32,6 +32,7 @@ public:
     void pushStepScene(string url, string postData, CCScene * scene);
     void pushStepScene(CCScene * scene);
     void changeScene(CCScene * scene);
+    ccColor3B getSystemColor( string key );
 private:
     
     // UIキャッシュリスト
@@ -50,7 +51,7 @@ protected:
     ParticleAnime* getCacheParticleAnime( string key, string name );
     // キャッシュ パーティクルアニメを設定
     void setCacheParticleAnime( string key, string name, ParticleAnime* anime );
-    ccColor3B getSystemColor( string key );
+    
     void setHeader();
     void setBackBtn();
     virtual void onBackClick();
