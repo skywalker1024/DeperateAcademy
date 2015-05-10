@@ -11,6 +11,8 @@
 #include "SoldierMstList.h"
 #include "MissionInfo.h"
 #include "UserInfo.h"
+#include "MapScene.h"
+#include "MissionEndScene.h"
 const int START_Y = 100;
 const int WIDTH = 100;
 const int ARMY_POSITION_Y = START_Y + NUM * WIDTH + 200;
@@ -26,6 +28,8 @@ Battle::Battle()
     m_myWall = NULL;
     m_enemyWall = NULL;
     m_missionMst = NULL;
+    m_checkBlock = true;
+    m_isOver = false;
 }
 
 Battle::~Battle(){
@@ -53,16 +57,7 @@ bool Battle::init(){
     m_missionMst = MissionMstList::shared()->getObject(mission_id);
     CCLog("height=%f width=%f", CCDirector::sharedDirector()->getWinSize().height, CCDirector::sharedDirector()->getWinSize().width );
    
-//    CCNodeLoaderLibrary * ccNodeLoaderLibrary = CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary();
-//    CCBReader reader = CCBReader(ccNodeLoaderLibrary);
-//    CCLayer *layer = (CCLayer*)reader.readNodeGraphFromFile("ccbi/battle.ccbi",this);
-//    this->addChild(layer);
-    //i为行 j为列
-    for (int i=0; i<NUM; i++) {
-        for (int j=0; j<NUM; j++) {
-            createBlock(i, j);
-        }
-    }
+    createBlocks();
     
     SoldierMstList::shared();
     
@@ -184,6 +179,7 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
         return false;
     }
     
+    m_checkBlock = false;
     map<int, int> column_list;
     //清空点击的block,并且更新数组 CCMutableArray<Block*> * m_blockList;
     for (int i=0; i<usedAry->count(); i++) {
@@ -244,7 +240,9 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     }
     
     //将m_blockList补齐
+    float checkDelayTime = 0.f;
     for (int i=0; i<column_list.size(); i++) {
+        float actionTime = 0.1f * blank_list[i];
         int tmp_j = column_list[i];
         int start_ii = NUM - blank_list[i];
         for (int ii=start_ii; ii<NUM; ii++) {
@@ -252,7 +250,10 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
             //重置位置并runaction
             CCSprite * blockSprite = m_blockList->objectForKey(m_matrix[ii][tmp_j])->getSprite();
             blockSprite->setPosition(ccp(MATRIX_START_X + tmp_j * WIDTH, START_Y + NUM * WIDTH + (ii - start_ii) * WIDTH));
-            blockSprite->runAction(CCMoveBy::create(0.1f * blank_list[i], ccp(0,-WIDTH * blank_list[i])));
+            blockSprite->runAction(CCMoveBy::create(actionTime, ccp(0,-WIDTH * blank_list[i])));
+        }
+        if(actionTime > checkDelayTime){
+            checkDelayTime = actionTime;
         }
     }
     //补齐matrix
@@ -263,14 +264,16 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
             }
         }
     }
-
+    
+    this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(checkDelayTime), CCCallFunc::create(this, callfunc_selector(Battle::setCheckBlock))));
+    
     return true;
 }
 
 void Battle::createSoldier(int soldierId, CCMutableArray<Soldier*>* army, bool myArmy, int offsetX){
     cocos2d::extension::CCArmature *armature = NULL;
     armature = new cocos2d::extension::CCArmature();
-    armature->init("Knight_f/Knight");
+    armature->init("Knight_f/Knight");//soldierId / 100来区分兵种
     armature->getAnimation()->playWithIndex(1);
     
     std::string weapon[] = {"weapon_f-sword.png", "weapon_f-sword2.png", "weapon_f-sword3.png", "weapon_f-sword4.png", "weapon_f-sword5.png", "weapon_f-knife.png", "weapon_f-hammer.png"};
@@ -336,6 +339,16 @@ void Battle::createBlock(int i , int j){
 }
 
 void Battle::draw(){
+    if (m_isOver) {
+        return;
+    }
+    if (m_checkBlock) {
+        if(checkBlock() == -1){
+            CCLog("no block can touch");
+            createBlocks();
+        }
+    }
+    
     if (m_enemyTimer > 0) {
         m_enemyTimer--;
     }else{
@@ -376,11 +389,22 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
                         m_enemyWall->updateHp(m_enemyWall->getHp() - soldier->getAtk());
                         if (m_enemyWall->getHp() <= 0) {
                             CCLog("you win");
+                            
+                            GraphicUtils::drawString(this, "you win!", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() - 300, getSystemColor(COLOR_KEY_RED), TEXT_ALIGN_CENTER_MIDDLE, 60);
+                            string postData = CCString::createWithFormat("mission_id=%d&is_win=%d", MissionInfo::shared()->getCurrentMissionId(), 1)->m_sString;
+                            m_isOver = true;
+                            pushStepScene("end_mission.php", postData, MissionEndScene::scene());
+                            break;
                         }
                     }else{
                         m_myWall->updateHp(m_myWall->getHp() - soldier->getAtk());
                         if (m_myWall->getHp() <= 0) {
                             CCLog("you lose");
+                            GraphicUtils::drawString(this, "you lose", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() - 300, getSystemColor(COLOR_KEY_RED), TEXT_ALIGN_CENTER_MIDDLE, 60);
+                            string postData = CCString::createWithFormat("mission_id=%d&is_win=%d", MissionInfo::shared()->getCurrentMissionId(), 0)->m_sString;
+                            m_isOver = true;
+                            pushStepScene("end_mission.php", postData, MissionEndScene::scene());
+                            break;
                         }
                     }
                     //重置倒计时
@@ -454,4 +478,93 @@ void Battle::createEnemy(){
             break;
         }
     }
+}
+
+int Battle::checkBlock(){
+    int count = NUM * NUM;
+    for (int i=0; i<count; i++) {
+        Block * block = m_blockList->objectForKey(i);
+        CCMutableArray<Block*> * searchAry = new CCMutableArray<Block*>();
+        CCMutableArray<Block*> * usedAry = new CCMutableArray<Block*>();
+        searchAry->addObject(block);
+        int blockType = block->getType();
+        while (searchAry->count() > 0) {
+            CCMutableArray<Block*> * tmpAry = new CCMutableArray<Block*>();
+            CCLog("start usedAry=%d searchAry=%d tmpAry=%d", usedAry->count(), searchAry->count(), tmpAry->count());
+            for (int i=0; i<searchAry->count(); i++) {
+                Block * block = searchAry->getObjectAtIndex(i);
+                //左
+                if (block->getJ() > 0) {
+                    Block * tmpBlock = m_blockList->objectForKey(m_matrix[block->getI()][block->getJ() - 1]);
+                    if (tmpBlock->getType() == blockType){
+                        if(!usedAry->containsObject(tmpBlock)){
+                            tmpAry->addObject(tmpBlock);
+                        }
+                    }
+                }
+                //右
+                if (block->getJ() < NUM - 1) {
+                    Block * tmpBlock = m_blockList->objectForKey(m_matrix[block->getI()][block->getJ() + 1]);
+                    if ( tmpBlock->getType() == blockType){
+                        if(!usedAry->containsObject(tmpBlock)){
+                            tmpAry->addObject(tmpBlock);
+                        }
+                    }
+                }
+                
+                //下
+                if (block->getI() > 0) {
+                    Block * tmpBlock = m_blockList->objectForKey(m_matrix[block->getI() - 1][block->getJ()]);
+                    if ( tmpBlock->getType() == blockType){
+                        if(!usedAry->containsObject(tmpBlock)){
+                            tmpAry->addObject(tmpBlock);
+                        }
+                    }
+                }
+                //右
+                if (block->getI() < NUM - 1) {
+                    Block * tmpBlock = m_blockList->objectForKey(m_matrix[block->getI() + 1][block->getJ()]);
+                    if ( tmpBlock->getType() == blockType){
+                        if(!usedAry->containsObject(tmpBlock)){
+                            tmpAry->addObject(tmpBlock);
+                        }
+                    }
+                }
+            }
+            usedAry->addObjectsFromArray(searchAry);
+            searchAry->removeAllObjects();
+            CCLog("end usedAry=%d searchAry=%d tmpAry=%d", usedAry->count(), searchAry->count(), tmpAry->count());
+            searchAry->addObjectsFromArray(tmpAry);
+            CCLog("end usedAry=%d searchAry=%d tmpAry=%d", usedAry->count(), searchAry->count(), tmpAry->count());
+        }
+        if(usedAry->count() >= 3){
+            return i;
+        }
+    }
+    return -1;
+}
+
+void Battle::createBlocks(){
+    if (m_blockList->count() > 0) {
+        int count = NUM * NUM;
+        for (int i=0; i<count; i++) {
+            Block *block = m_blockList->objectForKey(i);
+            if (block) {
+                if (block->getSprite()) {
+                    block->getSprite()->removeFromParent();
+                }
+            }
+        }
+        m_blockList->removeAllObjects();
+    }
+    //i为行 j为列
+    for (int i=0; i<NUM; i++) {
+        for (int j=0; j<NUM; j++) {
+            createBlock(i, j);
+        }
+    }
+}
+
+void Battle::setCheckBlock(){
+    m_checkBlock = true;
 }

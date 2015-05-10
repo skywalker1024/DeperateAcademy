@@ -23,11 +23,14 @@ public:
     void updateWithJson(Json::Value json);
     map<int, int> m_soldierMap; //key是serieid 1~4 value是soldierId
     void updateSoldierInfo(Json::Value json);
+    void updateClearMission(Json::Value json);
+    map<int, int> getClearMissionId();
 private:
     // コンストラクタ
     UserInfo();
     // デストラクタ
     ~UserInfo();
+    map<int, int> m_clearMissionId;
     CC_SYNTHESIZE(int, m_user_id, UserId);
     CC_SYNTHESIZE(string, m_channel_user_id, ChannelUserId);
     CC_SYNTHESIZE(int, m_action_p, ActionP);
@@ -36,6 +39,7 @@ private:
     CC_SYNTHESIZE(int, m_diamond, Diamond);
     CC_SYNTHESIZE(int, m_exp, Exp);
     CC_SYNTHESIZE(int, m_lv, Lv);
+    CC_SYNTHESIZE(bool, m_isLvup, IsLvup);
     
 };
 

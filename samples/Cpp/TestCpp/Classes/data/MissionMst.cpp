@@ -24,6 +24,7 @@ MissionMst::MissionMst()
     m_minTimer = 0;
     m_maxTimer = 0;
     m_soldier_id = "";
+    m_mapId = 0;
 }
 
 /*
@@ -39,7 +40,7 @@ void MissionMst::initWithArray(CCDictionary * list){
     m_exp = dynamic_cast<CCString*>(list->objectForKey("exp"))->intValue();
     m_actionP = dynamic_cast<CCString*>(list->objectForKey("action_p"))->intValue();
     m_name = dynamic_cast<CCString*>(list->objectForKey("name"))->m_sString;
-    
+    m_mapId = dynamic_cast<CCString*>(list->objectForKey("map_id"))->intValue();
     m_posX = dynamic_cast<CCString*>(list->objectForKey("pos_x"))->intValue();
     m_posY = dynamic_cast<CCString*>(list->objectForKey("pos_y"))->intValue();
     m_minNum = dynamic_cast<CCString*>(list->objectForKey("min_num"))->intValue();
@@ -54,8 +55,8 @@ void MissionMst::initWithArray(CCDictionary * list){
     }
     
     //test
-    m_minTimer = 200;
-    m_maxTimer = 300;
+    m_minTimer = 400;
+    m_maxTimer = 600;
 }
 
 std::map<int, int> MissionMst::getSoldierMap(){

@@ -26,9 +26,10 @@ public:
 private:
     std::map<int, int>m_soldierMap;
     CC_SYNTHESIZE(int, m_id, Id);
-    CC_SYNTHESIZE(string, m_name, string);
+    CC_SYNTHESIZE(string, m_name, Name);
     CC_SYNTHESIZE(int, m_actionP, ActionP);
     CC_SYNTHESIZE(int, m_exp, Exp);
+    CC_SYNTHESIZE(int, m_mapId, MapId);
     CC_SYNTHESIZE(int, m_posX, PosX);
     CC_SYNTHESIZE(int, m_posY, PosY);
     CC_SYNTHESIZE(int, m_minNum, MinNum);

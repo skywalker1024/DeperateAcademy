@@ -153,6 +153,7 @@
 		817F8EE21AFC5AA500A87076 /* EvolutionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE01AFC5AA500A87076 /* EvolutionScene.cpp */; };
 		817F8EEA1AFC6B5700A87076 /* EvoMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE61AFC6B5600A87076 /* EvoMst.cpp */; };
 		817F8EEB1AFC6B5700A87076 /* EvoMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE81AFC6B5600A87076 /* EvoMstList.cpp */; };
+		817F8EF11AFF79E800A87076 /* MissionEndScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EEF1AFF79E800A87076 /* MissionEndScene.cpp */; };
 		81885F7E1AF8A8AD00073358 /* csv in Resources */ = {isa = PBXBuildFile; fileRef = 81885F7D1AF8A8AD00073358 /* csv */; };
 		81885F831AF8BE5800073358 /* LevelMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F7F1AF8BE5800073358 /* LevelMstList.cpp */; };
 		81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F801AF8BE5800073358 /* LevelMst.cpp */; };
@@ -541,6 +542,8 @@
 		817F8EE71AFC6B5600A87076 /* EvoMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMst.h; sourceTree = "<group>"; };
 		817F8EE81AFC6B5600A87076 /* EvoMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EvoMstList.cpp; sourceTree = "<group>"; };
 		817F8EE91AFC6B5600A87076 /* EvoMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMstList.h; sourceTree = "<group>"; };
+		817F8EEF1AFF79E800A87076 /* MissionEndScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MissionEndScene.cpp; path = ../Classes/MissionEndScene.cpp; sourceTree = "<group>"; };
+		817F8EF01AFF79E800A87076 /* MissionEndScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionEndScene.h; path = ../Classes/MissionEndScene.h; sourceTree = "<group>"; };
 		81885F7D1AF8A8AD00073358 /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
 		81885F7F1AF8BE5800073358 /* LevelMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMstList.cpp; sourceTree = "<group>"; };
 		81885F801AF8BE5800073358 /* LevelMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMst.cpp; sourceTree = "<group>"; };
@@ -902,15 +905,17 @@
 				81ED13421AF71AA50043B59C /* HomeScene.h */,
 				81ED13471AF725990043B59C /* info */,
 				81ED13361AF4C00E0043B59C /* lib */,
+				81ED131F1AF4A0340043B59C /* LoadingLayer.cpp */,
+				81ED131E1AF4A0340043B59C /* LoadingLayer.h */,
 				817F8ED21AFB4A8B00A87076 /* MapScene.cpp */,
 				817F8ED31AFB4A8B00A87076 /* MapScene.h */,
+				817F8EEF1AFF79E800A87076 /* MissionEndScene.cpp */,
+				817F8EF01AFF79E800A87076 /* MissionEndScene.h */,
 				81ED13431AF71AA50043B59C /* RegisterScene.cpp */,
 				81ED13441AF71AA50043B59C /* RegisterScene.h */,
 				81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */,
 				81CD7CB91AF38EA100C0EB2D /* Soldier.h */,
 				81CD7C3F1AEFB6B100C0EB2D /* sprite */,
-				81ED131F1AF4A0340043B59C /* LoadingLayer.cpp */,
-				81ED131E1AF4A0340043B59C /* LoadingLayer.h */,
 				81ED13331AF4AF320043B59C /* TitleScene.cpp */,
 				81ED13341AF4AF320043B59C /* TitleScene.h */,
 				81CD7C1D1AEFB6B100C0EB2D /* util */,
@@ -1825,6 +1830,7 @@
 				81CD7C461AEFB6B100C0EB2D /* ColorString.cpp in Sources */,
 				37CA1C2A17D87A3300A649D0 /* CCSpriteFrameCacheHelper.cpp in Sources */,
 				37CA1C2B17D87A3300A649D0 /* CCTransformHelp.cpp in Sources */,
+				817F8EF11AFF79E800A87076 /* MissionEndScene.cpp in Sources */,
 				81ED13321AF4A3FD0043B59C /* CommonUtils_ios.mm in Sources */,
 				50F853F218C57E040019FBFB /* LayoutReader.cpp in Sources */,
 				37CA1C2C17D87A3300A649D0 /* CCTweenFunction.cpp in Sources */,

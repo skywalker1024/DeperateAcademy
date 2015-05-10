@@ -27,7 +27,7 @@ public:
     int getCount();
     // オブジェクトの取得
     MissionMst* getObject( int mission_id );
-
+    
 private:
     // コンストラクタ
     MissionMstList();

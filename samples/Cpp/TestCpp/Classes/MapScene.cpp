@@ -15,6 +15,8 @@
 #include "DialogBaseLayer.h"
 #include "MissionInfo.h"
 #include "Battle.h"
+#include "UserInfo.h"
+#include "DialogLayer.h"
 MapScene::MapScene()
 {
     m_missionButtonList = new CCMutableArray<CCControlButton*>();
@@ -43,23 +45,92 @@ bool MapScene::init(){
     this->addChild(m_mapLayer);
     int screenWidth = CommonUtils::getScreenWidth();
     int screenHeight = CommonUtils::getScreenHeight();
-    for (int i=0; i<2; i++) {
-        string mapName = CCString::createWithFormat("img/map_%d.jpg", i)->m_sString;
+    
+    //添加map
+    std::vector<int>mapList;
+    int max_mission_id = 0;
+    for (int i=0; i<UserInfo::shared()->getClearMissionId().size(); i++) {
+        int mission_id = UserInfo::shared()->getClearMissionId()[i];
+        MissionMst * missionMst = MissionMstList::shared()->getObject(mission_id);
+        int mapId = missionMst->getMapId();
+        bool hasMap = false;
+        for (int j=0; j<mapList.size(); j++) {
+            if (mapList[j] == mapId) {
+                hasMap = true;
+                break;
+            }
+        }
+        if (!hasMap) {
+            mapList.push_back(mapId);
+        }
+        
+        if (mission_id > max_mission_id) {
+            max_mission_id = mission_id;
+        }
+    }
+    int next_mission_id = max_mission_id + 1;
+    MissionMst * missionMst = MissionMstList::shared()->getObject(next_mission_id);
+    if (missionMst) {
+        int  mapId = missionMst->getMapId();
+        m_currentMap = mapId - 1;
+        bool hasMap = false;
+        for (int j=0; j<mapList.size(); j++) {
+            if (mapList[j] == mapId) {
+                hasMap = true;
+                break;
+            }
+        }
+        if (!hasMap) {
+            mapList.push_back(mapId);
+        }
+    }else{
+        next_mission_id = 0;
+        
+        MissionMst * missionMst = MissionMstList::shared()->getObject(max_mission_id);
+        m_currentMap = missionMst->getMapId() - 1;
+    }
+    
+    std::sort(mapList.begin(), mapList.end());
+    std::vector<int>::iterator it;
+    it = mapList.begin();
+    
+    while (it != mapList.end())
+    {
+        int mapId = *it;
+        string mapName = CCString::createWithFormat("img/map_%d.jpg", mapId - 1)->m_sString;
         CCSprite *mapSprite = CCSprite::create(mapName.c_str());
         CCSize size = mapSprite->getContentSize();
         mapSprite->setScaleX(screenWidth / size.width);
         mapSprite->setScaleY(screenHeight / size.height);
         mapSprite->setAnchorPoint(CCPointZero);
-        mapSprite->setPosition(ccp(screenWidth*i, 0));
+        mapSprite->setPosition(ccp(screenWidth * (mapId - 1 - m_currentMap), 0));
         m_mapLayer->addChild(mapSprite);
         m_mapList->addObject(mapSprite);
-        
+        it++;
+    }
+    
+    for (int i=0; i<UserInfo::shared()->getClearMissionId().size(); i++) {
+        int mission_id = UserInfo::shared()->getClearMissionId()[i];
+        MissionMst * missionMst = MissionMstList::shared()->getObject(mission_id);
+        int mapId= missionMst->getMapId();
         //在map上添加missionBtn
-        CCControlButton * missionBtn = CCControlButton::create("虎牢关", DEFAULT_FONT_NAME, 60);
+        CCControlButton * missionBtn = CCControlButton::create(missionMst->getName(), DEFAULT_FONT_NAME, 60);
         m_mapLayer->addChild(missionBtn);
-        missionBtn->setPosition(ccp(i*screenWidth + 800, 800));
-        missionBtn->setTag(1);
-        missionBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MapScene::onMissionClick), CCControlEventTouchDown);
+        missionBtn->setPosition(ccp((mapId - 1 - m_currentMap) * screenWidth + missionMst->getPosX(), missionMst->getPosY()));
+        missionBtn->setTag(missionMst->getId());
+        missionBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MapScene::onMissionClick), CCControlEventTouchUpInside);
+        m_missionButtonList->addObject(missionBtn);
+    }
+    //添加下一个mission
+    if (next_mission_id) {
+        MissionMst * missionMst = MissionMstList::shared()->getObject(next_mission_id);
+        int mapId= missionMst->getMapId();
+        //在map上添加missionBtn
+        CCControlButton * missionBtn = CCControlButton::create(missionMst->getName(), DEFAULT_FONT_NAME, 60);
+        m_mapLayer->addChild(missionBtn);
+        missionBtn->setPosition(ccp((mapId - 1 - m_currentMap) * screenWidth + missionMst->getPosX(), missionMst->getPosY()));
+        missionBtn->setTag(missionMst->getId());
+        missionBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MapScene::onMissionClick), CCControlEventTouchUpInside);
         m_missionButtonList->addObject(missionBtn);
     }
     
@@ -119,7 +190,18 @@ void MapScene::onBackClick(){
 }
 
 void MapScene::onMissionClick(CCObject * sender, CCControlEvent controlEvent){
-    MissionInfo::shared()->setCurrentMissionId(dynamic_cast<CCControlButton*>(sender)->getTag());
+    int missionId = dynamic_cast<CCControlButton*>(sender)->getTag();
+    MissionMst *missionMst = MissionMstList::shared()->getObject(missionId);
+    if (UserInfo::shared()->getActionP() < missionMst->getActionP()) {
+        if (UserInfo::shared()->getDiamond() < 100) {
+            DialogLayer::showDialog("不足100钻补足体力，要去钻石商场买吗？", 2, this, callfunc_selector(MapScene::goToShop));
+        }else{
+            DialogLayer::showDialog("体力不足，花100钻补满吗？", 2, this, callfunc_selector(MapScene::buyActionP));
+        }
+        return;
+    }
+
+    MissionInfo::shared()->setCurrentMissionId(missionId);
     changeScene(Battle::scene());
 }
 
@@ -139,3 +221,10 @@ void MapScene::moveMap(CCTouch *pTouch){
     }
 }
 
+void MapScene::buyActionP(){
+    pushStepScene("buy_action_p.php", "", NULL);
+}
+
+void MapScene::goToShop(){//TODO
+    //changeScene(ShopScene::scene());
+}

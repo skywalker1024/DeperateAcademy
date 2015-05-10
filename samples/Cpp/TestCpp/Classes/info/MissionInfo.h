@@ -25,7 +25,7 @@ private:
     // デストラクタ
     ~MissionInfo();
     CC_SYNTHESIZE(int, m_currentMissionId, CurrentMissionId);
-    
+    CC_SYNTHESIZE(bool, m_isFirstClear, IsFirstClear);
 };
 
 #endif

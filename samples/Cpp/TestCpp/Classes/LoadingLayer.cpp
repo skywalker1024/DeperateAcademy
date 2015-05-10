@@ -16,6 +16,7 @@
 #include "TitleScene.h"
 #include "GraphicUtils.h"
 #include "GameConst.h"
+#include "MissionInfo.h"
 /*
  * コンストラクタ。
  */
@@ -34,7 +35,9 @@ LoadingLayer::LoadingLayer()
 LoadingLayer::~LoadingLayer()
 {
     ConnectRequestList::shared()->removeAllObjects();
-    CC_SAFE_RELEASE_NULL(m_nextScene);
+    if (m_nextScene) {
+        CC_SAFE_RELEASE_NULL(m_nextScene);
+    }
     CC_SAFE_RELEASE_NULL(m_prevScene);
 }
 
@@ -153,6 +156,18 @@ SEL_HttpResponse LoadingLayer::ResponseParse(CCHttpClient* client, CCHttpRespons
         UserInfo::shared()->updateSoldierInfo(responseJson["user_soldier"]);
     }
     
+    if (!responseJson["is_first_clear"].isNull()) {
+        MissionInfo::shared()->setIsFirstClear( responseJson["is_first_clear"].asBool() );
+    }
+    
+    if (!responseJson["user_clear_mission"].isNull()) {
+        UserInfo::shared()->updateClearMission( responseJson["user_clear_mission"] );
+    }
+    
+    if (!responseJson["is_lvup"].isNull()) {
+        UserInfo::shared()->setIsLvup( responseJson["is_lvup"].asBool() );
+    }
+    
     m_isFinish = true;
     return NULL;
     //CCLog("responseData=%s", responseJson);
@@ -172,5 +187,9 @@ void LoadingLayer::noticeConfirm(){
 }
 
 void LoadingLayer::changeNextScene(){
-    m_prevScene->changeScene(getNextScene());
+    if (getNextScene()) {
+        m_prevScene->changeScene(getNextScene());
+    }else{
+        this->removeFromParent();
+    }
 }

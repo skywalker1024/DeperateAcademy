@@ -38,6 +38,7 @@ UserInfo::UserInfo()
     m_exp = 0;
     m_lv = 0;
     m_user_id = 0;
+    m_isLvup = false;
 }
 
 /*
@@ -78,4 +79,17 @@ void UserInfo::updateSoldierInfo(Json::Value json){
         int soldier_id = CommonUtils::StrToInt(userSoldier["soldier_id"].asString());
         m_soldierMap[series] = soldier_id;
     }
+}
+
+void UserInfo::updateClearMission(Json::Value json){
+    m_clearMissionId.clear();
+    for (int i=0; i<json.size(); i++) {
+        Json::Value clearMission = json[i];
+        int mission_id = CommonUtils::StrToInt(clearMission["mission_id"].asString());
+        m_clearMissionId[i] = mission_id;
+    }
+}
+
+map<int, int> UserInfo::getClearMissionId(){
+    return m_clearMissionId;
 }

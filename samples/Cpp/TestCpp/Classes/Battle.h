@@ -49,6 +49,11 @@ private:
 private:
     void createEnemy();
     int m_enemyTimer;
+    int checkBlock();
+    bool m_checkBlock;
+    void createBlocks();
+    void setCheckBlock();
+    bool m_isOver;
 };
 
 

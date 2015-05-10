@@ -33,6 +33,8 @@ private:
     CCPoint m_prevPos;
     void moveMap(CCTouch *pTouch);
     int m_currentMap;
+    void buyActionP();
+    void goToShop();
 };
 
 
