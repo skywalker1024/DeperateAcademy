@@ -21,9 +21,18 @@ public:
     virtual void onEnter();
     virtual void onExit();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
 private:
-    void onBack();
+    virtual void onBackClick();
     void onMissionClick(CCObject * sender, CCControlEvent controlEvent);
+    CCMutableArray<CCControlButton *> * m_missionButtonList;
+    CCMutableArray<CCSprite *> * m_mapList;
+    CCLayer * m_mapLayer;
+    CCPoint m_prevPos;
+    void moveMap(CCTouch *pTouch);
+    int m_currentMap;
 };
 
 

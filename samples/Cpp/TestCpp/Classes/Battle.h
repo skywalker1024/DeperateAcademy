@@ -16,6 +16,7 @@ USING_NS_CC_EXT;
 #include "Block.h"
 #include "Soldier.h"
 #include "Wall.h"
+#include "MissionMstList.h"
 const int NUM = 8;
 
 class Battle : public BaseScene{
@@ -32,9 +33,10 @@ public:
     void draw();
     void update();
 private:
+    MissionMst * m_missionMst;
     int m_matrix[NUM][NUM];
     CCMutableDictionary<int, Block*> * m_blockList;
-    void createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy);
+    void createSoldier(int soldierId, CCMutableArray<Soldier*>* army, bool myArmy, int offsetX);
     void createBlock(int i, int j);
     int MATRIX_START_X;
     int MY_ARMY_START_X;
@@ -44,6 +46,9 @@ private:
     void updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldier*>* defArmy, bool myArmy);
     CC_SYNTHESIZE_RETAIN(Wall*, m_myWall, MyWall);
     CC_SYNTHESIZE_RETAIN(Wall*, m_enemyWall, EnemyWall);
+private:
+    void createEnemy();
+    int m_enemyTimer;
 };
 
 

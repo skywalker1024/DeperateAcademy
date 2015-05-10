@@ -55,6 +55,7 @@ protected:
     void setHeader();
     void setBackBtn();
     virtual void onBackClick();
+    CCControlButton * m_backBtn;
 };
 
 

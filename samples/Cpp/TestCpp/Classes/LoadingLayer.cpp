@@ -60,7 +60,12 @@ void LoadingLayer::onEnter(){
     addChild(armature);
     armature->release();
     */
-    GraphicUtils::drawString(this, "通讯中...", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() / 2 - 100, m_prevScene->getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    std::vector<string>tips;
+    tips.push_back("升级可以解锁更多兵种");
+    tips.push_back("在竞技场取胜可以获得钻石");
+    tips.push_back("战斗中点错方块会出现更多敌军");
+    string str = tips[arc4random() % tips.size()].append("\n通讯中...");
+    GraphicUtils::drawString(this, str, CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() / 2 - 100, m_prevScene->getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_CENTER_MIDDLE, 60);
 }
 
 /*

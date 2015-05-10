@@ -9,10 +9,12 @@
 #include "Battle.h"
 #include "CommonUtils.h"
 #include "SoldierMstList.h"
-
+#include "MissionInfo.h"
+#include "UserInfo.h"
 const int START_Y = 100;
 const int WIDTH = 100;
 const int ARMY_POSITION_Y = START_Y + NUM * WIDTH + 200;
+const int BLOCK_GREY_TYPE = 5;//Grey的serie id是5
 Battle::Battle()
 {
     m_blockList = new CCMutableDictionary<int, Block*>();
@@ -23,6 +25,7 @@ Battle::Battle()
     ENEMY_ARMY_START_X = MATRIX_START_X + NUM * WIDTH;
     m_myWall = NULL;
     m_enemyWall = NULL;
+    m_missionMst = NULL;
 }
 
 Battle::~Battle(){
@@ -46,7 +49,8 @@ bool Battle::init(){
     if (!BaseScene::init()) {
         return false;
     }
-    
+    int mission_id = MissionInfo::shared()->getCurrentMissionId();
+    m_missionMst = MissionMstList::shared()->getObject(mission_id);
     CCLog("height=%f width=%f", CCDirector::sharedDirector()->getWinSize().height, CCDirector::sharedDirector()->getWinSize().width );
    
 //    CCNodeLoaderLibrary * ccNodeLoaderLibrary = CCNodeLoaderLibrary::sharedCCNodeLoaderLibrary();
@@ -67,7 +71,7 @@ bool Battle::init(){
     myWallSprite->setPosition(ccp(MY_ARMY_START_X, ARMY_POSITION_Y));
     addChild(myWallSprite);
     m_myWall->setHp(1000);
-    StringLabelList *myWallHpString = GraphicUtils::drawString(this, "1000", MY_ARMY_START_X, ARMY_POSITION_Y + 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    StringLabelList *myWallHpString = GraphicUtils::drawString(this, "1000", MY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     m_myWall->setStringLabelList(myWallHpString);
     
     setEnemyWall( Wall::create() );
@@ -75,8 +79,10 @@ bool Battle::init(){
     enemyWallSprite->setPosition(ccp(ENEMY_ARMY_START_X, ARMY_POSITION_Y));
     addChild(enemyWallSprite);
     m_enemyWall->setHp(2000);
-    StringLabelList *enemyWallHpString = GraphicUtils::drawString(this, "2000", ENEMY_ARMY_START_X, ARMY_POSITION_Y + 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    StringLabelList *enemyWallHpString = GraphicUtils::drawString(this, "2000", ENEMY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     m_enemyWall->setStringLabelList(enemyWallHpString);
+    
+    m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
     return true;
 }
 
@@ -172,7 +178,9 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
             Block *block = usedAry->getObjectAtIndex(i);
             block->getSprite()->runAction(CCSequence::create(CCMoveBy::create(.1f, ccp(20,0)), CCMoveBy::create(.1f, ccp(-35, 0)), CCMoveBy::create(.1f, ccp(25, 0)), CCMoveBy::create(.1f, ccp(-10, 0)), NULL));
         }
-        createSoldier(1, m_enemyArmy, false);
+        
+        //如果点错，对面出来一堆兵,
+        createEnemy();
         return false;
     }
     
@@ -204,10 +212,9 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     //新增小兵的依据，消3个出来一个还是消3个出来3个
     if (usedAry->count() > 0) {
         //新增小兵
-        createSoldier(block->getType(), m_myArmy, true);
-        
-        if (arc4random() % 2 > 0) {
-            createSoldier(1, m_enemyArmy, false);
+        if (block->getType() != BLOCK_GREY_TYPE) {
+            int soldierId = UserInfo::shared()->m_soldierMap[block->getType()];
+            createSoldier(soldierId, m_myArmy, true, 0);
         }
     }
     
@@ -260,14 +267,14 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     return true;
 }
 
-void Battle::createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy){
+void Battle::createSoldier(int soldierId, CCMutableArray<Soldier*>* army, bool myArmy, int offsetX){
     cocos2d::extension::CCArmature *armature = NULL;
     armature = new cocos2d::extension::CCArmature();
     armature->init("Knight_f/Knight");
     armature->getAnimation()->playWithIndex(1);
     
     std::string weapon[] = {"weapon_f-sword.png", "weapon_f-sword2.png", "weapon_f-sword3.png", "weapon_f-sword4.png", "weapon_f-sword5.png", "weapon_f-knife.png", "weapon_f-hammer.png"};
-    
+    int kind = soldierId % 100;
     CCSkin *skin = CCSkin::createWithSpriteFrameName(weapon[kind].c_str());
     armature->getBone("weapon")->addDisplay(skin, 0);
     
@@ -280,7 +287,7 @@ void Battle::createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy
         armature->setPosition(ccp(MY_ARMY_START_X, ARMY_POSITION_Y));
     }else{
         armature->setScaleX(-1.2f);
-        armature->setPosition(ccp(ENEMY_ARMY_START_X, ARMY_POSITION_Y));
+        armature->setPosition(ccp(ENEMY_ARMY_START_X + offsetX, ARMY_POSITION_Y));
     }
     
     
@@ -291,7 +298,18 @@ void Battle::createSoldier(int kind, CCMutableArray<Soldier*>* army, bool myArmy
 }
 
 void Battle::createBlock(int i , int j){
-    int rand = arc4random() % 4;
+    int blockTypes = 4;
+    int rand = 0;
+    if ( UserInfo::shared()->m_soldierMap.size() < 4) {
+        blockTypes = UserInfo::shared()->m_soldierMap.size() + 1;
+        rand = arc4random() % blockTypes;
+        if (rand >= UserInfo::shared()->m_soldierMap.size()) {
+            rand = BLOCK_GREY_TYPE - 1;
+        }
+    }else{
+        rand = arc4random() % blockTypes;
+    }
+    CCLog("blockTypes=%d", rand);
     string key = string("block").append(CommonUtils::IntToString(rand));
     CCSpriteBatchNode *batchNode = getCacheBatchNode(key, "block");
     if ( !batchNode ) {
@@ -303,7 +321,7 @@ void Battle::createBlock(int i , int j){
     Block *block = Block::create();
     block->setI(i);
     block->setJ(j);
-    block->setType(rand);
+    block->setType(rand + 1);//type是serie id
     m_matrix[i][j] = i * NUM + j;
     m_blockList->removeObjectForKey(m_matrix[i][j]);
     m_blockList->setObject(block, m_matrix[i][j]);
@@ -318,6 +336,13 @@ void Battle::createBlock(int i , int j){
 }
 
 void Battle::draw(){
+    if (m_enemyTimer > 0) {
+        m_enemyTimer--;
+    }else{
+        createEnemy();
+        m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
+    }
+    
     updateArmy(m_myArmy, m_enemyArmy, true);
     updateArmy(m_enemyArmy, m_myArmy, false);
 }
@@ -397,6 +422,36 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
         
         if(!myArmy && soldier->getStatus() == Soldier::WALKING && fabs(MY_ARMY_START_X - soldier->getArmature()->getPositionX())<soldier->getAtkRange()){
             soldier->setStatus(Soldier::ATKING_WALL);
+        }
+    }
+}
+
+void Battle::createEnemy(){
+    int minNum = m_missionMst->getMinNum();
+    int maxNum = m_missionMst->getMaxNum();
+    std::map<int, int> soldierMap = m_missionMst->getSoldierMap();
+    int soldierNum = CommonUtils::getRandom(minNum, maxNum);
+    
+    int leftNum = soldierNum;
+    for (int i=0; i<soldierMap.size(); i++) {
+        int soldierNum = 0;
+        if (i == soldierMap.size() - 1) {
+            soldierNum = leftNum;
+        }else{
+            soldierNum = CommonUtils::getRandom(0, leftNum);
+        }
+        int soldierId = soldierMap[i];
+        for (int j=0; j<soldierNum; j++) {
+            int offsetX = 0;
+            if (j > 0) {
+                offsetX = CommonUtils::getRandom(100, 200);
+            }
+            createSoldier(soldierId, m_enemyArmy, false, offsetX);
+        }
+        
+        leftNum -= soldierNum;
+        if (leftNum <= 0) {
+            break;
         }
     }
 }

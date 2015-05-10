@@ -10,7 +10,7 @@
 #include "HomeScene.h"
 #include "GameConst.h"
 #include "GraphicUtils.h"
-#include "Battle.h"
+#include "MapScene.h"
 #include "EvolutionScene.h"
 HomeScene::HomeScene()
 {
@@ -74,7 +74,7 @@ bool HomeScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
 }
 
 void HomeScene::onQuestClick(){
-    changeScene(Battle::scene());
+    changeScene(MapScene::scene());
 }
 
 void HomeScene::onEvoClick(){

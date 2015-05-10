@@ -20,11 +20,11 @@ MissionMstList* MissionMstList::shared()
 		MissionMstListInstance= new MissionMstList();
         
         //读取sqlite
-        CCArray * list = SQLiteManager::sharedInstance()->selectRows("select * from Mission");
+        CCArray * list = SQLiteManager::sharedInstance()->selectRows("select * from mission");
         for (int i=0; i<list->count(); i++) {
-            MissionMst * MissionMst = new class MissionMst();
-            MissionMst->initWithArray(dynamic_cast<CCDictionary*>(list->objectAtIndex(i)));
-            MissionMstListInstance->addObject(MissionMst);
+            MissionMst * missionMst = new class MissionMst();
+            missionMst->initWithArray(dynamic_cast<CCDictionary*>(list->objectAtIndex(i)));
+            MissionMstListInstance->addObject(missionMst);
         }
 	}
 
