@@ -24,6 +24,7 @@ public:
     map<int, int> m_soldierMap; //key是serieid 1~4 value是soldierId
     void updateSoldierInfo(Json::Value json);
     void updateClearMission(Json::Value json);
+    void updateArenaInfo(Json::Value json);
     map<int, int> getClearMissionId();
 private:
     // コンストラクタ
@@ -41,6 +42,8 @@ private:
     CC_SYNTHESIZE(int, m_lv, Lv);
     CC_SYNTHESIZE(bool, m_isLvup, IsLvup);
     
+    CC_SYNTHESIZE(int, m_arenaPoint, ArenaPoint);
+    CC_SYNTHESIZE(int, m_arenaRank, ArenaRank);
 };
 
 #endif

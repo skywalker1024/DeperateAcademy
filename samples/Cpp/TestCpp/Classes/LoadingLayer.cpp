@@ -168,6 +168,10 @@ SEL_HttpResponse LoadingLayer::ResponseParse(CCHttpClient* client, CCHttpRespons
         UserInfo::shared()->setIsLvup( responseJson["is_lvup"].asBool() );
     }
     
+    if (!responseJson["arena_info"].isNull()) {
+        UserInfo::shared()->updateArenaInfo( responseJson["arena_info"] );
+    }
+    
     m_isFinish = true;
     return NULL;
     //CCLog("responseData=%s", responseJson);

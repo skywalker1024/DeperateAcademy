@@ -39,6 +39,8 @@ UserInfo::UserInfo()
     m_lv = 0;
     m_user_id = 0;
     m_isLvup = false;
+    m_arenaPoint = 0;
+    m_arenaRank = 0;
 }
 
 /*
@@ -92,4 +94,9 @@ void UserInfo::updateClearMission(Json::Value json){
 
 map<int, int> UserInfo::getClearMissionId(){
     return m_clearMissionId;
+}
+
+void UserInfo::updateArenaInfo(Json::Value json){
+    m_arenaPoint = CommonUtils::StrToInt(json["point"].asString());
+    m_arenaRank = CommonUtils::StrToInt(json["rank"].asString());
 }
