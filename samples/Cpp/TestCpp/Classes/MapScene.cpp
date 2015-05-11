@@ -103,7 +103,7 @@ bool MapScene::init(){
         mapSprite->setScaleX(screenWidth / size.width);
         mapSprite->setScaleY(screenHeight / size.height);
         mapSprite->setAnchorPoint(CCPointZero);
-        mapSprite->setPosition(ccp(screenWidth * (mapId - 1 - m_currentMap), 0));
+        mapSprite->setPosition(ccp(screenWidth * (mapId - 1), 0));
         m_mapLayer->addChild(mapSprite);
         m_mapList->addObject(mapSprite);
         it++;
@@ -116,7 +116,7 @@ bool MapScene::init(){
         //在map上添加missionBtn
         CCControlButton * missionBtn = CCControlButton::create(missionMst->getName(), DEFAULT_FONT_NAME, 60);
         m_mapLayer->addChild(missionBtn);
-        missionBtn->setPosition(ccp((mapId - 1 - m_currentMap) * screenWidth + missionMst->getPosX(), missionMst->getPosY()));
+        missionBtn->setPosition(ccp((mapId - 1) * screenWidth + missionMst->getPosX(), missionMst->getPosY()));
         missionBtn->setTag(missionMst->getId());
         missionBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MapScene::onMissionClick), CCControlEventTouchUpInside);
         m_missionButtonList->addObject(missionBtn);
@@ -128,12 +128,12 @@ bool MapScene::init(){
         //在map上添加missionBtn
         CCControlButton * missionBtn = CCControlButton::create(missionMst->getName(), DEFAULT_FONT_NAME, 60);
         m_mapLayer->addChild(missionBtn);
-        missionBtn->setPosition(ccp((mapId - 1 - m_currentMap) * screenWidth + missionMst->getPosX(), missionMst->getPosY()));
+        missionBtn->setPosition(ccp((mapId - 1) * screenWidth + missionMst->getPosX(), missionMst->getPosY()));
         missionBtn->setTag(missionMst->getId());
         missionBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(MapScene::onMissionClick), CCControlEventTouchUpInside);
         m_missionButtonList->addObject(missionBtn);
     }
-    
+    m_mapLayer->setPositionX(-screenWidth * m_currentMap);
     setBackBtn();
     
     CCLog("width =%d height =%d", CommonUtils::getScreenWidth(), CommonUtils::getScreenHeight());
@@ -162,6 +162,7 @@ bool MapScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
         }
     }
     m_prevPos = pTouch->getLocation();
+    CCLog("m_prevPos x=%f y=%f", m_prevPos.x, m_prevPos.y);
     return true;
 }
 
@@ -206,8 +207,14 @@ void MapScene::onMissionClick(CCObject * sender, CCControlEvent controlEvent){
 }
 
 void MapScene::moveMap(CCTouch *pTouch){
-    bool isLeft = m_prevPos.x - pTouch->getLocation().x > 0;
     int screenWidth = CommonUtils::getScreenWidth();
+    if(fabs(m_prevPos.x - pTouch->getLocation().x) < 10){
+        m_mapLayer->runAction(CCMoveTo::create(.1f, ccp(-screenWidth * m_currentMap, 0)));
+        return;
+    }
+    CCLog("moveMap x=%f y=%f", pTouch->getLocation().x, pTouch->getLocation().y);
+
+    bool isLeft = m_prevPos.x - pTouch->getLocation().x > 0;
     if (isLeft) {
         if (m_currentMap + 1 < m_mapList->count()) {//右边还有
             m_mapLayer->runAction(CCMoveTo::create(.1f, ccp(-screenWidth * (m_currentMap + 1), 0)));
