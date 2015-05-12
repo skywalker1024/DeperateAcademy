@@ -14,7 +14,7 @@
 
 - (void)init;
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
-
+-(void)viewDidUnload;
 @end
 
 #endif

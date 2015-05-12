@@ -25,8 +25,8 @@
     //这个属性继承自UIView，当一个视图中有多个AlertView时，可以用这个属性来区分
     alert.tag = 1;
     //显示AlertView
+    [alert autorelease];
     [alert show];
-    [alert release];
     
 }
 
@@ -36,7 +36,8 @@
 {
     NSLog(@"buttonIndex=%d",buttonIndex);
     if (alertView.tag == 1 && buttonIndex == 1) {
-        NSString * str = [NSString stringWithUTF8String:"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=921871787"];
+        //NSString * str = [NSString stringWithUTF8String:"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=921871787"];//ios6 or earlier
+        NSString * str = [NSString stringWithUTF8String:"itms-apps://itunes.apple.com/app/id921871787"];//ios7
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
 }
@@ -71,12 +72,12 @@
 {
     NSLog(@"willPresentAlertView");
 }
-
+*/
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-*/
+
 @end
