@@ -154,6 +154,7 @@
 		817F8EEA1AFC6B5700A87076 /* EvoMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE61AFC6B5600A87076 /* EvoMst.cpp */; };
 		817F8EEB1AFC6B5700A87076 /* EvoMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE81AFC6B5600A87076 /* EvoMstList.cpp */; };
 		817F8EF11AFF79E800A87076 /* MissionEndScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EEF1AFF79E800A87076 /* MissionEndScene.cpp */; };
+		817F8EF51B019DDE00A87076 /* AlertView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EF41B019DDE00A87076 /* AlertView.mm */; };
 		81885F7E1AF8A8AD00073358 /* csv in Resources */ = {isa = PBXBuildFile; fileRef = 81885F7D1AF8A8AD00073358 /* csv */; };
 		81885F831AF8BE5800073358 /* LevelMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F7F1AF8BE5800073358 /* LevelMstList.cpp */; };
 		81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F801AF8BE5800073358 /* LevelMst.cpp */; };
@@ -544,6 +545,8 @@
 		817F8EE91AFC6B5600A87076 /* EvoMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMstList.h; sourceTree = "<group>"; };
 		817F8EEF1AFF79E800A87076 /* MissionEndScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MissionEndScene.cpp; path = ../Classes/MissionEndScene.cpp; sourceTree = "<group>"; };
 		817F8EF01AFF79E800A87076 /* MissionEndScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionEndScene.h; path = ../Classes/MissionEndScene.h; sourceTree = "<group>"; };
+		817F8EF31B019DDE00A87076 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = ../Classes/AlertView.h; sourceTree = "<group>"; };
+		817F8EF41B019DDE00A87076 /* AlertView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AlertView.mm; path = ../Classes/AlertView.mm; sourceTree = "<group>"; };
 		81885F7D1AF8A8AD00073358 /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
 		81885F7F1AF8BE5800073358 /* LevelMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMstList.cpp; sourceTree = "<group>"; };
 		81885F801AF8BE5800073358 /* LevelMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMst.cpp; sourceTree = "<group>"; };
@@ -884,6 +887,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				817F8EF31B019DDE00A87076 /* AlertView.h */,
+				817F8EF41B019DDE00A87076 /* AlertView.mm */,
 				15AA9F3A15B7EF960033D6C2 /* AppDelegate.cpp */,
 				15AA9F3B15B7EF960033D6C2 /* AppDelegate.h */,
 				81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */,
@@ -1838,6 +1843,7 @@
 				37CA1C2E17D87A3300A649D0 /* CCComAttribute.cpp in Sources */,
 				37CA1C2F17D87A3300A649D0 /* CCComAudio.cpp in Sources */,
 				81ED132D1AF4A2470043B59C /* NetworkManager.cpp in Sources */,
+				817F8EF51B019DDE00A87076 /* AlertView.mm in Sources */,
 				37CA1C3017D87A3300A649D0 /* CCComController.cpp in Sources */,
 				37CA1C3117D87A3300A649D0 /* CCComRender.cpp in Sources */,
 				37CA1C3217D87A3300A649D0 /* CCInputDelegate.cpp in Sources */,

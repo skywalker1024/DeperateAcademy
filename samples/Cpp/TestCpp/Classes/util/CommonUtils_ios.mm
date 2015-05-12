@@ -7,6 +7,7 @@
 //
 
 #include "CommonUtils.h"
+#include "AlertView.h"
 std::string CommonUtils::getDeviceID()
 {
     
@@ -24,4 +25,8 @@ std::string CommonUtils::getDeviceID()
         ret = [[[[UIDevice currentDevice] identifierForVendor] UUIDString] UTF8String];
     }
     return ret;
+}
+
+void CommonUtils::showAlert(){
+    [[AlertView alloc] init];
 }

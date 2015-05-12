@@ -13,6 +13,7 @@
 #include "HomeScene.h"
 #include "CommonUtils.h"
 #include "DialogBaseLayer.h"
+
 TitleScene::TitleScene()
 {
 }
@@ -39,6 +40,7 @@ bool TitleScene::init(){
 
 void TitleScene::onEnter(){
     BaseScene::onEnter();
+    //CommonUtils::showAlert();
 }
 
 void TitleScene::onExit(){
