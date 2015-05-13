@@ -50,6 +50,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "NetworkManager::NetworkRequest(std::string, cocos2d::extension::CCHttpRequest::HttpRequestType, std::string, std::string, cocos2d::CCObject*, void (cocos2d::CCObject::*)(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*), bool, bool):NetworkManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_httpClient">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ResponseParser::ResponseParse(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*):ResponseParser.cpp">
          <PersistentStrings>
             <PersistentString
@@ -115,6 +123,9 @@
             <PersistentString
                value = "request-&gt;getTarget()">
             </PersistentString>
+            <PersistentString
+               value = "*pSelector">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -149,6 +160,14 @@
       </ContextState>
       <ContextState
          contextName = "LoadingLayer::setResponseParser(ResponseParser*):LoadingLayer.h">
+      </ContextState>
+      <ContextState
+         contextName = "cocos2d::CCTimer::update(float):CCScheduler.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_pfnSelector">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "-[AlertView alertView:clickedButtonAtIndex:]:AlertView.mm">

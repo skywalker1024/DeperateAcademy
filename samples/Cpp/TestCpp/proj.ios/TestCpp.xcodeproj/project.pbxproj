@@ -1581,14 +1581,14 @@
 		81ED13241AF4A2470043B59C /* conn */ = {
 			isa = PBXGroup;
 			children = (
-				817F8EFA1B02107A00A87076 /* ResponseParser.h */,
-				817F8EFB1B02107A00A87076 /* ResponseParser.cpp */,
 				81ED13251AF4A2470043B59C /* BaseRequest.cpp */,
 				81ED13261AF4A2470043B59C /* BaseRequest.h */,
 				81ED13271AF4A2470043B59C /* ConnectRequestList.cpp */,
 				81ED13281AF4A2470043B59C /* ConnectRequestList.h */,
 				81ED13291AF4A2470043B59C /* NetworkManager.cpp */,
 				81ED132A1AF4A2470043B59C /* NetworkManager.h */,
+				817F8EFB1B02107A00A87076 /* ResponseParser.cpp */,
+				817F8EFA1B02107A00A87076 /* ResponseParser.h */,
 			);
 			name = conn;
 			path = ../Classes/conn;
@@ -1937,7 +1937,7 @@
 					"\"$(SRCROOT)/../../../../cocos2dx/platform/ios/Simulation\"",
 				);
 				INFOPLIST_FILE = "Test-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../../../../external/libwebsockets/ios/lib\"",
@@ -1946,7 +1946,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "armv6 armv7 i386";
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -1981,7 +1981,7 @@
 					"\"$(SRCROOT)/../../../../cocos2dx/platform/ios/Simulation\"",
 				);
 				INFOPLIST_FILE = "Test-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../../../cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../../../../external/libwebsockets/ios/lib\"",
@@ -1991,6 +1991,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};

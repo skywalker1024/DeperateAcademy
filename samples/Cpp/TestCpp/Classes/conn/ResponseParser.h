@@ -23,7 +23,7 @@ public:
     ~ResponseParser();
     CREATE_FUNC(ResponseParser);
     virtual bool init();
-    SEL_HttpResponse ResponseParse(CCHttpClient* client, CCHttpResponse* response);
+    void ResponseParse(CCHttpClient* client, CCHttpResponse* response);
 protected:
 
 };

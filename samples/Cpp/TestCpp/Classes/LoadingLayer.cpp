@@ -101,10 +101,10 @@ void LoadingLayer::draw()
             
             BaseRequest* req = ConnectRequestList::shared()->getObject( connectIndex );
             
-            ResponseParser *responseParser = ResponseParser::create();
+            ResponseParser *responseParser = new ResponseParser();
             m_responseParser = NULL;//这行很重要，下面的set会release上一个的m_responseParser，但是上一个是个空指针，会crash
             this->setResponseParser(responseParser);
-            NetworkManager::sharedInstance()->NetworkRequestPost(req->getFullUrl(), req->getFullData(), "", (CCObject*)responseParser, httpresponse_selector(ResponseParser::ResponseParse));
+            NetworkManager::sharedInstance()->NetworkRequestPost(req->getFullUrl(), req->getFullData(), "", this->getResponseParser(), httpresponse_selector(ResponseParser::ResponseParse));
             m_isFinished = false;
             state = STATE_CONNECT_LOOP;
         }

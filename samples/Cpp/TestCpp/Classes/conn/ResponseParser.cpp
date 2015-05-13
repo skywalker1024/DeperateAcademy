@@ -30,7 +30,7 @@ bool ResponseParser::init(){
     return true;
 }
 
-SEL_HttpResponse ResponseParser::ResponseParse(CCHttpClient* client, CCHttpResponse* response){
+void ResponseParser::ResponseParse(CCHttpClient* client, CCHttpResponse* response){
     if (!response->isSucceed()) {
         CCLog("not succeed");
         if (response->getResponseCode() == 500) {
@@ -39,7 +39,7 @@ SEL_HttpResponse ResponseParser::ResponseParse(CCHttpClient* client, CCHttpRespo
         }else{
             DialogLayer::showDialog("通讯不良，请重试", 1, LoadingLayer::shared(), callfunc_selector(LoadingLayer::retry), NULL, NULL, "", "");
         }
-        return NULL;
+        return;
     }
     Json::Value responseJson;
     CommonUtils::ReadIntoJson(response->getResponseData(), responseJson, true);
@@ -57,12 +57,12 @@ SEL_HttpResponse ResponseParser::ResponseParse(CCHttpClient* client, CCHttpRespo
         }else{
             DialogLayer::showDialog(responseJson["error"].asCString(), 1, LoadingLayer::shared(), callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
         }
-        return NULL;
+        return;
     }
     
     if (!responseJson["notice"].isNull()) {
         DialogLayer::showDialog(responseJson["notice"].asCString(), 1, LoadingLayer::shared(), callfunc_selector(LoadingLayer::noticeConfirm), NULL, NULL, "", "");
-        return NULL;
+        return;
     }
     
     if (!responseJson["user_info"].isNull()) {
@@ -90,6 +90,6 @@ SEL_HttpResponse ResponseParser::ResponseParse(CCHttpClient* client, CCHttpRespo
     }
     
     LoadingLayer::shared()->setIsFinished(true);
-    return NULL;
+    return;
     //CCLog("responseData=%s", responseJson);
 }
