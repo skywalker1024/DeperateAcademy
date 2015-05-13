@@ -32,6 +32,8 @@ MissionInfo::MissionInfo()
 {
     m_currentMissionId = 0;
     m_isFirstClear = false;
+    m_isArena = false;
+    m_currentArenaId = 0;
 }
 
 /*

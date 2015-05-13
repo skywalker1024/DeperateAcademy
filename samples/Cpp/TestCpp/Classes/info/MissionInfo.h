@@ -26,6 +26,8 @@ private:
     ~MissionInfo();
     CC_SYNTHESIZE(int, m_currentMissionId, CurrentMissionId);
     CC_SYNTHESIZE(bool, m_isFirstClear, IsFirstClear);
+    CC_SYNTHESIZE(bool, m_isArena, IsArena);
+    CC_SYNTHESIZE(int, m_currentArenaId, CurrentArenaId);
 };
 
 #endif

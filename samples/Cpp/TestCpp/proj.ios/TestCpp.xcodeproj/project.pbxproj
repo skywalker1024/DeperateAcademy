@@ -159,6 +159,9 @@
 		81885F831AF8BE5800073358 /* LevelMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F7F1AF8BE5800073358 /* LevelMstList.cpp */; };
 		81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F801AF8BE5800073358 /* LevelMst.cpp */; };
 		81885F871AF8CEFC00073358 /* DialogBaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F851AF8CEFC00073358 /* DialogBaseLayer.cpp */; };
+		81A76CCD1B034A6800DD5FD8 /* ArenaMapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A76CCB1B034A6800DD5FD8 /* ArenaMapScene.cpp */; };
+		81A76CD21B034DEC00DD5FD8 /* ArenaInfoList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A76CD01B034DEC00DD5FD8 /* ArenaInfoList.cpp */; };
+		81A76CD31B034DEC00DD5FD8 /* ArenaInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A76CD11B034DEC00DD5FD8 /* ArenaInfo.cpp */; };
 		81CD7C441AEFB6B100C0EB2D /* Battle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1B1AEFB6B100C0EB2D /* Battle.cpp */; };
 		81CD7C451AEFB6B100C0EB2D /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */; };
 		81CD7C461AEFB6B100C0EB2D /* ColorString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */; };
@@ -554,6 +557,12 @@
 		81885F821AF8BE5800073358 /* LevelMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelMst.h; sourceTree = "<group>"; };
 		81885F851AF8CEFC00073358 /* DialogBaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DialogBaseLayer.cpp; path = ../Classes/DialogBaseLayer.cpp; sourceTree = "<group>"; };
 		81885F861AF8CEFC00073358 /* DialogBaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DialogBaseLayer.h; path = ../Classes/DialogBaseLayer.h; sourceTree = "<group>"; };
+		81A76CCB1B034A6800DD5FD8 /* ArenaMapScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ArenaMapScene.cpp; path = ../Classes/ArenaMapScene.cpp; sourceTree = "<group>"; };
+		81A76CCC1B034A6800DD5FD8 /* ArenaMapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaMapScene.h; path = ../Classes/ArenaMapScene.h; sourceTree = "<group>"; };
+		81A76CCE1B034DEC00DD5FD8 /* ArenaInfoList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArenaInfoList.h; sourceTree = "<group>"; };
+		81A76CCF1B034DEC00DD5FD8 /* ArenaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArenaInfo.h; sourceTree = "<group>"; };
+		81A76CD01B034DEC00DD5FD8 /* ArenaInfoList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArenaInfoList.cpp; sourceTree = "<group>"; };
+		81A76CD11B034DEC00DD5FD8 /* ArenaInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArenaInfo.cpp; sourceTree = "<group>"; };
 		81CD7C1B1AEFB6B100C0EB2D /* Battle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Battle.cpp; path = ../Classes/Battle.cpp; sourceTree = "<group>"; };
 		81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseScene.cpp; path = ../Classes/BaseScene.cpp; sourceTree = "<group>"; };
 		81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorString.cpp; sourceTree = "<group>"; };
@@ -887,6 +896,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				81A76CCB1B034A6800DD5FD8 /* ArenaMapScene.cpp */,
+				81A76CCC1B034A6800DD5FD8 /* ArenaMapScene.h */,
 				817F8EF31B019DDE00A87076 /* AlertView.h */,
 				817F8EF41B019DDE00A87076 /* AlertView.mm */,
 				15AA9F3A15B7EF960033D6C2 /* AppDelegate.cpp */,
@@ -1611,6 +1622,10 @@
 		81ED13471AF725990043B59C /* info */ = {
 			isa = PBXGroup;
 			children = (
+				81A76CD11B034DEC00DD5FD8 /* ArenaInfo.cpp */,
+				81A76CCF1B034DEC00DD5FD8 /* ArenaInfo.h */,
+				81A76CD01B034DEC00DD5FD8 /* ArenaInfoList.cpp */,
+				81A76CCE1B034DEC00DD5FD8 /* ArenaInfoList.h */,
 				817F8ED51AFB515400A87076 /* MissionInfo.cpp */,
 				817F8ED61AFB515400A87076 /* MissionInfo.h */,
 				81ED13481AF725990043B59C /* UserInfo.cpp */,
@@ -1757,9 +1772,11 @@
 				15A3DA3D1682F826002FB0C5 /* CCLayerColorLoader.cpp in Sources */,
 				15A3DA3E1682F826002FB0C5 /* CCLayerGradientLoader.cpp in Sources */,
 				15A3DA3F1682F826002FB0C5 /* CCLayerLoader.cpp in Sources */,
+				81A76CCD1B034A6800DD5FD8 /* ArenaMapScene.cpp in Sources */,
 				50F853F518C57E040019FBFB /* PageViewReader.cpp in Sources */,
 				15A3DA401682F826002FB0C5 /* CCMenuItemImageLoader.cpp in Sources */,
 				15A3DA411682F826002FB0C5 /* CCMenuItemLoader.cpp in Sources */,
+				81A76CD31B034DEC00DD5FD8 /* ArenaInfo.cpp in Sources */,
 				15A3DA421682F826002FB0C5 /* CCNode+CCBRelativePositioning.cpp in Sources */,
 				817F8EEB1AFC6B5700A87076 /* EvoMstList.cpp in Sources */,
 				15A3DA431682F826002FB0C5 /* CCNodeLoader.cpp in Sources */,
@@ -1778,6 +1795,7 @@
 				15A3DA4D1682F826002FB0C5 /* CCControlPotentiometer.cpp in Sources */,
 				15A3DA4E1682F826002FB0C5 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				817F8ECE1AF90E5F00A87076 /* DialogLayer.cpp in Sources */,
+				81A76CD21B034DEC00DD5FD8 /* ArenaInfoList.cpp in Sources */,
 				15A3DA4F1682F826002FB0C5 /* CCControlSlider.cpp in Sources */,
 				81CD7C531AEFB6B100C0EB2D /* WideUseFrame.cpp in Sources */,
 				15A3DA501682F826002FB0C5 /* CCControlStepper.cpp in Sources */,

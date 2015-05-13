@@ -17,6 +17,7 @@ USING_NS_CC_EXT;
 #include "Soldier.h"
 #include "Wall.h"
 #include "MissionMstList.h"
+#include "ArenaInfoList.h"
 const int NUM = 8;
 
 class Battle : public BaseScene{
@@ -54,6 +55,8 @@ private:
     void createBlocks();
     void setCheckBlock();
     bool m_isOver;
+    ArenaInfo * m_arenaInfo;
+    void changeNextScene(bool isWin);
 };
 
 

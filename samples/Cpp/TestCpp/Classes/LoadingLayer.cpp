@@ -17,7 +17,7 @@
 #include "GraphicUtils.h"
 #include "GameConst.h"
 #include "MissionInfo.h"
-
+#include "ArenaInfoList.h"
 LoadingLayer * loadingLayerInstance = NULL;
 /*
  * コンストラクタ。
@@ -195,6 +195,11 @@ void LoadingLayer::responseParser(CCHttpClient* client, CCHttpResponse* response
     }
     
     if (!responseJson["arena_info"].isNull()) {
+        UserInfo::shared()->updateArenaInfo( responseJson["arena_info"] );
+    }
+    
+    //竞技场对手信息
+    if (!responseJson["arena_list"].isNull()) {
         UserInfo::shared()->updateArenaInfo( responseJson["arena_info"] );
     }
     

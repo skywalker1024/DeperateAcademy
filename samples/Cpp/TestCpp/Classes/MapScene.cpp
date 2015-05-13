@@ -203,6 +203,7 @@ void MapScene::onMissionClick(CCObject * sender, CCControlEvent controlEvent){
     }
 
     MissionInfo::shared()->setCurrentMissionId(missionId);
+    MissionInfo::shared()->setIsArena(false);
     changeScene(Battle::scene());
 }
 

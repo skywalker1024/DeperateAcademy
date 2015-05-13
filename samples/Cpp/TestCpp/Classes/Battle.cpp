@@ -53,8 +53,16 @@ bool Battle::init(){
     if (!BaseScene::init()) {
         return false;
     }
-    int mission_id = MissionInfo::shared()->getCurrentMissionId();
-    m_missionMst = MissionMstList::shared()->getObject(mission_id);
+    if (MissionInfo::shared()->getIsArena()) {
+        int arena_id = MissionInfo::shared()->getCurrentArenaId();
+        m_arenaInfo = ArenaInfoList::shared()->getObject(arena_id);
+        m_enemyTimer = CommonUtils::getRandom(m_arenaInfo->getMinTimer(), m_arenaInfo->getMaxTimer());
+    }else{
+        int mission_id = MissionInfo::shared()->getCurrentMissionId();
+        m_missionMst = MissionMstList::shared()->getObject(mission_id);
+        m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
+    }
+    
     CCLog("height=%f width=%f", CCDirector::sharedDirector()->getWinSize().height, CCDirector::sharedDirector()->getWinSize().width );
    
     createBlocks();
@@ -77,7 +85,8 @@ bool Battle::init(){
     StringLabelList *enemyWallHpString = GraphicUtils::drawString(this, "2000", ENEMY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     m_enemyWall->setStringLabelList(enemyWallHpString);
     
-    m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
+    
+    
     return true;
 }
 
@@ -353,7 +362,11 @@ void Battle::draw(){
         m_enemyTimer--;
     }else{
         createEnemy();
-        m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
+        if (MissionInfo::shared()->getIsArena()) {
+            m_enemyTimer = CommonUtils::getRandom(m_arenaInfo->getMinTimer(), m_arenaInfo->getMaxTimer());
+        }else{
+            m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
+        }
     }
     
     updateArmy(m_myArmy, m_enemyArmy, true);
@@ -391,9 +404,8 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
                             CCLog("you win");
                             
                             GraphicUtils::drawString(this, "you win!", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() - 300, getSystemColor(COLOR_KEY_RED), TEXT_ALIGN_CENTER_MIDDLE, 60);
-                            string postData = CCString::createWithFormat("mission_id=%d&is_win=%d", MissionInfo::shared()->getCurrentMissionId(), 1)->m_sString;
                             m_isOver = true;
-                            pushStepScene("end_mission.php", postData, MissionEndScene::scene());
+                            changeNextScene(true);
                             break;
                         }
                     }else{
@@ -403,7 +415,7 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
                             GraphicUtils::drawString(this, "you lose", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() - 300, getSystemColor(COLOR_KEY_RED), TEXT_ALIGN_CENTER_MIDDLE, 60);
                             string postData = CCString::createWithFormat("mission_id=%d&is_win=%d", MissionInfo::shared()->getCurrentMissionId(), 0)->m_sString;
                             m_isOver = true;
-                            pushStepScene("end_mission.php", postData, MissionEndScene::scene());
+                            changeNextScene(false);
                             break;
                         }
                     }
@@ -451,9 +463,22 @@ void Battle::updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldie
 }
 
 void Battle::createEnemy(){
-    int minNum = m_missionMst->getMinNum();
-    int maxNum = m_missionMst->getMaxNum();
-    std::map<int, int> soldierMap = m_missionMst->getSoldierMap();
+    int minNum = 0;
+    int maxNum = 0;
+    std::map<int, int>soldierMap;
+    if (MissionInfo::shared()->getIsArena()) {
+        minNum = m_arenaInfo->getMinNum();
+        maxNum = m_arenaInfo->getMaxNum();
+        
+        vector<string>soldierList = CommonUtils::split(m_arenaInfo->getSoldier(), ",");
+        for (int i=0; i<soldierList.size(); i++) {
+            soldierMap[i] = CommonUtils::StrToInt(soldierList[i]);
+        }
+    }else{
+        minNum = m_missionMst->getMinNum();
+        maxNum = m_missionMst->getMaxNum();
+        soldierMap = m_missionMst->getSoldierMap();
+    }
     int soldierNum = CommonUtils::getRandom(minNum, maxNum);
     
     int leftNum = soldierNum;
@@ -567,4 +592,15 @@ void Battle::createBlocks(){
 
 void Battle::setCheckBlock(){
     m_checkBlock = true;
+}
+
+void Battle::changeNextScene(bool isWin){
+    if (MissionInfo::shared()->getIsArena()) {
+        
+        string postData = CCString::createWithFormat("enemy_id=%d&is_win=%d", m_arenaInfo->getUserId(), isWin ? 1:0)->m_sString;
+        pushStepScene("end_arena.php", postData, MissionEndScene::scene());//跳转去arena结算
+    }else{
+        string postData = CCString::createWithFormat("mission_id=%d&is_win=%d", MissionInfo::shared()->getCurrentMissionId(), isWin ? 1:0)->m_sString;
+        pushStepScene("end_mission.php", postData, MissionEndScene::scene());
+    }
 }
