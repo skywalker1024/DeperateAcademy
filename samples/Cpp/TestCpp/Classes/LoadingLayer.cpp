@@ -17,16 +17,14 @@
 #include "GraphicUtils.h"
 #include "GameConst.h"
 #include "MissionInfo.h"
+
+LoadingLayer * loadingLayerInstance = NULL;
 /*
  * コンストラクタ。
  */
 LoadingLayer::LoadingLayer()
 {
-    connectIndex = 0;
-    state = STATE_CONNECT_INIT;
-    m_isFinish = false;
-    m_nextScene = NULL;
-    m_prevScene = NULL;
+    m_responseParser = NULL;
 }
 
 /*
@@ -39,15 +37,29 @@ LoadingLayer::~LoadingLayer()
         CC_SAFE_RELEASE_NULL(m_nextScene);
     }
     CC_SAFE_RELEASE_NULL(m_prevScene);
+    //CC_SAFE_RELEASE_NULL(m_responseParser);
 }
 
+LoadingLayer * LoadingLayer::shared(){
+    if (!loadingLayerInstance) {
+        loadingLayerInstance = new LoadingLayer();
+        loadingLayerInstance->init();
+    }
+    return loadingLayerInstance;
+}
 bool LoadingLayer::init(){
     if (!DialogBaseLayer::init()) {
         return false;
     }
     return true;
 }
-
+void LoadingLayer::clear(){
+    connectIndex = 0;
+    state = STATE_CONNECT_INIT;
+    m_isFinished = false;
+    m_nextScene = NULL;
+    m_prevScene = NULL;
+}
 void LoadingLayer::onEnter(){
     DialogBaseLayer::onEnter();
     
@@ -85,12 +97,15 @@ void LoadingLayer::draw()
         }
         else
         {
-            CCLOG( "LoadingLayer::accessPho" );
+            CCLog( "LoadingLayer::accessPho connectIndex=%d", connectIndex );
             
             BaseRequest* req = ConnectRequestList::shared()->getObject( connectIndex );
             
-            NetworkManager::sharedInstance()->NetworkRequestPost(req->getFullUrl(), req->getFullData(), "", this, httpresponse_selector(LoadingLayer::ResponseParse));
-            m_isFinish = false;
+            ResponseParser *responseParser = ResponseParser::create();
+            m_responseParser = NULL;//这行很重要，下面的set会release上一个的m_responseParser，但是上一个是个空指针，会crash
+            this->setResponseParser(responseParser);
+            NetworkManager::sharedInstance()->NetworkRequestPost(req->getFullUrl(), req->getFullData(), "", (CCObject*)responseParser, httpresponse_selector(ResponseParser::ResponseParse));
+            m_isFinished = false;
             state = STATE_CONNECT_LOOP;
         }
     }
@@ -98,7 +113,7 @@ void LoadingLayer::draw()
     // 通信終了待ち
     if( state == STATE_CONNECT_LOOP )
     {
-        if( m_isFinish )
+        if( m_isFinished )
         {
             state = STATE_CONNECT_INIT;
             connectIndex++;
@@ -112,71 +127,6 @@ void LoadingLayer::draw()
     }
 }
 
-SEL_HttpResponse LoadingLayer::ResponseParse(CCHttpClient* client, CCHttpResponse* response){
-    if (!response->isSucceed()) {
-        CCLog("not succeed");
-        if (response->getResponseCode() == 500) {
-            //test
-            DialogLayer::showDialog("服务器出错，将回到登录界面。", 1, this, callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
-        }else{
-            DialogLayer::showDialog("通讯不良，请重试", 1, this, callfunc_selector(LoadingLayer::retry), NULL, NULL, "", "");
-        }
-        
-        return NULL;
-    }
-    Json::Value responseJson;
-    CommonUtils::ReadIntoJson(response->getResponseData(), responseJson, true);
-    
-    //check error
-    if (!responseJson["error"].isNull()) {
-        //show dialog and exit todo
-        if (responseJson["error"].asString().find("no user") != string::npos) {
-            if (UserInfo::shared()->existUser()) {//出错
-                //test
-                DialogLayer::showDialog(responseJson["error"].asCString(), 1, this, callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
-            }else{ //去register
-                m_prevScene->changeScene(RegisterScene::scene());
-            }
-        }else{
-            DialogLayer::showDialog(responseJson["error"].asCString(), 1, this, callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
-        }
-        return NULL;
-    }
-    
-    if (!responseJson["notice"].isNull()) {
-        DialogLayer::showDialog(responseJson["notice"].asCString(), 1, this, callfunc_selector(LoadingLayer::noticeConfirm), NULL, NULL, "", "");
-        return NULL;
-    }
-    
-    if (!responseJson["user_info"].isNull()) {
-        UserInfo::shared()->updateWithJson(responseJson["user_info"]);
-    }
-    
-    if (!responseJson["user_soldier"].isNull()) {
-        UserInfo::shared()->updateSoldierInfo(responseJson["user_soldier"]);
-    }
-    
-    if (!responseJson["is_first_clear"].isNull()) {
-        MissionInfo::shared()->setIsFirstClear( responseJson["is_first_clear"].asBool() );
-    }
-    
-    if (!responseJson["user_clear_mission"].isNull()) {
-        UserInfo::shared()->updateClearMission( responseJson["user_clear_mission"] );
-    }
-    
-    if (!responseJson["is_lvup"].isNull()) {
-        UserInfo::shared()->setIsLvup( responseJson["is_lvup"].asBool() );
-    }
-    
-    if (!responseJson["arena_info"].isNull()) {
-        UserInfo::shared()->updateArenaInfo( responseJson["arena_info"] );
-    }
-    
-    m_isFinish = true;
-    return NULL;
-    //CCLog("responseData=%s", responseJson);
-}
-
 void LoadingLayer::backToTitle(){
     m_prevScene->changeScene(TitleScene::scene());
 }
@@ -187,7 +137,7 @@ void LoadingLayer::retry(){
 
 void LoadingLayer::noticeConfirm(){
     //提示一下就继续
-    m_isFinish = true;
+    m_isFinished = true;
 }
 
 void LoadingLayer::changeNextScene(){

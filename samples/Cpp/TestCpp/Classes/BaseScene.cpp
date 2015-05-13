@@ -156,14 +156,16 @@ void BaseScene::pushStepScene(string url, string postData, CCScene * scene){
     baseRequest->setData(postData);
     ConnectRequestList::shared()->addObject(baseRequest);
     
-    LoadingLayer * loadingLayer = LoadingLayer::create();
+    LoadingLayer * loadingLayer = LoadingLayer::shared();
+    loadingLayer->clear();
     loadingLayer->setNextScene(scene);
     loadingLayer->setPrevScene(this);
     this->addChild(loadingLayer);
 }
 
 void BaseScene::pushStepScene(CCScene * scene){
-    LoadingLayer * loadingLayer = LoadingLayer::create();
+    LoadingLayer * loadingLayer = LoadingLayer::shared();
+    loadingLayer->clear();
     loadingLayer->setNextScene(scene);
     loadingLayer->setPrevScene(this);
     this->addChild(loadingLayer);

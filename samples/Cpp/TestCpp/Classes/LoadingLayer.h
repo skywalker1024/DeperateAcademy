@@ -13,7 +13,7 @@
 #include "DialogBaseLayer.h"
 #include "BaseScene.h"
 USING_NS_CC;
-
+#include "ResponseParser.h"
 
 class LoadingLayer : public DialogBaseLayer
 {
@@ -23,9 +23,9 @@ public:
     // デストラクタ
     ~LoadingLayer();
     static CCScene * sceneWithNextScene(CCScene * nextScene);
-    CREATE_FUNC(LoadingLayer);
-    virtual bool init();
-    
+    static LoadingLayer * shared();
+    bool init();
+    void clear();
     virtual void onEnter();
 protected:
 
@@ -36,15 +36,17 @@ private:
     int state;
     void draw();
     int connectIndex;
-    SEL_HttpResponse ResponseParse(CCHttpClient* client, CCHttpResponse* response);
-    bool m_isFinish;
-    
+
+public:
     void backToTitle();
     void retry();
     void noticeConfirm();
     void changeNextScene();
+private:
     CC_SYNTHESIZE_RETAIN(CCScene*, m_nextScene, NextScene);
     CC_SYNTHESIZE_RETAIN(BaseScene*, m_prevScene, PrevScene);
+    CC_SYNTHESIZE(bool, m_isFinished, IsFinished);
+    CC_SYNTHESIZE_RETAIN(ResponseParser*, m_responseParser, ResponseParser);
 };
 
 #endif

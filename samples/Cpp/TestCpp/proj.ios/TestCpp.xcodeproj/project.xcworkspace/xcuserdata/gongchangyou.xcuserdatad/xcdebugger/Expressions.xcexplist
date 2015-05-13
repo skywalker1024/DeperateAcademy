@@ -3,26 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "cocos2d::CCSprite::setPosition(cocos2d::CCPoint const&amp;):CCSprite.cpp">
+         contextName = "StringLabel::setPosition(cocos2d::CCLayer*, float, float):StringLabel.cpp">
       </ContextState>
       <ContextState
-         contextName = "RegisterScene::~RegisterScene():RegisterScene.cpp">
+         contextName = "Soldier::~Soldier():Soldier.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "BaseScene::setHeader():BaseScene.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "editBoxSprite">
+               value = "userInfo-&gt;getLv()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TestPerformance::addArmature(int):ArmatureScene.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "armature-&gt;getAnimation()">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "BaseScene::BaseScene():BaseScene.cpp">
+         contextName = "RegisterScene::getRandomName(cocos2d::CCObject*, unsigned int):RegisterScene.cpp">
       </ContextState>
       <ContextState
          contextName = "NetworkManager::sharedInstance():NetworkManager.cpp">
@@ -33,41 +28,59 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "cocos2d::CCObject::release():CCObject.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "SoldierMstList::shared():SoldierMstList.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Battle::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*):Battle.cpp">
+         contextName = "RegisterScene::~RegisterScene():RegisterScene.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "m_blockList">
+               value = "editBoxSprite">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StepScene::ResponseParse(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*):StepScene.cpp">
       </ContextState>
       <ContextState
          contextName = "Battle::init():Battle.cpp">
       </ContextState>
       <ContextState
-         contextName = "Soldier::~Soldier():Soldier.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Json::Value::asInt() const:jsoncpp.cpp">
+         contextName = "LoadingLayer::ResponseParse(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*):LoadingLayer.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "type_">
+               value = "response-&gt;getResponseData()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "RegisterScene::getRandomName(cocos2d::CCObject*, unsigned int):RegisterScene.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "BaseScene::setHeader():BaseScene.cpp">
+         contextName = "ResponseParser::ResponseParse(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*):ResponseParser.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "userInfo-&gt;getLv()">
+               value = "m_loadingLayer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BaseScene::~BaseScene():BaseScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "uiCacheList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "cocos2d::CCDirector::drawScene():CCDirector.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_pRunningScene">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BaseScene::BaseScene():BaseScene.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "TestPerformance::addArmature(int):ArmatureScene.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "armature-&gt;getAnimation()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -80,19 +93,46 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "cocos2d::CCSprite::setPosition(cocos2d::CCPoint const&amp;):CCSprite.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Battle::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*):Battle.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_blockList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "StepScene::scene():StepScene.cpp">
       </ContextState>
       <ContextState
-         contextName = "StringLabel::setPosition(cocos2d::CCLayer*, float, float):StringLabel.cpp">
+         contextName = "cocos2d::CCNode::visit():CCNode.cpp">
       </ContextState>
       <ContextState
-         contextName = "StepScene::ResponseParse(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*):StepScene.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "BaseScene::~BaseScene():BaseScene.cpp">
+         contextName = "cocos2d::extension::CCHttpClient::dispatchResponseCallbacks(float):HttpClient.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "uiCacheList">
+               value = "request-&gt;getTarget()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "cocos2d::CCObject::release():CCObject.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Json::Value::asInt() const:jsoncpp.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "type_">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "cocos2d::extension::CCHttpRequest::getTarget():HttpRequest.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "_pTarget">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -101,6 +141,26 @@
          <PersistentStrings>
             <PersistentString
                value = "m_channel_user_id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SoldierMstList::shared():SoldierMstList.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "LoadingLayer::setResponseParser(ResponseParser*):LoadingLayer.h">
+      </ContextState>
+      <ContextState
+         contextName = "-[AlertView alertView:clickedButtonAtIndex:]:AlertView.mm">
+      </ContextState>
+      <ContextState
+         contextName = "LoadingLayer::draw():LoadingLayer.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "NetworkManager::sharedInstance()-&gt;getIsFinish()">
+            </PersistentString>
+            <PersistentString
+               value = "ResponseParser::shared()">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
