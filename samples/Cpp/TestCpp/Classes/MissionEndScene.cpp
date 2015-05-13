@@ -15,6 +15,7 @@
 #include "MapScene.h"
 #include "MissionInfo.h"
 #include "UserInfo.h"
+#include "MissionMstList.h"
 MissionEndScene::MissionEndScene()
 {
 }
@@ -53,6 +54,15 @@ void MissionEndScene::onEnter(){
         
         string lvStr = CCString::createWithFormat("%d => %d 升级!", UserInfo::shared()->getLv() - 1, UserInfo::shared()->getLv())->m_sString;
         GraphicUtils::drawString(this, lvStr, screenWidth/2, screenHeight/ 2 + 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    }
+    
+    //请玩家评价
+    if (!CCUserDefault::sharedUserDefault()->getBoolForKey("app_url")) {
+        MissionMst *mst = MissionMstList::shared()->getObject(MissionInfo::shared()->getCurrentMissionId());
+        if (mst->getId() > 5) {
+            CommonUtils::showAlert();
+            CCUserDefault::sharedUserDefault()->setBoolForKey("app_url", true);
+        }
     }
     
 }
