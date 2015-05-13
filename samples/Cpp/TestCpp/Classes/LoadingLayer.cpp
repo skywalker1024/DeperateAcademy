@@ -24,6 +24,11 @@ LoadingLayer * loadingLayerInstance = NULL;
  */
 LoadingLayer::LoadingLayer()
 {
+    connectIndex = 0;
+    state = STATE_CONNECT_INIT;
+    m_isFinished = false;
+    m_nextScene = NULL;
+    m_prevScene = NULL;
 }
 
 /*
@@ -39,26 +44,13 @@ LoadingLayer::~LoadingLayer()
     //CC_SAFE_RELEASE_NULL(m_responseParser);
 }
 
-LoadingLayer * LoadingLayer::shared(){
-    if (!loadingLayerInstance) {
-        loadingLayerInstance = new LoadingLayer();
-        loadingLayerInstance->init();
-    }
-    return loadingLayerInstance;
-}
 bool LoadingLayer::init(){
     if (!DialogBaseLayer::init()) {
         return false;
     }
     return true;
 }
-void LoadingLayer::clear(){
-    connectIndex = 0;
-    state = STATE_CONNECT_INIT;
-    m_isFinished = false;
-    m_nextScene = NULL;
-    m_prevScene = NULL;
-}
+
 void LoadingLayer::onEnter(){
     DialogBaseLayer::onEnter();
     
@@ -149,9 +141,9 @@ void LoadingLayer::responseParser(CCHttpClient* client, CCHttpResponse* response
         CCLog("not succeed");
         if (response->getResponseCode() == 500) {
             //test
-            DialogLayer::showDialog("服务器出错，将回到登录界面。", 1, LoadingLayer::shared(), callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
+            DialogLayer::showDialog("服务器出错，将回到登录界面。", 1, this, callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
         }else{
-            DialogLayer::showDialog("通讯不良，请重试", 1, LoadingLayer::shared(), callfunc_selector(LoadingLayer::retry), NULL, NULL, "", "");
+            DialogLayer::showDialog("通讯不良，请重试", 1, this, callfunc_selector(LoadingLayer::retry), NULL, NULL, "", "");
         }
         return;
     }
@@ -167,18 +159,18 @@ void LoadingLayer::responseParser(CCHttpClient* client, CCHttpResponse* response
         if (responseJson["error"].asString().find("no user") != string::npos) {
             if (UserInfo::shared()->existUser()) {//出错
                 //test
-                DialogLayer::showDialog(responseJson["error"].asCString(), 1, LoadingLayer::shared(), callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
+                DialogLayer::showDialog(responseJson["error"].asCString(), 1, this, callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
             }else{ //去register
-                LoadingLayer::shared()->getPrevScene()->changeScene(RegisterScene::scene());
+                this->getPrevScene()->changeScene(RegisterScene::scene());
             }
         }else{
-            DialogLayer::showDialog(responseJson["error"].asCString(), 1, LoadingLayer::shared(), callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
+            DialogLayer::showDialog(responseJson["error"].asCString(), 1, this, callfunc_selector(LoadingLayer::backToTitle), NULL, NULL, "", "");
         }
         return;
     }
     
     if (!responseJson["notice"].isNull()) {
-        DialogLayer::showDialog(responseJson["notice"].asCString(), 1, LoadingLayer::shared(), callfunc_selector(LoadingLayer::noticeConfirm), NULL, NULL, "", "");
+        DialogLayer::showDialog(responseJson["notice"].asCString(), 1, this, callfunc_selector(LoadingLayer::noticeConfirm), NULL, NULL, "", "");
         return;
     }
     
@@ -206,7 +198,7 @@ void LoadingLayer::responseParser(CCHttpClient* client, CCHttpResponse* response
         UserInfo::shared()->updateArenaInfo( responseJson["arena_info"] );
     }
     
-    LoadingLayer::shared()->setIsFinished(true);
+    this->setIsFinished(true);
     return;
     //CCLog("responseData=%s", responseJson);
 }

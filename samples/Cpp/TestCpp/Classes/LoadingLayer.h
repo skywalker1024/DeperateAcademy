@@ -21,10 +21,8 @@ public:
     LoadingLayer();
     // デストラクタ
     ~LoadingLayer();
-    static CCScene * sceneWithNextScene(CCScene * nextScene);
-    static LoadingLayer * shared();
+    CREATE_FUNC(LoadingLayer);
     bool init();
-    void clear();
     virtual void onEnter();
 protected:
 
