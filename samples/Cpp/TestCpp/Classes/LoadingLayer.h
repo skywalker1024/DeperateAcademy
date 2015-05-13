@@ -13,7 +13,6 @@
 #include "DialogBaseLayer.h"
 #include "BaseScene.h"
 USING_NS_CC;
-#include "ResponseParser.h"
 
 class LoadingLayer : public DialogBaseLayer
 {
@@ -46,7 +45,8 @@ private:
     CC_SYNTHESIZE_RETAIN(CCScene*, m_nextScene, NextScene);
     CC_SYNTHESIZE_RETAIN(BaseScene*, m_prevScene, PrevScene);
     CC_SYNTHESIZE(bool, m_isFinished, IsFinished);
-    CC_SYNTHESIZE_RETAIN(ResponseParser*, m_responseParser, ResponseParser);
+    
+    void responseParser(CCHttpClient* client, CCHttpResponse* response);
 };
 
 #endif

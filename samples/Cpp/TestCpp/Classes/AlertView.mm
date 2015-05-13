@@ -19,7 +19,7 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithUTF8String: ""] message:[NSString stringWithUTF8String: "主公,请给评价，在评价中留下您的大名，不日上天会赐予您500钻石"]
         delegate:self
         cancelButtonTitle:@"残忍拒绝"
-        otherButtonTitles:@"寡人就去",nil];
+        otherButtonTitles:@"孤愿意",nil];
 
     
     //这个属性继承自UIView，当一个视图中有多个AlertView时，可以用这个属性来区分
@@ -34,10 +34,10 @@
 //根据被点击按钮的索引处理点击事件
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSLog(@"buttonIndex=%d",buttonIndex);
+    NSLog(@"buttonIndex=%s",UserInfo::shared()->getAppUrl().c_str());
     if (alertView.tag == 1 && buttonIndex == 1) {
         //NSString * str = [NSString stringWithUTF8String:"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=921871787"];//ios6 or earlier
-        NSString * str = [NSString stringWithUTF8String:"itms-apps://itunes.apple.com/app/id921871787"];//ios7
+        NSString * str = [NSString stringWithUTF8String:UserInfo::shared()->getAppUrl().c_str()];//ios7
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
 }
@@ -73,11 +73,5 @@
     NSLog(@"willPresentAlertView");
 }
 */
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 @end

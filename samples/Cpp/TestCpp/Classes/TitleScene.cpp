@@ -40,7 +40,6 @@ bool TitleScene::init(){
 
 void TitleScene::onEnter(){
     BaseScene::onEnter();
-    //CommonUtils::showAlert();
 }
 
 void TitleScene::onExit(){
