@@ -42,6 +42,7 @@ UserInfo::UserInfo()
     m_arenaPoint = 0;
     m_arenaRank = 0;
     m_appUrl = "";
+    m_isArenaWin = false;
 }
 
 /*

@@ -24,6 +24,7 @@ public:
 private:
     void onQuestClick();
     void onEvoClick();
+    void onArenaClick();
 };
 
 

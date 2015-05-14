@@ -12,6 +12,7 @@
 #include "GraphicUtils.h"
 #include "MapScene.h"
 #include "EvolutionScene.h"
+#include "ArenaMapScene.h"
 HomeScene::HomeScene()
 {
 }
@@ -51,6 +52,15 @@ void HomeScene::onEnter(){
         this->addChild(questBtn);
     }
     //竞技场（排行榜和挑战）
+    {
+        CCLabelTTF * arenaLabel = CCLabelTTF::create("群雄逐鹿", DEFAULT_FONT_NAME, 60);
+        CCControlButton * arenaBtn = CCControlButton::create(arenaLabel, CCScale9Sprite::create("img/button1.png", CCRect(0, 0, 256, 256)));
+        arenaBtn->setBackgroundSpriteForState(CCScale9Sprite::create("img/button2.png"), CCControlStateHighlighted);//按下后的图片
+        
+        arenaBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(HomeScene::onArenaClick), CCControlEventTouchDown);
+        arenaBtn->setPosition(ccp(screenWidth / 2 + 100, screenHeight / 2));
+        this->addChild(arenaBtn);
+    }
     //强化（强化士兵 强化城墙）
     {
         CCLabelTTF * evoLabel = CCLabelTTF::create("强化士兵", DEFAULT_FONT_NAME, 60);
@@ -79,5 +89,9 @@ void HomeScene::onQuestClick(){
 
 void HomeScene::onEvoClick(){
     changeScene(EvolutionScene::scene());
+}
+
+void HomeScene::onArenaClick(){
+    pushStepScene("get_arena_list.php", "", ArenaMapScene::scene());
 }
 

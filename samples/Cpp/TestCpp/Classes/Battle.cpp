@@ -13,6 +13,7 @@
 #include "UserInfo.h"
 #include "MapScene.h"
 #include "MissionEndScene.h"
+#include "ArenaEndScene.h"
 const int START_Y = 100;
 const int WIDTH = 100;
 const int ARMY_POSITION_Y = START_Y + NUM * WIDTH + 200;
@@ -598,7 +599,7 @@ void Battle::changeNextScene(bool isWin){
     if (MissionInfo::shared()->getIsArena()) {
         
         string postData = CCString::createWithFormat("enemy_id=%d&is_win=%d", m_arenaInfo->getUserId(), isWin ? 1:0)->m_sString;
-        pushStepScene("end_arena.php", postData, MissionEndScene::scene());//跳转去arena结算
+        pushStepScene("end_arena.php", postData, ArenaEndScene::scene());//跳转去arena结算
     }else{
         string postData = CCString::createWithFormat("mission_id=%d&is_win=%d", MissionInfo::shared()->getCurrentMissionId(), isWin ? 1:0)->m_sString;
         pushStepScene("end_mission.php", postData, MissionEndScene::scene());

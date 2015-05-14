@@ -45,6 +45,7 @@ private:
     CC_SYNTHESIZE(int, m_arenaPoint, ArenaPoint);
     CC_SYNTHESIZE(int, m_arenaRank, ArenaRank);
     CC_SYNTHESIZE(string, m_appUrl, AppUrl);
+    CC_SYNTHESIZE(bool, m_isArenaWin, IsArenaWin);
 };
 
 #endif

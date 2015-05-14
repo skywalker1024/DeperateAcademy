@@ -202,6 +202,10 @@ void LoadingLayer::responseParser(CCHttpClient* client, CCHttpResponse* response
     if (!responseJson["arena_list"].isNull()) {
         UserInfo::shared()->updateArenaInfo( responseJson["arena_info"] );
     }
+    //竞技场是否赢
+    if (!responseJson["arena_is_win"].isNull()) {
+        UserInfo::shared()->setIsArenaWin( responseJson["arena_is_win"].asBool() );
+    }
     
     this->setIsFinished(true);
     return;
