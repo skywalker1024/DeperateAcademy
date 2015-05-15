@@ -25,6 +25,7 @@ MissionMst::MissionMst()
     m_maxTimer = 0;
     m_soldier_id = "";
     m_mapId = 0;
+    m_hp = 0;
 }
 
 /*
@@ -53,6 +54,8 @@ void MissionMst::initWithArray(CCDictionary * list){
     for (int i=0; i<soldierList.size(); i++) {
         m_soldierMap[i] = CommonUtils::StrToInt(soldierList[i]);
     }
+    
+    m_hp = dynamic_cast<CCString*>(list->objectForKey("hp"))->intValue();
     
     //test
     m_minTimer = 400;

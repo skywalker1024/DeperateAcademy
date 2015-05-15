@@ -72,6 +72,7 @@ bool ArenaMapScene::init(){
     StringLabelList *test = GraphicUtils::drawString(this, "ArenaMapScene 每次5体力，胜利可以获得10钻", 250, 250, 710, 10, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_RIGHT_MIDDLE, 100);
     CCLog("test %f %f", test->getPositionX(), test->getPositionY());
     
+    //排行榜button
     return true;
 }
 

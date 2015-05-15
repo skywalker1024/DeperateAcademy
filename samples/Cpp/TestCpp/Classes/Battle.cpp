@@ -14,6 +14,7 @@
 #include "MapScene.h"
 #include "MissionEndScene.h"
 #include "ArenaEndScene.h"
+#include "WallMstList.h"
 const int START_Y = 100;
 const int WIDTH = 100;
 const int ARMY_POSITION_Y = START_Y + NUM * WIDTH + 200;
@@ -74,7 +75,8 @@ bool Battle::init(){
     CCSprite * myWallSprite = CCSprite::create("img/wall_red.png");
     myWallSprite->setPosition(ccp(MY_ARMY_START_X, ARMY_POSITION_Y));
     addChild(myWallSprite);
-    m_myWall->setHp(1000);
+    WallMst * wallMst = WallMstList::shared()->getObject(UserInfo::shared()->getWallLv());
+    m_myWall->setHp(wallMst->getHp());
     StringLabelList *myWallHpString = GraphicUtils::drawString(this, "1000", MY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     m_myWall->setStringLabelList(myWallHpString);
     
@@ -82,7 +84,7 @@ bool Battle::init(){
     CCSprite * enemyWallSprite = CCSprite::create("img/wall_red.png");
     enemyWallSprite->setPosition(ccp(ENEMY_ARMY_START_X, ARMY_POSITION_Y));
     addChild(enemyWallSprite);
-    m_enemyWall->setHp(2000);
+    m_enemyWall->setHp(m_missionMst->getHp());
     StringLabelList *enemyWallHpString = GraphicUtils::drawString(this, "2000", ENEMY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     m_enemyWall->setStringLabelList(enemyWallHpString);
     

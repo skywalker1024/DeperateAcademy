@@ -43,6 +43,7 @@ UserInfo::UserInfo()
     m_arenaRank = 0;
     m_appUrl = "";
     m_isArenaWin = false;
+    m_wallLv = 0;
 }
 
 /*
@@ -73,6 +74,7 @@ void UserInfo::updateWithJson(Json::Value json){
     m_exp = CommonUtils::StrToInt( json["exp"].asString());
     m_lv = CommonUtils::StrToInt( json["lv"].asString());
     m_user_id = CommonUtils::StrToInt( json["id"].asString());
+    m_wallLv = CommonUtils::StrToInt( json["wall_lv"].asString());
 }
 
 void UserInfo::updateSoldierInfo(Json::Value json){

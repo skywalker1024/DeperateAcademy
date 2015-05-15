@@ -26,7 +26,7 @@ private:
     CC_SYNTHESIZE(int, m_exp, Exp);
     CC_SYNTHESIZE(int, m_actionP, ActionP);
     CC_SYNTHESIZE(int, unlock_soldier_id, UnlockSoldierId);
-
+    CC_SYNTHESIZE(int, unlock_wall_lv, UnlockWallLv);
 };
 
 #endif

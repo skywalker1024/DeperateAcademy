@@ -144,6 +144,8 @@
 		50F853F818C57E040019FBFB /* TextFieldReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50F853E718C57E040019FBFB /* TextFieldReader.cpp */; };
 		50F853F918C57E040019FBFB /* WidgetReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50F853E918C57E040019FBFB /* WidgetReader.cpp */; };
 		50FCEB5818C6D695004AD434 /* UIRichText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50FCEB5618C6D695004AD434 /* UIRichText.cpp */; };
+		8130B5851B05A9160012F12B /* WallMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8130B5811B05A9160012F12B /* WallMst.cpp */; };
+		8130B5861B05A9160012F12B /* WallMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8130B5831B05A9160012F12B /* WallMstList.cpp */; };
 		817F8ECE1AF90E5F00A87076 /* DialogLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ECC1AF90E5F00A87076 /* DialogLayer.cpp */; };
 		817F8ED11AFA628500A87076 /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED01AFA628500A87076 /* Wall.cpp */; };
 		817F8ED41AFB4A8B00A87076 /* MapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED21AFB4A8B00A87076 /* MapScene.cpp */; };
@@ -529,6 +531,10 @@
 		50F853EB18C57E040019FBFB /* WidgetReaderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WidgetReaderProtocol.h; sourceTree = "<group>"; };
 		50FCEB5618C6D695004AD434 /* UIRichText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIRichText.cpp; sourceTree = "<group>"; };
 		50FCEB5718C6D695004AD434 /* UIRichText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIRichText.h; sourceTree = "<group>"; };
+		8130B5811B05A9160012F12B /* WallMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WallMst.cpp; sourceTree = "<group>"; };
+		8130B5821B05A9160012F12B /* WallMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallMst.h; sourceTree = "<group>"; };
+		8130B5831B05A9160012F12B /* WallMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WallMstList.cpp; sourceTree = "<group>"; };
+		8130B5841B05A9160012F12B /* WallMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallMstList.h; sourceTree = "<group>"; };
 		817F8ECC1AF90E5F00A87076 /* DialogLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DialogLayer.cpp; path = ../Classes/DialogLayer.cpp; sourceTree = "<group>"; };
 		817F8ECD1AF90E5F00A87076 /* DialogLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DialogLayer.h; path = ../Classes/DialogLayer.h; sourceTree = "<group>"; };
 		817F8ECF1AFA628500A87076 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wall.h; path = ../Classes/Wall.h; sourceTree = "<group>"; };
@@ -1570,6 +1576,10 @@
 		81ED12E21AF46CF10043B59C /* data */ = {
 			isa = PBXGroup;
 			children = (
+				8130B5811B05A9160012F12B /* WallMst.cpp */,
+				8130B5821B05A9160012F12B /* WallMst.h */,
+				8130B5831B05A9160012F12B /* WallMstList.cpp */,
+				8130B5841B05A9160012F12B /* WallMstList.h */,
 				817F8EE61AFC6B5600A87076 /* EvoMst.cpp */,
 				817F8EE71AFC6B5600A87076 /* EvoMst.h */,
 				817F8EE81AFC6B5600A87076 /* EvoMstList.cpp */,
@@ -1748,6 +1758,7 @@
 				50F853F818C57E040019FBFB /* TextFieldReader.cpp in Sources */,
 				81CD7C521AEFB6B100C0EB2D /* UserFontSetting.cpp in Sources */,
 				81CD7C501AEFB6B100C0EB2D /* UICache.cpp in Sources */,
+				8130B5851B05A9160012F12B /* WallMst.cpp in Sources */,
 				50E9E948182A355B00F6FDF1 /* SceneReader.cpp in Sources */,
 				817F8EDD1AFB586700A87076 /* MissionMstList.cpp in Sources */,
 				50F853EE18C57E040019FBFB /* ImageViewReader.cpp in Sources */,
@@ -1847,6 +1858,7 @@
 				37CA1C2017D87A3300A649D0 /* CCBone.cpp in Sources */,
 				81CD7C4B1AEFB6B100C0EB2D /* ParticleAnime.cpp in Sources */,
 				37CA1C2117D87A3300A649D0 /* CCDatas.cpp in Sources */,
+				8130B5861B05A9160012F12B /* WallMstList.cpp in Sources */,
 				37CA1C2217D87A3300A649D0 /* CCBatchNode.cpp in Sources */,
 				37CA1C2317D87A3300A649D0 /* CCDecorativeDisplay.cpp in Sources */,
 				37CA1C2417D87A3300A649D0 /* CCDisplayFactory.cpp in Sources */,

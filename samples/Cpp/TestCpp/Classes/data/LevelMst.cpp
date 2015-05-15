@@ -17,6 +17,7 @@ LevelMst::LevelMst()
     m_exp = 0;
     m_actionP = 0;
     unlock_soldier_id = 0;
+    unlock_wall_lv = 0;
 }
 
 /*
@@ -32,6 +33,7 @@ void LevelMst::initWithArray(CCDictionary * list){
     m_exp = dynamic_cast<CCString*>(list->objectForKey("exp"))->intValue();
     m_actionP = dynamic_cast<CCString*>(list->objectForKey("action_p"))->intValue();
     unlock_soldier_id = dynamic_cast<CCString*>(list->objectForKey("unlock_soldier_id"))->intValue();
+    unlock_wall_lv = dynamic_cast<CCString*>(list->objectForKey("unlock_wall_lv"))->intValue();
 }
 
 

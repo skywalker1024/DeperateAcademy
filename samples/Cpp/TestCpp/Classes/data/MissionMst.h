@@ -37,7 +37,7 @@ private:
     CC_SYNTHESIZE(int, m_minTimer, MinTimer);
     CC_SYNTHESIZE(int, m_maxTimer, MaxTimer);
     CC_SYNTHESIZE(string, m_soldier_id, SoldierId);
-    
+    CC_SYNTHESIZE(int, m_hp, Hp);
     
 };
 
