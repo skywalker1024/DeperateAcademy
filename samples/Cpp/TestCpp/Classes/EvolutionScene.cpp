@@ -18,6 +18,7 @@
 #include "LevelMstList.h"
 #include "MapScene.h"
 #include "HomeScene.h"
+#include "WallMstList.h"
 EvolutionScene::EvolutionScene()
 {
 }
@@ -46,8 +47,33 @@ void EvolutionScene::onEnter(){
     int screenWidth = CommonUtils::getScreenWidth();
     int screenHeight = CommonUtils::getScreenHeight();
    
-    int start_y = screenHeight - 500;
+    int start_y = screenHeight - 600;
     int fontSize = 60;
+    //升级城墙
+    int wallLv = UserInfo::shared()->getWallLv();
+    {
+        int WALL_START_Y = start_y + 100;
+        WallMst * wallMst = WallMstList::shared()->getObject(wallLv);
+        GraphicUtils::drawString(this, wallMst->getName(), 100, WALL_START_Y, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_MIDDLE, fontSize);
+        WallMst * nextWallMst = WallMstList::shared()->getObject(wallLv + 1);
+        if (nextWallMst) {
+            GraphicUtils::drawString(this, nextWallMst->getName(), 300, WALL_START_Y, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_MIDDLE, fontSize);
+            
+            GraphicUtils::drawString(this, CommonUtils::IntToString( nextWallMst->getCost() ).append("钻"), 500, WALL_START_Y, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_MIDDLE, fontSize);
+            
+            CCLabelTTF * questLabel = CCLabelTTF::create("升级", DEFAULT_FONT_NAME, 60);
+            CCControlButton * button = CCControlButton::create(questLabel, CCScale9Sprite::create("img/button.png") );
+            button->setBackgroundSpriteForState(CCScale9Sprite::create("img/buttonHighlighted.png"), CCControlStateHighlighted);//按下后的图片
+            button->addTargetWithActionForControlEvents(this, cccontrol_selector(EvolutionScene::onWallClick), CCControlEventTouchUpInside);
+            button->setPosition(ccp(700, WALL_START_Y - 116));
+            button->setAnchorPoint(ccp(0, 0.5));
+            this->addChild(button);
+        }else{
+            GraphicUtils::drawString(this, "已到顶级", 300, WALL_START_Y, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_MIDDLE, fontSize);
+        }
+    }
+    
+    
     map<int, int>userSoldierMap = UserInfo::shared()->m_soldierMap;
     for(int i=1; i<userSoldierMap.size() + 1; i++){
         int soldierId = userSoldierMap[i];
@@ -108,6 +134,24 @@ void EvolutionScene::onEvoClick(CCObject * sender, CCControlEvent controlEvent){
     pushStepScene("evolution.php", postData, EvolutionScene::scene());
 }
 
+void EvolutionScene::onWallClick(){
+    int wallLv = UserInfo::shared()->getWallLv();
+    WallMst *wallMst = WallMstList::shared()->getObject(wallLv);
+    int cost = wallMst->getCost();
+    if (cost > UserInfo::shared()->getDiamond()) {
+        DialogLayer::showDialog("钻石不足", 2, this, callfunc_selector(EvolutionScene::goToShop), NULL, NULL, "钻石商店", "");
+        return;
+    }
+    //判断等级够不
+    LevelMst *levelMst = LevelMstList::shared()->getObjectByUnLockWallLv(wallMst->getLv());
+    if (UserInfo::shared()->getLv() < levelMst->getLv()) {
+        CCString *notice = CCString::createWithFormat("等级不足%d级",levelMst->getLv());
+        DialogLayer::showDialog(notice->getCString(), 2, this, callfunc_selector(EvolutionScene::goToMission), NULL, NULL, "出征", "");
+        return;
+    }
+    
+    pushStepScene("evolution_wall.php", "", EvolutionScene::scene());
+}
 void EvolutionScene::goToShop(){
     CCLog("goto shop");//TODO
 }

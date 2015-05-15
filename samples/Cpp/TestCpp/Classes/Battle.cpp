@@ -77,7 +77,7 @@ bool Battle::init(){
     addChild(myWallSprite);
     WallMst * wallMst = WallMstList::shared()->getObject(UserInfo::shared()->getWallLv());
     m_myWall->setHp(wallMst->getHp());
-    StringLabelList *myWallHpString = GraphicUtils::drawString(this, "1000", MY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    StringLabelList *myWallHpString = GraphicUtils::drawString(this, CommonUtils::IntToString( m_myWall->getHp() ), MY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     m_myWall->setStringLabelList(myWallHpString);
     
     setEnemyWall( Wall::create() );
@@ -85,7 +85,7 @@ bool Battle::init(){
     enemyWallSprite->setPosition(ccp(ENEMY_ARMY_START_X, ARMY_POSITION_Y));
     addChild(enemyWallSprite);
     m_enemyWall->setHp(m_missionMst->getHp());
-    StringLabelList *enemyWallHpString = GraphicUtils::drawString(this, "2000", ENEMY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    StringLabelList *enemyWallHpString = GraphicUtils::drawString(this, CommonUtils::IntToString( m_enemyWall->getHp() ), ENEMY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     m_enemyWall->setStringLabelList(enemyWallHpString);
     
     

@@ -28,6 +28,7 @@ public:
     // オブジェクトの取得
     LevelMst* getObject( int lv );
     LevelMst* getObjectByUnLockSoldierId( int soldier_id );
+    LevelMst* getObjectByUnLockWallLv( int wall_lv );
 private:
     // コンストラクタ
     LevelMstList();

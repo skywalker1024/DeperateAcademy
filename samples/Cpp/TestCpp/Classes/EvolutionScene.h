@@ -25,6 +25,7 @@ private:
     void onEvoClick(CCObject * sender, CCControlEvent controlEvent);
     void goToShop();
     void goToMission();
+    void onWallClick();
 protected:
     virtual void onBackClick();
 };

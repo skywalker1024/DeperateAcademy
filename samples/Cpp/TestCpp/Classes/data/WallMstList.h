@@ -27,6 +27,7 @@ public:
     int getCount();
     // オブジェクトの取得
     WallMst* getObject( int lv );
+    int getMaxWallLv();
 private:
     // コンストラクタ
     WallMstList();

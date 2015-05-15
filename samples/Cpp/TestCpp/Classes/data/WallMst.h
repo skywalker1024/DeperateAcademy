@@ -23,6 +23,7 @@ public:
     void initWithArray(CCDictionary * list);
 private:
     CC_SYNTHESIZE(int, m_lv, Lv);
+    CC_SYNTHESIZE(string, m_name, Name);
     CC_SYNTHESIZE(int, m_hp, Hp);
     CC_SYNTHESIZE(int, m_cost, Cost);
 };
