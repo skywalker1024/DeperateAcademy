@@ -146,6 +146,7 @@
 		50FCEB5818C6D695004AD434 /* UIRichText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50FCEB5618C6D695004AD434 /* UIRichText.cpp */; };
 		8130B5851B05A9160012F12B /* WallMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8130B5811B05A9160012F12B /* WallMst.cpp */; };
 		8130B5861B05A9160012F12B /* WallMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8130B5831B05A9160012F12B /* WallMstList.cpp */; };
+		8130B5891B05D07D0012F12B /* Rice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8130B5871B05D07D0012F12B /* Rice.cpp */; };
 		817F8ECE1AF90E5F00A87076 /* DialogLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ECC1AF90E5F00A87076 /* DialogLayer.cpp */; };
 		817F8ED11AFA628500A87076 /* Wall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED01AFA628500A87076 /* Wall.cpp */; };
 		817F8ED41AFB4A8B00A87076 /* MapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8ED21AFB4A8B00A87076 /* MapScene.cpp */; };
@@ -535,6 +536,8 @@
 		8130B5821B05A9160012F12B /* WallMst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallMst.h; sourceTree = "<group>"; };
 		8130B5831B05A9160012F12B /* WallMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WallMstList.cpp; sourceTree = "<group>"; };
 		8130B5841B05A9160012F12B /* WallMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallMstList.h; sourceTree = "<group>"; };
+		8130B5871B05D07D0012F12B /* Rice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rice.cpp; path = ../Classes/Rice.cpp; sourceTree = "<group>"; };
+		8130B5881B05D07D0012F12B /* Rice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rice.h; path = ../Classes/Rice.h; sourceTree = "<group>"; };
 		817F8ECC1AF90E5F00A87076 /* DialogLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DialogLayer.cpp; path = ../Classes/DialogLayer.cpp; sourceTree = "<group>"; };
 		817F8ECD1AF90E5F00A87076 /* DialogLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DialogLayer.h; path = ../Classes/DialogLayer.h; sourceTree = "<group>"; };
 		817F8ECF1AFA628500A87076 /* Wall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Wall.h; path = ../Classes/Wall.h; sourceTree = "<group>"; };
@@ -905,6 +908,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8130B5871B05D07D0012F12B /* Rice.cpp */,
+				8130B5881B05D07D0012F12B /* Rice.h */,
 				817F8EF31B019DDE00A87076 /* AlertView.h */,
 				817F8EF41B019DDE00A87076 /* AlertView.mm */,
 				15AA9F3A15B7EF960033D6C2 /* AppDelegate.cpp */,
@@ -1782,6 +1787,7 @@
 				15A3DA391682F826002FB0C5 /* CCControlLoader.cpp in Sources */,
 				81ED132C1AF4A2470043B59C /* ConnectRequestList.cpp in Sources */,
 				15A3DA3A1682F826002FB0C5 /* CCData.cpp in Sources */,
+				8130B5891B05D07D0012F12B /* Rice.cpp in Sources */,
 				15A3DA3B1682F826002FB0C5 /* CCLabelBMFontLoader.cpp in Sources */,
 				81ED13221AF4A0340043B59C /* LoadingLayer.cpp in Sources */,
 				15A3DA3C1682F826002FB0C5 /* CCLabelTTFLoader.cpp in Sources */,

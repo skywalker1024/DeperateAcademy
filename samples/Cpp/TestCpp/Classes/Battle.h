@@ -18,6 +18,7 @@ USING_NS_CC_EXT;
 #include "Wall.h"
 #include "MissionMstList.h"
 #include "ArenaInfoList.h"
+#include "Rice.h"
 const int NUM = 8;
 
 class Battle : public BaseScene{
@@ -37,6 +38,7 @@ private:
     MissionMst * m_missionMst;
     int m_matrix[NUM][NUM];
     CCMutableDictionary<int, Block*> * m_blockList;
+    CCMutableDictionary<int, Rice*> * m_riceList;
     void createSoldier(int soldierId, CCMutableArray<Soldier*>* army, bool myArmy, int offsetX);
     void createBlock(int i, int j);
     int MATRIX_START_X;

@@ -32,6 +32,7 @@ Battle::Battle()
     m_missionMst = NULL;
     m_checkBlock = true;
     m_isOver = false;
+    m_riceList = new CCMutableDictionary<int, Rice*>();
 }
 
 Battle::~Battle(){
@@ -68,6 +69,16 @@ bool Battle::init(){
     CCLog("height=%f width=%f", CCDirector::sharedDirector()->getWinSize().height, CCDirector::sharedDirector()->getWinSize().width );
    
     createBlocks();
+    //创建rice
+    int screenWidth = CommonUtils::getScreenWidth();
+    int rice_start_x = (screenWidth - (4 * 100 + 3*100)) / 2;
+    int count = MIN(4,UserInfo::shared()->m_soldierMap.size());
+    for (int i=1; i<count; i++) {
+        Rice *rice = Rice::create();
+        StringLabelList * stringLabel = GraphicUtils::drawString(this, "0", rice_start_x, 50, getSystemColor(COLOR_KEY_GOLD), TEXT_ALIGN_LEFT_BOTTOM, 60);
+        rice->setStringLabelList(stringLabel);
+        m_riceList->setObject(rice, i);
+    }
     
     SoldierMstList::shared();
     
@@ -222,7 +233,9 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
         //新增小兵
         if (block->getType() != BLOCK_GREY_TYPE) {
             int soldierId = UserInfo::shared()->m_soldierMap[block->getType()];
-            createSoldier(soldierId, m_myArmy, true, 0);
+            if(m_riceList->objectForKey(block->getType())->updateCount(usedAry->count())){
+                createSoldier(soldierId, m_myArmy, true, 0);
+            }
         }
     }
     
