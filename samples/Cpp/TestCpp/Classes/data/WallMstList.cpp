@@ -87,18 +87,6 @@ WallMst* WallMstList::getObject( int lv )
     return NULL;
 }
 
-int WallMstList::getMaxWallLv(){
-    int maxLv = 0;
-    for( int i = 0; i < mstList->count(); i++ )
-    {
-        WallMst* mst = mstList->getObjectAtIndex( i );
-        
-        if( mst->getLv() > maxLv ){
-            maxLv = mst->getLv();
-        }
-    }
-    return maxLv;
-}
 
 
 
