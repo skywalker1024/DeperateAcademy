@@ -28,6 +28,7 @@ private:
     CC_SYNTHESIZE(bool, m_isFirstClear, IsFirstClear);
     CC_SYNTHESIZE(bool, m_isArena, IsArena);
     CC_SYNTHESIZE(int, m_currentArenaId, CurrentArenaId);
+    CC_SYNTHESIZE(bool, m_isWin, IsWin);
 };
 
 #endif

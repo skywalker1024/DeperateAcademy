@@ -206,6 +206,10 @@ void LoadingLayer::responseParser(CCHttpClient* client, CCHttpResponse* response
         UserInfo::shared()->setIsArenaWin( responseJson["arena_is_win"].asBool() );
     }
     
+    if (!responseJson["is_win"].isNull()) {
+        MissionInfo::shared()->setIsWin( responseJson["is_win"].asBool() );
+    }
+    
     this->setIsFinished(true);
     return;
     //CCLog("responseData=%s", responseJson);

@@ -304,3 +304,22 @@ std::vector<std::string> split(const std::string &s, char delim) {
     split(s, delim, elems);
     return elems;
 }
+
+string CommonUtils::stringFormat( int value, int keta )
+{
+    ostringstream oss;
+    oss.setf(ios::right); // 右詰め
+    oss.fill('0'); // 0埋め
+    oss.width(keta); // 桁数
+    oss << value;
+    string str = oss.str();
+    
+    return str;
+}
+
+long CommonUtils::getNowUnitxTime()
+{
+    struct timeval tim;
+    gettimeofday(&tim, NULL);
+    return tim.tv_sec;
+}

@@ -18,6 +18,7 @@ BaseScene::BaseScene()
 {
     uiCacheList = new UICacheList();
     m_backBtn = NULL;
+    m_hasHead = false;
 }
 
 BaseScene::~BaseScene(){
@@ -256,14 +257,14 @@ void BaseScene::setHeader(){
     UserInfo * userInfo = UserInfo::shared();
     //name
     int x = 100;
-    int y = screenHeight - 100;
+    int y = screenHeight - 50;
     int width = 300;
-    int fontSize = 60;
+    int fontSize = 40;
     GraphicUtils::drawString(this, userInfo->getName(), x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
     x += width;
     
     //钻石
-    width = 150;
+    width = 100;
     GraphicUtils::drawString(this, "钻石", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
     x += width;
     GraphicUtils::drawString(this, CommonUtils::IntToString( userInfo->getDiamond() ), x, y, 500, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
@@ -271,8 +272,8 @@ void BaseScene::setHeader(){
     //第二行
     //lv
     x = 100;
-    y = screenHeight - 200;
-    width = 150;
+    y = screenHeight - 100;
+    width = 100;
     GraphicUtils::drawString(this, "等级", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
     x += width;
     
@@ -283,24 +284,32 @@ void BaseScene::setHeader(){
     
     //第三行 体力值
     x = 100;
-    y = screenHeight - 300;
-    width = 200;
+    y = screenHeight - 150;
+    width =150;
     GraphicUtils::drawString(this, "体力值", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
     x += width;
-    string actionP = CCString::createWithFormat("%d/%d", userInfo->getActionP(), userInfo->getMaxActionP())->m_sString;
-    GraphicUtils::drawString(this, actionP, x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
-    x += width;
-    //经验值
-    GraphicUtils::drawString(this, "经验值", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
-    x += width;
-    LevelMst * levelMst = LevelMstList::shared()->getObject(userInfo->getLv() + 1);
-    if (levelMst) {
-       string expString = CCString::createWithFormat("%d/%d", userInfo->getExp(), levelMst->getExp())->m_sString;
-        GraphicUtils::drawString(this, expString, x, y, 300, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
-    }else{
-        GraphicUtils::drawString(this, "已顶级", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+    {
+        string actionP = CCString::createWithFormat("%d/%d", userInfo->getActionP(), userInfo->getMaxActionP())->m_sString;
+        m_staminaLabel = GraphicUtils::drawString(this, actionP, x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+        
+        string rest = getRecoverRestTime( UserInfo::shared()->getActionRestTimer() );
+        m_recoverTimeLabel = GraphicUtils::drawString(this, rest, 100, y - 50, screenWidth, fontSize, getSystemColor(COLOR_KEY_GOLD), TEXT_ALIGN_LEFT_TOP, fontSize);
+        x += 150;
+        
     }
-
+    //经验值
+    {
+        GraphicUtils::drawString(this, "经验值", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+        x += 150;
+        LevelMst * levelMst = LevelMstList::shared()->getObject(userInfo->getLv() + 1);
+        if (levelMst) {
+           string expString = CCString::createWithFormat("%d/%d", userInfo->getExp(), levelMst->getExp())->m_sString;
+            GraphicUtils::drawString(this, expString, x, y, 300, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+        }else{
+            GraphicUtils::drawString(this, "已顶级", x, y, width, fontSize, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_LEFT_TOP, fontSize);
+        }
+    }
+    m_hasHead = true;
 }
 
 //返回按钮
@@ -321,4 +330,75 @@ void BaseScene::setBackBtn()
 
 void BaseScene::onBackClick(){
     CCLog("please over ride me");
+}
+
+string BaseScene::getRecoverRestTime( int rest_time )
+{
+    string str = "";
+    
+    if( rest_time == 0 )
+    {
+        return "体力已满";
+    }
+    
+    
+    str = "体力恢复还有";
+    str.append( " " );
+    
+    int minute = (rest_time % RECOVER_TIME) / 60;
+    int second = rest_time % 60;
+    
+    // 分
+    str.append( CommonUtils::IntToString( minute ) );
+    str.append( ":" );
+    
+    // 秒
+    str.append( CommonUtils::stringFormat( second, 2 ) );
+    
+    return str;
+    
+}
+
+void BaseScene::updateActionRestTime()
+{
+    if( !m_hasHead )
+    {
+        return;
+    }
+    
+    int log_p = UserInfo::shared()->getActionP();
+    
+    UserInfo::shared()->decActionRestTimer();
+    
+    if( m_staminaLabel && m_recoverTimeLabel )
+    {
+        // 変化がない場合
+        if( log_p != UserInfo::shared()->getActionP() )
+        {
+            CCLog( "log_p=%d act_p=%d", log_p, UserInfo::shared()->getActionP() );
+            
+            // 回復した場合
+            if( log_p < UserInfo::shared()->getActionP() )
+            {
+                UserInfo * userInfo = UserInfo::shared();
+                string actionP = CCString::createWithFormat("%d/%d", userInfo->getActionP(), userInfo->getMaxActionP())->m_sString;
+                m_staminaLabel->changeString(actionP);
+            }
+        }
+        
+        // 残り時間取得
+        string rest = getRecoverRestTime( UserInfo::shared()->getActionRestTimer() );
+        
+        if( rest != m_recoverTimeLabel->getString() )
+        {
+            //CCLog( "GameScene::updateActionRestTime rest=%s", rest.c_str() );
+            
+            m_recoverTimeLabel->changeString( rest );
+        }
+    }
+    
+}
+
+void BaseScene::draw(){
+    updateActionRestTime();
 }

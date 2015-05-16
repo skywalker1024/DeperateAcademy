@@ -63,7 +63,7 @@ void HomeScene::onEnter(){
     }
     //强化（强化士兵 强化城墙）
     {
-        CCLabelTTF * evoLabel = CCLabelTTF::create("强化士兵", DEFAULT_FONT_NAME, 60);
+        CCLabelTTF * evoLabel = CCLabelTTF::create("强化", DEFAULT_FONT_NAME, 60);
         CCControlButton * evoBtn = CCControlButton::create(evoLabel, CCScale9Sprite::create("img/button1.png"));
         evoBtn->setBackgroundSpriteForState(CCScale9Sprite::create("img/button2.png"), CCControlStateHighlighted);//按下后的图片
         

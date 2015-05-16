@@ -43,4 +43,5 @@ static const char* const COLOR_KEY_RED   = "RED_LABEL";
 static const char* const COLOR_KEY_INFO  = "INFO_LABEL";
 
 const int DIALOG_BUTTON_PRIORITY = kCCMenuHandlerPriority - 10;
+static const int RECOVER_TIME = 180;
 #endif

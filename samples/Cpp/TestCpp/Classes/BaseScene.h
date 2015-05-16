@@ -34,10 +34,15 @@ public:
     void changeScene(CCScene * scene);
     ccColor3B getSystemColor( string key );
 private:
-    
+    StringLabelList * m_staminaLabel;
+    StringLabelList * m_recoverTimeLabel;
     // UIキャッシュリスト
     UICacheList* uiCacheList;
+    string getRecoverRestTime( int rest_time );
+    void updateActionRestTime();
+    bool m_hasHead;
 protected:
+    void draw();
     CCSpriteBatchNode* getCacheBatchNode( string key, string name );
     void setCacheBatchNode( string key, string name, CCSpriteBatchNode* batch_node );
     CCSprite* getCacheSprite( string key, string name );

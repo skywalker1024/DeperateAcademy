@@ -8,6 +8,7 @@
 
 #include "UserInfo.h"
 #include "CommonUtils.h"
+#include "GameConst.h"
 // シングルトンインスタンス
 UserInfo* userInfoInstance = NULL;
 
@@ -75,6 +76,8 @@ void UserInfo::updateWithJson(Json::Value json){
     m_lv = CommonUtils::StrToInt( json["lv"].asString());
     m_user_id = CommonUtils::StrToInt( json["id"].asString());
     m_wallLv = CommonUtils::StrToInt( json["wall_lv"].asString());
+    
+    setActionRestTimer(CommonUtils::StrToInt( json["action_rest_timer"].asString()));
 }
 
 void UserInfo::updateSoldierInfo(Json::Value json){
@@ -103,4 +106,73 @@ map<int, int> UserInfo::getClearMissionId(){
 void UserInfo::updateArenaInfo(Json::Value json){
     m_arenaPoint = CommonUtils::StrToInt(json["point"].asString());
     m_arenaRank = CommonUtils::StrToInt(json["rank"].asString());
+}
+
+
+/*
+ * 行動力が最大になるまでの秒数を設定。
+ */
+void UserInfo::setActionRestTimer( int value )
+{
+    CCLog( " UserInfo::setActionRestTimer value=%d", value );
+    
+    actionRestTimer = value;
+    
+    actionReceiveTime = CommonUtils::getNowUnitxTime();
+    
+    CCLog( "UserInfo::setActionRestTimer actionReceiveTime=%l", actionReceiveTime );
+}
+
+/*
+ * 行動力が最大になるまでの秒数を取得。
+ */
+int UserInfo::getActionRestTimer()
+{
+    return actionRestTimer;
+}
+
+/*
+ * 行動力が最大になるまでの秒数を減らす。
+ */
+void UserInfo::decActionRestTimer()
+{
+    //CCLog( "action restTime=%d getRecoverTime=%d",actionRestTimer, DefineMst::shared()->getRecoverTimeAction() );
+    
+    if( actionRestTimer == 0 ) return;
+    
+    // 現在時間を取得
+    long now_time = CommonUtils::getNowUnitxTime();
+    
+    // 経過秒数を取得
+    int past_sec = ( now_time - actionReceiveTime );
+    
+    if( past_sec <= 0 ) return;
+    
+    for( int i = 0; i < past_sec; i++ )
+    {
+        actionRestTimer--;
+        
+        //CCLog( "time=%d", DefineMst::shared()->getRecoverTimeAction() );
+        
+        // 体力回復
+        int time =  RECOVER_TIME;
+        
+        if( time > 0 )
+        {
+            if( actionRestTimer % time == 0 )
+            {
+                m_action_p++;
+            }
+        }
+        
+        if( m_action_p > m_max_action_p )
+        {
+            m_action_p = m_max_action_p;
+        }
+        
+        if( actionRestTimer <= 0 ) break;
+    }
+    
+    actionReceiveTime = now_time;
+    
 }

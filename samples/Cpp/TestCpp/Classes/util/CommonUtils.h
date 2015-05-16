@@ -56,6 +56,8 @@ public:
     static std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
     static std::vector<std::string> split(const std::string &s, char delim);
     static void showAlert();
+    static long getNowUnitxTime();
+    static string stringFormat( int value, int keta );
 };
 
 #endif

@@ -26,11 +26,17 @@ public:
     void updateClearMission(Json::Value json);
     void updateArenaInfo(Json::Value json);
     map<int, int> getClearMissionId();
+    
+    void setActionRestTimer(int value);
+    int getActionRestTimer();
+    void decActionRestTimer();
 private:
     // コンストラクタ
     UserInfo();
     // デストラクタ
     ~UserInfo();
+    int actionRestTimer;
+    long actionReceiveTime;
     map<int, int> m_clearMissionId;
     CC_SYNTHESIZE(int, m_user_id, UserId);
     CC_SYNTHESIZE(string, m_channel_user_id, ChannelUserId);

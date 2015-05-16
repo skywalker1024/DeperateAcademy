@@ -16,6 +16,9 @@
 #include "MissionInfo.h"
 #include "UserInfo.h"
 #include "MissionMstList.h"
+#include "LevelMstList.h"
+#include "SoldierMstList.h"
+#include "WallMstList.h"
 MissionEndScene::MissionEndScene()
 {
 }
@@ -53,8 +56,35 @@ void MissionEndScene::onEnter(){
         int screenHeight = CommonUtils::getScreenHeight();
         
         string lvStr = CCString::createWithFormat("%d => %d 升级!", UserInfo::shared()->getLv() - 1, UserInfo::shared()->getLv())->m_sString;
-        GraphicUtils::drawString(this, lvStr, screenWidth/2, screenHeight/ 2 + 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+        int y = screenHeight/ 2 + 300;
+        GraphicUtils::drawString(this, lvStr, screenWidth/2, y, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+        //查看是否解锁城墙和兵种
+        LevelMst * levelMst = LevelMstList::shared()->getObject(UserInfo::shared()->getLv());
+        int unlock_solder_id = levelMst->getUnlockSoldierId();
+        int unlock_wall_id = levelMst->getUnlockWallLv();
+        
+        if (unlock_solder_id > 0) {
+            y -= 100;
+            SoldierMst * soldierMst = SoldierMstList::shared()->getObject(unlock_solder_id);
+            string str = CCString::createWithFormat("恭喜主公解锁了%s", soldierMst->getName().c_str())->m_sString;
+            GraphicUtils::drawString(this, str, screenWidth/2, y, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+        }
+        
+        if (unlock_wall_id > 0) {
+            y -= 100;
+            WallMst * wallMst = WallMstList::shared()->getObject(unlock_wall_id);
+            string str = CCString::createWithFormat("恭喜主公解锁了%s", wallMst->getName().c_str())->m_sString;
+            GraphicUtils::drawString(this, str, screenWidth/2, y, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+        }
+        
+        if (MissionInfo::shared()->getIsWin()) {
+            GraphicUtils::drawString(this, "恭喜主公旗开得胜！", screenWidth/2, screenHeight/ 2 - 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+        }else{
+            GraphicUtils::drawString(this, "主公，别气馁，胜败兵家常事", screenWidth/2, screenHeight/ 2 - 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+        }
     }
+    
+   
     
     //请玩家评价
     if (!CCUserDefault::sharedUserDefault()->getBoolForKey("app_url")) {
