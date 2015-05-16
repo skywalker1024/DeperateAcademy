@@ -107,7 +107,7 @@ void ArenaMapScene::onArenaClick(CCObject * sender, CCControlEvent controlEvent)
 }
 
 void ArenaMapScene::buyActionP(){
-    pushStepScene("buy_action_p.php", "", ArenaMapScene::scene());
+    pushStepScene("buy_action_p.php", "", NULL);
 }
 
 void ArenaMapScene::goToShop(){//TODO

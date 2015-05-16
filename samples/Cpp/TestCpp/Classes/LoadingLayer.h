@@ -41,7 +41,7 @@ public:
     void changeNextScene();
 private:
     CC_SYNTHESIZE_RETAIN(CCScene*, m_nextScene, NextScene);
-    CC_SYNTHESIZE_RETAIN(BaseScene*, m_prevScene, PrevScene);
+    CC_SYNTHESIZE(BaseScene*, m_prevScene, PrevScene);
     CC_SYNTHESIZE(bool, m_isFinished, IsFinished);
     
     void responseParser(CCHttpClient* client, CCHttpResponse* response);

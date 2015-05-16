@@ -40,7 +40,6 @@ LoadingLayer::~LoadingLayer()
     if (m_nextScene) {
         CC_SAFE_RELEASE_NULL(m_nextScene);
     }
-    CC_SAFE_RELEASE_NULL(m_prevScene);
 }
 
 bool LoadingLayer::init(){
