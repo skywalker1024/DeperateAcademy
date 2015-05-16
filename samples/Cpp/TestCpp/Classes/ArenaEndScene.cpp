@@ -41,11 +41,12 @@ void ArenaEndScene::onEnter(){
     BaseScene::onEnter();
     setHeader();
     
+    int screenWidth = CommonUtils::getScreenWidth();
+    int screenHeight = CommonUtils::getScreenHeight();
     if (UserInfo::shared()->getIsArenaWin()) {
-        int screenWidth = CommonUtils::getScreenWidth();
-        int screenHeight = CommonUtils::getScreenHeight();
-        
         GraphicUtils::drawString(this, "获得10钻!", screenWidth/2, screenHeight/ 2 + 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    }else{
+        GraphicUtils::drawString(this, "主公，别气馁，胜败兵家常事", screenWidth/2, screenHeight/ 2 + 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     }
 
 }

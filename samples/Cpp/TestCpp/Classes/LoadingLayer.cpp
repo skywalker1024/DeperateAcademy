@@ -41,7 +41,6 @@ LoadingLayer::~LoadingLayer()
         CC_SAFE_RELEASE_NULL(m_nextScene);
     }
     CC_SAFE_RELEASE_NULL(m_prevScene);
-    //CC_SAFE_RELEASE_NULL(m_responseParser);
 }
 
 bool LoadingLayer::init(){
@@ -131,6 +130,7 @@ void LoadingLayer::changeNextScene(){
     if (getNextScene()) {
         m_prevScene->changeScene(getNextScene());
     }else{
+        this->removeAllChildren();
         this->removeFromParent();
     }
 }
@@ -200,7 +200,7 @@ void LoadingLayer::responseParser(CCHttpClient* client, CCHttpResponse* response
     
     //竞技场对手信息
     if (!responseJson["arena_list"].isNull()) {
-        UserInfo::shared()->updateArenaInfo( responseJson["arena_info"] );
+        ArenaInfoList::shared()->updateWithJson( responseJson["arena_list"] );
     }
     //竞技场是否赢
     if (!responseJson["arena_is_win"].isNull()) {

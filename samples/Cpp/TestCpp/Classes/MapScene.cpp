@@ -230,7 +230,7 @@ void MapScene::moveMap(CCTouch *pTouch){
 }
 
 void MapScene::buyActionP(){
-    pushStepScene("buy_action_p.php", "", NULL);
+    pushStepScene("buy_action_p.php", "", MapScene::scene());
 }
 
 void MapScene::goToShop(){//TODO

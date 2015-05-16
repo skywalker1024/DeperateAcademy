@@ -316,7 +316,7 @@ void BaseScene::setBackBtn()
     m_backBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(BaseScene::onBackClick), CCControlEventTouchUpInside);
     m_backBtn->setPosition(ccp(100, screenHeight - 500));
     m_backBtn->setAnchorPoint(ccp(0,1));
-    this->addChild(m_backBtn);
+    this->addChild(m_backBtn, 100);
 }
 
 void BaseScene::onBackClick(){

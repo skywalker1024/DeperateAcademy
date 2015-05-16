@@ -38,6 +38,7 @@ ArenaInfo::ArenaInfo()
     m_minNum = 0;
     m_maxNum = 0;
     m_userId = 0;
+    m_wallLv = 0;
 }
 
 /*
@@ -56,4 +57,8 @@ void ArenaInfo::updateWithJson(Json::Value json){
     m_minNum = CommonUtils::StrToInt( json["min_num"].asString() );
     m_maxNum = CommonUtils::StrToInt( json["max_num"].asString() );
     m_userId = CommonUtils::StrToInt( json["user_id"].asString() );
+    m_wallLv = CommonUtils::StrToInt( json["wall_lv"].asString() );
+    
+    m_minTimer = 1000;
+    m_maxTimer = 2000;
 }

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Battle.cpp"
-            timestampString = "452952146.185586"
+            timestampString = "453430510.474138"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "Battle::createBlock(int i , int j)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/Battle.cpp"
-            timestampString = "452952146.185586"
+            timestampString = "453430510.474138"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "Battle::createBlock(int i , int j)"
             landmarkType = "5">
          </BreakpointContent>
@@ -294,22 +294,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/Battle.cpp"
-            timestampString = "452961309.8"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "403"
-            endingLineNumber = "403"
-            landmarkName = "Battle::updateArmy(CCMutableArray&lt;Soldier*&gt;* atkArmy, CCMutableArray&lt;Soldier*&gt;* defArmy, bool myArmy)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -319,7 +303,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
             endingLineNumber = "92"
-            landmarkName = "EvolutionScene::onEvoClick(CCObject * sender, CCControlEvent controlEvent)"
+            landmarkName = "EvolutionScene::onEnter()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -349,25 +333,9 @@
             timestampString = "453199378.144293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "UserInfo::updateSoldierInfo(Json::Value json)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/info/UserInfo.cpp"
-            timestampString = "453199378.144293"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
             endingLineNumber = "78"
-            landmarkName = "UserInfo::updateSoldierInfo(Json::Value json)"
+            landmarkName = "UserInfo::updateWithJson(Json::Value json)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -382,9 +350,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "UserInfo::updateWithJson(Json::Value json)"
-            landmarkType = "5">
+            endingLineNumber = "67">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -401,20 +367,6 @@
             endingLineNumber = "99"
             landmarkName = "MapScene::init()"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../Classes/LoadingLayer.cpp"
-            timestampString = "453200039.298569"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -572,12 +524,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../Classes/LoadingLayer.cpp"
-            timestampString = "453200039.298569"
+            timestampString = "453432728.47468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "LoadingLayer::draw()"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "LoadingLayer::~LoadingLayer()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/EvolutionScene.cpp"
+            timestampString = "453433250.463896"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "EvolutionScene::onEvoClick(CCObject * sender, CCControlEvent controlEvent)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../Classes/BaseScene.cpp"
+            timestampString = "453433271.252606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "BaseScene::pushStepScene(string url, string postData, CCScene * scene)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

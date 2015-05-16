@@ -36,6 +36,7 @@ bool ArenaMapScene::init(){
         return false;
     }
     
+    setBackBtn();
     int screenWidth = CommonUtils::getScreenWidth();
     int screenHeight = CommonUtils::getScreenHeight();
 
@@ -47,29 +48,11 @@ bool ArenaMapScene::init(){
     mapSprite->setAnchorPoint(CCPointZero);
     mapSprite->setPosition(CCPointZero);
     this->addChild(mapSprite);
-
-    std::map<int, CCPoint>arena_pos;
     
-    arena_pos[0] = ccp(100,100);
-    arena_pos[1] = ccp(200,200);
-    arena_pos[2] = ccp(300,300);
-    arena_pos[3] = ccp(400,200);
-    arena_pos[4] = ccp(500,300);
-    for (int i=0; i<ArenaInfoList::shared()->getCount(); i++) {
-        ArenaInfo * info = ArenaInfoList::shared()->getObject(i);
-        //在map上添加arenaBtn
-        CCString * btnString = CCString::createWithFormat("%s 三国武力排名第%d", info->getName().c_str(), info->getRank());
-        CCControlButton * missionBtn = CCControlButton::create(btnString->m_sString, DEFAULT_FONT_NAME, 60);
-        this->addChild(missionBtn);
-        missionBtn->setPosition(arena_pos[i]);
-        missionBtn->setTag(i);
-        missionBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(ArenaMapScene::onArenaClick), CCControlEventTouchUpInside);
-    }
     
-    setBackBtn();
     
     CCLog("width =%d height =%d", CommonUtils::getScreenWidth(), CommonUtils::getScreenHeight());
-    StringLabelList *test = GraphicUtils::drawString(this, "ArenaMapScene 每次5体力，胜利可以获得10钻", 250, 250, 710, 10, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_RIGHT_MIDDLE, 100);
+    StringLabelList *test = GraphicUtils::drawString(this, "ArenaMapScene 每次5体力，胜利可以获得10钻", 250, 250, 710, 10, getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_RIGHT_MIDDLE, 60);
     CCLog("test %f %f", test->getPositionX(), test->getPositionY());
     
     //排行榜button
@@ -78,6 +61,24 @@ bool ArenaMapScene::init(){
 
 void ArenaMapScene::onEnter(){
     BaseScene::onEnter();
+    
+    std::map<int, CCPoint>arena_pos;
+    
+    arena_pos[0] = ccp(100,500);
+    arena_pos[1] = ccp(400,600);
+    arena_pos[2] = ccp(600,600);
+    arena_pos[3] = ccp(600,800);
+    arena_pos[4] = ccp(650,900);
+    for (int i=0; i<ArenaInfoList::shared()->getCount(); i++) {
+        ArenaInfo * info = ArenaInfoList::shared()->getObject(i);
+        //在map上添加arenaBtn
+        //CCString * btnString = CCString::createWithFormat("%s 三国武力排名第%d", info->getName().c_str(), info->getRank());
+        CCControlButton * missionBtn = CCControlButton::create(info->getName(), DEFAULT_FONT_NAME, 60);
+        this->addChild(missionBtn);
+        missionBtn->setPosition(arena_pos[i]);
+        missionBtn->setTag(i);
+        missionBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(ArenaMapScene::onArenaClick), CCControlEventTouchUpInside);
+    }
 }
 
 void ArenaMapScene::onExit(){
@@ -106,9 +107,14 @@ void ArenaMapScene::onArenaClick(CCObject * sender, CCControlEvent controlEvent)
 }
 
 void ArenaMapScene::buyActionP(){
-    pushStepScene("buy_action_p.php", "", NULL);
+    pushStepScene("buy_action_p.php", "", ArenaMapScene::scene());
 }
 
 void ArenaMapScene::goToShop(){//TODO
     //changeScene(ShopScene::scene());
+}
+
+bool ArenaMapScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
+    BaseScene::ccTouchBegan(pTouch, pEvent);
+    return false;
 }

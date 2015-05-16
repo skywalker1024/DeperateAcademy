@@ -17,7 +17,7 @@ public:
     virtual ~ArenaMapScene();
     CREATE_FUNC(ArenaMapScene);
     virtual bool init();
-
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void onEnter();
     virtual void onExit();
 

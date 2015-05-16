@@ -136,21 +136,24 @@ void EvolutionScene::onEvoClick(CCObject * sender, CCControlEvent controlEvent){
 
 void EvolutionScene::onWallClick(){
     int wallLv = UserInfo::shared()->getWallLv();
-    WallMst *wallMst = WallMstList::shared()->getObject(wallLv);
-    int cost = wallMst->getCost();
-    if (cost > UserInfo::shared()->getDiamond()) {
-        DialogLayer::showDialog("钻石不足", 2, this, callfunc_selector(EvolutionScene::goToShop), NULL, NULL, "钻石商店", "");
-        return;
+    WallMst *wallMst = WallMstList::shared()->getObject(wallLv + 1);
+    if (wallMst) {
+        int cost = wallMst->getCost();
+        if (cost > UserInfo::shared()->getDiamond()) {
+            DialogLayer::showDialog("钻石不足", 2, this, callfunc_selector(EvolutionScene::goToShop), NULL, NULL, "钻石商店", "");
+            return;
+        }
+        //判断等级够不
+        LevelMst *levelMst = LevelMstList::shared()->getObjectByUnLockWallLv(wallMst->getLv());
+        if (UserInfo::shared()->getLv() < levelMst->getLv()) {
+            CCString *notice = CCString::createWithFormat("等级不足%d级",levelMst->getLv());
+            DialogLayer::showDialog(notice->getCString(), 2, this, callfunc_selector(EvolutionScene::goToMission), NULL, NULL, "出征", "");
+            return;
+        }
+            
+        
+        pushStepScene("evolution_wall.php", "", EvolutionScene::scene());
     }
-    //判断等级够不
-    LevelMst *levelMst = LevelMstList::shared()->getObjectByUnLockWallLv(wallMst->getLv());
-    if (UserInfo::shared()->getLv() < levelMst->getLv()) {
-        CCString *notice = CCString::createWithFormat("等级不足%d级",levelMst->getLv());
-        DialogLayer::showDialog(notice->getCString(), 2, this, callfunc_selector(EvolutionScene::goToMission), NULL, NULL, "出征", "");
-        return;
-    }
-    
-    pushStepScene("evolution_wall.php", "", EvolutionScene::scene());
 }
 void EvolutionScene::goToShop(){
     CCLog("goto shop");//TODO

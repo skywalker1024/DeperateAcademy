@@ -73,11 +73,11 @@ bool Battle::init(){
     int screenWidth = CommonUtils::getScreenWidth();
     int rice_start_x = (screenWidth - (4 * 100 + 3*100)) / 2;
     int count = MIN(4,UserInfo::shared()->m_soldierMap.size());
-    for (int i=1; i<count; i++) {
+    for (int i=0; i<count; i++) {
         Rice *rice = Rice::create();
-        StringLabelList * stringLabel = GraphicUtils::drawString(this, "0", rice_start_x, 50, getSystemColor(COLOR_KEY_GOLD), TEXT_ALIGN_LEFT_BOTTOM, 60);
+        StringLabelList * stringLabel = GraphicUtils::drawString(this, "0", rice_start_x + 200*i, 200, getSystemColor(COLOR_KEY_GOLD), TEXT_ALIGN_LEFT_BOTTOM, 60);
         rice->setStringLabelList(stringLabel);
-        m_riceList->setObject(rice, i);
+        m_riceList->setObject(rice, i+1);
     }
     
     SoldierMstList::shared();
@@ -95,7 +95,12 @@ bool Battle::init(){
     CCSprite * enemyWallSprite = CCSprite::create("img/wall_red.png");
     enemyWallSprite->setPosition(ccp(ENEMY_ARMY_START_X, ARMY_POSITION_Y));
     addChild(enemyWallSprite);
-    m_enemyWall->setHp(m_missionMst->getHp());
+    if (MissionInfo::shared()->getIsArena()) {
+        WallMst *wallMst = WallMstList::shared()->getObject(m_arenaInfo->getWallLv());
+        m_enemyWall->setHp(wallMst->getHp());
+    }else{
+        m_enemyWall->setHp(m_missionMst->getHp());
+    }
     StringLabelList *enemyWallHpString = GraphicUtils::drawString(this, CommonUtils::IntToString( m_enemyWall->getHp() ), ENEMY_ARMY_START_X, ARMY_POSITION_Y + 300, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     m_enemyWall->setStringLabelList(enemyWallHpString);
     
