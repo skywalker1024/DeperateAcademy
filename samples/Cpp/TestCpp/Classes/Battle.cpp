@@ -262,7 +262,7 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
                     m_blockList->removeObjectForKey(index_target);
                     m_blockList->setObject(block, index_target);
                     
-                    block->getSprite()->runAction(CCMoveBy::create(0.1f * blank_count, ccp(0,-WIDTH * blank_count)));
+                    block->getSprite()->runAction(CCMoveBy::create(0.1f, ccp(0,-WIDTH * blank_count)));
                 }
             }
         }
@@ -272,7 +272,7 @@ bool Battle::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     //将m_blockList补齐
     float checkDelayTime = 0.f;
     for (int i=0; i<column_list.size(); i++) {
-        float actionTime = 0.1f * blank_list[i];
+        float actionTime = 0.1f;
         int tmp_j = column_list[i];
         int start_ii = NUM - blank_list[i];
         for (int ii=start_ii; ii<NUM; ii++) {

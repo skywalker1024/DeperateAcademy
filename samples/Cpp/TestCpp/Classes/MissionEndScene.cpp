@@ -44,17 +44,15 @@ void MissionEndScene::onEnter(){
     BaseScene::onEnter();
     setHeader();
     
+    int screenWidth = CommonUtils::getScreenWidth();
+    int screenHeight = CommonUtils::getScreenHeight();
+    
     if (MissionInfo::shared()->getIsFirstClear()) {
-        int screenWidth = CommonUtils::getScreenWidth();
-        int screenHeight = CommonUtils::getScreenHeight();
-        
         GraphicUtils::drawString(this, "首次通关获得100钻！", screenWidth/2, screenHeight/ 2, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
     }
     
     if (UserInfo::shared()->getIsLvup()) {
-        int screenWidth = CommonUtils::getScreenWidth();
-        int screenHeight = CommonUtils::getScreenHeight();
-        
+       
         string lvStr = CCString::createWithFormat("%d => %d 升级!", UserInfo::shared()->getLv() - 1, UserInfo::shared()->getLv())->m_sString;
         int y = screenHeight/ 2 + 300;
         GraphicUtils::drawString(this, lvStr, screenWidth/2, y, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
@@ -76,14 +74,13 @@ void MissionEndScene::onEnter(){
             string str = CCString::createWithFormat("恭喜主公解锁了%s", wallMst->getName().c_str())->m_sString;
             GraphicUtils::drawString(this, str, screenWidth/2, y, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
         }
-        
-        if (MissionInfo::shared()->getIsWin()) {
-            GraphicUtils::drawString(this, "恭喜主公旗开得胜！", screenWidth/2, screenHeight/ 2 - 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
-        }else{
-            GraphicUtils::drawString(this, "主公，别气馁，胜败兵家常事", screenWidth/2, screenHeight/ 2 - 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
-        }
     }
     
+    if (MissionInfo::shared()->getIsWin()) {
+        GraphicUtils::drawString(this, "恭喜主公旗开得胜！", screenWidth/2, screenHeight/ 2 - 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    }else{
+        GraphicUtils::drawString(this, "主公，别气馁，胜败兵家常事", screenWidth/2, screenHeight/ 2 - 100, getSystemColor(COLOR_KEY_HP), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    }
    
     
     //请玩家评价
