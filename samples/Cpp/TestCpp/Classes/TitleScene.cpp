@@ -48,7 +48,7 @@ void TitleScene::onExit(){
 
 bool TitleScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     
-    pushStepScene("get_user_info.php", "", HomeScene::scene());
+    pushStepScene("get_user_info.php", "", NULL);
     return true;
 }
 

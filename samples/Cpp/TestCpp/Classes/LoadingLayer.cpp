@@ -77,6 +77,7 @@ void LoadingLayer::onEnter(){
  */
 void LoadingLayer::draw()
 {
+    DialogBaseLayer::draw();
     // 通信初期化
     if( state == STATE_CONNECT_INIT )
     {
