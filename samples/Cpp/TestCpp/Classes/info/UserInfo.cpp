@@ -45,6 +45,14 @@ UserInfo::UserInfo()
     m_appUrl = "";
     m_isArenaWin = false;
     m_wallLv = 0;
+    
+    m_purchaseId = 0;
+    m_purchasePayAmount = 0;
+    m_purchaseModelStatus = PURCHASE_MODEL_STATUS_START_CONN_BEFORE;
+    m_purchaseFixFlg = 0;
+    m_purchaseRstFlg = 0;
+    m_purchaseReceipt = "";
+    
 }
 
 /*
@@ -118,7 +126,7 @@ void UserInfo::setActionRestTimer( int value )
     
     actionRestTimer = value;
     
-    actionReceiveTime = CommonUtils::getNowUnitxTime();
+    actionReceiveTime = CommonUtils::getCurrentTime();
     
     CCLog( "UserInfo::setActionRestTimer actionReceiveTime=%l", actionReceiveTime );
 }
@@ -141,7 +149,7 @@ void UserInfo::decActionRestTimer()
     if( actionRestTimer == 0 ) return;
     
     // 現在時間を取得
-    long now_time = CommonUtils::getNowUnitxTime();
+    long now_time = CommonUtils::getCurrentTime();
     
     // 経過秒数を取得
     int past_sec = ( now_time - actionReceiveTime );

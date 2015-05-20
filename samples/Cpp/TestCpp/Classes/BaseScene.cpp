@@ -151,7 +151,7 @@ void BaseScene::setCacheParticleAnime( string key, string name, ParticleAnime* a
     uiCacheList->setParticleAnime( key, name, anime );
 }
 
-void BaseScene::pushStepScene(string url, string postData, CCScene * scene){
+void BaseScene::pushStepScene(string url, string postData, CCScene * scene, string message){
     BaseRequest *baseRequest = new BaseRequest();
     baseRequest->setUrl(url);
     baseRequest->setData(postData);
@@ -160,6 +160,7 @@ void BaseScene::pushStepScene(string url, string postData, CCScene * scene){
     LoadingLayer * loadingLayer = LoadingLayer::create();
     loadingLayer->setNextScene(scene);
     loadingLayer->setPrevScene(this);
+    loadingLayer->setMessage(message);
     this->addChild(loadingLayer);
 }
 

@@ -53,6 +53,13 @@ private:
     CC_SYNTHESIZE(string, m_appUrl, AppUrl);
     CC_SYNTHESIZE(bool, m_isArenaWin, IsArenaWin);
     CC_SYNTHESIZE(int, m_wallLv, WallLv);
+    
+    CC_SYNTHESIZE(int, m_purchaseId, PurchaseId);
+    CC_SYNTHESIZE(int, m_purchasePayAmount, PurchasePayAmount);
+    CC_SYNTHESIZE(int, m_purchaseModelStatus, PurchaseModelStatus);
+    CC_SYNTHESIZE(int, m_purchaseFixFlg, PurchaseFixFlg);
+    CC_SYNTHESIZE(int, m_purchaseRstFlg, PurchaseRstFlg);
+    CC_SYNTHESIZE(string, m_purchaseReceipt, PurchaseReceipt);
 };
 
 #endif

@@ -58,8 +58,8 @@ void MissionMst::initWithArray(CCDictionary * list){
     m_hp = dynamic_cast<CCString*>(list->objectForKey("hp"))->intValue();
     
     //test
-    m_minTimer = 400;
-    m_maxTimer = 600;
+    m_minTimer = 1000;
+    m_maxTimer = 2000;
 }
 
 std::map<int, int> MissionMst::getSoldierMap(){

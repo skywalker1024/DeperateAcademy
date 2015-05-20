@@ -317,7 +317,7 @@ string CommonUtils::stringFormat( int value, int keta )
     return str;
 }
 
-long CommonUtils::getNowUnitxTime()
+long CommonUtils::getCurrentTime()
 {
     struct timeval tim;
     gettimeofday(&tim, NULL);

@@ -18,6 +18,8 @@
 #include "GameConst.h"
 #include "MissionInfo.h"
 #include "ArenaInfoList.h"
+#include "ShopScene.h"
+#include "BuyCoinInfo.h"
 LoadingLayer * loadingLayerInstance = NULL;
 /*
  * コンストラクタ。
@@ -29,6 +31,7 @@ LoadingLayer::LoadingLayer()
     m_isFinished = false;
     m_nextScene = NULL;
     m_prevScene = NULL;
+    m_message = "";
 }
 
 /*
@@ -64,12 +67,15 @@ void LoadingLayer::onEnter(){
     addChild(armature);
     armature->release();
     */
-    std::vector<string>tips;
-    tips.push_back("升级可以解锁更多兵种");
-    tips.push_back("在竞技场取胜可以获得钻石");
-    tips.push_back("战斗中点错方块会出现更多敌军");
-    string str = tips[arc4random() % tips.size()].append("\n通讯中...");
-    GraphicUtils::drawString(this, str, CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() / 2 - 100, m_prevScene->getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_CENTER_MIDDLE, 60);
+    if (m_message == "") {
+        std::vector<string>tips;
+        tips.push_back("升级可以解锁更多兵种");
+        tips.push_back("在竞技场取胜可以获得钻石");
+        tips.push_back("战斗中点错方块会出现更多敌军");
+        m_message = tips[arc4random() % tips.size()].append("\n通讯中...");
+    }
+    
+    GraphicUtils::drawString(this, m_message, CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() / 2 - 100, m_prevScene->getSystemColor(COLOR_KEY_WHITE), TEXT_ALIGN_CENTER_MIDDLE, 60);
 }
 
 /*
@@ -131,6 +137,20 @@ void LoadingLayer::changeNextScene(){
         m_prevScene->changeScene(getNextScene());
     }else{
         this->removeAllChildren();
+        //purchase相关
+        if(dynamic_cast<ShopScene*>(this->getPrevScene())){
+            ShopScene * shopScene = dynamic_cast<ShopScene*>(this->getPrevScene());
+            switch (shopScene->getPurchaseStatus()) {
+                case ShopScene::START_PURCHASE_WAITING:
+                    shopScene->setPurchaseStatus(ShopScene::START_STORE_KIT);
+                    break;
+                case ShopScene::START_END_WAITING:
+                    shopScene->setPurchaseStatus(ShopScene::START_AFTER_PROC);
+                    break;
+                default:
+                    break;
+            }
+        }
         this->removeFromParent();
     }
 }
@@ -209,6 +229,10 @@ void LoadingLayer::responseParser(CCHttpClient* client, CCHttpResponse* response
     
     if (!responseJson["is_win"].isNull()) {
         MissionInfo::shared()->setIsWin( responseJson["is_win"].asBool() );
+    }
+    
+    if (!responseJson["purchase_state"].isNull()) {
+        BuyCoinInfo::shared()->setPurchaseState( CommonUtils::StrToInt( responseJson["purchase_state"].asString() ));
     }
     
     this->setIsFinished(true);

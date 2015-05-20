@@ -8,6 +8,9 @@
 
 #include "CommonUtils.h"
 #include "AlertView.h"
+#include "PaymentUtil.h"
+#include "TalkingDataAppCpa.h"
+#include "UserInfo.h"
 std::string CommonUtils::getDeviceID()
 {
     
@@ -29,4 +32,29 @@ std::string CommonUtils::getDeviceID()
 
 void CommonUtils::showAlert(){
     [[AlertView alloc] init];
+}
+
+bool CommonUtils::checkoutPaymentID(string aPaymentID)//订单优化
+{
+    return [PaymentUtil checkoutPaymentID:[NSString stringWithFormat:@"%s", aPaymentID.c_str()]];
+}
+
+void CommonUtils::startCheckID()
+{
+    PaymentUtil* util = [[PaymentUtil alloc ] init ];
+    [ util paymentRequest:[ NSString stringWithUTF8String:"check" ] ];
+}
+
+void CommonUtils::talkingDataCpaOnPay(const char * orderId,int amount,const char * currencyType,const char * payType)
+{
+    NSString * userIdStr = [NSString stringWithFormat:@"%d",  UserInfo::shared()->getUserId()];
+    NSString * orderIdStr = [NSString stringWithFormat:@"%s", orderId];
+    NSString * currencyTypeStr = [NSString stringWithFormat:@"%s", currencyType];
+    NSString * payTypeStr = [NSString stringWithFormat:@"%s", payType];
+    [TalkingDataAppCpa onPay:userIdStr withOrderId:orderIdStr withAmount:amount withCurrencyType:currencyTypeStr withPayType:payTypeStr];
+}
+
+void CommonUtils::paymentRequest(string purchaseId){
+    PaymentUtil* util = [ [ PaymentUtil alloc ] init ];
+    [ util paymentRequest:[ NSString stringWithUTF8String:purchaseId.c_str() ] ];
 }

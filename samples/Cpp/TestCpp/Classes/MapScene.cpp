@@ -127,7 +127,8 @@ bool MapScene::init(){
         MissionMst * missionMst = MissionMstList::shared()->getObject(next_mission_id);
         int mapId= missionMst->getMapId();
         //在map上添加missionBtn
-        CCControlButton * missionBtn = CCControlButton::create(missionMst->getName(), DEFAULT_FONT_NAME, 60);
+        string missionName = CCString::createWithFormat("%s(%d) ", missionMst->getName().c_str(), missionMst->getActionP())->m_sString;
+        CCControlButton * missionBtn = CCControlButton::create(missionName, DEFAULT_FONT_NAME, 60);
         m_mapLayer->addChild(missionBtn);
         missionBtn->setPosition(ccp((mapId - 1) * screenWidth + missionMst->getPosX(), missionMst->getPosY()));
         missionBtn->setTag(missionMst->getId());

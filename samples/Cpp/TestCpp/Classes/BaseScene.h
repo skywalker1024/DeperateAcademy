@@ -29,7 +29,7 @@ public:
     virtual void onExit();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void registerWithTouchDispatcher();
-    void pushStepScene(string url, string postData, CCScene * scene);
+    void pushStepScene(string url, string postData, CCScene * scene, string message="");
     void pushStepScene(CCScene * scene);
     void changeScene(CCScene * scene);
     ccColor3B getSystemColor( string key );

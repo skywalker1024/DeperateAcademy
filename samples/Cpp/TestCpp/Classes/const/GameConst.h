@@ -42,6 +42,32 @@ static const char* const COLOR_KEY_WHITE = "WHITE_LABEL";
 static const char* const COLOR_KEY_RED   = "RED_LABEL";
 static const char* const COLOR_KEY_INFO  = "INFO_LABEL";
 
-const int DIALOG_BUTTON_PRIORITY = kCCMenuHandlerPriority - 10;
+const int DIALOG_BUTTON_PRIORITY = -138;// kCCMenuHandlerPriority - 10;
 static const int RECOVER_TIME = 180;
+
+////////////////////////////////
+// 課金端末定義
+static const int PURCHASE_MODEL_STATUS_START_CONN_BEFORE = 0;
+static const int PURCHASE_MODEL_STATUS_START_CONN_AFTER = 1;
+static const int PURCHASE_MODEL_STATUS_PRODUCT_CHECK_BEFORE = 2;
+static const int PURCHASE_MODEL_STATUS_PRODUCT_CHECK_AFTER = 3;
+static const int PURCHASE_MODEL_STATUS_PRODUCT_STORE_KIT_PUSH_AFTER = 4;
+static const int PURCHASE_MODEL_STATUS_PRODUCT_STORE_KIT_RECIEVE = 5;
+
+////////////////////////////////
+// 有効、無効
+static const int INVALID    = 0;
+static const int VALID      = 1;
+static const int BOTH       = -1;
+
+////////////////////////////////
+// 課金処理定義
+static const int PURCHASE_STATE_START = 0;
+static const int PURCHASE_STATE_CANCEL = 1;
+static const int PURCHASE_STATE_COMPLETE = 2;
+static const int PURCHASE_STATE_RECEIPT_NG = 3;
+static const int PURCHASE_STATE_GIVEUP = 4;
+static const int PURCHASE_STATE_ALREADY = 5;
+static const int PURCHASE_STATE_DEFERRED = 6;
+
 #endif

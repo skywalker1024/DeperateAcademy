@@ -43,6 +43,7 @@ private:
     CC_SYNTHESIZE_RETAIN(CCScene*, m_nextScene, NextScene);
     CC_SYNTHESIZE(BaseScene*, m_prevScene, PrevScene);
     CC_SYNTHESIZE(bool, m_isFinished, IsFinished);
+    CC_SYNTHESIZE(string, m_message, Message);
     
     void responseParser(CCHttpClient* client, CCHttpResponse* response);
 };

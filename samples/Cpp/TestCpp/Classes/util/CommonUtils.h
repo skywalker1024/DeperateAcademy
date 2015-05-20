@@ -56,8 +56,12 @@ public:
     static std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
     static std::vector<std::string> split(const std::string &s, char delim);
     static void showAlert();
-    static long getNowUnitxTime();
     static string stringFormat( int value, int keta );
+    static long getCurrentTime();
+    static bool checkoutPaymentID(string aPaymentID);
+    static void startCheckID();
+    static void talkingDataCpaOnPay(const char * orderId,int amount,const char * currencyType,const char * payType);
+    static void paymentRequest(string purchaseId);
 };
 
 #endif
