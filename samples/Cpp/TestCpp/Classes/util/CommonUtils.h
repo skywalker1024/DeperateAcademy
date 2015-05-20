@@ -60,7 +60,6 @@ public:
     static long getCurrentTime();
     static bool checkoutPaymentID(string aPaymentID);
     static void startCheckID();
-    static void talkingDataCpaOnPay(const char * orderId,int amount,const char * currencyType,const char * payType);
     static void paymentRequest(string purchaseId);
 };
 

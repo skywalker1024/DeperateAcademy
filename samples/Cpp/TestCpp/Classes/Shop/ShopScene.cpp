@@ -15,12 +15,6 @@
 #include "UserState.h"
 #include "BuyCoinInfo.h"
 #include "DialogLayer.h"
-#import "PaymentUtil.h"
-
-
-//peiyang vip
-static bool vipStatus = false;
-//end
 
 /*
  * コンストラクタ。
@@ -43,6 +37,19 @@ ShopScene::~ShopScene()
 
 }
 
+CCScene * ShopScene::scene(){
+    CCScene* scene = CCScene::create();
+    scene->addChild(ShopScene::create());
+    return scene;
+}
+
+bool ShopScene::init(){
+    if (!BaseScene::init()) {
+        return false;
+    }
+    
+    return true;
+}
 
 /*
  * 初期化処理。

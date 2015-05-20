@@ -293,7 +293,6 @@ static  NSMutableDictionary *iDic =  NULL;
                 }
                 // smac
                 
-                CommonUtils::talkingDataCpaOnPay([transaction.transactionIdentifier UTF8String], UserInfo::shared()->getPurchasePayAmount(), "CNY", "0");
                 break;
             }
                 // 購入失敗

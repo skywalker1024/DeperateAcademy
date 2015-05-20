@@ -8,8 +8,6 @@
 #ifndef BraveFrontier_PaymentUtil_h
 #define BraveFrontier_PaymentUtil_h
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-
 // iOS系課金関数
 
 #import <CoreFoundation/CoreFoundation.h>
@@ -43,30 +41,5 @@ iap计费回调没有返回的 判断
 - (void)paymentRequest:(NSString*)productID;
 
 @end
-
-#else
-
-// iOS以外の課金関数
-
-class PaymentUtil {
-public:
-	//課金シーンに入る時の初期化
-	static void storeOpening();
-	//課金シーンから出る時の終了処理
-	static void storeClosing();
-
-	//アイテム値段、現在の有効transactionsの同期（ゲームに入る時に呼ぶべき）
-	static void syncItemPricesAndPurchases();
-	//課金開始
-	static void paymentRequest(std::string productId);
-
-	//課金が行われた時のコールバック
-	static void onPurchaseStateChanged(std::string signedData, std::string signature);
-
-	//課金サーバサイド処理後消耗品消費リクエスト
-	static void consumePurchase(std::string signedData, std::string signature);
-};
-
-#endif
 
 #endif

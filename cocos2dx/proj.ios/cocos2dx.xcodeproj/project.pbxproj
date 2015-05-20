@@ -314,6 +314,7 @@
 		4EF8999916E207E70040A527 /* CCTMXTiledMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EF8998D16E207E70040A527 /* CCTMXTiledMap.h */; };
 		4EF8999A16E207E70040A527 /* CCTMXXMLParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4EF8998E16E207E70040A527 /* CCTMXXMLParser.cpp */; };
 		4EF8999B16E207E70040A527 /* CCTMXXMLParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EF8998F16E207E70040A527 /* CCTMXXMLParser.h */; };
+		8176C1AA1B0C3E8D002E6D31 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8176C1A91B0C3E8D002E6D31 /* libcurl.a */; };
 		81CD7C5B1AEFB81500C0EB2D /* CCMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CD7C591AEFB81500C0EB2D /* CCMutableArray.h */; };
 		81CD7C5C1AEFB81500C0EB2D /* CCMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 81CD7C5A1AEFB81500C0EB2D /* CCMutableDictionary.h */; };
 		D43F7F8A15C7D8BA00D713FC /* CCTouch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D43F7F8915C7D8BA00D713FC /* CCTouch.cpp */; };
@@ -630,6 +631,7 @@
 		4EF8998D16E207E70040A527 /* CCTMXTiledMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTMXTiledMap.h; sourceTree = "<group>"; };
 		4EF8998E16E207E70040A527 /* CCTMXXMLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTMXXMLParser.cpp; sourceTree = "<group>"; };
 		4EF8998F16E207E70040A527 /* CCTMXXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTMXXMLParser.h; sourceTree = "<group>"; };
+		8176C1A91B0C3E8D002E6D31 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
 		81CD7C591AEFB81500C0EB2D /* CCMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMutableArray.h; sourceTree = "<group>"; };
 		81CD7C5A1AEFB81500C0EB2D /* CCMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMutableDictionary.h; sourceTree = "<group>"; };
 		D43F7F8915C7D8BA00D713FC /* CCTouch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTouch.cpp; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3199AE16C0E3A200207637 /* libwebp.a in Frameworks */,
+				8176C1AA1B0C3E8D002E6D31 /* libcurl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,6 +671,7 @@
 		1551A341158F2AB200E66CFE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8176C1A91B0C3E8D002E6D31 /* libcurl.a */,
 				1A3199AD16C0E3A200207637 /* libwebp.a */,
 			);
 			name = Frameworks;
@@ -1747,6 +1751,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../platform/third_party/ios/libraries\"",
+					/Users/gongchangyou/git/DeperateAcademy/cocos2dx/platform/third_party/ios/libraries,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1775,6 +1780,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../platform/third_party/ios/libraries\"",
+					/Users/gongchangyou/git/DeperateAcademy/cocos2dx/platform/third_party/ios/libraries,
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
