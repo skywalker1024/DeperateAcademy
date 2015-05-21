@@ -68,6 +68,7 @@ private:
     void exchangeBlock(bool needCheck);
     bool canExchange();
     void autoDownBlocks();
+    bool m_isMoved;
 };
 
 

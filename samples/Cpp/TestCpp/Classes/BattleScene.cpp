@@ -19,6 +19,7 @@ const int START_Y = 100;
 const int WIDTH = 100;
 const int ARMY_POSITION_Y = START_Y + NUM * WIDTH + 200;
 const int BLOCK_GREY_TYPE = 5;//Grey的serie id是5
+const float ACTION_TIME = .2f;
 BattleScene::BattleScene()
 {
     m_myArmy = new CCMutableArray<Soldier*>();
@@ -32,7 +33,7 @@ BattleScene::BattleScene()
     m_checkBlock = false;
     m_isOver = false;
     m_riceList = new CCMutableDictionary<int, Rice*>();
-    
+    m_isMoved = false;
     
 }
 
@@ -129,7 +130,7 @@ void BattleScene::onExit(){
 
 bool BattleScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     BaseScene::ccTouchBegan(pTouch, pEvent);
-    
+    m_isMoved = false;
     CCRect touchArea =  CCRect(MATRIX_START_X, START_Y, WIDTH * NUM, WIDTH * NUM);
     if (!touchArea.containsPoint(pTouch->getLocation())) {
         return false;
@@ -166,21 +167,31 @@ void BattleScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent){
     CCLog("x=%f y=%f",pTouch->getLocation().x, pTouch->getLocation().y);
     int j = (pTouch->getLocation().x - MATRIX_START_X) / WIDTH;
     int i = (pTouch->getLocation().y - START_Y) / WIDTH;
-    if (i!= m_prevPoint.x || j!= m_prevPoint.y) {
-        m_nowPoint = ccp(i,j);
-        //如果相邻
-        if(canExchange()){
-            exchangeBlock(true);
+    if ((i!= m_prevPoint.x || j!= m_prevPoint.y)) {
+        if (m_nowPoint.x == -1 && m_nowPoint.y == -1) {
+            m_nowPoint = ccp(i,j);
+            //如果相邻
+            if(canExchange()){
+                m_isMoved = true;
+                exchangeBlock(true);
+            }
+        }else{
+            if (m_nowPoint.x == i && m_nowPoint.y == j) {
+                
+            }else{
+                initPoint();
+            }
         }
-        initPoint();
     }
 }
 
 void BattleScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent){
     BaseScene::ccTouchEnded(pTouch, pEvent);
     
-    if (canExchange()) {
-        exchangeBlock(true);
+    if (!m_isMoved) {
+        if (canExchange()) {
+            exchangeBlock(true);
+        }
     }
 }
 void BattleScene::ccTouchCanceled(CCTouch *pTouch, CCEvent *pEvent){
@@ -473,6 +484,7 @@ void BattleScene::checkBlock(){
         if (m_prevPoint.x != -1 && m_nowPoint.x != -1) {
             //把两个block交换回去
             exchangeBlock(false);
+            initPoint();
         }
     }else{
         m_checkBlock = false;
@@ -484,13 +496,23 @@ void BattleScene::checkBlock(){
             {
                 if(m_matrix[i][j]->getCanRemove())
                 {
+                    //increase rice
+                    int blockType = m_matrix[i][j]->getType();
+                    if (blockType != BLOCK_GREY_TYPE) {
+                        int soldierId = UserInfo::shared()->m_soldierMap[blockType];
+                        if(m_riceList->objectForKey(blockType)->updateCount(1)){
+                            createSoldier(soldierId, m_myArmy, true, 0);
+                        }
+                    }
                     m_matrix[i][j]->removeFromParent();
                     m_matrix[i][j] = NULL;
                 }
             }
         }
+        
         //autoDown new Blocks
         autoDownBlocks();
+        this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(ACTION_TIME + .1f), CCCallFunc::create(this, callfunc_selector(BattleScene::checkBlock))));//这个delay时间要长过ACTION_TIME
     }
 }
 
@@ -547,13 +569,13 @@ void BattleScene::exchangeBlock(bool needCheck){
     Block * nowBlock = m_matrix[nowI][nowJ];
     
     //先交换位置之后判断是否需要消除
-    prevBlock->runAction(CCMoveTo::create(.1f, nowBlock->getPosition()));
-    nowBlock->runAction(CCMoveTo::create(.1f, prevBlock->getPosition()));
+    prevBlock->runAction(CCMoveTo::create(ACTION_TIME, nowBlock->getPosition()));
+    nowBlock->runAction(CCMoveTo::create(ACTION_TIME, prevBlock->getPosition()));
     m_matrix[prevI][prevJ] = nowBlock;
     m_matrix[nowI][nowJ] = prevBlock;
 
     if (needCheck) {
-        this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(.1f), CCCallFunc::create(this, callfunc_selector(BattleScene::checkBlock))));
+        this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(ACTION_TIME + .1f), CCCallFunc::create(this, callfunc_selector(BattleScene::checkBlock))));
     }
 }
 
@@ -579,7 +601,7 @@ void BattleScene::autoDownBlocks()//自动掉落
                 {
                     if(m_matrix[tmprow+1][j]!=NULL)
                     {
-                        m_matrix[tmprow+1][j]->runAction( CCMoveTo::create(.1f, ccpAdd(ccp(MATRIX_START_X, START_Y), ccp(j * WIDTH, i * WIDTH))));
+                        m_matrix[tmprow+1][j]->runAction( CCMoveTo::create(ACTION_TIME, ccpAdd(ccp(MATRIX_START_X, START_Y), ccp(j * WIDTH, i * WIDTH))));
                         m_matrix[i][j]=m_matrix[tmprow+1][j];
                         m_matrix[tmprow+1][j]=NULL;
                         CCLog("set i=%d j=%d NULL",tmprow+1,j);
@@ -599,7 +621,7 @@ void BattleScene::autoDownBlocks()//自动掉落
                 createBlock(i, j);
                 CCPoint targetPos = m_matrix[i][j]->getPosition();
                 m_matrix[i][j]->setPosition(ccpAdd(ccp(MATRIX_START_X, START_Y), ccp(j * WIDTH, NUM * WIDTH + blank_count * WIDTH)));
-                m_matrix[i][j]->runAction(CCMoveTo::create(.1f, targetPos));
+                m_matrix[i][j]->runAction(CCMoveTo::create(ACTION_TIME, targetPos));
                 
                 blank_count++;
                 
