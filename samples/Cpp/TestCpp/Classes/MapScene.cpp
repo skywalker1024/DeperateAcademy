@@ -14,9 +14,10 @@
 #include "CommonUtils.h"
 #include "DialogBaseLayer.h"
 #include "MissionInfo.h"
-#include "Battle.h"
+//#include "Battle.h"
 #include "UserInfo.h"
 #include "DialogLayer.h"
+#include "BattleScene.h"
 MapScene::MapScene()
 {
     m_missionButtonList = new CCMutableArray<CCControlButton*>();
@@ -206,7 +207,7 @@ void MapScene::onMissionClick(CCObject * sender, CCControlEvent controlEvent){
 
     MissionInfo::shared()->setCurrentMissionId(missionId);
     MissionInfo::shared()->setIsArena(false);
-    changeScene(Battle::scene());
+    changeScene(BattleScene::scene());
 }
 
 void MapScene::moveMap(CCTouch *pTouch){

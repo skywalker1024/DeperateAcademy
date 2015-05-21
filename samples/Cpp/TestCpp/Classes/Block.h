@@ -13,7 +13,7 @@
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-class Block :public CCObject{
+class Block :public CCSprite{
 public:
     Block();
     virtual ~Block();
@@ -23,8 +23,8 @@ public:
 private:
     CC_SYNTHESIZE(int, m_i, I);
     CC_SYNTHESIZE(int, m_j, J);
-    CC_SYNTHESIZE_RETAIN(CCSprite*, m_sprite, Sprite);
     CC_SYNTHESIZE(int, m_type, Type);
+    CC_SYNTHESIZE(bool, m_canRemove, CanRemove);
 };
 
 #endif /* defined(__CrossKaiser__Block__) */

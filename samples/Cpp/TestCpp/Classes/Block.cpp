@@ -10,11 +10,10 @@
 Block::Block()
 :m_i(0)
 ,m_j(0)
-,m_sprite(NULL)
 ,m_type(0)
+,m_canRemove(false)
 {}
 Block::~Block(){
-    CC_SAFE_RELEASE_NULL(m_sprite);
 }
 bool Block::init(){
     return true;

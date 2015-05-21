@@ -14,7 +14,7 @@
 #include "CommonUtils.h"
 #include "DialogBaseLayer.h"
 #include "MissionInfo.h"
-#include "Battle.h"
+#include "BattleScene.h"
 #include "UserInfo.h"
 #include "DialogLayer.h"
 #include "ArenaInfoList.h"
@@ -103,7 +103,7 @@ void ArenaMapScene::onArenaClick(CCObject * sender, CCControlEvent controlEvent)
     int arenaIndex = dynamic_cast<CCControlButton*>(sender)->getTag();
     MissionInfo::shared()->setIsArena(true);
     MissionInfo::shared()->setCurrentArenaId(arenaIndex);
-    changeScene(Battle::scene());
+    changeScene(BattleScene::scene());
 }
 
 void ArenaMapScene::buyActionP(){
