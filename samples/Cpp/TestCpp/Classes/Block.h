@@ -21,8 +21,6 @@ public:
     CREATE_FUNC(Block);
     
 private:
-    CC_SYNTHESIZE(int, m_i, I);
-    CC_SYNTHESIZE(int, m_j, J);
     CC_SYNTHESIZE(int, m_type, Type);
     CC_SYNTHESIZE(bool, m_canRemove, CanRemove);
 };

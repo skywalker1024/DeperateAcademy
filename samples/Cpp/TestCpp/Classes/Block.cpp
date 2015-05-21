@@ -8,9 +8,7 @@
 
 #include "Block.h"
 Block::Block()
-:m_i(0)
-,m_j(0)
-,m_type(0)
+:m_type(0)
 ,m_canRemove(false)
 {}
 Block::~Block(){

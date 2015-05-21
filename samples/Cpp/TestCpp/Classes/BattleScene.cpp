@@ -245,8 +245,6 @@ void BattleScene::createBlock(int i , int j){
     block->setScale( WIDTH / block->getTexture()->getContentSize().width );
     this->addChild(block);
     
-    block->setI(i);
-    block->setJ(j);
     block->setType(rand + 1);//type是serie id
     m_matrix[i][j] = block;
 
@@ -552,7 +550,7 @@ void BattleScene::exchangeBlock(bool needCheck){
     prevBlock->runAction(CCMoveTo::create(.1f, nowBlock->getPosition()));
     nowBlock->runAction(CCMoveTo::create(.1f, prevBlock->getPosition()));
     m_matrix[prevI][prevJ] = nowBlock;
-    m_matrix[nowI][nowI] = prevBlock;
+    m_matrix[nowI][nowJ] = prevBlock;
 
     if (needCheck) {
         this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(.1f), CCCallFunc::create(this, callfunc_selector(BattleScene::checkBlock))));
