@@ -483,6 +483,8 @@ void BattleScene::checkBlock(){
     if (!removeFlg) {
         if (m_prevPoint.x != -1 && m_nowPoint.x != -1) {
             //把两个block交换回去
+            //错了出敌军
+            createEnemy();
             exchangeBlock(false);
             initPoint();
         }
