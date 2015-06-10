@@ -143,6 +143,8 @@
 		8130B5851B05A9160012F12B /* WallMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8130B5811B05A9160012F12B /* WallMst.cpp */; };
 		8130B5861B05A9160012F12B /* WallMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8130B5831B05A9160012F12B /* WallMstList.cpp */; };
 		8130B5891B05D07D0012F12B /* Rice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8130B5871B05D07D0012F12B /* Rice.cpp */; };
+		8165E57A1B131394007E9610 /* TestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8165E5781B131394007E9610 /* TestScene.cpp */; };
+		8165E57E1B1442C6007E9610 /* plist in Resources */ = {isa = PBXBuildFile; fileRef = 8165E57D1B1442C5007E9610 /* plist */; };
 		8176C1771B099C5F002E6D31 /* F8base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 8176C1701B099C5F002E6D31 /* F8base64.m */; };
 		8176C1781B099C5F002E6D31 /* PaymentUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8176C1721B099C5F002E6D31 /* PaymentUtil.mm */; };
 		8176C1791B099C5F002E6D31 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8176C1741B099C5F002E6D31 /* Reachability.m */; };
@@ -169,6 +171,8 @@
 		817F8EEB1AFC6B5700A87076 /* EvoMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EE81AFC6B5600A87076 /* EvoMstList.cpp */; };
 		817F8EF11AFF79E800A87076 /* MissionEndScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EEF1AFF79E800A87076 /* MissionEndScene.cpp */; };
 		817F8EF51B019DDE00A87076 /* AlertView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 817F8EF41B019DDE00A87076 /* AlertView.mm */; };
+		8180E1C51B2812240068B4F1 /* BattleScene2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8180E1C31B2812240068B4F1 /* BattleScene2.cpp */; };
+		8180E1C81B281C110068B4F1 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8180E1C61B281C110068B4F1 /* Block.cpp */; };
 		81885F7E1AF8A8AD00073358 /* csv in Resources */ = {isa = PBXBuildFile; fileRef = 81885F7D1AF8A8AD00073358 /* csv */; };
 		81885F831AF8BE5800073358 /* LevelMstList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F7F1AF8BE5800073358 /* LevelMstList.cpp */; };
 		81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81885F801AF8BE5800073358 /* LevelMst.cpp */; };
@@ -192,7 +196,7 @@
 		81CD7C511AEFB6B100C0EB2D /* UICacheList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C351AEFB6B100C0EB2D /* UICacheList.cpp */; };
 		81CD7C521AEFB6B100C0EB2D /* UserFontSetting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C371AEFB6B100C0EB2D /* UserFontSetting.cpp */; };
 		81CD7C531AEFB6B100C0EB2D /* WideUseFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C391AEFB6B100C0EB2D /* WideUseFrame.cpp */; };
-		81CD7C541AEFB6B100C0EB2D /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C3B1AEFB6B100C0EB2D /* Block.cpp */; };
+		81CD7C541AEFB6B100C0EB2D /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C3B1AEFB6B100C0EB2D /* Cell.cpp */; };
 		81CD7C551AEFB6B100C0EB2D /* GameSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C401AEFB6B100C0EB2D /* GameSprite.cpp */; };
 		81CD7C601AEFB95A00C0EB2D /* img in Resources */ = {isa = PBXBuildFile; fileRef = 81CD7C5E1AEFB95A00C0EB2D /* img */; };
 		81CD7C611AEFB95A00C0EB2D /* font in Resources */ = {isa = PBXBuildFile; fileRef = 81CD7C5F1AEFB95A00C0EB2D /* font */; };
@@ -546,6 +550,9 @@
 		8130B5841B05A9160012F12B /* WallMstList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallMstList.h; sourceTree = "<group>"; };
 		8130B5871B05D07D0012F12B /* Rice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rice.cpp; path = ../Classes/Rice.cpp; sourceTree = "<group>"; };
 		8130B5881B05D07D0012F12B /* Rice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Rice.h; path = ../Classes/Rice.h; sourceTree = "<group>"; };
+		8165E5781B131394007E9610 /* TestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestScene.cpp; path = ../Classes/TestScene.cpp; sourceTree = "<group>"; };
+		8165E5791B131394007E9610 /* TestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestScene.h; path = ../Classes/TestScene.h; sourceTree = "<group>"; };
+		8165E57D1B1442C5007E9610 /* plist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = plist; sourceTree = "<group>"; };
 		8176C16F1B099C5F002E6D31 /* F8base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = F8base64.h; sourceTree = "<group>"; };
 		8176C1701B099C5F002E6D31 /* F8base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = F8base64.m; sourceTree = "<group>"; };
 		8176C1711B099C5F002E6D31 /* PaymentUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentUtil.h; sourceTree = "<group>"; };
@@ -591,6 +598,10 @@
 		817F8EF01AFF79E800A87076 /* MissionEndScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MissionEndScene.h; path = ../Classes/MissionEndScene.h; sourceTree = "<group>"; };
 		817F8EF31B019DDE00A87076 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlertView.h; path = ../Classes/AlertView.h; sourceTree = "<group>"; };
 		817F8EF41B019DDE00A87076 /* AlertView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AlertView.mm; path = ../Classes/AlertView.mm; sourceTree = "<group>"; };
+		8180E1C31B2812240068B4F1 /* BattleScene2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BattleScene2.cpp; path = ../Classes/BattleScene2.cpp; sourceTree = "<group>"; };
+		8180E1C41B2812240068B4F1 /* BattleScene2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BattleScene2.h; path = ../Classes/BattleScene2.h; sourceTree = "<group>"; };
+		8180E1C61B281C110068B4F1 /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Block.cpp; path = ../Classes/Block.cpp; sourceTree = "<group>"; };
+		8180E1C71B281C110068B4F1 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Block.h; path = ../Classes/Block.h; sourceTree = "<group>"; };
 		81885F7D1AF8A8AD00073358 /* csv */ = {isa = PBXFileReference; lastKnownFileType = folder; path = csv; sourceTree = "<group>"; };
 		81885F7F1AF8BE5800073358 /* LevelMstList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMstList.cpp; sourceTree = "<group>"; };
 		81885F801AF8BE5800073358 /* LevelMst.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LevelMst.cpp; sourceTree = "<group>"; };
@@ -636,8 +647,8 @@
 		81CD7C381AEFB6B100C0EB2D /* UserFontSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFontSetting.h; sourceTree = "<group>"; };
 		81CD7C391AEFB6B100C0EB2D /* WideUseFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WideUseFrame.cpp; sourceTree = "<group>"; };
 		81CD7C3A1AEFB6B100C0EB2D /* WideUseFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WideUseFrame.h; sourceTree = "<group>"; };
-		81CD7C3B1AEFB6B100C0EB2D /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Block.cpp; path = ../Classes/Block.cpp; sourceTree = "<group>"; };
-		81CD7C3C1AEFB6B100C0EB2D /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Block.h; path = ../Classes/Block.h; sourceTree = "<group>"; };
+		81CD7C3B1AEFB6B100C0EB2D /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Cell.cpp; path = ../Classes/Cell.cpp; sourceTree = "<group>"; };
+		81CD7C3C1AEFB6B100C0EB2D /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cell.h; path = ../Classes/Cell.h; sourceTree = "<group>"; };
 		81CD7C3E1AEFB6B100C0EB2D /* GameConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConst.h; sourceTree = "<group>"; };
 		81CD7C401AEFB6B100C0EB2D /* GameSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameSprite.cpp; sourceTree = "<group>"; };
 		81CD7C411AEFB6B100C0EB2D /* GameSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameSprite.h; sourceTree = "<group>"; };
@@ -939,8 +950,8 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8176C1B21B0C6877002E6D31 /* BattleScene.cpp */,
-				8176C1B31B0C6878002E6D31 /* BattleScene.h */,
+				8180E1C61B281C110068B4F1 /* Block.cpp */,
+				8180E1C71B281C110068B4F1 /* Block.h */,
 				817F8EF31B019DDE00A87076 /* AlertView.h */,
 				817F8EF41B019DDE00A87076 /* AlertView.mm */,
 				15AA9F3A15B7EF960033D6C2 /* AppDelegate.cpp */,
@@ -951,8 +962,12 @@
 				81A76CCC1B034A6800DD5FD8 /* ArenaMapScene.h */,
 				81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */,
 				81CD7C421AEFB6B100C0EB2D /* BaseScene.h */,
-				81CD7C3B1AEFB6B100C0EB2D /* Block.cpp */,
-				81CD7C3C1AEFB6B100C0EB2D /* Block.h */,
+				8176C1B21B0C6877002E6D31 /* BattleScene.cpp */,
+				8176C1B31B0C6878002E6D31 /* BattleScene.h */,
+				8180E1C31B2812240068B4F1 /* BattleScene2.cpp */,
+				8180E1C41B2812240068B4F1 /* BattleScene2.h */,
+				81CD7C3B1AEFB6B100C0EB2D /* Cell.cpp */,
+				81CD7C3C1AEFB6B100C0EB2D /* Cell.h */,
 				81ED13241AF4A2470043B59C /* conn */,
 				81CD7C3D1AEFB6B100C0EB2D /* const */,
 				81ED12E21AF46CF10043B59C /* data */,
@@ -980,6 +995,8 @@
 				81CD7CB81AF38EA100C0EB2D /* Soldier.cpp */,
 				81CD7CB91AF38EA100C0EB2D /* Soldier.h */,
 				81CD7C3F1AEFB6B100C0EB2D /* sprite */,
+				8165E5781B131394007E9610 /* TestScene.cpp */,
+				8165E5791B131394007E9610 /* TestScene.h */,
 				81ED13331AF4AF320043B59C /* TitleScene.cpp */,
 				81ED13341AF4AF320043B59C /* TitleScene.h */,
 				81CD7C1D1AEFB6B100C0EB2D /* util */,
@@ -1540,6 +1557,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8165E57D1B1442C5007E9610 /* plist */,
 				81885F7D1AF8A8AD00073358 /* csv */,
 				81ED12DC1AF469510043B59C /* sqlite */,
 				81CD7C5E1AEFB95A00C0EB2D /* img */,
@@ -1786,6 +1804,7 @@
 				81ED12DD1AF469510043B59C /* sqlite in Resources */,
 				81CD7C611AEFB95A00C0EB2D /* font in Resources */,
 				81885F7E1AF8A8AD00073358 /* csv in Resources */,
+				8165E57E1B1442C6007E9610 /* plist in Resources */,
 				81CD7C601AEFB95A00C0EB2D /* img in Resources */,
 				1A16458B191B5178008C7C7F /* ccs-res in Resources */,
 			);
@@ -1805,7 +1824,7 @@
 				81ED132B1AF4A2470043B59C /* BaseRequest.cpp in Sources */,
 				81CD7C4A1AEFB6B100C0EB2D /* ParamList.cpp in Sources */,
 				50F853F918C57E040019FBFB /* WidgetReader.cpp in Sources */,
-				81CD7C541AEFB6B100C0EB2D /* Block.cpp in Sources */,
+				81CD7C541AEFB6B100C0EB2D /* Cell.cpp in Sources */,
 				3729024D1867D36800B59D3A /* TriggerMng.cpp in Sources */,
 				81ED13461AF71AA50043B59C /* RegisterScene.cpp in Sources */,
 				43B91ED81949B84200F7F815 /* CocoLoader.cpp in Sources */,
@@ -1819,6 +1838,7 @@
 				15AA9F3C15B7EF960033D6C2 /* AppDelegate.cpp in Sources */,
 				50F853EC18C57E040019FBFB /* ButtonReader.cpp in Sources */,
 				50F853F818C57E040019FBFB /* TextFieldReader.cpp in Sources */,
+				8180E1C81B281C110068B4F1 /* Block.cpp in Sources */,
 				81CD7C521AEFB6B100C0EB2D /* UserFontSetting.cpp in Sources */,
 				81CD7C501AEFB6B100C0EB2D /* UICache.cpp in Sources */,
 				8130B5851B05A9160012F12B /* WallMst.cpp in Sources */,
@@ -1911,6 +1931,7 @@
 				15A3DAED1682F8A6002FB0C5 /* CocosDenshion.m in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
+				8180E1C51B2812240068B4F1 /* BattleScene2.cpp in Sources */,
 				1A27573F1697CF2B00504026 /* CCEditBoxImplAndroid.cpp in Sources */,
 				81885F841AF8BE5800073358 /* LevelMst.cpp in Sources */,
 				817F8ED11AFA628500A87076 /* Wall.cpp in Sources */,
@@ -1990,6 +2011,7 @@
 				81CD7C4F1AEFB6B100C0EB2D /* TagString.cpp in Sources */,
 				37BB5BF817E89E9B002746B4 /* CCActionObject.cpp in Sources */,
 				817F8EE21AFC5AA500A87076 /* EvolutionScene.cpp in Sources */,
+				8165E57A1B131394007E9610 /* TestScene.cpp in Sources */,
 				50F853EF18C57E040019FBFB /* LabelAtlasReader.cpp in Sources */,
 				8176C17F1B099DBA002E6D31 /* PurchaseMst.cpp in Sources */,
 			);

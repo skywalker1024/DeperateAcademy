@@ -47,7 +47,7 @@ void HomeScene::onEnter(){
         CCControlButton * questBtn = CCControlButton::create(questLabel, CCScale9Sprite::create("img/button1.png", CCRect(0, 0, 256, 256)));
         questBtn->setBackgroundSpriteForState(CCScale9Sprite::create("img/button2.png"), CCControlStateHighlighted);//按下后的图片
         
-        questBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(HomeScene::onQuestClick), CCControlEventTouchDown);
+        questBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(HomeScene::onQuestClick), CCControlEventTouchUpInside);
         questBtn->setPosition(ccp(screenWidth / 2 - 100, screenHeight / 2));
         this->addChild(questBtn);
     }
@@ -57,7 +57,7 @@ void HomeScene::onEnter(){
         CCControlButton * arenaBtn = CCControlButton::create(arenaLabel, CCScale9Sprite::create("img/button1.png", CCRect(0, 0, 256, 256)));
         arenaBtn->setBackgroundSpriteForState(CCScale9Sprite::create("img/button2.png"), CCControlStateHighlighted);//按下后的图片
         
-        arenaBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(HomeScene::onArenaClick), CCControlEventTouchDown);
+        arenaBtn->addTargetWithActionForControlEvents(this, cccontrol_selector(HomeScene::onArenaClick), CCControlEventTouchUpInside);
         arenaBtn->setPosition(ccp(screenWidth / 2 + 100, screenHeight / 2));
         this->addChild(arenaBtn);
     }
@@ -80,7 +80,7 @@ void HomeScene::onExit(){
 
 bool HomeScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     BaseScene::ccTouchBegan(pTouch, pEvent);
-    return false;
+    return true;
 }
 
 void HomeScene::onQuestClick(){

@@ -34,6 +34,7 @@ BattleScene::BattleScene()
     m_isOver = false;
     m_riceList = new CCMutableDictionary<int, Rice*>();
     m_isMoved = false;
+    m_isChecking = true;
     
 }
 
@@ -130,9 +131,15 @@ void BattleScene::onExit(){
 
 bool BattleScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     BaseScene::ccTouchBegan(pTouch, pEvent);
+    
+   
     m_isMoved = false;
     CCRect touchArea =  CCRect(MATRIX_START_X, START_Y, WIDTH * NUM, WIDTH * NUM);
     if (!touchArea.containsPoint(pTouch->getLocation())) {
+        return false;
+    }
+    
+    if (m_isChecking) {
         return false;
     }
     //判断落在哪个坑
@@ -141,12 +148,14 @@ bool BattleScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
     int i = (pTouch->getLocation().y - START_Y) / WIDTH;
     CCLog("ccTouchBegan i=%d j=%d", i, j);
     if (m_prevPoint.x >=0) {
-        m_nowPoint = ccp(i, j);
-        if (canExchange()) {
-            
-        }else{
-            initPoint();
-            m_prevPoint = ccp(i, j);
+        if ((i!= m_prevPoint.x || j!= m_prevPoint.y)) {
+            m_nowPoint = ccp(i, j);
+            if (canExchange()) {
+                
+            }else{
+                initPoint();
+                m_prevPoint = ccp(i, j);
+            }
         }
     }else{
         m_prevPoint = ccp(i, j);
@@ -249,7 +258,7 @@ void BattleScene::createBlock(int i , int j){
         this->addChild(batchNode);
         this->setCacheBatchNode(key, "block", batchNode);
     }
-    Block *block = Block::create();
+    Cell *block = Cell::create();
     block->initWithTexture(batchNode->getTexture());
     block->setAnchorPoint(CCPointZero);
     block->setPosition(ccpAdd(ccp(MATRIX_START_X, START_Y), ccp(WIDTH * j, WIDTH * i)));
@@ -488,6 +497,7 @@ void BattleScene::checkBlock(){
             exchangeBlock(false);
             initPoint();
         }
+        m_isChecking = false;
     }else{
         m_checkBlock = false;
         initPoint();
@@ -499,6 +509,7 @@ void BattleScene::checkBlock(){
                 if(m_matrix[i][j]->getCanRemove())
                 {
                     //increase rice
+                    CCPoint pos = m_matrix[i][j]->getPosition();
                     int blockType = m_matrix[i][j]->getType();
                     if (blockType != BLOCK_GREY_TYPE) {
                         int soldierId = UserInfo::shared()->m_soldierMap[blockType];
@@ -508,6 +519,9 @@ void BattleScene::checkBlock(){
                     }
                     m_matrix[i][j]->removeFromParent();
                     m_matrix[i][j] = NULL;
+                    
+                    //create fire ball
+                    createFireBall(pos, blockType);
                 }
             }
         }
@@ -541,6 +555,7 @@ void BattleScene::createBlocks(){
 
 void BattleScene::setCheckBlock(){
     m_checkBlock = true;
+    m_isChecking = true;
 }
 
 void BattleScene::changeNextScene(bool isWin){
@@ -567,8 +582,8 @@ void BattleScene::exchangeBlock(bool needCheck){
     int prevJ = (int) m_prevPoint.y;
     int nowI = (int) m_nowPoint.x;
     int nowJ = (int) m_nowPoint.y;
-    Block * prevBlock = m_matrix[prevI][prevJ];
-    Block * nowBlock = m_matrix[nowI][nowJ];
+    Cell * prevBlock = m_matrix[prevI][prevJ];
+    Cell * nowBlock = m_matrix[nowI][nowJ];
     
     //先交换位置之后判断是否需要消除
     prevBlock->runAction(CCMoveTo::create(ACTION_TIME, nowBlock->getPosition()));
@@ -631,4 +646,24 @@ void BattleScene::autoDownBlocks()//自动掉落
         }
     }
     
+}
+
+void BattleScene::createFireBall(CCPoint startPos, int type){
+    float x1 = 400;//  CommonUtils::getRandom(10, 20);
+    float y1 = 0;// CommonUtils::getRandom(-800, -700);
+    
+    float x2 = -300;// CommonUtils::getRandom(300, 400);
+    float y2 = 300;//CommonUtils::getRandom(-400, 0);
+    CCLog("x1=%f y1=%f x2=%f y2=%f", x1,y1, x2,y2);
+    ccBezierConfig config;
+    config.controlPoint_1 = ccp(x1,y1);
+    config.controlPoint_2 = ccp(x2,y1);
+    config.endPosition = ccp(500,900);
+    
+    ParticleAnime * particle = ParticleAnime::create("plist/fireBall.plist");
+    particle->CCNode::setPosition(startPos);
+    addChild(particle);
+    CCSequence *seq = CCSequence::createWithTwoActions(CCBezierTo::create(1.f, config), CCCallFunc::create(particle, callfunc_selector(ParticleAnime::removeFromParent)));
+    particle->runAction(seq);
+
 }

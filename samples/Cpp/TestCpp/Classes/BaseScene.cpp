@@ -60,7 +60,7 @@ bool BaseScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
 }
 
 void BaseScene::registerWithTouchDispatcher(){
-    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -122, true);
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 200, true);//button 的优先级是1，这里需要超过1，优先级低于button
 }
 
 

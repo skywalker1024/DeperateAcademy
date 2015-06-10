@@ -1,13 +1,13 @@
 //
-//  BattleScene.h
+//  BattleScene2.h
 //  TestCpp
 //
 //  Created by 龚畅优 on 14-2-2.
 //
 //
 
-#ifndef __TestCpp__BattleScene__
-#define __TestCpp__BattleScene__
+#ifndef __TestCpp__BattleScene2__
+#define __TestCpp__BattleScene2__
 #include "cocos-ext.h"
 #include "cocos2d.h"
 USING_NS_CC;
@@ -18,15 +18,15 @@ USING_NS_CC_EXT;
 #include "Wall.h"
 #include "MissionMstList.h"
 #include "ArenaInfoList.h"
-#include "Rice.h"
+#include "Block.h"
 const int NUM = 8;
 
-class BattleScene : public BaseScene{
+class BattleScene2 : public BaseScene{
 public:
     static CCScene * scene();
-    BattleScene();
-    virtual ~BattleScene();
-    CREATE_FUNC(BattleScene);
+    BattleScene2();
+    virtual ~BattleScene2();
+    CREATE_FUNC(BattleScene2);
     virtual bool init();
     virtual bool onAssignCCBMemberVariable(CCObject * pTarget, const char * pMemberVariableName, CCNode * pNode);
     virtual void onEnter();
@@ -40,26 +40,22 @@ public:
 private:
     MissionMst * m_missionMst;
     Cell * m_matrix[NUM][NUM];
-    CCMutableDictionary<int, Rice*> * m_riceList;
-    void createSoldier(int soldierId, CCMutableArray<Soldier*>* army, bool myArmy, int offsetX);
+    Block * m_block[NUM][NUM];
+    
     void createBlock(int i, int j);
     int MATRIX_START_X;
     int MY_ARMY_START_X;
     int ENEMY_ARMY_START_X;
-    CCMutableArray<Soldier*>* m_myArmy;
-    CCMutableArray<Soldier*>* m_enemyArmy;
-    void updateArmy(CCMutableArray<Soldier*>* atkArmy, CCMutableArray<Soldier*>* defArmy, bool myArmy);
-    CC_SYNTHESIZE_RETAIN(Wall*, m_myWall, MyWall);
-    CC_SYNTHESIZE_RETAIN(Wall*, m_enemyWall, EnemyWall);
+   
 private:
-    void createEnemy();
+   
     int m_enemyTimer;
     void checkBlock();//检查所有可消除的方块
     bool m_checkBlock;
     void createBlocks();
     void setCheckBlock();
     bool m_isOver;
-    ArenaInfo * m_arenaInfo;
+    
     void changeNextScene(bool isWin);
     
     CCPoint m_prevPoint;
@@ -71,7 +67,11 @@ private:
     bool m_isMoved;
     bool m_isChecking;
     void createFireBall(CCPoint startPos, int type);
+    
+    void bossUseSkill();
+    bool checkResult();
+    bool m_bossUseSkill;
 };
 
 
-#endif /* defined(__TestCpp__BattleScene__) */
+#endif /* defined(__TestCpp__BattleScene2__) */

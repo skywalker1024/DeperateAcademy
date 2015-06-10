@@ -33,6 +33,8 @@ public:
     void pushStepScene(CCScene * scene);
     void changeScene(CCScene * scene);
     ccColor3B getSystemColor( string key );
+    CCSpriteBatchNode* getCacheBatchNode( string key, string name );
+    void setCacheBatchNode( string key, string name, CCSpriteBatchNode* batch_node );
 private:
     StringLabelList * m_staminaLabel;
     StringLabelList * m_recoverTimeLabel;
@@ -43,8 +45,8 @@ private:
     bool m_hasHead;
 protected:
     void draw();
-    CCSpriteBatchNode* getCacheBatchNode( string key, string name );
-    void setCacheBatchNode( string key, string name, CCSpriteBatchNode* batch_node );
+    
+   
     CCSprite* getCacheSprite( string key, string name );
     void setCacheSprite( string key, string name, GameSprite* sprite );
     StringLabelList* getCacheStringLabelList(string key, string name );

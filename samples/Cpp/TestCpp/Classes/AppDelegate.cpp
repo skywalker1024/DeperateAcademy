@@ -7,6 +7,7 @@
 #include "AppMacros.h"
 #include "Battle.h"
 USING_NS_CC;
+#include "stdio.h"
 using namespace CocosDenshion;
 
 AppDelegate::AppDelegate()
@@ -47,6 +48,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     return true;
 }
+
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
 void AppDelegate::applicationDidEnterBackground()

@@ -6,6 +6,22 @@
          contextName = "RegisterScene::getRandomName(cocos2d::CCObject*, unsigned int):RegisterScene.cpp">
       </ContextState>
       <ContextState
+         contextName = "cocos2d::CCTouchDispatcher::touches(cocos2d::CCSet*, cocos2d::CCEvent*, unsigned int):CCTouchDispatcher.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "pHandler-&gt;getDelegate()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BattleScene2::checkBlock():BattleScene2.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_block[i][j]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "LoadingLayer::ResponseParse(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*):LoadingLayer.cpp">
          <PersistentStrings>
             <PersistentString
@@ -44,10 +60,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "BaseScene::pushStepScene(std::string, std::string, cocos2d::CCScene*):BaseScene.cpp">
+         contextName = "LoadingLayer::~LoadingLayer():LoadingLayer.cpp">
       </ContextState>
       <ContextState
-         contextName = "LoadingLayer::~LoadingLayer():LoadingLayer.cpp">
+         contextName = "BaseScene::pushStepScene(std::string, std::string, cocos2d::CCScene*):BaseScene.cpp">
       </ContextState>
       <ContextState
          contextName = "RegisterScene::~RegisterScene():RegisterScene.cpp">
@@ -119,15 +135,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "LoadingLayer::setResponseParser(ResponseParser*):LoadingLayer.h">
+      </ContextState>
+      <ContextState
          contextName = "UserInfo::updateWithJson(Json::Value):UserInfo.cpp">
          <PersistentStrings>
             <PersistentString
                value = "m_channel_user_id">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "LoadingLayer::setResponseParser(ResponseParser*):LoadingLayer.h">
       </ContextState>
       <ContextState
          contextName = "ResponseParser::ResponseParse(cocos2d::extension::CCHttpClient*, cocos2d::extension::CCHttpResponse*):ResponseParser.cpp">

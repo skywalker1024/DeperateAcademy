@@ -17,7 +17,8 @@
 //#include "Battle.h"
 #include "UserInfo.h"
 #include "DialogLayer.h"
-#include "BattleScene.h"
+//#include "BattleScene.h"
+#include "BattleScene2.h"
 MapScene::MapScene()
 {
     m_missionButtonList = new CCMutableArray<CCControlButton*>();
@@ -155,15 +156,6 @@ void MapScene::onExit(){
 }
 
 bool MapScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent){
-    if (m_backBtn->ccTouchBegan(pTouch, pEvent)) {
-        return false;
-    }
-    for (int i=0; i<m_missionButtonList->count(); i++) {
-        CCControlButton *missionBtn = m_missionButtonList->getObjectAtIndex(i);
-        if (missionBtn->ccTouchBegan(pTouch, pEvent)) {
-            return false;
-        }
-    }
     m_prevPos = pTouch->getLocation();
     CCLog("m_prevPos x=%f y=%f", m_prevPos.x, m_prevPos.y);
     return true;
@@ -207,7 +199,7 @@ void MapScene::onMissionClick(CCObject * sender, CCControlEvent controlEvent){
 
     MissionInfo::shared()->setCurrentMissionId(missionId);
     MissionInfo::shared()->setIsArena(false);
-    changeScene(BattleScene::scene());
+    changeScene(BattleScene2::scene());
 }
 
 void MapScene::moveMap(CCTouch *pTouch){
