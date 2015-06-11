@@ -26,7 +26,8 @@ void Cell::lockWithTexture(CCTexture2D * texture){
         m_lockSprite->initWithTexture(texture);
         m_lockSprite->setAnchorPoint(CCPointZero);
         m_lockSprite->setPosition(CCPointZero);
-        m_lockSprite->setScale(100 / texture->getContentSize().width);
+        m_lockSprite->setScale(.5f);
+        
         this->addChild(m_lockSprite);
     }
 }

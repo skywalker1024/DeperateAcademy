@@ -34,9 +34,11 @@ BattleScene2::BattleScene2()
     m_isMoved = false;
     m_isChecking = true;
     m_bossUseSkill = false;
+    m_boss = NULL;
 }
 
 BattleScene2::~BattleScene2(){
+    CC_SAFE_RELEASE_NULL(m_boss);
 }
 
 CCScene * BattleScene2::scene(){
@@ -57,6 +59,7 @@ bool BattleScene2::init(){
         int mission_id = MissionInfo::shared()->getCurrentMissionId();
         m_missionMst = MissionMstList::shared()->getObject(mission_id);
         m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
+    m_enemyTimer = 10;
 //    }
 
     CCLog("height=%f width=%f", CCDirector::sharedDirector()->getWinSize().height, CCDirector::sharedDirector()->getWinSize().width );
@@ -67,6 +70,8 @@ bool BattleScene2::init(){
     
     initPoint();
     
+    //init boss
+    initBoss();
     
     this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(2.f), CCCallFunc::create(this, callfunc_selector(BattleScene2::setCheckBlock))));
     return true;
@@ -208,6 +213,7 @@ void BattleScene2::createBlock(int i , int j){
     block->setAnchorPoint(CCPointZero);
     block->setPosition(ccpAdd(ccp(MATRIX_START_X, START_Y), ccp(WIDTH * j, WIDTH * i)));
     block->setScale( WIDTH / block->getTexture()->getContentSize().width );
+    CCLog("width=%f scale=%f",block->getContentSize().width, block->getScale() );
     this->addChild(block);
     
     block->setType(rand + 1);//type是serie id
@@ -251,6 +257,8 @@ void BattleScene2::draw(){
 }
 
 void BattleScene2::bossUseSkill(){
+    m_boss->useSkillAction();
+    
     //随机挑选3个锁链锁上
     for (int k=0; k<3; k++) {
         int i = CommonUtils::getRandom(0, NUM - 1);
@@ -486,6 +494,7 @@ void BattleScene2::autoDownBlocks()//自动掉落
 }
 
 void BattleScene2::createFireBall(CCPoint startPos, int type){
+    float duration = 1.f;
     float x1 = 400;//  CommonUtils::getRandom(10, 20);
     float y1 = 0;// CommonUtils::getRandom(-800, -700);
     
@@ -495,13 +504,15 @@ void BattleScene2::createFireBall(CCPoint startPos, int type){
     ccBezierConfig config;
     config.controlPoint_1 = ccp(x1,y1);
     config.controlPoint_2 = ccp(x2,y1);
-    config.endPosition = ccp(500,1100);
+    config.endPosition = ccp(500,1200);
     
     ParticleAnime * particle = ParticleAnime::create("plist/fireBall.plist");
     particle->CCNode::setPosition(startPos);
     addChild(particle);
-    CCSequence *seq = CCSequence::createWithTwoActions(CCBezierTo::create(1.f, config), CCCallFunc::create(particle, callfunc_selector(ParticleAnime::removeFromParent)));
+    CCSequence *seq = CCSequence::createWithTwoActions(CCBezierTo::create(duration, config), CCCallFunc::create(particle, callfunc_selector(ParticleAnime::removeFromParent)));
     particle->runAction(seq);
+    
+    m_boss->AttackedAction(duration);
 
 }
 
@@ -514,4 +525,10 @@ bool BattleScene2::checkResult(){
         }
     }
     return true;
+}
+
+void BattleScene2::initBoss(){
+    m_boss = Boss::create();
+    m_boss->setPosition(ccp(500, 1200));
+    this->addChild(m_boss);
 }

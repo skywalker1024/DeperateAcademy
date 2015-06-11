@@ -181,6 +181,7 @@
 		81A76CD21B034DEC00DD5FD8 /* ArenaInfoList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A76CD01B034DEC00DD5FD8 /* ArenaInfoList.cpp */; };
 		81A76CD31B034DEC00DD5FD8 /* ArenaInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A76CD11B034DEC00DD5FD8 /* ArenaInfo.cpp */; };
 		81A76CD61B043BA700DD5FD8 /* ArenaEndScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A76CD41B043BA700DD5FD8 /* ArenaEndScene.cpp */; };
+		81C3A7181B293B300003D17C /* Boss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A7161B293B300003D17C /* Boss.cpp */; };
 		81CD7C451AEFB6B100C0EB2D /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */; };
 		81CD7C461AEFB6B100C0EB2D /* ColorString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */; };
 		81CD7C471AEFB6B100C0EB2D /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C201AEFB6B100C0EB2D /* CommonUtils.cpp */; };
@@ -617,6 +618,8 @@
 		81A76CD11B034DEC00DD5FD8 /* ArenaInfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArenaInfo.cpp; sourceTree = "<group>"; };
 		81A76CD41B043BA700DD5FD8 /* ArenaEndScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ArenaEndScene.cpp; path = ../Classes/ArenaEndScene.cpp; sourceTree = "<group>"; };
 		81A76CD51B043BA700DD5FD8 /* ArenaEndScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaEndScene.h; path = ../Classes/ArenaEndScene.h; sourceTree = "<group>"; };
+		81C3A7161B293B300003D17C /* Boss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Boss.cpp; path = ../Classes/Boss.cpp; sourceTree = "<group>"; };
+		81C3A7171B293B300003D17C /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Boss.h; path = ../Classes/Boss.h; sourceTree = "<group>"; };
 		81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseScene.cpp; path = ../Classes/BaseScene.cpp; sourceTree = "<group>"; };
 		81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorString.cpp; sourceTree = "<group>"; };
 		81CD7C1F1AEFB6B100C0EB2D /* ColorString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorString.h; sourceTree = "<group>"; };
@@ -950,8 +953,6 @@
 		15AA9C4015B7EC450033D6C2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				8180E1C61B281C110068B4F1 /* Block.cpp */,
-				8180E1C71B281C110068B4F1 /* Block.h */,
 				817F8EF31B019DDE00A87076 /* AlertView.h */,
 				817F8EF41B019DDE00A87076 /* AlertView.mm */,
 				15AA9F3A15B7EF960033D6C2 /* AppDelegate.cpp */,
@@ -966,6 +967,10 @@
 				8176C1B31B0C6878002E6D31 /* BattleScene.h */,
 				8180E1C31B2812240068B4F1 /* BattleScene2.cpp */,
 				8180E1C41B2812240068B4F1 /* BattleScene2.h */,
+				8180E1C61B281C110068B4F1 /* Block.cpp */,
+				8180E1C71B281C110068B4F1 /* Block.h */,
+				81C3A7161B293B300003D17C /* Boss.cpp */,
+				81C3A7171B293B300003D17C /* Boss.h */,
 				81CD7C3B1AEFB6B100C0EB2D /* Cell.cpp */,
 				81CD7C3C1AEFB6B100C0EB2D /* Cell.h */,
 				81ED13241AF4A2470043B59C /* conn */,
@@ -1979,6 +1984,7 @@
 				37CA1C3B17D87A3300A649D0 /* UILayoutParameter.cpp in Sources */,
 				37CA1C3C17D87A3300A649D0 /* UILayoutDefine.cpp in Sources */,
 				37CA1C3E17D87A3300A649D0 /* CocosGUI.cpp in Sources */,
+				81C3A7181B293B300003D17C /* Boss.cpp in Sources */,
 				81ED133E1AF4D9500043B59C /* LKKeychain.m in Sources */,
 				37CA1C3F17D87A3300A649D0 /* UIHelper.cpp in Sources */,
 				37CA1C4317D87A3300A649D0 /* UIListView.cpp in Sources */,

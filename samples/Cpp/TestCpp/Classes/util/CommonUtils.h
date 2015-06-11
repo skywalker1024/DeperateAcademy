@@ -61,6 +61,8 @@ public:
     static bool checkoutPaymentID(string aPaymentID);
     static void startCheckID();
     static void paymentRequest(string purchaseId);
+    static CCSprite* createSprite(const char *picName, const char *plist);
+    static CCSpriteFrame* getSpriteFrameByNameAndPlist(const char *picName, const char* plist);
 };
 
 #endif

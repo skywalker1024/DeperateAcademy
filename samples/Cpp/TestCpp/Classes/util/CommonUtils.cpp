@@ -323,3 +323,20 @@ long CommonUtils::getCurrentTime()
     gettimeofday(&tim, NULL);
     return tim.tv_sec;
 }
+
+CCSpriteFrame* CommonUtils::getSpriteFrameByNameAndPlist(const char *picName, const char* plist)
+{
+    CCSpriteFrameCache* cache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    CCSpriteFrame *spriteFrame = cache->spriteFrameByName(picName);
+    if (!spriteFrame)
+    {
+        cache->addSpriteFramesWithFile(plist);
+        spriteFrame = cache->spriteFrameByName(picName);
+    }
+    return spriteFrame;
+}
+
+CCSprite* CommonUtils::createSprite(const char *picName, const char *plist)
+{
+    return CCSprite::createWithSpriteFrame(getSpriteFrameByNameAndPlist(picName, plist));
+}

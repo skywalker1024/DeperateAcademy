@@ -14,10 +14,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "BattleScene2::checkBlock():BattleScene2.cpp">
+         contextName = "Battle::updateArmy(cocos2d::CCMutableArray&lt;Soldier*&gt;*, cocos2d::CCMutableArray&lt;Soldier*&gt;*, bool):Battle.cpp">
          <PersistentStrings>
             <PersistentString
-               value = "m_block[i][j]">
+               value = "m_myWall">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -56,6 +56,14 @@
          <PersistentStrings>
             <PersistentString
                value = "m_pfnSelector">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Cell::lockWithTexture(cocos2d::CCTexture2D*):Cell.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_lockSprite">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -203,6 +211,14 @@
          contextName = "SoldierMstList::shared():SoldierMstList.cpp">
       </ContextState>
       <ContextState
+         contextName = "BattleScene2::checkBlock():BattleScene2.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_block[i][j]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "cocos2d::extension::CCHttpClient::dispatchResponseCallbacks(float):HttpClient.cpp">
          <PersistentStrings>
             <PersistentString
@@ -210,14 +226,6 @@
             </PersistentString>
             <PersistentString
                value = "*pSelector">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Battle::updateArmy(cocos2d::CCMutableArray&lt;Soldier*&gt;*, cocos2d::CCMutableArray&lt;Soldier*&gt;*, bool):Battle.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "m_myWall">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

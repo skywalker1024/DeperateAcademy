@@ -19,6 +19,7 @@ USING_NS_CC_EXT;
 #include "MissionMstList.h"
 #include "ArenaInfoList.h"
 #include "Block.h"
+#include "Boss.h"
 const int NUM = 8;
 
 class BattleScene2 : public BaseScene{
@@ -71,6 +72,8 @@ private:
     void bossUseSkill();
     bool checkResult();
     bool m_bossUseSkill;
+    void initBoss();
+    Boss * m_boss;
 };
 
 
