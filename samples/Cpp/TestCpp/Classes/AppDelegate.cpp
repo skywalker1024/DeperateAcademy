@@ -32,6 +32,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     CCEGLView* pEGLView = CCEGLView::sharedOpenGLView();
     
     pDirector->setOpenGLView(pEGLView);
+    pDirector->setAnimationInterval(1.0 / 60);
     CCSize screenSize = CCEGLView::sharedOpenGLView()->getFrameSize();
     ResolutionPolicy resolution = screenSize.width / designResolutionSize.width > screenSize.height / designResolutionSize.height ? kResolutionFixedHeight : kResolutionFixedWidth;
     // Set the design resolution

@@ -11,6 +11,7 @@
 Boss::Boss()
 :m_hp(0)
 ,m_maxHp(0)
+,m_isDead(false)
 {}
 
 Boss::~Boss(){
@@ -22,16 +23,27 @@ bool Boss::init(){
     setHp(300);
     setMaxHp(300);
     
-    this->setHpBar(CCProgressTimer::create(CommonUtils::createSprite("bar_loading_2.png", "img/arrow_and_bar.plist")));
-    this->getHpBar()->setPosition(ccp(0, 100));
-    this->addChild(this->getHpBar(), 100);
+    this->setHpBar(CCScale9Sprite::create("img/bar_green.png"));
+    this->getHpBar()->setPosition(ccp(0, -100));
+    this->addChild(this->getHpBar());
     return true;
 }
 
 void Boss::decHp(int damage){
     m_hp -= damage;
-    this->getHpBar()->setPercentage((float) damage / m_maxHp);
+    if (m_hp <= 0) {
+        m_hp = 0;
+    }
+    this->getHpBar()->setScaleX((float) m_hp / m_maxHp);
     
+    if (m_hp == 0) {
+        dying();
+    }
+}
+
+void Boss::dying(){
+    m_isDead = true;
+    this->runAction(CCSequence::createWithTwoActions(CCFadeOut::create(1.f), CCCallFunc::create(this, callfunc_selector(CCNode::removeFromParent))));
 }
 
 void Boss::useSkillAction(){

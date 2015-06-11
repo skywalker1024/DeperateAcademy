@@ -51,6 +51,8 @@ private:
 private:
    
     int m_enemyTimer;
+    int m_timer;
+    StringLabelList * m_timerLabel;
     void checkBlock();//检查所有可消除的方块
     bool m_checkBlock;
     void createBlocks();
@@ -62,7 +64,7 @@ private:
     CCPoint m_prevPoint;
     CCPoint m_nowPoint;
     void initPoint();
-    void exchangeBlock(bool needCheck);
+    void exchangeBlock();
     bool canExchange();
     void autoDownBlocks();
     bool m_isMoved;
@@ -70,10 +72,15 @@ private:
     void createFireBall(CCPoint startPos, int type);
     
     void bossUseSkill();
-    bool checkResult();
+    bool checkWin();
+    bool checkLose();
     bool m_bossUseSkill;
     void initBoss();
     Boss * m_boss;
+    void decBossHp(ParticleAnime * anime);
+    void checkTimer();
+    
+    bool isExistRemoveCell();
 };
 
 

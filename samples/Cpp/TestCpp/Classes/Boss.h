@@ -23,10 +23,12 @@ public:
     void decHp(int damage);
     void useSkillAction();
     void AttackedAction(float delayTime);
+    void dying();
 private:
+    CC_SYNTHESIZE(bool, m_isDead, IsDead);
     CC_SYNTHESIZE(int, m_hp, Hp);
     CC_SYNTHESIZE(int, m_maxHp, MaxHp);
-    CC_SYNTHESIZE(CCProgressTimer*, m_hpBar, HpBar);
+    CC_SYNTHESIZE(CCScale9Sprite*, m_hpBar, HpBar);
 };
 
 #endif /* defined(__CrossKaiser__Boss__) */

@@ -35,10 +35,10 @@ BattleScene2::BattleScene2()
     m_isChecking = true;
     m_bossUseSkill = false;
     m_boss = NULL;
+    m_timer = 0;
 }
 
 BattleScene2::~BattleScene2(){
-    CC_SAFE_RELEASE_NULL(m_boss);
 }
 
 CCScene * BattleScene2::scene(){
@@ -72,6 +72,15 @@ bool BattleScene2::init(){
     
     //init boss
     initBoss();
+    
+    //init timer
+    m_timer = CommonUtils::getRandom(3, 5) * 60 * 60;
+    
+    int rest_time = m_timer / 60;
+    int min = rest_time / 60;
+    int second = rest_time % 60;
+    CCString * restString = CCString::createWithFormat("%d:%02d", min, second);
+    m_timerLabel = GraphicUtils::drawString(this, restString->m_sString, 20, CommonUtils::getScreenHeight() - 200, getSystemColor(COLOR_KEY_GOLD), TEXT_ALIGN_LEFT_MIDDLE, 60);
     
     this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(2.f), CCCallFunc::create(this, callfunc_selector(BattleScene2::setCheckBlock))));
     return true;
@@ -160,7 +169,7 @@ void BattleScene2::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent){
             //如果相邻
             if(canExchange()){
                 m_isMoved = true;
-                exchangeBlock(true);
+                exchangeBlock();
             }
         }else{
             if (m_nowPoint.x == i && m_nowPoint.y == j) {
@@ -179,7 +188,7 @@ void BattleScene2::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent){
     }
     if (!m_isMoved) {
         if (canExchange()) {
-            exchangeBlock(true);
+            exchangeBlock();
         }
     }
 }
@@ -226,7 +235,16 @@ void BattleScene2::draw(){
         return;
     }
     
-    //checkExistMove
+    //updateTimer
+    checkTimer();
+    
+    //checkLose
+    if(checkLose()){
+        GraphicUtils::drawString(this, "you lose!", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() - 300, getSystemColor(COLOR_KEY_RED), TEXT_ALIGN_CENTER_MIDDLE, 60);
+        m_isOver = true;
+        changeNextScene(false);
+    }
+    //checkExistMove TODO
     
     //checkBlock
     if (m_checkBlock) {
@@ -238,18 +256,21 @@ void BattleScene2::draw(){
     }else{
         m_bossUseSkill = true;
         if (m_bossUseSkill && !m_isChecking) {
-            m_bossUseSkill = false;
-            bossUseSkill();
-            //        if (MissionInfo::shared()->getIsArena()) {
-            //            m_enemyTimer = CommonUtils::getRandom(m_arenaInfo->getMinTimer(), m_arenaInfo->getMaxTimer());
-            //        }else{
-            m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
-            //        }
+            if (m_boss && !m_boss->getIsDead()) {
+                m_bossUseSkill = false;
+                bossUseSkill();
+                //        if (MissionInfo::shared()->getIsArena()) {
+                //            m_enemyTimer = CommonUtils::getRandom(m_arenaInfo->getMinTimer(), m_arenaInfo->getMaxTimer());
+                //        }else{
+                m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
+                //        }
+            }
+            
         }
     }
     
     //检查输赢
-    if ( checkResult() ) {
+    if ( checkWin() ) {
         GraphicUtils::drawString(this, "you win!", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() - 300, getSystemColor(COLOR_KEY_RED), TEXT_ALIGN_CENTER_MIDDLE, 60);
         m_isOver = true;
         changeNextScene(true);
@@ -278,112 +299,50 @@ void BattleScene2::bossUseSkill(){
 }
 
 void BattleScene2::checkBlock(){
-    bool removeFlg = false;
-    //判断每行是否有可以消除的
+    bool hasRemoveCell = isExistRemoveCell();
+    if (!hasRemoveCell) {
+        m_isChecking = false;
+        return;
+    }
+    
+    m_checkBlock = false;
+    initPoint();
+    //removeBlocks
     for(int i=0;i<NUM;i++) //判断7行里面每行是否有可以消除的
     {
-        for(int j=0;j<=NUM - 3;j++)
+        for(int j=0;j<NUM;j++)
         {
-            int type = m_matrix[i][j]->getType(); //获取map[r][c]的怪物编号
-            int samnum=0;
-            int nowcol=0;
-            for(nowcol=j+1; nowcol<NUM; nowcol++) {
-                if(type==m_matrix[i][nowcol]->getType())
-                {
-                    samnum++;
-                }else
-                {
-                    break;
-                }
-            }
-            //判断samenum
-            if(samnum>=2) //消除所有相同的
+            if(m_matrix[i][j]->getCanRemove())
             {
-                removeFlg = true;
-                for(int tmp=j;tmp<nowcol;tmp++)
-                {
-                    m_matrix[i][tmp]->setCanRemove(true);
-                }
-            }
-        }
-    }
-    
-    //判断每列是否有可以消除的
-    for(int j=0;j<NUM;j++) //判断7行里面每行是否有可以消除的
-    {
-        for(int i=0;i<=NUM - 3;i++)
-        {
-            int type = m_matrix[i][j]->getType(); //获取map[r][c]的怪物编号
-            int samnum=0;
-            int nowrow=0;
-            for(nowrow=i+1; nowrow<NUM; nowrow++) {
-                if(type==m_matrix[nowrow][j]->getType())
-                {
-                    samnum++;
-                }else
-                {
-                    break;
-                }
-            }
-            //判断samenum
-            if(samnum>=2) //消除所有相同的
-            {
-                removeFlg = true;
-                for(int tmp=i;tmp<nowrow;tmp++)
-                {
-                    m_matrix[tmp][j]->setCanRemove(true);
-                }
-            }
-        }
-    }
-    
-    if (!removeFlg) {
-        if (m_prevPoint.x != -1 && m_nowPoint.x != -1) {
-            //把两个block交换回去
-            exchangeBlock(false);
-            initPoint();
-        }
-        m_isChecking = false;
-    }else{
-        m_checkBlock = false;
-        initPoint();
-        //removeBlocks
-        for(int i=0;i<NUM;i++) //判断7行里面每行是否有可以消除的
-        {
-            for(int j=0;j<NUM;j++)
-            {
-                if(m_matrix[i][j]->getCanRemove())
-                {
-                    if (m_matrix[i][j]->getIsLocked()) {
-                        m_matrix[i][j]->unlock();
-                    }else{
-                        CCPoint pos = m_matrix[i][j]->getPosition();
-                        int blockType = m_matrix[i][j]->getType();
-                        
-                        m_matrix[i][j]->removeFromParent();
-                        m_matrix[i][j] = NULL;
-                        
-                        //create fire ball
-                        createFireBall(pos, blockType);
-                        
-                        //城墙倒掉一块
-                        if (m_block[i][j]) {
-                            Block * block = m_block[i][j];
-                            if (block->getType() == 1) {
-                                m_block[i][j] = NULL;
-                            }
-                            block->decType();
-                        }
-                    }
+                if (m_matrix[i][j]->getIsLocked()) {
+                    m_matrix[i][j]->unlock();
+                }else{
+                    CCPoint pos = m_matrix[i][j]->getPosition();
+                    int blockType = m_matrix[i][j]->getType();
                     
+                    m_matrix[i][j]->removeFromParent();
+                    m_matrix[i][j] = NULL;
+                    
+                    //create fire ball
+                    createFireBall(pos, blockType);
+                    
+                    //城墙倒掉一块
+                    if (m_block[i][j]) {
+                        Block * block = m_block[i][j];
+                        if (block->getType() == 1) {
+                            m_block[i][j] = NULL;
+                        }
+                        block->decType();
+                    }
                 }
+                
             }
         }
-        
-        //autoDown new Blocks
-        autoDownBlocks();
-        this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(ACTION_TIME + .1f), CCCallFunc::create(this, callfunc_selector(BattleScene2::checkBlock))));//这个delay时间要长过ACTION_TIME
     }
+    
+    //autoDown new Blocks
+    autoDownBlocks();
+    this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(ACTION_TIME + .1f), CCCallFunc::create(this, callfunc_selector(BattleScene2::checkBlock))));//这个delay时间要长过ACTION_TIME
 }
 
 void BattleScene2::createBlocks(){
@@ -419,7 +378,7 @@ void BattleScene2::initPoint(){
     m_nowPoint = ccp(-1, -1);
 }
 
-void BattleScene2::exchangeBlock(bool needCheck){
+void BattleScene2::exchangeBlock(){
     CCLog("exchange block");
     m_checkBlock = false;
     
@@ -430,14 +389,27 @@ void BattleScene2::exchangeBlock(bool needCheck){
     Cell * prevBlock = m_matrix[prevI][prevJ];
     Cell * nowBlock = m_matrix[nowI][nowJ];
     
-    //先交换位置之后判断是否需要消除
-    prevBlock->runAction(CCMoveTo::create(ACTION_TIME, nowBlock->getPosition()));
-    nowBlock->runAction(CCMoveTo::create(ACTION_TIME, prevBlock->getPosition()));
     m_matrix[prevI][prevJ] = nowBlock;
     m_matrix[nowI][nowJ] = prevBlock;
-
-    if (needCheck) {
+    
+    //预判断是否可交换
+    bool removeFlg = isExistRemoveCell();
+    
+    if(removeFlg){
+        //交换位置后再checkBlock
+        prevBlock->runAction(CCMoveTo::create(ACTION_TIME, nowBlock->getPosition()));
+        nowBlock->runAction(CCMoveTo::create(ACTION_TIME, prevBlock->getPosition()));
+        m_matrix[prevI][prevJ] = nowBlock;
+        m_matrix[nowI][nowJ] = prevBlock;
         this->runAction(CCSequence::createWithTwoActions(CCDelayTime::create(ACTION_TIME + .1f), CCCallFunc::create(this, callfunc_selector(BattleScene2::checkBlock))));
+    }else{
+        //交换过来再换回去
+        m_matrix[prevI][prevJ] = prevBlock;
+        m_matrix[nowI][nowJ] = nowBlock;
+        prevBlock->runAction(CCSequence::createWithTwoActions(CCMoveTo::create(ACTION_TIME, nowBlock->getPosition()), CCMoveTo::create(ACTION_TIME, prevBlock->getPosition())) );
+        nowBlock->runAction(CCSequence::createWithTwoActions(CCMoveTo::create(ACTION_TIME, prevBlock->getPosition()), CCMoveTo::create(ACTION_TIME, nowBlock->getPosition())) );
+        
+        initPoint();
     }
 }
 
@@ -507,16 +479,24 @@ void BattleScene2::createFireBall(CCPoint startPos, int type){
     config.endPosition = ccp(500,1200);
     
     ParticleAnime * particle = ParticleAnime::create("plist/fireBall.plist");
+    particle->setTag(1);//这里临时借用tag做伤害
     particle->CCNode::setPosition(startPos);
     addChild(particle);
-    CCSequence *seq = CCSequence::createWithTwoActions(CCBezierTo::create(duration, config), CCCallFunc::create(particle, callfunc_selector(ParticleAnime::removeFromParent)));
+    CCSequence *seq = CCSequence::createWithTwoActions(CCBezierTo::create(duration, config), CCCallFuncO::create(this, callfuncO_selector(BattleScene2::decBossHp), particle));
     particle->runAction(seq);
     
     m_boss->AttackedAction(duration);
 
 }
 
-bool BattleScene2::checkResult(){
+void BattleScene2::decBossHp(ParticleAnime * anime)
+{
+    int damage = anime->getTag();
+    anime->removeFromParent();
+    m_boss->decHp(damage);
+}
+
+bool BattleScene2::checkWin(){
     for (int i=0; i<NUM; i++) {
         for (int j=0; j<NUM; j++) {
             if (m_block[i][j]) {
@@ -524,11 +504,95 @@ bool BattleScene2::checkResult(){
             }
         }
     }
+    
+    if (m_boss && !m_boss->getIsDead()) {
+        return false;
+    }
+    
     return true;
+}
+
+bool BattleScene2::checkLose(){
+    if (m_timer<=0) {
+        return true;//time's up
+    }
+    return false;
 }
 
 void BattleScene2::initBoss(){
     m_boss = Boss::create();
     m_boss->setPosition(ccp(500, 1200));
     this->addChild(m_boss);
+}
+
+void BattleScene2::checkTimer(){
+    m_timer--;
+    int rest_time = m_timer / 60;
+    int min = rest_time / 60;
+    int second = rest_time % 60;
+    CCString * restString = CCString::createWithFormat("%d:%02d", min, second);
+    m_timerLabel->changeString(restString->m_sString);
+
+}
+
+bool BattleScene2::isExistRemoveCell(){
+    bool removeFlg = false;
+    //判断每行是否有可以消除的
+    for(int i=0;i<NUM;i++) //判断7行里面每行是否有可以消除的
+    {
+        for(int j=0;j<=NUM - 3;j++)
+        {
+            int type = m_matrix[i][j]->getType(); //获取map[r][c]的怪物编号
+            int samnum=0;
+            int nowcol=0;
+            for(nowcol=j+1; nowcol<NUM; nowcol++) {
+                if(type==m_matrix[i][nowcol]->getType())
+                {
+                    samnum++;
+                }else
+                {
+                    break;
+                }
+            }
+            //判断samenum
+            if(samnum>=2) //消除所有相同的
+            {
+                removeFlg = true;
+                for(int tmp=j;tmp<nowcol;tmp++)
+                {
+                    m_matrix[i][tmp]->setCanRemove(true);
+                }
+            }
+        }
+    }
+    
+    //判断每列是否有可以消除的
+    for(int j=0;j<NUM;j++) //判断7行里面每行是否有可以消除的
+    {
+        for(int i=0;i<=NUM - 3;i++)
+        {
+            int type = m_matrix[i][j]->getType(); //获取map[r][c]的怪物编号
+            int samnum=0;
+            int nowrow=0;
+            for(nowrow=i+1; nowrow<NUM; nowrow++) {
+                if(type==m_matrix[nowrow][j]->getType())
+                {
+                    samnum++;
+                }else
+                {
+                    break;
+                }
+            }
+            //判断samenum
+            if(samnum>=2) //消除所有相同的
+            {
+                removeFlg = true;
+                for(int tmp=i;tmp<nowrow;tmp++)
+                {
+                    m_matrix[tmp][j]->setCanRemove(true);
+                }
+            }
+        }
+    }
+    return removeFlg;
 }
