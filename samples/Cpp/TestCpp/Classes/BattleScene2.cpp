@@ -251,12 +251,12 @@ void BattleScene2::draw(){
         checkBlock();
     }
     
-    if (m_enemyTimer > 0) {
-        m_enemyTimer--;
-    }else{
-        m_bossUseSkill = true;
-        if (m_bossUseSkill && !m_isChecking) {
-            if (m_boss && !m_boss->getIsDead()) {
+    if (m_boss && !m_boss->getIsDead()){
+        if (m_enemyTimer > 0) {
+            m_enemyTimer--;
+        }else{
+            m_bossUseSkill = true;
+            if (m_bossUseSkill && !m_isChecking) {
                 m_bossUseSkill = false;
                 bossUseSkill();
                 //        if (MissionInfo::shared()->getIsArena()) {
@@ -265,10 +265,9 @@ void BattleScene2::draw(){
                 m_enemyTimer = CommonUtils::getRandom(m_missionMst->getMinTimer(), m_missionMst->getMaxTimer());
                 //        }
             }
-            
         }
     }
-    
+
     //检查输赢
     if ( checkWin() ) {
         GraphicUtils::drawString(this, "you win!", CommonUtils::getScreenWidth() / 2, CommonUtils::getScreenHeight() - 300, getSystemColor(COLOR_KEY_RED), TEXT_ALIGN_CENTER_MIDDLE, 60);
@@ -466,6 +465,9 @@ void BattleScene2::autoDownBlocks()//自动掉落
 }
 
 void BattleScene2::createFireBall(CCPoint startPos, int type){
+    if (!m_boss) {
+        return;
+    }
     float duration = 1.f;
     float x1 = 400;//  CommonUtils::getRandom(10, 20);
     float y1 = 0;// CommonUtils::getRandom(-800, -700);
@@ -493,7 +495,13 @@ void BattleScene2::decBossHp(ParticleAnime * anime)
 {
     int damage = anime->getTag();
     anime->removeFromParent();
-    m_boss->decHp(damage);
+    if (m_boss) {
+        if (m_boss->getIsDead()) {
+            m_boss = NULL;
+        }else{
+            m_boss->decHp(damage);
+        }
+    }
 }
 
 bool BattleScene2::checkWin(){

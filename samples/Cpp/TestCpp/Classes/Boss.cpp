@@ -20,11 +20,13 @@ Boss::~Boss(){
 bool Boss::init(){
     CCSprite *bossSprite = CCSprite::create("img/boss.jpg");
     this->addChild(bossSprite);
-    setHp(300);
-    setMaxHp(300);
+    int hp = 300;
+    setHp(hp);
+    setMaxHp(hp);
     
     this->setHpBar(CCScale9Sprite::create("img/bar_green.png"));
-    this->getHpBar()->setPosition(ccp(0, -100));
+    m_hpBar->setAnchorPoint(ccp(0,0));
+    this->getHpBar()->setPosition(ccp(-bossSprite->getContentSize().width / 2, -200));
     this->addChild(this->getHpBar());
     return true;
 }
