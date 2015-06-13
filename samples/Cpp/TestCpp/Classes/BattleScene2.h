@@ -68,7 +68,7 @@ private:
     bool canExchange();
     void autoDownBlocks();
     bool m_isMoved;
-    bool m_isChecking;
+    bool m_canTouch;
     void createFireBall(CCPoint startPos, int type);
     
     void bossUseSkill();

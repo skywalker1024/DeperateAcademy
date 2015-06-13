@@ -182,6 +182,7 @@
 		81A76CD31B034DEC00DD5FD8 /* ArenaInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A76CD11B034DEC00DD5FD8 /* ArenaInfo.cpp */; };
 		81A76CD61B043BA700DD5FD8 /* ArenaEndScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81A76CD41B043BA700DD5FD8 /* ArenaEndScene.cpp */; };
 		81C3A7181B293B300003D17C /* Boss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A7161B293B300003D17C /* Boss.cpp */; };
+		81C3AA241B2B22FD0003D17C /* music in Resources */ = {isa = PBXBuildFile; fileRef = 81C3AA231B2B22FD0003D17C /* music */; };
 		81CD7C451AEFB6B100C0EB2D /* BaseScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */; };
 		81CD7C461AEFB6B100C0EB2D /* ColorString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */; };
 		81CD7C471AEFB6B100C0EB2D /* CommonUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81CD7C201AEFB6B100C0EB2D /* CommonUtils.cpp */; };
@@ -620,6 +621,7 @@
 		81A76CD51B043BA700DD5FD8 /* ArenaEndScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArenaEndScene.h; path = ../Classes/ArenaEndScene.h; sourceTree = "<group>"; };
 		81C3A7161B293B300003D17C /* Boss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Boss.cpp; path = ../Classes/Boss.cpp; sourceTree = "<group>"; };
 		81C3A7171B293B300003D17C /* Boss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Boss.h; path = ../Classes/Boss.h; sourceTree = "<group>"; };
+		81C3AA231B2B22FD0003D17C /* music */ = {isa = PBXFileReference; lastKnownFileType = folder; path = music; sourceTree = "<group>"; };
 		81CD7C1C1AEFB6B100C0EB2D /* BaseScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseScene.cpp; path = ../Classes/BaseScene.cpp; sourceTree = "<group>"; };
 		81CD7C1E1AEFB6B100C0EB2D /* ColorString.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorString.cpp; sourceTree = "<group>"; };
 		81CD7C1F1AEFB6B100C0EB2D /* ColorString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorString.h; sourceTree = "<group>"; };
@@ -1562,12 +1564,13 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8165E57D1B1442C5007E9610 /* plist */,
-				81885F7D1AF8A8AD00073358 /* csv */,
-				81ED12DC1AF469510043B59C /* sqlite */,
-				81CD7C5E1AEFB95A00C0EB2D /* img */,
-				81CD7C5F1AEFB95A00C0EB2D /* font */,
 				1A16458A191B5178008C7C7F /* ccs-res */,
+				81885F7D1AF8A8AD00073358 /* csv */,
+				81CD7C5F1AEFB95A00C0EB2D /* font */,
+				81CD7C5E1AEFB95A00C0EB2D /* img */,
+				81C3AA231B2B22FD0003D17C /* music */,
+				8165E57D1B1442C5007E9610 /* plist */,
+				81ED12DC1AF469510043B59C /* sqlite */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -1811,6 +1814,7 @@
 				81885F7E1AF8A8AD00073358 /* csv in Resources */,
 				8165E57E1B1442C6007E9610 /* plist in Resources */,
 				81CD7C601AEFB95A00C0EB2D /* img in Resources */,
+				81C3AA241B2B22FD0003D17C /* music in Resources */,
 				1A16458B191B5178008C7C7F /* ccs-res in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

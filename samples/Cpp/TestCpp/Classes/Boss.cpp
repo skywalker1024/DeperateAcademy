@@ -20,7 +20,7 @@ Boss::~Boss(){
 bool Boss::init(){
     CCSprite *bossSprite = CCSprite::create("img/boss.jpg");
     this->addChild(bossSprite);
-    int hp = 300;
+    int hp = 500;
     setHp(hp);
     setMaxHp(hp);
     
